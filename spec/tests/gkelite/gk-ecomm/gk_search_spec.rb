@@ -3,7 +3,7 @@ require './lib/pages/gkelite/gk_home_page'
 require './lib/pages/gkelite/gk_product_page'
 
 
-describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - GK Search Test:" do
+describe "#{ENV['SITE']}:#{ENV['ENVIRONMENT']}:#{ENV['BROWSER']} - GK Search Test:" do
 
 	before(:all) do
 		@homepage = GKHomePage.new

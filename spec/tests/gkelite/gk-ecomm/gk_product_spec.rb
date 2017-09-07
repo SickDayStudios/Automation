@@ -4,7 +4,7 @@ require "./lib/helpers/gkelite/gk_cart_lightbox"
 require "./lib/pages/gkelite/customizer_page"
 
 
-describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - GK Product Page Test:" do
+describe "#{ENV['SITE']}:#{ENV['ENVIRONMENT']}:#{ENV['BROWSER']} - GK Product Page Test:" do
 
 	before(:all) do
 		@page = GKProductPage.new

@@ -47,6 +47,46 @@ t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_product_spec.rb')
 t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
 end
 
+RSpec::Core::RakeTask.new(:gk_signup, [:environment, :browser]) do |t, args|
+ENV['ENVIRONMENT'] = args[:environment]
+ENV['BROWSER'] = args[:browser]
+ENV['SITE'] = 'gk'
+t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_register_spec.rb')
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+end
+
+RSpec::Core::RakeTask.new(:gk_login, [:environment, :browser]) do |t, args|
+ENV['ENVIRONMENT'] = args[:environment]
+ENV['BROWSER'] = args[:browser]
+ENV['SITE'] = 'gk'
+t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_login_spec.rb')
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+end
+
+RSpec::Core::RakeTask.new(:gk_smoke, [:environment, :browser]) do |t, args|
+ENV['ENVIRONMENT'] = args[:environment]
+ENV['BROWSER'] = args[:browser]
+ENV['SITE'] = 'gk'
+t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_smoke_spec.rb')
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+end
+
+RSpec::Core::RakeTask.new(:gk_search, [:environment, :browser]) do |t, args|
+ENV['ENVIRONMENT'] = args[:environment]
+ENV['BROWSER'] = args[:browser]
+ENV['SITE'] = 'gk'
+t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_search_spec.rb')
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+end
+
+RSpec::Core::RakeTask.new(:gk_checkout, [:environment, :browser]) do |t, args|
+ENV['ENVIRONMENT'] = args[:environment]
+ENV['BROWSER'] = args[:browser]
+ENV['SITE'] = 'gk'
+t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_checkout_spec.rb')
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+end
+
 RSpec::Core::RakeTask.new(:icon, [:environment, :browser]) do |t, args|
 ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
