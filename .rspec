@@ -1,0 +1,7 @@
+--color
+--require spec_helper
+--require rspec_junit_formatter
+--format documentation
+--format Fuubar
+--format html -o ./reports/test_results.html
+--format RspecJunitFormatter -o ./reports/test_results.xml
