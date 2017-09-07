@@ -12,7 +12,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 t.pattern = Dir.glob('spec/tests/gkelite/*_spec.rb')
-# t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
 end
 
 RSpec::Core::RakeTask.new(:gk_garments, [:environment, :browser]) do |t, args|
@@ -20,7 +20,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 t.pattern = Dir.glob('spec/tests/gkelite/garments/*_spec.rb')
-# t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
 end
 
 RSpec::Core::RakeTask.new(:gk_ecomm, [:environment, :browser]) do |t, args|
@@ -28,7 +28,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/*_spec.rb')
-# t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
 end
 
 RSpec::Core::RakeTask.new(:gk_url, [:environment, :browser]) do |t, args|
@@ -36,7 +36,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_url_spec.rb')
-# t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
 end
 
 RSpec::Core::RakeTask.new(:gk_products, [:environment, :browser]) do |t, args|
@@ -44,7 +44,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_product_spec.rb')
-# t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
 end
 
 RSpec::Core::RakeTask.new(:icon, [:environment, :browser]) do |t, args|
@@ -52,5 +52,5 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'icon'
 t.pattern = Dir.glob('spec/tests/icon/*_spec.rb')
-# t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
+t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format documentation --format Fuubar --format html -o ./reports/test_results.html --format RspecJunitFormatter -o ./reports/test_results.xml'
 end

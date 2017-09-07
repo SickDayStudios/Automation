@@ -6,7 +6,7 @@ require "./lib/pages/gkelite/gk_home_page"
 
 
 
-describe "GK-Elite Account Login Tests" do
+describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - GK-Elite Account Login Tests:" do
 
 attr_accessor :login_page, :product_page, :cart_page
 

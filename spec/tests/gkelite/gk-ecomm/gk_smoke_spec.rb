@@ -4,7 +4,7 @@ require "./lib/helpers/gkelite/gk_cart_lightbox"
 require "./lib/pages/gkelite/customizer_page"
 
 
-describe 'GK Ecomm Smoke Test' do
+describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - GK Ecomm Smoke Test:" do
 
 	before(:all) do
 		@page = GKProductPage.new

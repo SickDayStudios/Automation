@@ -3,7 +3,7 @@ require 'net/http'
 require './lib/pages/icon/uaf_clutchfit_women'
 
 
-describe 'Validate JSON API Dataset: ' do
+describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - Validate JSON API Dataset: " do
 	context 'Clutchfit Womens' do
 
 		it 'Bottom Logo Color Logic' do
@@ -17,7 +17,7 @@ describe 'Validate JSON API Dataset: ' do
 	end
 end
 
-describe 'GUI Logic Test' do
+describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - GUI Logic Test" do
 	before(:all) do
 	    BasePage.resize_window
 	    $driver.goto('https://www.underarmour.com/en-us/pid3020926')

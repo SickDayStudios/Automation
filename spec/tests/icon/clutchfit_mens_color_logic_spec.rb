@@ -3,7 +3,7 @@ require 'net/http'
 require './lib/pages/icon/uaf_clutchfit_men'
 
 
-describe 'Validate JSON API Dataset: ' do
+describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - Validate JSON API Dataset: " do
 
 	context 'Clutchfit Mens' do
 
@@ -18,7 +18,7 @@ describe 'Validate JSON API Dataset: ' do
 	end
 end
 
-describe 'GUI Logic Test' do
+describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - GUI Logic Test" do
 
 	before(:all) do
 	    BasePage.resize_window

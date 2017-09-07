@@ -3,7 +3,7 @@ require "./lib/pages/gkelite/gk_account_page"
 require "./lib/pages/gkelite/gk_home_page"
 
 
-describe "GK-Elite Account Register Tests" do
+describe "#{ENV[SITE]}:#{ENV[ENVIRONMENT]}:#{ENV[BROWSER]} - GK-Elite Account Register Tests" do
 
 	before(:all) do
 		@login_page = GKLoginPage.new
