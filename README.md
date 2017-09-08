@@ -1,4 +1,4 @@
-# Rspec Continuous Integration qa-pollinate-ci Framework
+# Rspec Continuous Integration qa-pollinate-ci Framework Setup
 
 
 
