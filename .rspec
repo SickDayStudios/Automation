@@ -1,7 +1,8 @@
 --color
+--fail-fast=5
 --require spec_helper
 --require rspec_junit_formatter
 --format documentation
 --format Fuubar
---format html --out ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html
---format RspecJunitFormatter --out ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml
+--format html -o ./reports/test_results-<%= ENV['TEST_ENV_NUMBER'] %>.html
+--format RspecJunitFormatter -o ./reports/test_results-<%= ENV['TEST_ENV_NUMBER'] %>.xml
