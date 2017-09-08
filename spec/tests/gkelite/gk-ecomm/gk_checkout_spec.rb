@@ -6,7 +6,7 @@ require "./lib/pages/gkelite/gk_payment_page"
 
 
 
-describe "#{ENV['SITE']}:#{ENV['ENVIRONMENT']}:#{ENV['BROWSER']} - GK-Elite Checkout Test:" do
+describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK-Elite Checkout Test:" do
 
 	before(:all) do
 		@home_page = GKHomePage.new

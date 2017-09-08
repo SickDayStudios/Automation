@@ -10,6 +10,7 @@ require '././lib/pages/base_page'
 require 'openssl'
 require 'rspec_junit_formatter'
 require "watir-scroll"
+require 'fileutils'
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 # SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
@@ -20,6 +21,11 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 #   super
 # end
 
+screenshotfolder = "./reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
+unless File.directory?(screenshotfolder)
+  FileUtils.mkdir_p(screenshotfolder)
+end
+
 RSpec.configure do |config|
   config.success_color = :cyan
   config.detail_color = :red
@@ -29,7 +35,8 @@ RSpec.configure do |config|
 
 
 #=> Before any tests are run, this block is run
-config.before(:all) do
+  config.before(:all) do
+    @screenshotfolder = screenshotfolder
     $driver = Watir::Browser.new ENV['BROWSER'].to_sym
     BasePage.resize_window
     BasePage.set_base_url
@@ -38,15 +45,13 @@ config.before(:all) do
 
   config.after(:each) do |example|
     if example.exception
-      $driver.screenshot.save "./reports/screenshot-#{DateTime.now.strftime("%d%b%Y-%H%M%S")}.png"
+      $driver.screenshot.save "./reports/#{@screenshotfolder}/#{example}-#{DateTime.now.strftime("%d%b%Y-%H%M%S")}.png"
     end
   end
 
   config.after(:all) do
     # $headless.destroy
     BasePage.quit_webdriver
-    # FileUtils.mv("./reports/test_results.xml", "./reports/results-#{DateTime.now.strftime("%d%b%Y-%H%M%S")}.xml")
-    # FileUtils.mv("./reports/test_results.html", "./reports/results-#{DateTime.now.strftime("%d%b%Y-%H%M%S")}.html")
   end
 
   config.expect_with :rspec do |expectations|

@@ -3,5 +3,5 @@
 --require rspec_junit_formatter
 --format documentation
 --format Fuubar
---format html -o ./reports/test_results.html
---format RspecJunitFormatter -o ./reports/test_results.xml
+--format html --out ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html
+--format RspecJunitFormatter --out ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml

@@ -6,14 +6,4 @@ class InitializerPage
   def initialize
     super($driver)
   end
-
-
-
-
-
-
-
-
-  
-
 end

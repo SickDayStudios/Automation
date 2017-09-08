@@ -5,7 +5,7 @@ require './lib/pages/gkelite/gk_shopify_base_page'
 
 
 
-describe "#{ENV['SITE']}:#{ENV['ENVIRONMENT']}:#{ENV['BROWSER']} - URL Navigation Test:" do
+describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - URL Navigation Test:" do
 
 	before(:all) do
 		@page = GKSearchResultsPage.new

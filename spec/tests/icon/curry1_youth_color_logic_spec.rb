@@ -3,7 +3,7 @@ require 'net/http'
 require './lib/pages/icon/uaf_curry1_youth'
 
 
-describe "#{ENV['SITE']}:#{ENV['ENVIRONMENT']}:#{ENV['BROWSER']} - Validate JSON API Dataset: " do
+describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - Validate JSON API Dataset: " do
 
 	context 'Curry Youth' do
 
