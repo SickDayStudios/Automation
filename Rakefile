@@ -31,7 +31,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/*_spec.rb')
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/*_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
@@ -40,7 +40,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_url_spec.rb')
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_url_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
@@ -49,7 +49,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_product_spec.rb')
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_product_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
@@ -58,7 +58,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_register_spec.rb')
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_register_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
@@ -67,7 +67,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_login_spec.rb')
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_login_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
@@ -76,7 +76,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_smoke_spec.rb')
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_smoke_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
@@ -85,7 +85,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_search_spec.rb')
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_search_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
@@ -94,7 +94,7 @@ ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
 ENV['SITE'] = 'gk'
 ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-t.pattern = Dir.glob('spec/tests/gkelite/gk-ecomm/gk_checkout_spec.rb')
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_checkout_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
