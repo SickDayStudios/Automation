@@ -58,12 +58,13 @@ class BasePage
       when :staging then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
       when :prod then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
       end
-      # when :icon
-      #   case ENV['ENVIRONMENT']
-      #     when :dev then $base_url =
-      #     when :staging then $base_url =
-      #     when :prod then $base_url =
-      # end
+    when :spectrum
+      case ENV['ENVIRONMENT']
+      when :dev then $base_url = 'https://dev.spectrumcustomizer.com/admin/' and @username = 'test_sa' and @password = 'SuperUser#1'
+      when :staging then $base_url = 'http://demo.spectrumcustomizer.com/admin/' and @username = 'test_sa' and @password = 'SuperUser#1'
+      when :prod then $base_url = 'http://demo.spectrumcustomizer.com/admin/' and @username = 'test_sa' and @password = 'SuperUser#1'
+      end
+    when :eto then $base_url = "https://forms.energytrust.org/esf"
       # when :cb
       #   case ENV['ENVIRONMENT']
       #     when :dev then $base_url =
