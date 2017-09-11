@@ -8,15 +8,13 @@ require "./lib/pages/gkelite/gk_home_page"
 
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK-Elite Account Login Tests:" do
 
-attr_accessor :login_page, :product_page, :cart_page
+attr_reader :username, :password
 
 	before(:all) do
 		@login_page = GKLoginPage.new
 		@product_page = GKProductPage.new
 		@cart_page = GKCartPage.new
 		@home_page = GKHomePage.new
-		@email = 'cason.williams@pollinate.com'
-		@password = 'gk123!@#'
 	end
 
 	context 'Login via Login Page' do
@@ -27,7 +25,7 @@ attr_accessor :login_page, :product_page, :cart_page
 		end
 
 		it 'Sign Into Pre-Existing Account' do
-			@login_page.login_with(@email, @password)
+			@login_page.login_with(@username, @password)
 			expect(@login_page.url).to include('/account')
 		end
 
@@ -41,7 +39,7 @@ attr_accessor :login_page, :product_page, :cart_page
 		it 'Header Sign In' do
 			@home_page.home_page
 			@login_page = @home_page.header_signin
-			@login_page.login_with(@email, @password)
+			@login_page.login_with(@username, @password)
 			expect(login_page.url).to include('/account')
 		end
 
@@ -76,7 +74,7 @@ attr_accessor :login_page, :product_page, :cart_page
 		end
 
 		it 'Sign In via Popup' do
-			@cart_page.email = 'cason.williams@pollinate.com'
+			@cart_page.username = 'cason.williams@pollinate.com'
 			@cart_page.password = 'gk123!@#'
 			@cart_page.sign_in
 			expect(@cart_page.url).to include('/checkouts/')

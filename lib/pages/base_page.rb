@@ -49,7 +49,21 @@ class BasePage
       when :dev then $base_url = 'https://dev-gkelite.pollinate.com'
       when :test then $base_url = 'https://test-gkelite.pollinate.com'
       when :staging then $base_url = 'https://staging-gkelite.pollinate.com'
+        case ENV['USER_TYPE'].to_sym
+        when :consumer then @username = 'pollinatetest@gmail.com' and @password = 'iamquality'
+        when :dealer then @username = 'pollinatetest+gkdealer@gmail.com' and @password = 'IamQuality!'
+        when :distributor then @username = 'pollinatetest+gkdistributor@gmail.com' and @password = 'IamQuality!'
+        when :salesrep then @username = 'pollinatetest+gksalesrep@gmail.com' and @password = 'IamQuality!'
+        when :teamlead then then @username = 'pollinatetest+gkteamdealer@gmail.com' and @password = 'IamQuality!'
+        end
       when :prod then $base_url = 'https://preview.gkelite.com'
+        case ENV['USER_TYPE'].to_sym
+        when :consumer then @username = 'pollinatetest+gkconsumer@gmail.com' and @password = 'IamQuality!'
+        when :dealer then @username = 'pollinatetest+gkdealer@gmail.com' and @password = 'IamQuality!'
+        when :distributor then @username = 'pollinatetest+gkdistributor@gmail.com' and @password = 'IamQuality!'
+        when :salesrep then @username = 'pollinatetest+gksalesrep@gmail.com' and @password = 'IamQuality!'
+        when :teamlead then then @username = 'pollinatetest+gkteamdealer@gmail.com' and @password = 'IamQuality!'
+        end
       end
     when :icon
       case ENV['ENVIRONMENT'].to_sym
