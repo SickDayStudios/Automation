@@ -44,7 +44,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		expect(@product_page.cart_popup?).to eq(true)
 	end
 
-	it ' - Lightbox: Checkout' do
+	it ' - Lightbox Checkout' do
 		@product_page.checkout
 		expect(@product_page.url).to include('/cart')
 	end
