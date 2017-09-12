@@ -64,5 +64,19 @@ Note: To check preexisting PATH folder directories, simply type "path" in the co
 * Change directory to local qa-pollinate-ci repository (ex. "cd c:/qa-pollinate-ci)
 * Enter the following command schema: "bundle exec rake <'site'>[<'environment'>,<'browser'>]            (ex. "bundle exec rake gk[staging,chrome]")
 
-**COMING SOON**
-Run Rspec Tests via Jenkins
+# Run Rspec Tests via Jenkins
+* Open your browser window of choice
+* Navigate to: http://192.168.1.191:8080 (Note: Must be connected to the office intranet)
+Note: Each project will have a coresponding view per environment visible on the main page.
+
+* To run a Test specification
+	- Click on the Project/Environment folder desired
+	- Click the 'Play' button, the Job (test) will begin automating 
+(Note: When a job is running you will be able to see a progress bar in the bottom left corner of the page and the circular icon next to the job name will flash)
+
+* If a Job fails, it will be displayed with a red circular icon (Please inform the QA department to investigate)
+* To view the console log for any previously ran jobs, navigate to http://192.168.1.191:8080/view/all/builds or click the "Build History" link from the main Jenkins page.
+
+
+If you have any questions or requests, feel free to contact Cason Williams.
+
