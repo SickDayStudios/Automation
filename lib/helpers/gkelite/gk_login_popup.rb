@@ -13,4 +13,10 @@ checkbox(:remember_me, id: "remember-me")
 link(:forgot_password, id: "RecoverPassword")
 button(:sign_in, css: "#customer_login > ul > li:nth-child(4) > input[type='submit']")
 
+def login_with(email, password)
+	self.email = email
+	self.password = password
+	self.sign_in
+end
+
 end

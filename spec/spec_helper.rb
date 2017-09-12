@@ -6,7 +6,7 @@ require 'page-object'
 require 'watir'
 require 'selenium-webdriver'
 require 'fuubar'
-require '././lib/pages/base_page'
+require './lib/pages/base_page'
 require 'openssl'
 require 'rspec_junit_formatter'
 require "watir-scroll"
