@@ -47,7 +47,8 @@ link(:sizing_chart, class: "size-chart lightbox-trigger")
 div(:size_lightbox, id: "sizing-chart")
 image(:size_close, css: "#sizing-chart > div.close > img")
 span(:selected_size, css: "#product-attributes-container > form > div.size-selector > label > span")
-div(:quantity, class: "quantity-list-container")
+div(:consumer_quantity, class: "quantity-list-container")
+list_items(:dealer_quantity, class: "dealer-selector-size")
 button(:q_one, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(1)")
 button(:q_two, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(2)")
 button(:q_three, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(3)")
@@ -96,16 +97,28 @@ def random_options
 	self.color_picker_element.buttons.to_a.sample.click
 	self.wait_until { self.size_dropdown? }
 	self.random_size
-	self.random_quantity
+	if ENV['USER_TYPE'] = "consumer"
+		self.consumer_random_quantity
+	else
+		self.dealer_random_quantity
+	end
 end
 
-def random_quantity
+def consumer_random_quantity
 	@arr = Array.new
-	self.quantity_element.click
-	self.quantity_element.buttons.each do |x|
+	self.consumer_quantity_element.button.click
+	self.consumer_quantity_element.buttons.each do |x|
 		@arr.push(x)
 	end
-	@arr.sample.click
+	@arr[0..3].sample.click
+end
+
+def dealer_random_quantity
+	@arr = Array.new
+	self.dealer_quantity_elements.text_field.each do |x|
+		@arr.push(x)
+	end
+	@arr.sample.send_keys rand[1..5].to_s
 end
 
 def random_size

@@ -21,7 +21,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 #   super
 # end
 
-screenshotfolder = "./reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
+screenshotfolder = "reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
 unless File.directory?(screenshotfolder)
   FileUtils.mkdir_p(screenshotfolder)
 end
@@ -40,12 +40,13 @@ RSpec.configure do |config|
     $driver = Watir::Browser.new ENV['BROWSER'].to_sym
     BasePage.resize_window
     BasePage.set_base_url
+    BasePage.set_user
     BasePage.navigate_to_starting_page
   end
 
   config.after(:each) do |example|
     if example.exception
-      $driver.screenshot.save "./reports/#{@screenshotfolder}/#{example}-#{DateTime.now.strftime("%d%b%Y-%H%M%S")}.png"
+      $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
     end
   end
 

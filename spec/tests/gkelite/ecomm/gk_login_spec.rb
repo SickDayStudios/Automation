@@ -25,7 +25,7 @@ attr_reader :username, :password
 		end
 
 		it 'Sign Into Pre-Existing Account' do
-			@login_page.login_with(@username, @password)
+			@login_page.login_with($username, $password)
 			expect(@login_page.url).to include('/account')
 		end
 
@@ -39,7 +39,7 @@ attr_reader :username, :password
 		it 'Header Sign In' do
 			@home_page.home_page
 			@login_page = @home_page.header_signin
-			@login_page.login_with(@username, @password)
+			@login_page.login_with($username, $password)
 			expect(login_page.url).to include('/account')
 		end
 
@@ -74,8 +74,8 @@ attr_reader :username, :password
 		end
 
 		it 'Sign In via Popup' do
-			@cart_page.username = 'cason.williams@pollinate.com'
-			@cart_page.password = 'gk123!@#'
+			@cart_page.username = $username
+			@cart_page.password = $password
 			@cart_page.sign_in
 			expect(@cart_page.url).to include('/checkouts/')
 		end

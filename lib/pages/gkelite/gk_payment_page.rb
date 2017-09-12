@@ -21,8 +21,20 @@ button(:place_order, css: "#app > div.checkout-wrapper.container > div.checkout-
 div(:spinner, class: "loader-container")
 span(:warning, class: "help is-danger")
 div(:loader, class: "loader")
+labels(:card_options, class: "custom-label")
+select_list(:sales_rep_list, name: "salesRep")
+div(:saved_cards, class: "btn btn-primary edit-button")
+div(:sales_rep_dropdown, css: "#app > div > div > div:nth-child(2) > div.col-xs-12.col-md-6 > form > div.payment-additions-container > form > div:nth-child(2) > div > div")
 
 
+def select_random_rep
+	self.sales_rep_dropdown_element.click
+	self.sales_rep_list_element.options.sample.click
+end
+
+def select_random_card
+	self.card_options.radio_elements.to_a.sample.set
+end
 
 def fill_credit_card
 	self.card_name = 'Testy McTesterson'
@@ -31,6 +43,5 @@ def fill_credit_card
 	self.card_date_year = '19'
 	self.card_security_code = '111'
 end
-
 
 end

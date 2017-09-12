@@ -1,106 +1,90 @@
 require "./lib/pages/gkelite/gk_product_page"
 require "./lib/pages/gkelite/gk_cart_page"
-require "./lib/helpers/gkelite/gk_cart_lightbox"
 require "./lib/pages/gkelite/customizer_page"
+require "./lib/pages/gkelite/gk_home_page"
+require "./lib/pages/gkelite/gk_login_page"
+require "./lib/pages/gkelite/gk_payment_page"
+require "./lib/pages/gkelite/gk_checkout_page"
 
-
-describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK Ecomm Smoke Test:" do
+describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase}:#{ENV['USER_TYPE'].upcase} - GK Ecomm Smoke Test:" do
 
 	before(:all) do
-		@page = GKProductPage.new
+		@login_page = GKLoginPage.new
+		@product_page = GKProductPage.new
+		@cart_page = GKCartPage.new
+		@home_page = GKHomePage.new
+		@payment_page = GKPaymentPage.new
+		@checkout_page = GKCheckoutPage.new
 	end
-	context "Product Page Functionality Test:" do
 
-		it 'Navigate to Product Page' do
-			@page.product_page('3728')
-			expect(@page.url).to include('/products/')
+	it ' - Navigate to Login Page' do
+		@home_page.login_page
+		expect(@login_page.url).to include('/account/login')
+	end
+
+	it ' - Sign Into Pre-Existing Account' do
+		@login_page.login_with($username, $password)
+		expect(@login_page.url).to include('/account')
+	end
+
+
+	it ' - Navigate to Product Page' do
+		@home_page.product_page('3734')
+		expect(@home_page.url).to include('3734')
+	end
+
+	it ' - Select Random Options' do
+		@product_page.random_options
+		expect(@product_page.selected_size).not_to eq("")
+	end
+
+	it ' - Add Product to Cart' do
+		@product_page.add_to_cart
+		@product_page.wait_until { @product_page.cart_popup? }
+		expect(@product_page.cart_popup?).to eq(true)
+	end
+
+	it ' - Lightbox: Checkout' do
+		@product_page.checkout
+		expect(@product_page.url).to include('/cart')
+	end
+
+	it ' - Secure Checkout' do
+		@cart_page.secure_checkout
+	end
+
+	it ' - Continue to Shipping Method' do
+		@checkout_page.continue_to
+	end
+
+	it ' - Continue to Payment Method' do
+		@checkout_page.continue_to
+		@checkout_page.wait_until { @checkout_page.different_address? }
+		expect(@checkout_page.current_breadcrumb).to eq('Payment method')
+	end
+
+	it ' - Complete Order' do
+		@checkout_page.continue_to
+		expect(@payment_page.url).to include("pay-gkelite")
+	end
+
+	it ' - Select Random Saved CC or Fill New CC Form' do
+		if @payment_page.saved_cards?
+			@payment_page.select_random_card
+		else
+			@payment_page.fill_credit_card
 		end
+	end
 
-		it 'Select Random Options' do
-			@page.wait_until { @page.size_dropdown? }
-			@page.random_options
-			expect(@page.size_dropdown).not_to be_empty
+	if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'salesrep' || ENV['USER_TYPE'] == 'teamlead'
+		it ' - Select Random Sales Rep' do
+			@payment_page.select_random_rep
 		end
+	end
 
-		it 'Click Sizing Chart' do
-			#@page.sizing_chart
-			expect(@page.sizing_chart?).to eq(true)
-		end
-
-		# it 'Dismiss Sizing Chart Popup' do
-		# 	@page.size_close_element.click
-		# 	expect(@page.size_lightbox_element.visible?).to eq(false)
-		# end
-
-		it 'Product Details Are Present' do
-			expect(@page.product_details?).to eq(true)
-		end
-
-		it 'Open Fabric Care Accordian' do
-			@page.fabric_care_element.click
-			expect(@page.show_more?).to eq(true)
-		end
-
-		it 'Click Show More Link' do
-			expect(@page.show_more?).to eq(true)
-		end
-
-		# it 'Dismiss Fabric Care Popup' do
-		# 	@page.size_close_element.click
-		# 	expect(@page.fabric_care_modal_element.visible?).to eq(false)
-		# end
-
-		it 'Open Reviews Accordian' do
-			@page.review_element.click
-			expect(@page.write_cancel_review?).to eq(true)
-			expect(@page.review_header?).to eq(true)
-			expect(@page.review_body?).to eq(true)
-		end
-
-		it 'Click Write a Review Link' do
-			@page.write_cancel_review
-			expect(@page.review_name?).to eq(true)
-		end
-
-		it 'Submit incomplete Review' do
-			@page.submit_review
-			expect(@page.errors).to eq('This field is required.')
-		end
-
-		it 'Cancel Review' do
-			@page.write_cancel_review
-			expect(@page.review_name?).to eq(true)
-		end
-
-		it 'Click Write a Review Link' do
-			@page.write_cancel_review
-			expect(@page.review_name?).to eq(true)
-		end
-
-		it 'Fill Review Form' do
-			@page.fill_review
-			expect(@page.review_name).to eq('Tester')
-			expect(@page.review_email).to eq('test@qa.com')
-			expect(@page.review_title).to eq('This is a test')
-			expect(@page.review_body).to eq('TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST')
-		end
-
-		it 'Submit Review' do
-			@page.submit_review
-			expect(@page.review_confirm).to eq("Thank you for submitting your review! Please refresh the page in a few moments to see your review.")
-		end
-
-		it 'Add Product To Cart' do
-			@page.scroll.to :top
-			@page.add_to_cart
-			@page.wait_until { @page.cart_popup? }
-			expect(@page.cart_popup?).to eq(true)
-		end
-
-		it 'Continue Shopping' do
-			@page.continue_shopping
-			@page.wait_while { @page.cart_popup? }
-			expect(@page.cart_popup?).to eq(false)
-		end
+	it ' - Place Order' do
+		@payment_page.place_order
+		@payment_page.wait_while { @payment_page.loader? }
+		expect(@payment_page.url).to include("thank_you")
 	end
 end
