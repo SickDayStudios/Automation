@@ -42,7 +42,6 @@ group :development, :test do
   gem 'rspec'
   gem 'page-object'
   gem 'watir'
-  gem 'fuubar'
   gem 'rake'
   gem "simplecov"
   gem "simplecov-rcov"

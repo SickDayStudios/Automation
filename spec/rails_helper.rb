@@ -4,7 +4,6 @@ require 'rspec'
 require 'page-object'
 require 'watir'
 require 'selenium-webdriver'
-require 'fuubar'
 require '././lib/pages/base_page'
 #require './spec/tests/webdriver_handler'
 # require 'headless'
@@ -34,7 +33,6 @@ RSpec.configure do |config|
   config.success_color = :cyan
   config.detail_color = :red
   config.failure_color = :magenta
-  config.fuubar_progress_bar_options = { :format => '|%B%p%%|> %a' }
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
 

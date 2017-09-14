@@ -2,6 +2,8 @@ require 'page-object'
 require './lib/pages/base_page'
 require './lib/helpers/gkelite/gk_header'
 require './lib/helpers/gkelite/gk_footer'
+require 'json'
+require 'net/http'
 
 class GKShopifyBasePage < BasePage
 	include PageObject
@@ -43,5 +45,14 @@ button(:enter, name: "commit")
 		return GKHomePage.new
 	end
 
+	def collections(id)
+		$driver.goto $base_url + "/collections/#{id}?view=product"
+	end
+
+	def api_setup(url)
+		uri = URI(url)
+		response = Net::HTTP.get(uri)
+		specs = JSON.parse(response)
+	end
 
 end

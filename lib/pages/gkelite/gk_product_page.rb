@@ -90,11 +90,13 @@ divs(:suggested_garments, class: /swiper-slide/)
 div(:cart_popup, id: "added-to-cart")
 
 
-
+def selected_color
+	self.color_picker_element.buttons.to_a.sample
+end
 
 def random_options
 	sleep 1
-	self.color_picker_element.buttons.to_a.sample.click
+	self.selected_color.click
 	self.wait_until { self.size_dropdown? }
 	self.random_size
 	if ENV['USER_TYPE'] = "consumer"
