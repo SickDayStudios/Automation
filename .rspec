@@ -1,5 +1,4 @@
 --color
---fail-fast=5
 --require spec_helper
 --require rspec_junit_formatter
 --format documentation

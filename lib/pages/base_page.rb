@@ -21,12 +21,10 @@ class BasePage
     $driver.goto(secure ? "https://" + path : "http://" + path)
   end
 
-  def print_js_errors
-    log = $driver.driver.manage.logs.get('browser')
-    errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
-    if errors.count > 0
-      javascript_errors = errors.map(:message).join("\n")
-      raise javascript_errors
+  def self.check_console_log
+    console_log = $driver.driver.manage.logs.get(:browser)
+    if console_log != nil
+      raise(console_log)
     end
   end
 
@@ -75,13 +73,7 @@ class BasePage
           when :staging then $base_url = 'https://staging-gkelite.pollinate.com'
           when :prod then $base_url = 'https://preview.gkelite.com'
         end
-      when :icon
-        case ENV['ENVIRONMENT'].to_sym
-          when :dev then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
-          when :test then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
-          when :staging then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
-          when :prod then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
-        end
+      when :icon then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
       when :spectrum
         case ENV['ENVIRONMENT']
           when :dev then $base_url = 'https://dev.spectrumcustomizer.com/admin/' and $username = 'test_sa' and $password = 'SuperUser#1'
@@ -89,6 +81,12 @@ class BasePage
           when :prod then $base_url = 'http://demo.spectrumcustomizer.com/admin/' and $username = 'test_sa' and $password = 'SuperUser#1'
         end
       when :eto then $base_url = "https://forms.energytrust.org/esf"
+      when :uau
+        case ENV['ENVIRONMENT'].to_sym
+          when :test then $base_url =  'http://demo.madetoordercustomizer.com/under-armour/test/uau/frontend/index.html#/materialIds/'
+          when :staging then $base_url = 'http://demo.madetoordercustomizer.com/under-armour/staging/uau/frontend/index.html#/materialIds/'
+          when :prod then $base_url = 'http://demo.madetoordercustomizer.com/under-armour/production/uau/frontend/index.html#/materialIds/'
+        end
       # when :cb
       #   case ENV['ENVIRONMENT']
       #     when :dev then $base_url =

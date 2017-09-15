@@ -10,6 +10,9 @@ require 'openssl'
 require 'rspec_junit_formatter'
 require "watir-scroll"
 require 'fileutils'
+# require 'capybara/rspec'
+# require 'capybara/webkit/matchers'
+# Capybara.use_default_driver
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 # SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
@@ -19,6 +22,15 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 #   $out_file.write string
 #   super
 # end
+
+def print_js_errors
+  log = $driver.driver.manage.logs.get(:browser)
+  errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
+  if errors.count > 0
+    javascript_errors = errors.map(&:message).join("\n")
+    raise javascript_errors
+  end
+end
 
 screenshotfolder = "reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
 unless File.directory?(screenshotfolder)
@@ -31,7 +43,6 @@ RSpec.configure do |config|
   config.failure_color = :magenta
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-
 #=> Before any tests are run, this block is run
   config.before(:all) do
     @screenshotfolder = screenshotfolder
@@ -39,19 +50,22 @@ RSpec.configure do |config|
     BasePage.resize_window
     BasePage.set_base_url
     BasePage.set_user
-    BasePage.navigate_to_starting_page
   end
 
   config.after(:each) do |example|
     if example.exception
       $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
     end
+    # BasePage.check_console_log
+    print_js_errors
   end
 
   config.after(:all) do
     # $headless.destroy
     BasePage.quit_webdriver
   end
+
+  # config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

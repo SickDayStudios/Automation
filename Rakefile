@@ -8,6 +8,16 @@ require 'date'
 
 ENV['CI_REPORTS'] = "./reports"
 
+RSpec::Core::RakeTask.new(:uau, [:environment, :browser, :user]) do |t, args|
+ENV['ENVIRONMENT'] = args[:environment]
+ENV['BROWSER'] = args[:browser]
+ENV['USER_TYPE'] = args[:user]
+ENV['SITE'] = 'uau'
+ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
+t.pattern = Dir.glob('spec/tests/uau/*_spec.rb')
+#t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
+end
+
 RSpec::Core::RakeTask.new(:gk, [:environment, :browser, :user]) do |t, args|
 ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
