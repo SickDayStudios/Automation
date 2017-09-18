@@ -87,6 +87,7 @@ class BasePage
           when :staging then $base_url = 'http://demo.madetoordercustomizer.com/under-armour/staging/uau/frontend/index.html#/materialIds/'
           when :prod then $base_url = 'http://demo.madetoordercustomizer.com/under-armour/production/uau/frontend/index.html#/materialIds/'
         end
+      when :preview then $base_url = 'http://preview.madetoordercustomizer.com/'
       # when :cb
       #   case ENV['ENVIRONMENT']
       #     when :dev then $base_url =

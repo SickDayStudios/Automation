@@ -32,7 +32,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	context "Verify PP Colors Match 2D Data" do
 		$two_d_products.each do |product|
-			it "" do
+			it "#{product}" do
 				@page.product_page(product)
 				@product_page.customize_button
 				expect(@page.get_data(product)).to include(@page.get_back_color_ids)
