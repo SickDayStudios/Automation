@@ -13,7 +13,7 @@ describe "Preview Page Error Test" do
 		@page.product_links.each do |id|
 			puts id.link.text
 			id.link.click
-			@page.wait_until { @page.page_load? }
+			@page.wait_until(60) { @page.page_load? }
 			BasePage.navigate_to_starting_page
 		end
 	end
