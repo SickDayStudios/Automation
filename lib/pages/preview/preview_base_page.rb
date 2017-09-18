@@ -7,7 +7,7 @@ class PreviewBasePage < BasePage
 
 	unordered_list(:container, css: "body > div.container > ul")
 	select_list(:client_dropdown, id: "SelectedClientHandle")
-	div(:page_load, class: "shader-wrapper")
+	div(:asset_load, class: "asset-list")
 
 	def clients
 		self.client_dropdown_options.to_a
