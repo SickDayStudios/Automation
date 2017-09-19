@@ -1,7 +1,7 @@
 require './lib/pages/preview/preview_base_page'
 
 
-describe "Preview Page Error Test" do
+describe "Product Preview Test: " do
 
 	before(:all) do
 		BasePage.navigate_to_starting_page
@@ -9,11 +9,12 @@ describe "Preview Page Error Test" do
 	end
 
 
-	it "Navigate to each Product Preview:" do
+	it "Check Each Asset for JS Errors: " do
 		@page.product_links.each do |id|
-			puts id.link.text
+			puts "Testing Asset: #{id.link.text}"
 			id.link.click
-			@page.wait_until(60) { @page.asset_load? }
+			sleep 3
+			print_js_errors
 			BasePage.navigate_to_starting_page
 		end
 	end

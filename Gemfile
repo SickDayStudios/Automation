@@ -50,6 +50,7 @@ group :development, :test do
   gem "ci_reporter_rspec"
   gem "rspec_junit_formatter"
   gem "watir-scroll"
+  gem 'coderay'
 end
 
 group :development do

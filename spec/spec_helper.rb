@@ -28,7 +28,7 @@ def print_js_errors
   errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
   if errors.count > 0
     javascript_errors = errors.map(&:message).join("\n")
-    raise javascript_errors
+    puts javascript_errors
   end
 end
 
@@ -56,7 +56,6 @@ RSpec.configure do |config|
     if example.exception
       $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
     end
-    # BasePage.check_console_log
     print_js_errors
   end
 
