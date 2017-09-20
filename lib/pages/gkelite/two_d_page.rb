@@ -6,6 +6,10 @@ require 'net/http'
 class StockCustomizer < GKShopifyBasePage
 	include PageObject
 
+def svg
+	$driver.element(:tag_name, "svg")
+end
+
 def back_side
 	$driver.element(id: /Back/)
 end

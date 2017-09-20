@@ -13,7 +13,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		@page = StockCustomizer.new
 	end
 
-	context "Verify Color Redirect:" do
+	context "Verify A0 Redirect: " do
 		$two_d_products.each do |product|
 			it "#{product}" do
 				@page.product_page(product)
@@ -30,13 +30,24 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 
-	context "Verify PP Colors Match 2D Data" do
+	context "Verify 2D Data: " do
 		$two_d_products.each do |product|
 			it "#{product}" do
 				@page.product_page(product)
 				@product_page.customize_button
 				expect(@page.get_data(product)).to include(@page.get_back_color_ids)
 				expect(@page.get_data(product)).to include(@page.get_front_color_ids)
+			end
+		end
+	end
+
+	context "Verify SVG:" do
+		$two_d_products.each do |product|
+			it "#{product}" do
+				@page.goto "#{$base_url}/apps/storage/images/project/style/#{product}.svg"
+				sleep 5
+				expect(@page.svg.exists?).to eq(true)
+				expect{@page.raise_js_errors}.to_not raise_error
 			end
 		end
 	end
