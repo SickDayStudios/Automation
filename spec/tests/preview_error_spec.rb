@@ -9,9 +9,9 @@ describe "Product Preview Test: " do
 	end
 
 
-	it "Check Each Asset for JS Errors: " do
+	it "**Test Complete**" do
 		@page.product_links.each do |id|
-			puts "Testing Asset: #{id.link.text}"
+			puts "- Testing Asset: #{id.link.text}"
 			id.link.click
 			sleep 3
 			print_js_errors

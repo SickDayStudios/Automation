@@ -21,13 +21,6 @@ class BasePage
     $driver.goto(secure ? "https://" + path : "http://" + path)
   end
 
-  def self.check_console_log
-    console_log = $driver.driver.manage.logs.get(:browser)
-    if console_log != nil
-      raise(console_log)
-    end
-  end
-
   def self.navigate_to_starting_page
     $driver.goto $base_url
   end

@@ -28,7 +28,16 @@ def print_js_errors
   errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
   if errors.count > 0
     javascript_errors = errors.map(&:message).join("\n")
-    puts javascript_errors
+    puts "\nFailed:\n#{javascript_errors}\n"
+  end
+end
+
+def raise_js_errors
+  log = $driver.driver.manage.logs.get(:browser)
+  errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
+  if errors.count > 0
+    javascript_errors = errors.map(&:message).join("\n")
+    raise javascript_errors
   end
 end
 
