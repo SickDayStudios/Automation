@@ -10,6 +10,7 @@ require 'openssl'
 require 'rspec_junit_formatter'
 require "watir-scroll"
 require 'fileutils'
+require './lib/helpers/deferred_garbage_collection'
 # require 'capybara/rspec'
 # require 'capybara/webkit/matchers'
 # Capybara.use_default_driver
@@ -28,7 +29,9 @@ def print_js_errors
   errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
   if errors.count > 0
     javascript_errors = errors.map(&:message).join("\n\n")
-    puts "\nFailed:\n#{javascript_errors}\n"
+    puts "\nFailed:\n#{javascript_errors}"
+    $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
+    puts ""
   end
 end
 
@@ -38,6 +41,7 @@ def raise_js_errors
   if errors.count > 0
     javascript_errors = errors.map(&:message).join("\n")
     raise javascript_errors
+    $driver.screenshot.save "#{@screenshotfolder}/error-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
   end
 end
 
@@ -54,8 +58,9 @@ RSpec.configure do |config|
 
 #=> Before any tests are run, this block is run
   config.before(:all) do
-    @screenshotfolder = screenshotfolder
     $driver = Watir::Browser.new ENV['BROWSER'].to_sym
+    @screenshotfolder = screenshotfolder
+    DeferredGarbageCollection.start
     BasePage.resize_window
     BasePage.set_base_url
     BasePage.set_user
@@ -69,6 +74,7 @@ RSpec.configure do |config|
   end
 
   config.after(:all) do
+    DeferredGarbageCollection.reconsider
     # $headless.destroy
     BasePage.quit_webdriver
   end

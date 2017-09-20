@@ -12,6 +12,10 @@ class BasePage
     $driver.window.move_to(0, 0)
   end
 
+  def collect_links
+    $driver.links
+  end
+
   def self.url
     $driver.url
   end
