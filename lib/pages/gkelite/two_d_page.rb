@@ -6,16 +6,26 @@ require 'net/http'
 class StockCustomizer < GKShopifyBasePage
 	include PageObject
 
+div(:page_load, id: "site-wrapper")
+
+def missing_blob
+	$driver.element(:tag_name, "code")
+end
+
 def svg
 	$driver.element(:tag_name, "svg")
 end
 
 def back_side
-	$driver.element(id: /Back/)
+	$driver.element(id: /^Back/)
 end
 
 def front_side
-	$driver.element(id: /Front/)
+	$driver.element(id: /^Front/)
+end
+
+def silhouette
+	$driver.element(id: 'Silhouette')
 end
 
 
