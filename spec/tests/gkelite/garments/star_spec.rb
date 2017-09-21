@@ -15,7 +15,7 @@ describe "< #7627: Women's Star Crossed Long Sleeve Leotard - Customizer Unit Te
 
 =begin
   after(:each) do
-    @page.print_js_errors
+    BasePage.print_js_errors
   end
 =end
 

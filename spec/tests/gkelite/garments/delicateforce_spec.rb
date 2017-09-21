@@ -15,7 +15,7 @@ describe "< #7622: Women's Delicate Force Leotard Customizer Test >" do
 
 
  # after(:each) do
- #   @page.print_js_errors
+ #   BasePage.print_js_errors
  # end
 
 

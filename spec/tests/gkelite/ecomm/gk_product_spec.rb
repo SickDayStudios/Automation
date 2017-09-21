@@ -62,6 +62,10 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 					expect(@page.product_image_element.present?).to eq(true)
 				end
 			end
+
+			it "#{id}: Check Page Errors" do
+				expect{BasePage.raise_js_errors}.to_not raise_error
+			end
 		end
 
 		$three_d_products.each do |id|
@@ -123,10 +127,15 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				expect(@page.product_thumbnails_element.present?).to eq(true)
 			end
 
+			it "#{id}: Check Page Errors" do
+				expect{BasePage.raise_js_errors}.to_not raise_error
+			end
+
 			it "#{id}: Customizer Redirect" do
 				@page.customize_button
 				@page.wait_until { @customizer.page_load? }
 				expect(@customizer.selected_style?).to eq(true)
+				expect{BasePage.raise_js_errors}.to_not raise_error
 			end
 		end
 
@@ -189,11 +198,15 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			it "#{id}: Thumbnails" do
 				expect(@page.product_thumbnails_element.present?).to eq(true)
 			end
+			it "#{id}: Check Page Errors" do
+				expect{BasePage.raise_js_errors}.to_not raise_error
+			end
 
 			it "#{id}: Customizer Redirect" do
 				@page.customize_button
 				@page.wait_until { @customizer.page_load? }
 				expect(@customizer.selected_style?).to eq(true)
+				expect{BasePage.raise_js_errors}.to_not raise_error
 			end
 		end
 	end

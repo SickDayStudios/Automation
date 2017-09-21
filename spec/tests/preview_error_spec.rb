@@ -14,7 +14,7 @@ describe "Product Preview Test: " do
 			puts "- Testing Asset: #{id.text}"
 			id.click
 			sleep 3
-			print_js_errors
+			BasePage.print_js_errors
 			BasePage.navigate_to_starting_page
 		end
 	end

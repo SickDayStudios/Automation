@@ -1,7 +1,4 @@
 require 'rspec'
-# require 'rspec-rails'
-require 'simplecov'
-require 'simplecov-rcov'
 require 'page-object'
 require 'watir'
 require 'selenium-webdriver'
@@ -10,38 +7,9 @@ require 'openssl'
 require 'rspec_junit_formatter'
 require "watir-scroll"
 require 'fileutils'
-require './lib/helpers/deferred_garbage_collection'
-# require 'capybara/rspec'
-# require 'capybara/webkit/matchers'
-# Capybara.use_default_driver
+
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-# SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
-# $out_file = File.new("reports/#{Time.now.strftime('%h-%e-%Y %H%M')}.json", 'w')
-
-# def $stdout.write string
-#   $out_file.write string
-#   super
-# end
-
-def print_js_errors
-  log = $driver.driver.manage.logs.get(:browser)
-  errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
-  if errors.count > 0
-    javascript_errors = errors.map(&:message).join("\n\n")
-    puts "\nFailed:\n#{javascript_errors}"
-    puts ""
-  end
-end
-
-def raise_js_errors
-  log = $driver.driver.manage.logs.get(:browser)
-  errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
-  if errors.count > 0
-    javascript_errors = errors.map(&:message).join("\n")
-    raise javascript_errors
-  end
-end
 
 screenshotfolder = "reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
 unless File.directory?(screenshotfolder)
@@ -58,21 +26,16 @@ RSpec.configure do |config|
   config.before(:all) do
     $driver = Watir::Browser.new ENV['BROWSER'].to_sym
     @screenshotfolder = screenshotfolder
-    DeferredGarbageCollection.start
     BasePage.resize_window
     BasePage.set_base_url
     BasePage.set_user
   end
 
-  config.after(:each) do |example|
-    if example.exception
-      $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
-    end
-    print_js_errors
-  end
+  # config.after(:each) do |example|
+  #   BasePage.on_fail(example)
+  # end
 
   config.after(:all) do
-    DeferredGarbageCollection.reconsider
     # $headless.destroy
     BasePage.quit_webdriver
   end

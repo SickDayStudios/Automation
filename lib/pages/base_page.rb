@@ -6,6 +6,32 @@ class BasePage
   def initialize
     super($driver)
   end
+
+  def self.print_js_errors
+    log = $driver.driver.manage.logs.get(:browser)
+    errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
+    if errors.count > 0
+      javascript_errors = errors.map(&:message).join("\n\n")
+      puts "\nFailed:\n#{javascript_errors}"
+      puts ""
+    end
+  end
+
+  def self.raise_js_errors
+    log = $driver.driver.manage.logs.get(:browser)
+    errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
+    if errors.count > 0
+      javascript_errors = errors.map(&:message).join("\n")
+      raise javascript_errors
+    end
+  end
+
+  def self.on_fail(example)
+    if example.exception
+      $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
+    end
+    self.print_js_errors
+  end
   
   def self.resize_window
     $driver.window.resize_to(1920, 1200)
