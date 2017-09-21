@@ -30,7 +30,6 @@ def print_js_errors
   if errors.count > 0
     javascript_errors = errors.map(&:message).join("\n\n")
     puts "\nFailed:\n#{javascript_errors}"
-    $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
     puts ""
   end
 end
@@ -41,7 +40,6 @@ def raise_js_errors
   if errors.count > 0
     javascript_errors = errors.map(&:message).join("\n")
     raise javascript_errors
-    $driver.screenshot.save "#{@screenshotfolder}/error-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
   end
 end
 
