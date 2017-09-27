@@ -31,9 +31,9 @@ RSpec.configure do |config|
     BasePage.set_user
   end
 
-  # config.after(:each) do |example|
-  #   BasePage.on_fail(example)
-  # end
+  config.after(:each) do |example|
+    BasePage.on_fail(example)
+  end
 
   config.after(:all) do
     # $headless.destroy
