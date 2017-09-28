@@ -47,14 +47,14 @@ link(:sizing_chart, class: ["size-chart lightbox-trigger"])
 div(:size_lightbox, id: "sizing-chart")
 image(:size_close, css: "#sizing-chart > div.close > img")
 span(:selected_size, css: "#product-attributes-container > form > div.size-selector > label > span")
-div(:consumer_quantity, class: ["quantity-list-container"])
+div(:consumer_quantity, class: "quantity-list-container")
 text_field(:dealer_quantity, name: "cxs")
 button(:q_one, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(1)")
 button(:q_two, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(2)")
 button(:q_three, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(3)")
 button(:q_four, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(4)")
 button(:q_five, class: ["final"])
-text_field(:q_manual, class: ["input"])
+text_field(:q_manual, class: "input")
 button(:add_to_cart, id: "AddToCart")
 link(:customize_button, class: ["addtocart-customize__buttons--customize"])
 link(:customize, css: "#product-attributes-container > form > div.addtocart-customize > div > div:nth-child(2) > a")
@@ -98,10 +98,10 @@ end
 def random_options
 	if ENV['USER_TYPE'] == "consumer"
 		self.wait_until { self.product_thumbnails? }
-		self.selected_color.sample.click
 		self.random_size
 		self.consumer_random_quantity
 	else
+		self.wait_until { self.product_thumbnails? }
 		self.dealer_quantity = "5"
 	end
 end

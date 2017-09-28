@@ -37,7 +37,7 @@ def select_random_rep
 end
 
 def select_random_card
-	self.card_options[rand(card_options.length)].set
+	self.card_options[rand[4..(card_options.length - 1)]].set
 end
 
 def fill_credit_card

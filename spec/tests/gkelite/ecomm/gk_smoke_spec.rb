@@ -70,7 +70,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		if @payment_page.billing_info? == true
 			@payment_page.select_random_card
 		elsif @payment_page.billing_info? == false
-			@payment_page.add_new_card.set(true)
+			@payment_page.add_new_card.set
 			@payment_page.fill_credit_card
 		end
 	end
