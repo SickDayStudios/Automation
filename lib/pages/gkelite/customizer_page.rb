@@ -25,8 +25,8 @@ class CustomizerPage < BasePage
   button(:save_design_button, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > div > button:nth-child(1)")
   button(:save_design_dropdown, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > div > button.c-save__as__dropdown__arrow")
   button(:save_as_design, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > button")
-  div(:error_tooltip, class: "c-tooltip__error__container")
-  div(:disclaimer, class: /c-disclaimer/)
+  div(:error_tooltip, class: ["c-tooltip__error__container"])
+  div(:disclaimer, class: ["c-disclaimer"])
   
   ## Navigation Buttons ##
   button(:embellishments_button, css: "#navlink-embellishments > button")
@@ -51,8 +51,8 @@ class CustomizerPage < BasePage
   button(:popup_next_button, css: "#gk-custom-app-vue > div > div > div > div > div > div > div > span:nth-child(2) > button")
   span(:disabled_next_button, css: "#gk-custom-app-vue > div > div > div > div > div > div > div > span.disabled")
   span(:saving_design, css: "#gk-custom-app-vue > div > div > div > div > div > h2 > span")
-  div(:saving_popup, class: /mask c-save/)
-  div(:selected_style, class: "c-customizer__menu-selectedstyles")
+  div(:saving_popup, class: ["mask c-save"])
+  div(:selected_style, class: ["c-customizer__menu-selectedstyles"])
   
 
 $sequinz_colors = ['WHITE',

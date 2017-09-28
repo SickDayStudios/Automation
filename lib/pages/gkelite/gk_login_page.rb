@@ -16,7 +16,7 @@ text_field(:password, id: "CustomerPassword")
 checkbox(:remember_me, id: "remember-me")
 link(:forgot_password, id: "RecoverPassword")
 button(:sign_in_button, css: "#customer_login > ul > li:nth-child(4) > input[type='submit']")
-div(:login_error, class: "errors")
+div(:login_error, class: ["errors"])
 
 # Register Account Page
 text_field(:first_name, id: "FirstName")

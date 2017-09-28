@@ -7,7 +7,7 @@ class StockCustomizer < GKShopifyBasePage
 	include PageObject
 
 div(:page_load, id: "site-wrapper")
-div(:svg_viewer, class: /svg-viewer-container$/)
+div(:svg_viewer, class: ["svg-viewer-container"])
 
 def missing_blob
 	$driver.element(:tag_name, "code")

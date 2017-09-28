@@ -17,13 +17,13 @@ text_field(:shipping_city, id: "checkout_shipping_address_city")
 select_list(:shipping_country, id: "checkout_shipping_address_country")
 select_list(:shipping_state, id: "checkout_shipping_address_province")
 text_field(:shipping_zip, id: "checkout_shipping_address_zip")
-link(:return_to_previous, class: "step__footer__previous-link")
-button(:continue_to, class: "step__footer__continue-btn btn ")
+link(:return_to_previous, class: ["step__footer__previous-link"])
+button(:continue_to, class: ["step__footer__continue-btn btn "])
 link(:edit_cart, css: "#site-container > div.container > div > div > div > div.sidebar > div > div.order-summary__section__content--custom > h2 > a")
 
 	# Shipping Method
-div(:shipping_section, class: "section section--shipping-method")
-radio(:ship_choice, class: "input-radio")
+div(:shipping_section, class: ["section section--shipping-method"])
+radio(:ship_choice, class: ["input-radio"])
 
 link(:edit_address, css: "#site-container > div.container > div > div > div > div.main > div.main__content > div > form > div.step__sections > div.content-box > div > div > div.content-box__header__action > a")
 span(:shipping_cost, css: "#site-container > div.container > div > div > div > div.sidebar > div > div.order-summary.order-summary--is-collapsed > div > div.order-summary__section.order-summary__section--total-lines > table > tbody > tr.total-line.total-line--shipping > td.total-line__price > span")
@@ -39,7 +39,7 @@ text_field(:billing_city, id: "checkout_billing_address_city")
 select_list(:billing_country, id: "checkout_billing_address_country")
 select_list(:billing_state, id: "checkout_billing_address_province")
 text_field(:billing_zip, id: "checkout_billing_address_zip")
-list_item(:current_breadcrumb, class: "breadcrumb__item breadcrumb__item--current")
+list_item(:current_breadcrumb, class: ["breadcrumb__item breadcrumb__item--current"])
 	# Checkout Redirect
 
 

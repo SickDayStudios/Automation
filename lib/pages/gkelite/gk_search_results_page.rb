@@ -11,9 +11,9 @@ class GKSearchResultsPage < GKShopifyBasePage
 	include GKQuickView
 
 
-link(:quick_view, class: "page-productlisting__quick-view lightbox-trigger")
-div(:filters, class: "sidebar-filter__accordion-group")
-div(:four_oh_four, class: /four-oh-four/)
+link(:quick_view, class: ["page-productlisting__quick-view lightbox-trigger"])
+div(:filters, class: ["sidebar-filter__accordion-group"])
+div(:four_oh_four, class: ["four-oh-four"])
 
 
 end

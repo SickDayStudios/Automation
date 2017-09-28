@@ -15,7 +15,7 @@ class GKProductPage < GKShopifyBasePage
 
 
 ##=> TODO
-nav(:breadcrumb, class: "module-breadcrumb")
+nav(:breadcrumb, class: ["module-breadcrumb"])
 span(:style_id, css: "#product-attributes-container > div > h1 > span")
 div(:overlay, css: "#basic-boat-neck-comp-leotard > div:nth-child(17)")
 
@@ -42,48 +42,48 @@ image(:product_image, id: "img-0")
 
 
 # Fit & Size
-div(:fit_size_info, class: "fit-size")
-link(:sizing_chart, class: "size-chart lightbox-trigger")
+div(:fit_size_info, class: ["fit-size"])
+link(:sizing_chart, class: ["size-chart lightbox-trigger"])
 div(:size_lightbox, id: "sizing-chart")
 image(:size_close, css: "#sizing-chart > div.close > img")
 span(:selected_size, css: "#product-attributes-container > form > div.size-selector > label > span")
-div(:consumer_quantity, class: "quantity-list-container")
-list_items(:dealer_quantity, class: "dealer-selector-size")
+div(:consumer_quantity, class: ["quantity-list-container"])
+text_field(:dealer_quantity, name: "cxs")
 button(:q_one, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(1)")
 button(:q_two, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(2)")
 button(:q_three, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(3)")
 button(:q_four, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(4)")
-button(:q_five, class: "final")
-text_field(:q_manual, class: /input/)
+button(:q_five, class: ["final"])
+text_field(:q_manual, class: ["input"])
 button(:add_to_cart, id: "AddToCart")
-link(:customize_button, class: "addtocart-customize__buttons--customize")
+link(:customize_button, class: ["addtocart-customize__buttons--customize"])
 link(:customize, css: "#product-attributes-container > form > div.addtocart-customize > div > div:nth-child(2) > a")
 
 # Accordions
-div(:product_accordions, class: "product-accordion")
+div(:product_accordions, class: ["product-accordion"])
 div(:fabric_care, css: "#accordion > section:nth-child(2) > div:nth-child(1)")
 link(:show_more, id: "product-fabric-care-show-more")
 div(:fabric_care_modal, id: "product-fabric-care-modal")
 div(:care_close, css: "#product-fabric-care-modal > div")
 div(:product_details, css: "#accordion > section.open > div:nth-child(2)")
 div(:review, css: "#accordion > section:nth-child(3) > div:nth-child(1)")
-link(:write_cancel_review, class: "jdgm-write-rev-link")
-div(:review_header, class: "jdgm-rev-widg__header")
-div(:review_body, class: "jdgm-rev-widg__body")
+link(:write_cancel_review, class: ["jdgm-write-rev-link"])
+div(:review_header, class: ["jdgm-rev-widg__header"])
+div(:review_body, class: ["jdgm-rev-widg__body"])
 text_field(:review_name, name: "reviewer_name")
 text_field(:review_email, name: "reviewer_email")
-links(:star_rating, class: "jdgm-star jdgm--on")
+links(:star_rating, class: ["jdgm-star jdgm--on"])
 text_field(:review_title, name: "review_title")
 text_area(:review_body, name: "review_body")
-button(:submit_review, class: "jdgm-submit-rev btn btn_c button")
-div(:review_confirm, class: "jdgm-notification")
+button(:submit_review, class: ["jdgm-submit-rev btn btn_c button"])
+div(:review_confirm, class: ["jdgm-notification"])
 label(:errors, id: "reviewer_name-error")
 
 # You May Also Like
 div(:similar_recent_products, id: "product-carousel-container")
-div(:arrow_previous, class: "swiper-button-prev swiper-button-black")
-div(:arrow_next, class: "swiper-button-next swiper-button-black")
-divs(:suggested_garments, class: /swiper-slide/)
+div(:arrow_previous, class: ["swiper-button-prev swiper-button-black"])
+div(:arrow_next, class: ["swiper-button-next swiper-button-black"])
+divs(:suggested_garments, class: ["swiper-slide"])
 
 
 # Lightbox
@@ -91,18 +91,18 @@ div(:cart_popup, id: "added-to-cart")
 
 
 def selected_color
-	self.color_picker_element.buttons.to_a.sample
+	self.wait_until { self.product_thumbnails? }
+	self.color_picker_element.buttons.to_a
 end
 
 def random_options
-	sleep 1
-	self.selected_color.click
-	self.wait_until { self.size_dropdown? }
-	self.random_size
-	if ENV['USER_TYPE'] = "consumer"
+	if ENV['USER_TYPE'] == "consumer"
+		self.wait_until { self.product_thumbnails? }
+		self.selected_color.sample.click
+		self.random_size
 		self.consumer_random_quantity
 	else
-		self.dealer_random_quantity
+		self.dealer_quantity = "5"
 	end
 end
 
@@ -112,16 +112,16 @@ def consumer_random_quantity
 	self.consumer_quantity_element.buttons.each do |x|
 		@arr.push(x)
 	end
-	@arr[0..3].sample.click
+	@arr.sample.click
 end
 
-def dealer_random_quantity
-	@arr = Array.new
-	self.dealer_quantity_elements.text_field.each do |x|
-		@arr.push(x)
-	end
-	@arr.sample.send_keys rand[1..5].to_s
-end
+# def dealer_random_quantity
+# 	@arr = Array.new
+# 	self.dealer_quantity_elements.text_field.each do |x|
+# 		@arr.push(x)
+# 	end
+# 	@arr.sample.send_keys rand[1..5].to_s
+# end
 
 def random_size
 	@arr = Array.new

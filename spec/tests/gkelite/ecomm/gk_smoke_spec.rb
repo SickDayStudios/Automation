@@ -33,12 +33,9 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		expect(@home_page.url).to include('3734')
 	end
 
-	it ' - Select Random Options' do
-		@product_page.random_options
-		expect(@product_page.selected_size).not_to eq("")
-	end
-
 	it ' - Add Product to Cart' do
+		@product_page.wait_until { @product_page.product_thumbnails? }
+		@product_page.random_options
 		@product_page.add_to_cart
 		@product_page.wait_until { @product_page.cart_popup? }
 		expect(@product_page.cart_popup?).to eq(true)
@@ -69,9 +66,11 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 	it ' - Select Random Saved CC or Fill New CC Form' do
-		if @payment_page.saved_cards?
+		@payment_page.wait_while { @payment_page.page_load? }
+		if @payment_page.billing_info? == true
 			@payment_page.select_random_card
-		else
+		elsif @payment_page.billing_info? == false
+			@payment_page.add_new_card.set(true)
 			@payment_page.fill_credit_card
 		end
 	end
@@ -85,6 +84,11 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	it ' - Place Order' do
 		@payment_page.place_order
 		@payment_page.wait_while { @payment_page.loader? }
+		expect(@payment_page.url).to include("processing")
+	end
+
+	it ' - Payment Processed Successfully' do
+		@payment_page.wait_while { (@payment_page.url.include? "processing") }
 		expect(@payment_page.url).to include("thank_you")
 	end
 end
