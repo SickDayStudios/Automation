@@ -84,7 +84,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'salesrep' || ENV['USER_TYPE'] == 'teamlead'
 		it ' - Select Random Sales Rep' do
-			@payment_page.select_random_rep_element.focus
+			@payment_page.select_random_rep.focus
 			@payment_page.select_random_rep
 		end
 	end
