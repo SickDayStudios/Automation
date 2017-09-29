@@ -82,16 +82,15 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	# 	end
 	# end
 
-	if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'salesrep' || ENV['USER_TYPE'] == 'teamlead'
+	if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'teamlead'
 		it ' - Select Random Sales Rep' do
 			@payment_page.select_random_rep
 		end
 	end
 
 	it ' - Place Order' do
-		@payment_page.wait_until { @payment_page.place_order? }
-		sleep 5
-		@payment_page.send_keys :page_down, :page_down, :page_down, :page_down
+		@payment_page.send_keys :page_down, :page_down
+		@payment_page.place_order_element.focus
 		@payment_page.place_order
 		@payment_page.wait_while { @payment_page.loader? }
 		expect(@payment_page.url).to include("processing")

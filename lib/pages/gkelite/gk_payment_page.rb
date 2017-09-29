@@ -22,7 +22,6 @@ div(:page_load, class: "loader-container")
 span(:warning, class: ["help is-danger"])
 div(:loader, class: "loader")
 label(:card_choices, class: "custom-label")
-select_list(:sales_rep_list, name: "salesRep")
 divs(:saved_cards, class: ["btn btn-primary edit-button"])
 select_list(:sales_rep_dropdown, name: "salesRep")
 div(:billing_info, class: "billing-information")
@@ -35,8 +34,7 @@ end
 def select_random_rep
 	self.wait_while { self.page_load? }
 	self.sales_rep_dropdown_element.focus
-	self.sales_rep_dropdown_element.click
-	self.sales_rep_list_element.options.sample.click
+	self.sales_rep_dropdown_element.options.sample.click
 end
 
 def select_random_card
