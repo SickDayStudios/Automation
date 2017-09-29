@@ -4,7 +4,7 @@ require './lib/pages/base_page'
 class DeferredGarbageCollection < BasePage
   include PageObject
 
-  DEFERRED_GC_THRESHOLD = (ENV['DEFER_GC'] || 15.0).to_f
+  DEFERRED_GC_THRESHOLD = (ENV['DEFER_GC'] || 30.0).to_f
 
   @@last_gc_run = Time.now
 

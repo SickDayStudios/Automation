@@ -40,8 +40,6 @@ RSpec.configure do |config|
     BasePage.quit_webdriver
   end
 
-  # config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
-
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

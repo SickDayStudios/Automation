@@ -2,13 +2,19 @@ require "./lib/pages/gkelite/gk_product_page"
 require "./lib/pages/gkelite/gk_cart_page"
 require "./lib/helpers/gkelite/gk_cart_lightbox"
 require "./lib/pages/gkelite/customizer_page"
+require "./lib/helpers/deferred_garbage_collection"
 
 
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase}:#{ENV['USER_TYPE'].upcase} - GK Product Page Test:" do
 
 	before(:all) do
+		DeferredGarbageCollection.start
 		@page = GKProductPage.new
 		@customizer = CustomizerPage.new
+	end
+
+	after(:all) do
+		DeferredGarbageCollection.reconsider
 	end
 
 	context "Verify Page Objects For" do
