@@ -108,6 +108,7 @@ end
 
 def consumer_random_quantity
 	@arr = Array.new
+	self.consumer_quantity_element.button.focus
 	self.consumer_quantity_element.button.click
 	self.consumer_quantity_element.buttons.each do |x|
 		@arr.push(x)
