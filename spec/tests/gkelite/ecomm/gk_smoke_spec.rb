@@ -71,18 +71,20 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		expect(@payment_page.url).to include("pay-gkelite")
 	end
 
-	it ' - Select Random Saved CC or Fill New CC Form' do
-		@payment_page.wait_while { @payment_page.page_load? }
-		if @payment_page.billing_info? == true
-			@payment_page.select_random_card
-		elsif @payment_page.billing_info? == false
-			@payment_page.add_new_card.set
-			@payment_page.fill_credit_card
-		end
-	end
+# => TODO: Figure out a way to set the proper range index for credit card options
+	# it ' - Select Random Saved CC or Fill New CC Form' do
+	# 	@payment_page.wait_while { @payment_page.page_load? }
+	# 	if @payment_page.billing_info? == true
+	# 		@payment_page.select_random_card
+	# 	elsif @payment_page.billing_info? == false
+	# 		@payment_page.add_new_card.set
+	# 		@payment_page.fill_credit_card
+	# 	end
+	# end
 
 	if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'salesrep' || ENV['USER_TYPE'] == 'teamlead'
 		it ' - Select Random Sales Rep' do
+			@payment_page.select_random_rep_element.focus
 			@payment_page.select_random_rep
 		end
 	end
