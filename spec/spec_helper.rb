@@ -36,7 +36,6 @@ RSpec.configure do |config|
   end
 
   config.after(:all) do
-    # $headless.destroy
     BasePage.quit_webdriver
   end
 

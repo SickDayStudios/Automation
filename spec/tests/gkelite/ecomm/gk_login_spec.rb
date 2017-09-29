@@ -58,13 +58,18 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				BasePage.set_user
 				@home_page.product_page('3728')
 				expect(@product_page.url).to include('/products/3728')
-				@product_page.random_options
+				@product_page.wait_until { @product_page.product_thumbnails? }
+				@product_page.random_size
+				@product_page.consumer_random_quantity
 				expect(@product_page.selected_size).not_to eq("")
+				@product_page.add_to_cart_element.focus
 				@product_page.add_to_cart
 				@product_page.wait_until { @product_page.cart_popup? }
 				expect(@product_page.cart_popup?).to eq(true)
+				@product_page.checkout_element.focus
 				@product_page.checkout
 				expect(@product_page.url).to include('/cart')
+				@cart_page.secure_checkout_element.focus
 				@cart_page.secure_checkout
 				expect(@cart_page.signin_popup?).to eq(true)
 				@cart_page.login_with($username, $password)
