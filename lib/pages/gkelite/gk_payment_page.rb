@@ -26,6 +26,7 @@ select_list(:sales_rep_list, name: "salesRep")
 divs(:saved_cards, class: ["btn btn-primary edit-button"])
 select_list(:sales_rep_dropdown, name: "salesRep")
 div(:billing_info, class: "billing-information")
+span(:price, class: "price")
 
 def card_options
 	$driver.elements(:tag_name, "input")

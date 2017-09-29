@@ -89,7 +89,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 	it ' - Place Order' do
-		@payment_page.place_order_element.focus
+		@payment_page.send_keys :page_down, :page_down, :page_down, :page_down
+		sleep 5
 		@payment_page.place_order_element.click
 		@payment_page.wait_while { @payment_page.loader? }
 		expect(@payment_page.url).to include("processing")
