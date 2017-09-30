@@ -47,6 +47,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			@page.sizes_elements.each do |size|
 				no_filter = @page.search_result_text
 				size.checkbox_element.focus
+				puts size.checkbox_element.text
 				size.checkbox.set(true)
 				sleep 2
 				filter = @page.search_result_text
@@ -84,7 +85,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 		it 'Filter by Rating' do
 			no_filter = @page.search_result_text
-			@page.send_keys :page_down
 			@page.rating_filters
 			sleep 1
 			filter = @page.search_result_text
