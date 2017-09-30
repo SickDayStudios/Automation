@@ -49,8 +49,8 @@ link(:gk_sublimation_faq,       href: "/pages/gk-gym-what-is-sublimation")
 link(:gk_news,               	href: "/pages/gk-gym-news")
 
 text_field(:search_field,       css: "#site-container > div.global-nav.global-nav--gk-gym > nav > div > div.row > div > div > form > input")
-button(:search_button,          css: "c-search__submit")
-
+button(:search_button,          name: "search-btn")
+div(:search_dropdown, 			class: "snize-ac-results")
 
 	def header_register
 		self.register
@@ -65,7 +65,7 @@ button(:search_button,          css: "c-search__submit")
 
 	def search_for(item)
 		self.search_field = item
-		self.search_button
+		self.search_field_element.send_keys :return
 		return GKSearchResultsPage.new
 	end
 

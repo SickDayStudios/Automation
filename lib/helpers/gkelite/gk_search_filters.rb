@@ -4,74 +4,6 @@ module GKSearchFilters
 	include PageObject
 
 
-# => Divs
-divs(:results, class: /page-productlisting__image/)
-
-# => Links
-link(:clear_filters, class: "sidebar-filter__clear")
-link(:new_arrivals, text: /New Arrivals/)
-link(:training_apparel, text: /Training Apparel/)
-link(:competitive_apparel, text: /Competitive Apparel/)
-link(:shop_collection, text: /Shop by Collection/)
-link(:shop_catalog, text: /Shop By Catalog/)
-link(:under_armour, text: /Under Armour/)
-link(:leotards, text: /Leotards/)
-link(:warmups, text: /WarmUps/)
-link(:shorts, text: /Shorts/)
-link(:capris_leggings, text: /Capris & Leggings/)
-link(:coach_apparel, text: /Coaches Apparel/)
-link(:accessories, text: /Accessories/)
-link(:clearance, text: /Clearance/)
-link(:risk_free, text: /Risk Free Apparel/)
-
-# => Checkboxes
-checkbox(:colors, id: /color-/)
-checkbox(:type_one, id: "type-0")
-checkbox(:type_two, id: "type-1")
-checkbox(:type_three, id: "type-2")
-checkbox(:collection_one, id: "collection-0")
-checkbox(:collection_two, id: "collection-1")
-checkbox(:collection_three, id: "collection-2")
-checkbox(:collection_four, id: "collection-3")
-checkbox(:collection_five, id: "collection-4")
-checkbox(:collection_six, id: "collection-5")
-checkbox(:collection_seven, id: "collection-6")
-checkbox(:collection_eight, id: "collection-7")
-checkbox(:collection_nine, id: "collection-8")
-checkbox(:collection_ten, id: "collection-9")
-checkbox(:collection_eleven, id: "collection-10")
-checkbox(:collection_twelve, id: "collection-11")
-
-# => Buttons
-button(:view_more, class: "page-productlisting__view-more")
-checkbox(:child_xxs, id: "product-size:CXXS")
-checkbox(:child_xs, id: "product-size:CXS")
-checkbox(:child_s, id: "product-size:CS")
-checkbox(:child_m, id: "product-size:CM")
-checkbox(:child_l, id: "product-size:CL")
-checkbox(:adult_xs, id: "product-size:AXS")
-checkbox(:adult_xl, id: "product-size:AXL")
-checkbox(:adult_s, id: "product-size:AS")
-checkbox(:adult_m, id: "product-size:AM")
-checkbox(:adult_l, id: "product-size:AL")
-checkbox(:adult_xxl, id: "product-size:A2XL")
-checkbox(:adult_xxxl, id: "product-size:A3XL")
-checkbox(:adult_xxxxl, id: "product-size:A4XL")
-checkbox(:five_star, id: "rating-0")
-checkbox(:four_star, id: "rating-1")
-checkbox(:three_star, id: "rating-2")
-checkbox(:two_star, id: "rating-3")
-checkbox(:one_star, id: "rating-4")
-checkbox(:no_rating, id: "rating-5")
-
-# => Input Fields
-text_field(:price_min, class: "sidebar-filter__price-range__value price-range-min")
-text_field(:price_min, class: "sidebar-filter__price-range__value price-range-max")
-
-# => MISC
-h1(:page_not_found, css: "#site-container > div.container > div > div.col-xs-12 > h1")
-
-
 $collection_links = ["gk-gym-customizer-competition-shirts",
 					"gk-gym-customizer-leotards",
 					"gk-gym-customizer-pants-and-shorts",
@@ -155,11 +87,4 @@ $two_d_products = [ '1426', '1678', '1679', '1680', '1700M', '1774', '1786', '17
 					'3818', '3819', '3820', '6012', '6015', '6320', '6331', '6334', '1811M', '1812M', '1813M', '1817M', '1818M', '1832M', '1845M', '1846M', '1853ST', '1882M', '1883M', '1884M', '1885M', '5841ST', '5844ST', '5845ST', '5846ST', '5847ST', '5848ST', '5849ST', '5850ST', 
 					'5851ST', '5852ST', 'E2071', 'E2259', 'E2353', 'L1037', 'L1038', 'L1048', 'L1049', 'L1051', 'L1052', 'SWU02', 'SWU05', 'SWU06', 'SWU09', 'SWU10', 'SWU11']
 
-	def random_result
-		@arr = Array.new
-		self.results_elements.link.each do |x| 
-			@arr.push(x)
-		end
-		@arr.sample.click
-	end
 end
