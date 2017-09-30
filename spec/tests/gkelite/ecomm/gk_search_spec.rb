@@ -23,23 +23,24 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	context 'Filters' do
 
 		it 'Filter by Type: In Stock' do
+			sleep 2
 			no_filter = @page.search_result_text
 			@page.in_stock_element.click
-			sleep 1
+			sleep 2
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
 			@page.in_stock_element.click
-			sleep 1
+			sleep 2
 		end
 
 		it 'Filter by Type: Special Order' do
 			no_filter = @page.search_result_text
 			@page.special_order_element.click
-			sleep 1
+			sleep 2
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
 			@page.special_order_element.click
-			sleep 1
+			sleep 2
 		end
 
 		it 'Filter by Size' do
@@ -47,11 +48,11 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				no_filter = @page.search_result_text
 				size.checkbox_element.focus
 				size.checkbox.set(true)
-				sleep 1
+				sleep 2
 				filter = @page.search_result_text
 				expect(no_filter).not_to eq(filter)
 				size.checkbox.set(false)
-				sleep 1
+				sleep 2
 			end
 		end
 
@@ -83,6 +84,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 		it 'Filter by Rating' do
 			no_filter = @page.search_result_text
+			@page.send_keys :page_down
 			@page.rating_filters
 			sleep 1
 			filter = @page.search_result_text
