@@ -26,7 +26,7 @@ RSpec.configure do |config|
   config.before(:all) do
     $driver = Watir::Browser.new ENV['BROWSER'].to_sym
     @screenshotfolder = screenshotfolder
-    BasePage.maximize_window
+    BasePage.resize_window
     BasePage.set_base_url
     BasePage.set_user
   end
