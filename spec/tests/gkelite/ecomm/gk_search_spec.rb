@@ -8,6 +8,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	before(:all) do
 		BasePage.navigate_to_starting_page
 		@page = GKSearchResultsPage.new
+		@product_page = GKProductPage.new
 	end
 
 
@@ -47,7 +48,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			@page.sizes_elements.each do |size|
 				no_filter = @page.search_result_text
 				size.checkbox_element.focus
-				puts size.checkbox_element.text
 				size.checkbox.set(true)
 				sleep 2
 				filter = @page.search_result_text
@@ -94,9 +94,17 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 
-	# context 'Quick View' do
-	# 	it '' do
+	context 'Quick View' do
+		it 'Open Quick View' do
+			@page.quick_view
+			expect(@page.product_quick_view?).to eq(true)
+		end
 
-	# 	end
-	# end
+		it 'Add Item to Cart via Quick View' do
+			@product_page.random_options
+			@product_page.add_to_cart
+			@page.wait_until { @page.added_to_cart? }
+			expect(@page.added_to_cart?).to eq(true)
+		end
+	end
 end

@@ -11,14 +11,17 @@ class GKSearchResultsPage < GKShopifyBasePage
 	include GKQuickView
 
 
-link(:quick_view, class: ["page-productlisting__quick-view lightbox-trigger"])
 div(:filters, class: ["sidebar-filter__accordion-group"])
 h1(:search_result_text, css: "#site-container > div.container > div.search__results > div:nth-child(1) > div > div > h1")
 div(:four_oh_four, class: ["four-oh-four"])
 
 
 # => Divs
-divs(:results, class: /page-productlisting__image/)
+div(:product_quick_view, id: "product-quickview")
+div(:first_result, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(1)")
+divs(:results, class: ["col-xs-6 col-sm-4 page-productlisting__bucket"])
+divs(:hover_results, class: ["page-productlisting__content--hover"])
+link(:quick_view_link, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(1) > div.page-productlisting__content--hover > div.page-productlisting__fav-more > a")
 
 #product-listing-filters-container > div > div.sidebar-filter__accordion > div > div:nth-child(1) > div.accordion-content.active > ul > li:nth-child(2) > div > label > span
 # => Checkboxes
@@ -42,6 +45,11 @@ text_field(:price_max, class: ["sidebar-filter__price-range__value price-range-m
 # => MISC
 h1(:page_not_found, css: "#site-container > div.container > div > div.col-xs-12 > h1")
 
+# => Quickview
+div(:quickview_color, class: "color-picker")
+div(:added_to_cart, id: "added-to-cart")
+
+
 	def rating_filters
 		ratings = ['check_five_star',
 				   'check_four_star',
@@ -52,6 +60,12 @@ h1(:page_not_found, css: "#site-container > div.container > div > div.col-xs-12 
 		ratings.each do |stars|
 			self.send(stars)
 		end
+	end
+
+	def quick_view
+		self.first_result_element.focus
+		self.first_result_element.hover
+		self.quick_view_link
 	end
 
 	def random_result
