@@ -64,7 +64,9 @@ div(:added_to_cart, id: "added-to-cart")
 
 	def quick_view
 		self.first_result_element.focus
+		sleep 1
 		self.first_result_element.hover
+		sleep 1
 		self.quick_view_link
 	end
 
