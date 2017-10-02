@@ -46,7 +46,8 @@ class CustomizerPage < BasePage
 
   ## Sizes & Alterations Popup ##
   div(:size_alterations_popup, css: "#gk-custom-app-vue > div > div > div > div > div")
-  checkbox(:popup_checkbox, label: /Gymnastics/)
+  checkbox(:popup_checkbox_one, css: "#gk-custom-app-vue > div > div > div > div > div > div > ul > li:nth-child(1) > input[type='checkbox']")
+  checkbox(:popup_checkbox_two, css: "#gk-custom-app-vue > div > div > div > div > div > div > ul > li:nth-child(2) > input[type='checkbox']")
   button(:popup_cancel_button, css: "#gk-custom-app-vue > div > div > div > div > div > div > div > span:nth-child(1) > button")
   button(:popup_next_button, css: "#gk-custom-app-vue > div > div > div > div > div > div > div > span:nth-child(2) > button")
   span(:disabled_next_button, css: "#gk-custom-app-vue > div > div > div > div > div > div > div > span.disabled")
