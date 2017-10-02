@@ -17,7 +17,7 @@ div(:four_oh_four, class: ["four-oh-four"])
 
 
 # => Divs
-div(:product_quick_view, id: "product-quickview")
+div(:product_quick_view, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(1) > div.page-productlisting__content--hover > div.page-productlisting__fav-more > a")
 div(:first_result, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(1)")
 divs(:results, class: ["col-xs-6 col-sm-4 page-productlisting__bucket"])
 divs(:hover_results, class: ["page-productlisting__content--hover"])
@@ -50,7 +50,7 @@ div(:quickview_color, class: "color-picker")
 div(:added_to_cart, id: "added-to-cart")
 
 
-	def rating_filters
+	def check_rating_filters
 		ratings = ['check_five_star',
 				   'check_four_star',
 				   'check_three_star',
@@ -62,8 +62,20 @@ div(:added_to_cart, id: "added-to-cart")
 		end
 	end
 
+	def uncheck_rating_filters
+		ratings = ['uncheck_five_star',
+				   'uncheck_four_star',
+				   'uncheck_three_star',
+				   'uncheck_two_star',
+				   'uncheck_one_star',
+				   'uncheck_no_star']
+		ratings.each do |stars|
+			self.send(stars)
+		end
+	end
+
 	def quick_view
-		self.first_result_element.focus
+		self.send_keys :page_up
 		sleep 1
 		self.first_result_element.hover
 		sleep 1

@@ -86,22 +86,21 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		it 'Filter by Rating' do
 			no_filter = @page.search_result_text
 			@page.no_star_element.focus
-			@page.rating_filters
+			@page.check_rating_filters
 			sleep 1
 			filter = @page.search_result_text
 			expect(no_filter).to eq(filter)
+			@page.uncheck_rating_filters
 		end
 	end
 
 
 	context 'Quick View' do
-		it 'Open Quick View' do
+		it 'Add Item to Cart via Quick View' do
+			@page.send_keys :page_up
+			@page.send_keys :page_up
 			@page.quick_view
 			sleep 1
-			expect(@page.product_quick_view_element.visible?).to eq(true)
-		end
-
-		it 'Add Item to Cart via Quick View' do
 			@product_page.random_options
 			sleep 1
 			@product_page.add_to_cart
