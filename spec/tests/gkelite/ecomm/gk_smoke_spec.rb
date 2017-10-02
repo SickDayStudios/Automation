@@ -82,22 +82,26 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	# 	end
 	# end
 
-	if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'teamlead'
-		it ' - Select Random Sales Rep' do
-			@payment_page.select_random_rep
+	if ENV['ENVIRONMENT'] == 'staging' || ENV['ENVIRONMENT'] == 'test'
+
+		if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'teamlead'
+			it ' - Select Random Sales Rep' do
+				@payment_page.select_random_rep
+			end
 		end
-	end
 
-	it ' - Place Order' do
-		@payment_page.send_keys :page_down, :page_down
-		@payment_page.place_order_element.focus
-		@payment_page.place_order
-		@payment_page.wait_while { @payment_page.loader? }
-		expect(@payment_page.url).to include("processing")
-	end
+		
+		it ' - Place Order' do
+			@payment_page.send_keys :page_down, :page_down
+			@payment_page.place_order_element.focus
+			@payment_page.place_order
+			@payment_page.wait_while { @payment_page.loader? }
+			expect(@payment_page.url).to include("processing")
+		end
 
-	it ' - Payment Processed Successfully' do
-		@payment_page.wait_while { (@payment_page.url.include? "processing") }
-		expect(@payment_page.url).to include("thank_you")
+		it ' - Payment Processed Successfully' do
+			@payment_page.wait_while { (@payment_page.url.include? "processing") }
+			expect(@payment_page.url).to include("thank_you")
+		end
 	end
 end
