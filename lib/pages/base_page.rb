@@ -34,8 +34,8 @@ class BasePage
   end
   
   def self.resize_window
-    window.resize_to(1920, 1080)
-    window.move_to(0, 0)
+    $driver.window.resize_to(1920, 1080)
+    $driver.window.move_to(0, 0)
   end
 
   def collect_links
