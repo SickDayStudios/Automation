@@ -90,14 +90,19 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			expect(@checkout_page.current_breadcrumb).to eq('Payment method')
 		end
 
-		it ' - Complete Order' do
-			@checkout_page.continue_to_element.focus
-			@checkout_page.continue_to
-			expect(@payment_page.url).to include("pay-gkelite")
+		if ENV['ENVIRONMENT'] == 'prod'
+			it ' - Complete Order' do
+				@checkout_page.continue_to
+				expect(@payment_page.url).to include("pay.gkelite")
+			end
 		end
 
-
 		if ENV['ENVIRONMENT'] == 'staging' || ENV['ENVIRONMENT'] == 'test'
+
+			it ' - Complete Order' do
+				@checkout_page.continue_to
+				expect(@payment_page.url).to include("pay-gkelite")
+			end
 
 			if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'teamlead'
 				it ' - Select Random Sales Rep' do
