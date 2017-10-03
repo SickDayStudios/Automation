@@ -46,18 +46,17 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			@customizer.check_disclaimer_checkbox
 			@customizer.embellishments_button
 			expect(@customizer.url).to include('embellishments')
-			sleep 1
 			@customizer.size_alterations_button
 			expect(@customizer.size_alterations_popup?).to eq(true)
-			sleep 1
 			@customizer.check_popup_checkbox_one
 			@customizer.check_popup_checkbox_two
 			@customizer.popup_next_button
 			expect(@customizer.url).to include('sizes-and-alterations')
-			@product_page.wait_until(60) { @product_page.product_image? }
+			@product_page.wait_while(60) { @product_page.placeholder_image? }
 		end
 
 		it ' - Select Random Options' do
+			@product_page.wait_until(60) { @product_page.product_image? }
 			@product_page.random_size
 			expect(@product_page.selected_size).not_to eq("")
 		end
