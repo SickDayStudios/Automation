@@ -10,9 +10,9 @@ require 'fileutils'
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
-screenshotfolder = "reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
-unless File.directory?(screenshotfolder)
-  FileUtils.mkdir_p(screenshotfolder)
+@screenshotfolder = "reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
+unless File.directory?(@screenshotfolder)
+  FileUtils.mkdir_p(@screenshotfolder)
 end
 
 RSpec.configure do |config|
@@ -24,14 +24,16 @@ RSpec.configure do |config|
 #=> Before any tests are run, this block is run
   config.before(:all) do
     $driver = Watir::Browser.new ENV['BROWSER'].to_sym
-    @screenshotfolder = screenshotfolder
     BasePage.resize_window
     BasePage.set_base_url
     BasePage.set_user
   end
 
   config.after(:each) do |example|
-    BasePage.on_fail(example)
+    BasePage.print_js_errors
+    if example.exception
+      $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
+    end
   end
 
   config.after(:all) do

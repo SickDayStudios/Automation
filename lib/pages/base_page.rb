@@ -7,6 +7,14 @@ class BasePage
     super($driver)
   end
 
+  def wait_or_rescue(arg)
+    begin
+    self.wait_until { arg }
+    rescue Watir::Wait::TimeoutError, Watir::Exception::UnknownObjectException, Timeout::Error
+        BasePage.print_js_errors
+    end
+  end
+
   def self.print_js_errors
     log = $driver.driver.manage.logs.get(:browser)
     errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
