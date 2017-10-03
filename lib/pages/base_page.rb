@@ -20,7 +20,7 @@ class BasePage
     errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
     if errors.count > 0
       javascript_errors = errors.map(&:message).join("\n\n")
-      puts "\nFailed:\n#{javascript_errors}"
+      puts "\nPageError:\n#{javascript_errors}"
       puts ""
     end
   end

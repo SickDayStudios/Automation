@@ -60,16 +60,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		expect(@checkout_page.current_breadcrumb).to eq('Payment method')
 	end
 
-# => TODO: Figure out a way to set the proper range index for credit card options
-	# it ' - Select Random Saved CC or Fill New CC Form' do
-	# 	@payment_page.wait_while { @payment_page.page_load? }
-	# 	if @payment_page.billing_info? == true
-	# 		@payment_page.select_random_card
-	# 	elsif @payment_page.billing_info? == false
-	# 		@payment_page.add_new_card.set
-	# 		@payment_page.fill_credit_card
-	# 	end
-	# end
 	if ENV['ENVIRONMENT'] == 'prod'
 		it ' - Complete Order' do
 			@checkout_page.continue_to
