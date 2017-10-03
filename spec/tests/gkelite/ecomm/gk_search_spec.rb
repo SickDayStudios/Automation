@@ -26,35 +26,40 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		it 'Filter by Type: In Stock' do
 			no_filter = @page.search_result_text
 			@page.in_stock_element.click
+			sleep 1
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
 			@page.in_stock_element.click
+			sleep 1
 		end
 
 		it 'Filter by Type: Special Order' do
 			no_filter = @page.search_result_text
 			@page.special_order_element.click
+			sleep 1
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
 			@page.special_order_element.click
+			sleep 1
 		end
 
 		it 'Filter by Size' do
 			@page.sizes_elements.each do |size|
 				no_filter = @page.search_result_text
-				size.checkbox_element.focus
 				size.checkbox.set(true)
+				sleep 1
 				filter = @page.search_result_text
 				expect(no_filter).not_to eq(filter)
 				size.checkbox.set(false)
+				sleep 1
 			end
 		end
 
 		it 'Filter by Minimum Price' do
 			no_filter = @page.search_result_text
-			@page.price_min_element.focus
 			@page.price_min = "#{rand(75..100)}"
 			@page.price_min_element.send_keys :return
+			sleep 1
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
 			@page.price_min = "0"
@@ -63,9 +68,9 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 		it 'Filter by Maximum Price' do
 			no_filter = @page.search_result_text
-			@page.price_max_element.focus
 			@page.price_max = "#{rand(105..125)}"
 			@page.price_max_element.send_keys :return
+			sleep 1
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
 			@page.price_max = "400"
@@ -74,8 +79,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 		it 'Filter by Rating' do
 			no_filter = @page.search_result_text
-			@page.no_star_element.focus
 			@page.check_rating_filters
+			sleep 1
 			filter = @page.search_result_text
 			expect(no_filter).to eq(filter)
 			@page.uncheck_rating_filters
