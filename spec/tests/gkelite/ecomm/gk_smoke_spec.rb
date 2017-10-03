@@ -36,39 +36,28 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	it ' - Add Product to Cart' do
 		@product_page.wait_until { @product_page.product_thumbnails? }
 		@product_page.random_options
-		@product_page.add_to_cart_element.focus
 		@product_page.add_to_cart
 		@product_page.wait_until { @product_page.cart_popup? }
 		expect(@product_page.cart_popup?).to eq(true)
 	end
 
 	it ' - Lightbox Checkout' do
-		@product_page.checkout_element.focus
 		@product_page.checkout
 		expect(@product_page.url).to include('/cart')
 	end
 
 	it ' - Secure Checkout' do
-		@cart_page.secure_checkout_element.focus
 		@cart_page.secure_checkout
 	end
 
 	it ' - Continue to Shipping Method' do
-		@checkout_page.continue_to_element.focus
 		@checkout_page.continue_to
 	end
 
 	it ' - Continue to Payment Method' do
-		@checkout_page.continue_to_element.focus
 		@checkout_page.continue_to
 		@checkout_page.wait_until { @checkout_page.different_address? }
 		expect(@checkout_page.current_breadcrumb).to eq('Payment method')
-	end
-
-	it ' - Complete Order' do
-		@checkout_page.continue_to_element.focus
-		@checkout_page.continue_to
-		expect(@payment_page.url).to include("pay-gkelite")
 	end
 
 # => TODO: Figure out a way to set the proper range index for credit card options
@@ -81,8 +70,19 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	# 		@payment_page.fill_credit_card
 	# 	end
 	# end
+	if ENV['ENVIRONMENT'] == 'prod'
+		it ' - Complete Order' do
+			@checkout_page.continue_to
+			expect(@payment_page.url).to include("pay.gkelite")
+		end
+	end
 
 	if ENV['ENVIRONMENT'] == 'staging' || ENV['ENVIRONMENT'] == 'test'
+
+		it ' - Complete Order' do
+			@checkout_page.continue_to
+			expect(@payment_page.url).to include("pay-gkelite")
+		end
 
 		if ENV['USER_TYPE'] == 'dealer' || ENV['USER_TYPE'] == 'distributor' || ENV['USER_TYPE'] == 'teamlead'
 			it ' - Select Random Sales Rep' do
@@ -92,8 +92,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 		
 		it ' - Place Order' do
-			@payment_page.send_keys :page_down, :page_down
-			@payment_page.place_order_element.focus
 			@payment_page.place_order
 			@payment_page.wait_while { @payment_page.loader? }
 			expect(@payment_page.url).to include("processing")
