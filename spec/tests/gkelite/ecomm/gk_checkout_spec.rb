@@ -46,7 +46,9 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			@customizer.check_disclaimer_checkbox
 			@customizer.embellishments_button
 			expect(@customizer.url).to include('embellishments')
+			@customizer.wait_until { @customizer.size_alterations_button? }
 			@customizer.size_alterations_button
+			@customizer.wait_until { @customizer.size_alterations_popup? }
 			expect(@customizer.size_alterations_popup?).to eq(true)
 			@customizer.check_popup_checkbox_one
 			@customizer.check_popup_checkbox_two
