@@ -52,7 +52,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			@customizer.check_popup_checkbox_two
 			@customizer.popup_next_button
 			expect(@customizer.url).to include('sizes-and-alterations')
-			@product_page.wait_while(60) { @product_page.placeholder_image? }
 		end
 
 		it ' - Select Random Options' do

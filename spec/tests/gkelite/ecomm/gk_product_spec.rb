@@ -62,6 +62,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			end
 
 			it "#{id}: Product Image" do
+				@page.wait_while(6) { @page.placeholder_image? }
 				@page.color_picker_element.buttons.to_a.each do |x|
 					x.click
 					@page.wait_until { @page.product_image? }
@@ -122,6 +123,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			end
 
 			it "#{id}: Product Image" do
+				@page.wait_while(6) { @page.placeholder_image? }
 				@page.color_picker_element.buttons.to_a.each do |x|
 					x.click
 					@page.wait_until { @page.product_image? }
@@ -194,6 +196,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			end
 
 			it "#{id}: Product Image" do
+				@page.wait_while(6) { @page.placeholder_image? }
 				@page.color_picker_element.buttons.to_a.each do |x|
 					x.click
 					@page.wait_until { @page.product_image? }

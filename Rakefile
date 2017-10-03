@@ -126,6 +126,16 @@ t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_checkout_spec.rb')
 #t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
 end
 
+RSpec::Core::RakeTask.new(:gk_two_d, [:environment, :browser, :user]) do |t, args|
+ENV['ENVIRONMENT'] = args[:environment]
+ENV['BROWSER'] = args[:browser]
+ENV['USER_TYPE'] = args[:user]
+ENV['SITE'] = 'gk'
+ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
+t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_two_d_spec.rb')
+#t.rspec_opts = '--fail-fast=5 --color --require spec_helper --require rspec_junit_formatter --format html -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.html --format RspecJunitFormatter -o ./reports/test_results<%= ENV['TEST_ENV_NUMBER'] %>.xml'
+end
+
 RSpec::Core::RakeTask.new(:icon, [:environment, :browser]) do |t, args|
 ENV['ENVIRONMENT'] = args[:environment]
 ENV['BROWSER'] = args[:browser]
