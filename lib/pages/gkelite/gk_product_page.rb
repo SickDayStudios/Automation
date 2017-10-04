@@ -18,6 +18,7 @@ class GKProductPage < GKShopifyBasePage
 nav(:breadcrumb, class: ["module-breadcrumb"])
 span(:style_id, css: "#product-attributes-container > div > h1 > span")
 div(:overlay, css: "#basic-boat-neck-comp-leotard > div:nth-child(17)")
+select_list(:user_dropdown, name: "product-type")
 
 # Style Name
 div(:product_info, class: "product-meta")
@@ -96,7 +97,7 @@ def selected_color
 end
 
 def random_options
-	if ENV['USER_TYPE'] == "consumer"
+	if ENV['USER_TYPE'] == "consumer" || ENV['USER_TYPE'] == 'salesrep'
 		self.wait_until { self.product_thumbnails? }
 		self.random_size
 		self.consumer_random_quantity
@@ -108,7 +109,6 @@ end
 
 def consumer_random_quantity
 	@arr = Array.new
-	self.consumer_quantity_element.button.focus
 	self.consumer_quantity_element.button.click
 	self.consumer_quantity_element.buttons.each do |x|
 		@arr.push(x)
