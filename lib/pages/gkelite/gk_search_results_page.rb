@@ -18,10 +18,10 @@ div(:four_oh_four, class: ["four-oh-four"])
 
 # => Divs
 div(:product_quick_view, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(1) > div.page-productlisting__content--hover > div.page-productlisting__fav-more > a")
-div(:first_result, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(1)")
+div(:first_result, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(4)")
 divs(:results, class: ["col-xs-6 col-sm-4 page-productlisting__bucket"])
 divs(:hover_results, class: ["page-productlisting__content--hover"])
-link(:quick_view_link, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(1) > div.page-productlisting__content--hover > div.page-productlisting__fav-more > a")
+link(:quick_view_link, css: "#product-listing-results-container > div > div:nth-child(1) > div:nth-child(4) > div.page-productlisting__content--hover > div.page-productlisting__fav-more > a")
 
 #product-listing-filters-container > div > div.sidebar-filter__accordion > div > div:nth-child(1) > div.accordion-content.active > ul > li:nth-child(2) > div > label > span
 # => Checkboxes
@@ -75,7 +75,6 @@ div(:added_to_cart, id: "added-to-cart")
 	end
 
 	def quick_view
-		self.first_result_element.focus
 		self.first_result_element.hover
 		self.quick_view_link_element.hover
 		self.quick_view_link_element.click
