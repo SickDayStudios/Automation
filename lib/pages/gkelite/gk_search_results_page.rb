@@ -75,10 +75,10 @@ div(:added_to_cart, id: "added-to-cart")
 	end
 
 	def quick_view
+		elf.first_result_element.focus
 		self.first_result_element.hover
-		self.quick_view_link_element.focus
 		self.quick_view_link_element.hover
-		self.quick_view_link
+		self.quick_view_link_element.click
 	end
 
 	def random_result

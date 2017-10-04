@@ -95,8 +95,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			@page.quick_view
 			@product_page.random_options
 			@product_page.add_to_cart
-			@page.wait_until { @page.added_to_cart? }
-			expect(@page.added_to_cart?).to eq(true)
+			@page.wait_until { @page.added_to_cart_element.visible? }
+			expect(@page.added_to_cart_element.visible?).to eq(true)
 		end
 	end
 end
