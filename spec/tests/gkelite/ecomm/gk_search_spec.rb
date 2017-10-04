@@ -21,75 +21,77 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 
-	context 'Filters' do
+	context 'Filters: ' do
 
-		it 'Filter by Type: In Stock' do
+		it 'Type: In Stock' do
 			no_filter = @page.search_result_text
-			@page.in_stock_element.click
-			sleep 1
+			@page.check_in_stock
+			@page.wait_while { @page.search_result_text == no_filter }
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
-			@page.in_stock_element.click
-			sleep 1
+			@page.uncheck_in_stock
+			@page.wait_until { @page.search_result_text == no_filter }
 		end
 
-		it 'Filter by Type: Special Order' do
+		it 'Type: Special Order' do
 			no_filter = @page.search_result_text
-			@page.special_order_element.click
-			sleep 1
+			@page.check_special_order
+			@page.wait_while { @page.search_result_text == no_filter }
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
-			@page.special_order_element.click
-			sleep 1
+			@page.uncheck_special_order
+			@page.wait_until { @page.search_result_text == no_filter }
 		end
 
-		it 'Filter by Size' do
+		it 'Size' do
 			@page.sizes_elements.each do |size|
 				no_filter = @page.search_result_text
 				size.checkbox.set(true)
-				sleep 2
+				@page.wait_while { @page.search_result_text == no_filter }
 				filter = @page.search_result_text
 				expect(no_filter).not_to eq(filter)
 				size.checkbox.set(false)
-				sleep 2
+				@page.wait_until { @page.search_result_text == no_filter }
 			end
 		end
 
-		it 'Filter by Minimum Price' do
+		it 'Minimum Price' do
 			no_filter = @page.search_result_text
 			@page.price_min = "#{rand(75..100)}"
 			@page.price_min_element.send_keys :return
-			sleep 1
+			@page.wait_while { @page.search_result_text == no_filter }
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
 			@page.price_min = "0"
 			@page.price_min_element.send_keys :return
 		end
 
-		it 'Filter by Maximum Price' do
+		it 'Maximum Price' do
 			no_filter = @page.search_result_text
 			@page.price_max = "#{rand(105..125)}"
 			@page.price_max_element.send_keys :return
-			sleep 1
+			@page.wait_while { @page.search_result_text == no_filter }
 			filter = @page.search_result_text
 			expect(no_filter).not_to eq(filter)
 			@page.price_max = "400"
 			@page.price_max_element.send_keys :return
 		end
 
-		it 'Filter by Rating' do
+		it 'Rating' do
 			no_filter = @page.search_result_text
 			@page.check_rating_filters
-			sleep 1
+			@page.wait_until { @page.search_result_text == no_filter }
 			filter = @page.search_result_text
 			expect(no_filter).to eq(filter)
 			@page.uncheck_rating_filters
+			@page.wait_until { @page.search_result_text == no_filter }
 		end
 	end
 
 
-	context 'Quick View' do
+	context 'Quick View: ' do
 		it 'Add Item to Cart via Quick View' do
+			@page.send_keys :page_up, :page_up
 			@page.quick_view
 			@product_page.random_options
 			@product_page.add_to_cart

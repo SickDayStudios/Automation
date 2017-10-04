@@ -75,12 +75,9 @@ div(:added_to_cart, id: "added-to-cart")
 	end
 
 	def quick_view
-		self.send_keys :page_up
-		sleep 1
 		self.first_result_element.hover
-		sleep 1
+		self.quick_view_link_element.focus
 		self.quick_view_link_element.hover
-		sleep 1
 		self.quick_view_link
 	end
 
