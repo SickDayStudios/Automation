@@ -17,6 +17,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			@page.search_for('Leotard')
 			expect(@page.url).to include('Leotard')
 			expect(@page.search_result_text).to include('Leotard')
+			@no_filter = @page.search_result_text
 		end
 	end
 
@@ -24,67 +25,62 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	context 'Filters: ' do
 
 		it 'Type: In Stock' do
-			no_filter = @page.search_result_text
 			@page.check_in_stock
-			@page.wait_while { @page.search_result_text == no_filter }
+			@page.wait_while { @page.search_result_text == @no_filter }
 			filter = @page.search_result_text
-			expect(no_filter).not_to eq(filter)
+			expect(@page.search_result_text).not_to eq(filter)
 			@page.uncheck_in_stock
-			@page.wait_until { @page.search_result_text == no_filter }
+			@page.wait_until { @page.search_result_text == @no_filter }
 		end
 
 		it 'Type: Special Order' do
-			no_filter = @page.search_result_text
 			@page.check_special_order
-			@page.wait_while { @page.search_result_text == no_filter }
+			@page.wait_while { @page.search_result_text == @no_filter }
 			filter = @page.search_result_text
-			expect(no_filter).not_to eq(filter)
+			expect(@page.search_result_text).not_to eq(filter)
 			@page.uncheck_special_order
-			@page.wait_until { @page.search_result_text == no_filter }
+			@page.wait_until { @page.search_result_text == @no_filter }
 		end
 
 		it 'Size' do
 			@page.sizes_elements.each do |size|
-				no_filter = @page.search_result_text
+				@no_filter = @page.search_result_text
 				size.checkbox.set(true)
-				@page.wait_while { @page.search_result_text == no_filter }
+				@page.wait_while { @page.search_result_text == @no_filter }
 				filter = @page.search_result_text
-				expect(no_filter).not_to eq(filter)
+				expect(@page.search_result_text).not_to eq(filter)
 				size.checkbox.set(false)
-				@page.wait_until { @page.search_result_text == no_filter }
+				@page.wait_until { @page.search_result_text == @no_filter }
 			end
 		end
 
 		it 'Minimum Price' do
-			no_filter = @page.search_result_text
 			@page.price_min = "#{rand(75..100)}"
 			@page.price_min_element.send_keys :return
-			@page.wait_while { @page.search_result_text == no_filter }
+			@page.wait_while { @page.search_result_text == @no_filter }
 			filter = @page.search_result_text
-			expect(no_filter).not_to eq(filter)
+			expect(@page.search_result_text).not_to eq(filter)
 			@page.price_min = "0"
 			@page.price_min_element.send_keys :return
 		end
 
 		it 'Maximum Price' do
-			no_filter = @page.search_result_text
 			@page.price_max = "#{rand(105..125)}"
 			@page.price_max_element.send_keys :return
-			@page.wait_while { @page.search_result_text == no_filter }
+			@page.wait_while { @page.search_result_text == @no_filter }
 			filter = @page.search_result_text
-			expect(no_filter).not_to eq(filter)
+			expect(@page.search_result_text).not_to eq(filter)
 			@page.price_max = "400"
 			@page.price_max_element.send_keys :return
 		end
 
 		it 'Rating' do
-			no_filter = @page.search_result_text
 			@page.check_rating_filters
-			@page.wait_until { @page.search_result_text == no_filter }
+			@page.wait_until { @page.search_result_text == @no_filter }
 			filter = @page.search_result_text
-			expect(no_filter).to eq(filter)
+			expect(@no_filter).to eq(filter)
 			@page.uncheck_rating_filters
-			@page.wait_until { @page.search_result_text == no_filter }
+			@page.wait_until { @page.search_result_text == @no_filter }
 		end
 	end
 
