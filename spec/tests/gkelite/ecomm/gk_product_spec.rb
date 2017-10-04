@@ -11,6 +11,10 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		DeferredGarbageCollection.start
 		@page = GKProductPage.new
 		@customizer = CustomizerPage.new
+		BasePage.navigate_to_starting_page
+		if ENV['ENVIRONMENT'] == 'prod'
+			@page.enter_password
+		end
 	end
 
 	after(:all) do
@@ -62,7 +66,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			end
 
 			it "#{id}: Product Image" do
-				@page.wait_while(6) { @page.placeholder_image? }
+				@page.wait_while { @page.placeholder_image? }
 				@page.color_picker_element.buttons.to_a.each do |x|
 					x.click
 					@page.wait_until { @page.product_image? }
@@ -123,7 +127,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			end
 
 			it "#{id}: Product Image" do
-				@page.wait_while(6) { @page.placeholder_image? }
+				@page.wait_while { @page.placeholder_image? }
 				@page.color_picker_element.buttons.to_a.each do |x|
 					x.click
 					@page.wait_until { @page.product_image? }
@@ -196,7 +200,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			end
 
 			it "#{id}: Product Image" do
-				@page.wait_while(6) { @page.placeholder_image? }
+				@page.wait_while { @page.placeholder_image? }
 				@page.color_picker_element.buttons.to_a.each do |x|
 					x.click
 					@page.wait_until { @page.product_image? }
