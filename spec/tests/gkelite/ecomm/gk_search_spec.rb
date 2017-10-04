@@ -47,11 +47,11 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			@page.sizes_elements.each do |size|
 				no_filter = @page.search_result_text
 				size.checkbox.set(true)
-				sleep 1
+				sleep 2
 				filter = @page.search_result_text
 				expect(no_filter).not_to eq(filter)
 				size.checkbox.set(false)
-				sleep 1
+				sleep 2
 			end
 		end
 
