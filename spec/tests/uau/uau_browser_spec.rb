@@ -12,7 +12,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-			# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 
@@ -21,7 +21,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-			# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 
@@ -30,7 +30,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-			# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 
@@ -39,7 +39,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-			# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 
@@ -48,7 +48,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-			# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 
@@ -57,7 +57,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-			# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 
@@ -75,7 +75,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-			# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 
@@ -93,7 +93,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-			# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 
@@ -111,7 +111,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			puts id
 			@page.uau_product(id)
 			@page.wait_until(60) { @page.loader? }
-				# expect(@page).not_to have_errors
+			BasePage.print_js_errors
 		end
 	end
 end
