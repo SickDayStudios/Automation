@@ -9,6 +9,10 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	before(:all) do
 		@page = GKSearchResultsPage.new
+		BasePage.navigate_to_starting_page
+		if ENV['ENVIRONMENT'] == 'prod'
+			@page.enter_password
+		end
 	end
 
 	it 'Navigate to each Collection URL' do
