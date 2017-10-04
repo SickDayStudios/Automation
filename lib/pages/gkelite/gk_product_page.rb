@@ -98,11 +98,12 @@ end
 
 def random_options
 	if ENV['USER_TYPE'] == "consumer" || ENV['USER_TYPE'] == 'salesrep'
-		self.wait_until { self.product_thumbnails? }
+		self.wait_until { self.size_dropdown? }
 		self.random_size
+		self.wait_until { self.consumer_quantity? }
 		self.consumer_random_quantity
 	else
-		self.wait_until { self.product_thumbnails? }
+		self.wait_until { self.dealer_quantity? }
 		self.dealer_quantity = "5"
 	end
 end
@@ -127,7 +128,7 @@ end
 def random_size
 	@arr = Array.new
 	self.size_dropdown_element.click
-	sleep 1
+	self.wait_until { self.child_size_options? }
 	if self.child_size_options?
 		self.child_size_options_element.buttons.each do |x|
 			@arr.push(x)
