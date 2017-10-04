@@ -64,6 +64,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			expect(no_filter).not_to eq(filter)
 			@page.price_min = "0"
 			@page.price_min_element.send_keys :return
+			@page.wait_until { @page.search_result_text == no_filter }
 		end
 
 		it 'Maximum Price' do
@@ -75,6 +76,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			expect(no_filter).not_to eq(filter)
 			@page.price_max = "400"
 			@page.price_max_element.send_keys :return
+			@page.wait_until { @page.search_result_text == no_filter }
 		end
 
 		it 'Rating' do
