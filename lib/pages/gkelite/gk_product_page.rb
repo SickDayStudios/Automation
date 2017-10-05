@@ -97,7 +97,7 @@ def selected_color
 end
 
 def random_options
-	if ENV['USER_TYPE'] == "consumer" || ENV['USER_TYPE'] == 'salesrep'
+	if ENV['USER_TYPE'] == "consumer"
 		self.wait_until { self.size_dropdown? }
 		self.random_size
 		self.wait_until { self.consumer_quantity? }
