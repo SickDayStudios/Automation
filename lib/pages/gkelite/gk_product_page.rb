@@ -91,6 +91,13 @@ divs(:suggested_garments, class: ["swiper-slide"])
 div(:cart_popup, id: "added-to-cart")
 
 
+
+
+def get_product_data(id)
+	url = "'#{$base_url}'/products/'#{id}'"
+end
+
+
 def selected_color
 	self.wait_until { self.product_thumbnails? }
 	self.color_picker_element.buttons.to_a

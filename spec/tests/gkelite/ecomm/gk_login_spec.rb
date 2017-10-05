@@ -64,12 +64,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				@product_page.wait_while { $base_url == @product_page.url }
 				expect(@product_page.url).to include('/products/3728')
 				@product_page.wait_until { @product_page.product_thumbnails? }
-				if ENV['USER_TYPE'] == 'salesrep' && ENV['ENVIRONMENT'] == 'prod'
-					@product_page.dealer_quantity = "5"
-				else
-					@product_page.random_size
-					@product_page.consumer_random_quantity
-				end
+				@product_page.random_size
+				@product_page.consumer_random_quantity
 				@product_page.add_to_cart
 				@product_page.wait_until { @product_page.cart_popup? }
 				expect(@product_page.cart_popup?).to eq(true)
