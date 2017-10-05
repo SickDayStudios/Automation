@@ -37,6 +37,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		end
 	end
 
+
 	['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
 		context "#{user.upcase}: Login via Header Link" do
 			it 'Login' do
@@ -54,6 +55,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			end
 		end
 	end
+
+
 
 	['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
 		context "#{user.upcase}: Login via Cart Popup" do
@@ -79,6 +82,9 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			end
 
 			it 'Logout' do
+				if @cart_page.remove_item?
+					@cart_page.remove_item
+				end
 				@login_page.quick_logout
 				@login_page.wait_until { @login_page.url == $base_url+'/' }
 				expect(@login_page.url).to eq($base_url+'/')
