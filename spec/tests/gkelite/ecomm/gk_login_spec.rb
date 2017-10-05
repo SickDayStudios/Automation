@@ -86,6 +86,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				@login_page.quick_logout
 				sleep 1
 				expect(@login_page.url).to eq($base_url+'/')
+				sleep 1
 			end
 		end
 	end
