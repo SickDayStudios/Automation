@@ -11,6 +11,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end
@@ -20,6 +23,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end
@@ -29,6 +35,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end
@@ -38,6 +47,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end
@@ -47,6 +59,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end
@@ -56,6 +71,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end
@@ -74,6 +92,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end
@@ -92,6 +113,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end
@@ -110,6 +134,9 @@ describe "Under Armour: 3D Model Shader Test" do
 		it "#{id}" do
 			puts id
 			@page.uau_product(id)
+			if @page.product_image?
+				@page.product_image_element.click
+			end
 			@page.wait_until(60) { @page.loader? }
 			BasePage.print_js_errors
 		end

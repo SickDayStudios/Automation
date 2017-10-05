@@ -7,6 +7,7 @@ class UAUBasePage < BasePage
 	include PageObject
 
 element(:loader, tag_name: "uau-loader", class: "loaded")
+div(:product_image, class: ["product__image"])
 
 def uau_product(id)
 	$driver.goto ("#{$base_url}" + "#{id}")
