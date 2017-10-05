@@ -34,7 +34,7 @@ end
 def select_random_rep
 	self.wait_while { self.page_load? }
 	self.sales_rep_dropdown_element.focus
-	self.sales_rep_dropdown_element.options.sample.click
+	self.sales_rep_dropdown = self.sales_rep_dropdown_options.sample
 end
 
 def select_random_card
