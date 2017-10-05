@@ -9,7 +9,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$football.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
@@ -21,7 +20,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$volleyball.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
@@ -33,7 +31,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$track.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
@@ -45,7 +42,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$soccer.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
@@ -57,7 +53,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$basketball.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
@@ -69,7 +64,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$training.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
@@ -90,7 +84,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$sideline.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
@@ -111,7 +104,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$baseball.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
@@ -132,7 +124,6 @@ describe "Under Armour: 3D Model Shader Test" do
 
 	$softball.each do |id|
 		it "#{id}" do
-			puts id
 			@page.uau_product(id)
 			if @page.product_image?
 				@page.product_image_element.click
