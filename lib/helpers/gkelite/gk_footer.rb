@@ -1,5 +1,4 @@
 require 'page-object'
-require './lib/pages/gkelite/gk_shopify_base_page'
 
 
 module GKFooter

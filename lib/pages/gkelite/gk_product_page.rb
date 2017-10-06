@@ -4,6 +4,8 @@ require './lib/helpers/gkelite/gk_header'
 require './lib/helpers/gkelite/gk_footer'
 require './lib/helpers/gkelite/gk_cart_lightbox'
 require './lib/helpers/gkelite/gk_search_filters'
+require 'json'
+require 'net/http'
 
 class GKProductPage < GKShopifyBasePage
 	include PageObject
@@ -94,7 +96,12 @@ div(:cart_popup, id: "added-to-cart")
 
 
 def get_product_data(id)
-	url = "'#{$base_url}'/products/'#{id}'"
+	url = "https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"
+	uri = URI(url)
+	response = Net::HTTP.get(uri)
+	puts response
+	specs = JSON.parse(response)
+	puts specs
 end
 
 

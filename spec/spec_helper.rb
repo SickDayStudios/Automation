@@ -6,6 +6,8 @@ require 'openssl'
 require 'rspec_junit_formatter'
 require "watir-scroll"
 require 'fileutils'
+require 'json'
+require 'net/http'
 
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
