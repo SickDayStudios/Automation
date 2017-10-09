@@ -1,4 +1,4 @@
-# require "./lib/pages/gkelite/gk_product_page"
+require "./lib/pages/gkelite/gk_product_page"
 # require "./lib/pages/gkelite/gk_cart_page"
 # require "./lib/helpers/gkelite/gk_cart_lightbox"
 # require "./lib/pages/base_page"

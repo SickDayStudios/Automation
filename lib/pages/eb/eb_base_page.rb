@@ -15,6 +15,7 @@ class EBBasePage < BasePage
 	span(:chest_monogram_label, text: "Add Chest Monogram")
 	span(:sleeve_monogram_label, text: "Add Sleeve Monogram")
 	span(:size_label, text: "Size")
+	h3(:swatches, class: ["color-label"])
 
 
 
