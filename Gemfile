@@ -51,6 +51,7 @@ group :development, :test do
   gem 'coderay'
   gem 'json-schema-rspec'
   gem 'json_matchers'
+  gem 'json-schema'
 end
 
 group :development do

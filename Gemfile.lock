@@ -244,6 +244,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   database_cleaner
   jbuilder (~> 2.5)
+  json-schema
   json-schema-rspec
   json_matchers
   page-object
