@@ -11,6 +11,7 @@ require "./lib/pages/gkelite/gk_login_page"
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK-Elite Checkout Test:" do
 
 	before(:all) do
+    	BasePage.setup
 		@login_page = GKLoginPage.new
 		@customizer = CustomizerPage.new
 		@home_page = GKHomePage.new

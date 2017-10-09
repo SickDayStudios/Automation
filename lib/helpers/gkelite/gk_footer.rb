@@ -1,6 +1,3 @@
-require 'page-object'
-
-
 module GKFooter
 	include PageObject
 

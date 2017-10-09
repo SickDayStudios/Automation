@@ -8,6 +8,9 @@ require "watir-scroll"
 require 'fileutils'
 require 'json'
 require 'net/http'
+require 'json-schema'
+require 'json-schema-rspec'
+require "json_matchers/rspec"
 
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
@@ -26,9 +29,6 @@ RSpec.configure do |config|
 #=> Before any tests are run, this block is run
   config.before(:all) do
     $driver = Watir::Browser.new ENV['BROWSER'].to_sym
-    BasePage.resize_window
-    BasePage.set_base_url
-    BasePage.set_user
   end
 
   config.after(:each) do |example|
@@ -41,6 +41,7 @@ RSpec.configure do |config|
   config.after(:all) do
     BasePage.quit_webdriver
   end
+
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

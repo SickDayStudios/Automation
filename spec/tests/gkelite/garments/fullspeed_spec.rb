@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #4893s: Women's Full Speed Sublimated Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.fullspeed
   end

@@ -5,6 +5,7 @@ describe "< #7627: Women's Star Crossed Long Sleeve Leotard - Customizer Unit Te
 
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.star
   end

@@ -1,0 +1,223 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "gk_schema",
+	"required": ["gk_schema"],
+	"description": "A product from GK's catalog",
+	"type": "object",
+	"properties": {
+		"productMeta": {
+			"type": "object",
+			"properties": {
+				"alterations": {
+					"type": "object"
+				},
+				"brand": {
+					"type": "string"
+				},
+				"title": {
+					"type": "string"
+				},
+				"featured_image": {
+					"type": "string"
+				},
+				"styleNum": {
+					"type": "string"
+				},
+				"styleType": {
+					"type": "string"
+				},
+				"price": {
+					"type": "string"
+				},
+				"compare_at_price_max": {
+					"type": "string"
+				},
+				"compare_at_price": {
+					"type": "string"
+				},
+				"isCustomizable": {
+					"type": "string"
+				},
+				"specialOrderSpecification": {
+					"type": "string"
+				}
+			}
+		},
+
+		"colors": {
+			"type": "object",
+			"properties": {
+				"as_shown": {
+					"type": "object",
+					"properties": {
+						"sizes": {
+							"type": "object",
+							"patternProperties": {
+								".*": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "number"
+										},
+										"title": {
+											"type": "string"
+										},
+										"handle": {
+											"type": "string"
+										},
+										"description": {
+											"type": "string"
+										},
+										"published_at": {
+											"type": "string"
+										},
+										"created_at": {
+											"type": "string"
+										},
+										"vendor": {
+											"type": "string"
+										},
+										"type": {
+											"type": "string"
+										},
+										"tags": {
+											"type": "array"
+										},
+										"price": {
+											"type": "number"
+										},
+										"price_min": {
+											"type": "number"
+										},
+										"price_max": {
+											"type": "number"
+										},
+										"available": {
+											"type": "boolean"
+										},
+										"price_varies": {
+											"type": "boolean"
+										},
+										"compare_at_price": {
+											"type": "null"
+										},
+										"compare_at_price_min": {
+											"type": "number"
+										},
+										"compare_at_price_max": {
+											"type": "number"
+										},
+										"compare_at_price_varies": {
+											"type": "boolean"
+										},
+										"variants": {
+											"type": ["array", "object"],
+											"properties": {
+												"id": {
+													"type": "number"
+												},
+												"title": {
+													"type": "string"
+												},
+												"option1": {
+													"type": ["array", "string", "null"]
+												},
+												"option2": {
+													"type": ["array", "string", "null"]
+												},
+												"option3": {
+													"type": ["array", "string", "null"]
+												},
+												"sku": {
+													"type": "string"
+												},
+												"requires_shipping": {
+													"type": "boolean"
+												},
+												"taxable": {
+													"type": "boolean"
+												},
+												"featured_image": {
+													"type": "null"
+												},
+												"available": {
+													"type": "boolean"
+												},
+												"name": {
+													"type": "string"
+												},
+												"public_title": {
+													"type": "string"
+												},
+												"options": {
+													"type": "array"
+												},
+												"price": {
+													"type": "number"
+												},
+												"weight": {
+													"type": "number"
+												},
+												"compare_at_price": {
+													"type": "null"
+												},
+												"inventory_quantity": {
+													"type": "number"
+												},
+												"inventory_management": {
+													"type": "string"
+												},
+												"inventory_policy": {
+													"type": "string"
+												},
+												"barcode": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"images": {
+										"type": "array"
+									},
+									"feature_image": {
+										"type": "null"
+									},
+									"options": {
+										"type": "array"
+									},
+									"content": {
+										"type": "string"
+									},
+									"inventory_stock_available_date": {
+										"type": "string"
+									},
+									"custom_work_lead_time": {
+										"type": "string"
+									},
+									"lead_time_window": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"featured_image": {
+				"type": "string"
+			},
+			"images": {
+				"type": "array"
+			},
+			"swatch_image": {
+				"type": "string"
+			},
+			"preset": {
+				"type": "null"
+			},
+			"erp_color_code": {
+				"type": "string"
+			}
+		}
+	}
+}

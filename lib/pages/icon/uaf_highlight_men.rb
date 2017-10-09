@@ -1,8 +1,3 @@
-require 'json'
-require 'net/http'
-require 'page-object'
-require './lib/pages/base_page'
-
 class HighlightMenAPI < BasePage
 	include PageObject
 

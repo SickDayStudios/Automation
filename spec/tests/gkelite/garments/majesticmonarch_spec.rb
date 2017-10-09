@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #9608: Women's Majestic Monarch Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.majesticmonarch
   end

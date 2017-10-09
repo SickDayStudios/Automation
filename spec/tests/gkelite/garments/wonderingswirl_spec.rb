@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7605: Women's Wondering Swirl Gymnastics Leotard - Customizer Unit Test >" do
 
 	before(:all) do
+    BasePage.setup
 		@page = CustomizerPage.new
 		@page.wonderingswirl
 	end

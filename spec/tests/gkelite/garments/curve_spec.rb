@@ -5,6 +5,7 @@ describe "< #7625: Women's Sleek Curve Long Sleeve Leotard - Customizer Test >" 
 
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.curve
   end

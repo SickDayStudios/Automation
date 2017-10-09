@@ -1,5 +1,3 @@
-require 'json'
-require 'net/http'
 require './lib/pages/icon/uaf_clutchfit_women'
 
 

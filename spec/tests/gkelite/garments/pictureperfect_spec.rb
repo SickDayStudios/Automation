@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #4885: Women's Picture Perfect Long Sleeve Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.pictureperfect
   end

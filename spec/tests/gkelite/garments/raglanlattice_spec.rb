@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7578: Women's Raglan Lattice Competition Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.raglanlattice
   end

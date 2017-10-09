@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7607: Women's Modern Muse Long Sleeve Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.modernmuse
   end

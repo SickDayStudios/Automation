@@ -1,6 +1,3 @@
-require 'json'
-require 'net/http'
-
 class CurryYouthAPI
 
 

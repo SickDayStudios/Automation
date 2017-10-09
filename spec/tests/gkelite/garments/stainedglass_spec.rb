@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7628: Women's Stained Glass Long Sleeve Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.stainedglass
   end

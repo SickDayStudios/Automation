@@ -1,10 +1,5 @@
 require "./lib/pages/gkelite/gk_product_page"
 require "./lib/pages/gkelite/two_d_page"
-require 'json'
-require 'net/http'
-
-
-
 
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - 2D Customizer Test: " do
 

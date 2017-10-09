@@ -4,7 +4,6 @@ require './lib/pages/gkelite/gk_product_page'
 require './lib/pages/gkelite/gk_shopify_base_page'
 
 
-
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - URL Navigation Test:" do
 
 	before(:all) do

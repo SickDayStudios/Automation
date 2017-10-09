@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< Basic Competition Leotard Customizer Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.basiccompetitionleotard
   end

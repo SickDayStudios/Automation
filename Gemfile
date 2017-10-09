@@ -49,6 +49,8 @@ group :development, :test do
   gem "rspec_junit_formatter"
   gem "watir-scroll"
   gem 'coderay'
+  gem 'json-schema-rspec'
+  gem 'json_matchers'
 end
 
 group :development do

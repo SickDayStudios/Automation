@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7616s: Women's Diamondnista Sublimated Leotard - Customizer Unit Test >" do
 
 	before(:all) do
+    BasePage.setup
 		@page = CustomizerPage.new
 		@page.diamondista
 	end

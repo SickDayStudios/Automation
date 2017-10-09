@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7596: Women's Zig Zag Stunner Long Sleeve Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.zigzagstunner
   end

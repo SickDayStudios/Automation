@@ -1,5 +1,3 @@
-require 'page-object'
-
 module GKLoginPopup
 	include PageObject
 

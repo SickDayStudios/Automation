@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #4882: V-Neck Ragland Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.vneckragland
   end

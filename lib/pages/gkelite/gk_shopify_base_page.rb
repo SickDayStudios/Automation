@@ -1,9 +1,5 @@
-require 'page-object'
-require './lib/pages/base_page'
 require './lib/helpers/gkelite/gk_header'
 require './lib/helpers/gkelite/gk_footer'
-require 'json'
-require 'net/http'
 
 class GKShopifyBasePage < BasePage
 	include PageObject

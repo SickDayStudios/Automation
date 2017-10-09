@@ -5,6 +5,7 @@ describe "< #7560: Women's Athletic Ribbon Gymnastics Leotard - Customizer Unit 
 
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.ribbon
   end

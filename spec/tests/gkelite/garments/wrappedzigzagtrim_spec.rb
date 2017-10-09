@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7551: Women's Wrapped Zig Zag Trim Gym Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.wrappedzigzagtrim
   end

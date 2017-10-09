@@ -1,7 +1,5 @@
-require 'page-object'
 require './lib/pages/gkelite/gk_shopify_base_page'
-require 'json'
-require 'net/http'
+
 
 class StockCustomizer < GKShopifyBasePage
 	include PageObject

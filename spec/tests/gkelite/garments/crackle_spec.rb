@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #4888s: Women's Crackle Sublimated Gymnastics Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.crackle
   end

@@ -1,5 +1,3 @@
-require 'page-object'
-
 class BasePage
   include PageObject
 
@@ -71,6 +69,14 @@ class BasePage
     $driver.quit
   end
 
+  def self.setup
+    BasePage.set_user
+    BasePage.set_base_url
+    BasePage.resize_window
+    BasePage.navigate_to_starting_page
+  end
+
+
   def self.set_user
     case ENV['SITE'].to_sym
     when :gk
@@ -119,6 +125,11 @@ class BasePage
           when :prod then $base_url = 'http://demo.madetoordercustomizer.com/under-armour/production/uau/frontend/index.html#/materialIds/'
         end
       when :preview then $base_url = 'http://preview.madetoordercustomizer.com/'
+      when :eb
+        case ENV['ENVIRONMENT'].to_sym
+          when :prod then $base_url = 'http://api.spectrumcustomizer.com/eddie-bauer/shared/TQ2F6NWT'
+          when :staging then $base_url = 'http://staging.spectrumcustomizer.com/eddie-bauer/share/TQ2F6NWT'
+        end
       # when :cb
       #   case ENV['ENVIRONMENT']
       #     when :dev then $base_url =

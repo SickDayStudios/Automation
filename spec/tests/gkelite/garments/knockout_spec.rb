@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #4894s: Women's High Neck Knockout Sublimated Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.knockout
   end

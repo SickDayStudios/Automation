@@ -1,6 +1,4 @@
-require "page-object"
-
-module GKSearchDropdown
+rmodule GKSearchDropdown
 	include PageObject
 
 

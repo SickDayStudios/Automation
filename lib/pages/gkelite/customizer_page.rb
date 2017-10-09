@@ -1,7 +1,5 @@
 require './lib/helpers/gkelite/gk_garments'
 require './lib/helpers/gkelite/customizer_ui'
-require 'page-object'
-require './lib/pages/base_page'
 
 ### Define Page Class
 class CustomizerPage < BasePage

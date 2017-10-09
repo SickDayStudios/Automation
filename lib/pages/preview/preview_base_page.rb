@@ -1,7 +1,3 @@
-require 'page-object'
-require './lib/pages/base_page'
-
-
 class PreviewBasePage < BasePage
 	include PageObject
 

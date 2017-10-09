@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #4896s: Women's Interlaced Sublimated Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.interlaced
   end

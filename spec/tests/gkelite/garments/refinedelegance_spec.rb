@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7597: Women's Refined Elegance Gymnastics Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.refinedelegance
   end

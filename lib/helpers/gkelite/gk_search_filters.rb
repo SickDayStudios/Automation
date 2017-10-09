@@ -1,5 +1,3 @@
-require 'page-object'
-
 module GKSearchFilters
 	include PageObject
 

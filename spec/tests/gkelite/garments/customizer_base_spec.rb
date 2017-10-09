@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< Customizer Page Navigation Test >" do
 
   before(:all) do 
+    BasePage.setup
     @page = CustomizerPage.new
     @page.majesticmonarch
   end

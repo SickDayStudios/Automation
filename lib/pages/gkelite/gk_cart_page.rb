@@ -1,4 +1,3 @@
-require 'page-object'
 require './lib/helpers/gkelite/gk_header'
 require './lib/helpers/gkelite/gk_footer'
 require './lib/helpers/gkelite/gk_login_popup'

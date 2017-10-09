@@ -5,6 +5,7 @@ describe "< #7623: Women's Rising Champion Competition Leotard - Customizer Unit
 
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.champion
   end

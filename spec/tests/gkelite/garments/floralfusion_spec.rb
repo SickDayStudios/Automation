@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #4892s: Women's Floral Fusion Sublimated Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.floralfusion
   end

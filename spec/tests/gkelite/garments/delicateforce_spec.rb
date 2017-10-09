@@ -5,6 +5,7 @@ describe "< #7622: Women's Delicate Force Leotard Customizer Test >" do
 
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.delicateforce
   end

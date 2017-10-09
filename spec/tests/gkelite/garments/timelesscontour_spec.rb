@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7603: Women's Timeless Contour Gymnastics Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.timelesscontour
   end

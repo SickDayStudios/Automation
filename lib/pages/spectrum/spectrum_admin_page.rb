@@ -1,6 +1,3 @@
-require './lib/pages/base_page'
-require 'page-object'
-
 class SpectrumAdminPage < BasePage
 	include PageObject
 

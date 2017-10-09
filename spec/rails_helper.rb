@@ -1,31 +1,23 @@
 require 'rspec'
-# require 'simplecov'
-# require 'simplecov-rcov'
 require 'page-object'
 require 'watir'
-require '././lib/pages/base_page'
-#require './spec/tests/webdriver_handler'
-# require 'headless'
+require './lib/pages/base_page'
 require 'openssl'
 require 'rspec_junit_formatter'
 require "watir-scroll"
-require 'spec_helper'
-require File.expand_path('../../config/environment', __FILE__)
-# require 'rspec/rails'
+require 'fileutils'
+require 'json'
+require 'net/http'
+require 'json-schema'
+require 'json-schema-rspec'
+require "json_matchers/rspec"
 
-ENV['RAILS_ENV'] ||= 'test'
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
-abort("The Rails environment is running in production mode!") if Rails.env.production?
-
-if RSpec::Rails::FeatureCheck.can_maintain_test_schema?
-# Checks for pending migrations and applies them before tests are run.
-# If you are not using ActiveRecord, you can remove this line.
-ActiveRecord::Migration.maintain_test_schema!
-
-elsif RSpec::Rails::FeatureCheck.can_check_pending_migrations?
-ActiveRecord::Migration.check_pending!
+@screenshotfolder = "reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
+unless File.directory?(@screenshotfolder)
+  FileUtils.mkdir_p(@screenshotfolder)
 end
 
 RSpec.configure do |config|
@@ -34,27 +26,22 @@ RSpec.configure do |config|
   config.failure_color = :magenta
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-
 #=> Before any tests are run, this block is run
-config.before(:all) do
+  config.before(:all) do
     $driver = Watir::Browser.new ENV['BROWSER'].to_sym
-    BasePage.resize_window
-    BasePage.set_base_url
-    BasePage.navigate_to_starting_page
   end
 
   config.after(:each) do |example|
+    BasePage.print_js_errors
     if example.exception
-      $driver.screenshot.save "./reports/screenshot-#{DateTime.now.strftime("%d%b%Y-%H%M%S")}.png"
+      $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
     end
   end
 
   config.after(:all) do
-    # $headless.destroy
     BasePage.quit_webdriver
-    # FileUtils.mv("./reports/test_results.xml", "./reports/results-#{DateTime.now.strftime("%d%b%Y-%H%M%S")}.xml")
-    # FileUtils.mv("./reports/test_results.html", "./reports/results-#{DateTime.now.strftime("%d%b%Y-%H%M%S")}.html")
   end
+
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true

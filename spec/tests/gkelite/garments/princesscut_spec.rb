@@ -3,6 +3,7 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7611s: Women's Princess Cut Sublimated Leotard - Customizer Unit Test >" do
 
   before(:all) do
+    BasePage.setup
     @page = CustomizerPage.new
     @page.princesscut
   end

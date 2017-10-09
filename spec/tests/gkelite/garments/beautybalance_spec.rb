@@ -3,8 +3,10 @@ require './lib/pages/gkelite/customizer_page'
 describe "< #7598: Women's Beauty & Balance Long Sleeve Leotard - Customizer Unit Test >" do
 
 	before(:all) do
+    BasePage.setup
 		@page = CustomizerPage.new
 		@page.beautybalance
+    
 	end
 
 	before(:each) do
