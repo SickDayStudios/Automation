@@ -1,5 +1,8 @@
+require './lib/helpers/eb/eb_products'
+
 class EBBasePage < BasePage
 	include PageObject
+	include EBProducts
 
 	span(:hood_label, text: "HOOD")
 	span(:body_label, text: "Body")

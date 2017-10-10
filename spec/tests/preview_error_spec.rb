@@ -4,7 +4,9 @@ require './lib/pages/preview/preview_base_page'
 describe "Product Preview Test: " do
 
 	before(:all) do
-		BasePage.navigate_to_starting_page
+		BasePage.set_base_url
+    	BasePage.resize_window
+    	BasePage.navigate_to_starting_page
 		@page = PreviewBasePage.new
 	end
 
