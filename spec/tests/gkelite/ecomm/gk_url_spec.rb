@@ -8,7 +8,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	before(:all) do
 		@page = GKSearchResultsPage.new
-		BasePage.navigate_to_starting_page
+		BasePage.setup
 		if ENV['ENVIRONMENT'] == 'prod'
 			@page.enter_password
 		end
