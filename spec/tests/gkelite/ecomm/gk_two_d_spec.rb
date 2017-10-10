@@ -4,6 +4,7 @@ require "./lib/pages/gkelite/two_d_page"
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - 2D Customizer Test: " do
 
 	before(:all) do
+		BasePage.setup
 		@product_page = GKProductPage.new
 		@page = StockCustomizer.new
 	end

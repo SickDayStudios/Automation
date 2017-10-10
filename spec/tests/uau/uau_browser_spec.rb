@@ -4,6 +4,7 @@ require './lib/pages/uau/uau_base_page'
 describe "Under Armour: 3D Model Shader Test" do
 
 	before(:all) do
+		BasePage.setup
 		@page = UAUBasePage.new
 	end
 

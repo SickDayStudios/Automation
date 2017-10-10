@@ -6,6 +6,7 @@ require "./lib/pages/gkelite/gk_home_page"
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK-Elite Account Register Tests" do
 
 	before(:all) do
+		BasePage.setup
 		@login_page = GKLoginPage.new
 		@home_page = GKHomePage.new 
 		@email = 'cason.williams@pollinate.com'

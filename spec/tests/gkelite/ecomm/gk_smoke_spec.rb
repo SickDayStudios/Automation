@@ -9,6 +9,7 @@ require "./lib/pages/gkelite/gk_checkout_page"
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase}:#{ENV['USER_TYPE'].upcase} - GK Ecomm Smoke Test:" do
 
 	before(:all) do
+		BasePage.setup
 		@login_page = GKLoginPage.new
 		@product_page = GKProductPage.new
 		@cart_page = GKCartPage.new

@@ -6,7 +6,7 @@ require './lib/pages/gkelite/gk_product_page'
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK Search Test:" do
 
 	before(:all) do
-		BasePage.navigate_to_starting_page
+		BasePage.setup
 		@page = GKSearchResultsPage.new
 		if ENV['ENVIRONMENT'] == 'prod'
 			@page.enter_password

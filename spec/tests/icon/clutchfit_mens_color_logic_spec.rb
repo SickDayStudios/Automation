@@ -19,7 +19,7 @@ end
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GUI Logic Test" do
 
 	before(:all) do
-	    BasePage.resize_window
+		BasePage.setup
 	    $driver.goto('https://www.underarmour.com/en-us/pid3020925')
 	    @page = ClutchfitMenAPI.new
 	end
