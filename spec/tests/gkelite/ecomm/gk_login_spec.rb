@@ -9,6 +9,7 @@ require "./lib/pages/gkelite/gk_home_page"
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK-Elite Account Login Tests:" do
 
 	before(:all) do
+		BasePage.set_base_url
 		@login_page = GKLoginPage.new
 		@product_page = GKProductPage.new
 		@cart_page = GKCartPage.new
