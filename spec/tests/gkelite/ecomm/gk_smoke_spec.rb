@@ -10,6 +10,9 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	before(:all) do
 		BasePage.setup
+		if ENV['ENVIRONMENT'] == 'prod'
+			@page.enter_password
+		end
 		@login_page = GKLoginPage.new
 		@product_page = GKProductPage.new
 		@cart_page = GKCartPage.new
