@@ -16,13 +16,13 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		@home_page = GKHomePage.new
 		@payment_page = GKPaymentPage.new
 		@checkout_page = GKCheckoutPage.new
-		if ENV['ENVIRONMENT'] == 'prod'
-			@login_page.enter_password
-		end
 	end
 
 	it ' - Navigate to Login Page' do
 		@home_page.login_page
+		if ENV['ENVIRONMENT'] == 'prod'
+			@home_page.enter_password
+		end
 		expect(@login_page.url).to include('/account/login')
 	end
 
