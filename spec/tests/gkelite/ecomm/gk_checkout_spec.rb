@@ -12,9 +12,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	before(:all) do
     	BasePage.setup
-		if ENV['ENVIRONMENT'] == 'prod'
-			@page.enter_password
-		end
 		@login_page = GKLoginPage.new
 		@customizer = CustomizerPage.new
 		@home_page = GKHomePage.new
@@ -22,6 +19,9 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		@cart_page = GKCartPage.new
 		@checkout_page = GKCheckoutPage.new
 		@payment_page = GKPaymentPage.new
+		if ENV['ENVIRONMENT'] == 'prod'
+			@home_page.enter_password
+		end
 	end
 
 	context "Login to: #{ENV['USER_TYPE'].upcase}" do

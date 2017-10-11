@@ -7,11 +7,11 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	before(:all) do
 		BasePage.setup
-		if ENV['ENVIRONMENT'] == 'prod'
-			@page.enter_password
-		end
 		@login_page = GKLoginPage.new
 		@home_page = GKHomePage.new 
+		if ENV['ENVIRONMENT'] == 'prod'
+			@login_page.enter_password
+		end
 		@email = 'cason.williams@pollinate.com'
 		@password = 'gk123!@#'
 		@home_page.home_page
