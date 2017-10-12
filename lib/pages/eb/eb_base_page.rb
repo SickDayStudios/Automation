@@ -20,8 +20,21 @@ class EBBasePage < BasePage
 	span(:chest_monogram_label, text: "Add Chest Monogram")
 	span(:sleeve_monogram_label, text: "Add Sleeve Monogram")
 	span(:size_label, text: "Size")
-	h2(:open_options, class: ["selected"])
-	h3(:swatches, class: ["color-label"])
+	
+	div(:add_hood, css: "#addHood > li > h2") 
+	h2(:jacket_options, class: ["selected"])
+	span(:swatches, class: ["ng-scope selectionOption"])
+	
+	h2(:interior_label_option, css: "#feature-eb-fea-mens-sandstone-eb-fea-ms-custom-label-text > h2")
+	text_field(:add_interior_label, name: "interior-label-text")
+	h2(:chest_monogram_option, css: "#feature-eb-fea-mens-sandstone-eb-fea-ms-chest-monogram-text > h2")
+	h2(:sleeve_monogram_option, css: "#feature-eb-fea-mens-sandstone-eb-fea-ms-sleeve-monogram-text > h2")
+	text_field(:monogram_line_one, name: "monogram-text-line-one")
+	text_field(:monogram_line_two, name: "monogram-text-line-two")
+	h2(:size_option, css: "#chooseSize > li > h2")
+	radio(:mens_tall_size, id: "size-selection-eb-fea-mm-tall-size")
+	select_list(:size_dropdown, css: "#chooseSize > li > div > size-options > div.size-choice-column > div:nth-child(1) > select") 
+	div(:add_to_bag, id: "total")
 
 
 

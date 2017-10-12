@@ -1,0 +1,210 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "eb_schema",
+    "required": [
+        "eb_schema"
+    ],
+    "description": "A product from Eddie Bauer's catalog",
+    "type": "object",
+    "properties": {
+        "hash": {
+            "type": "string"
+        },
+        "contents": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "readableId": {
+                    "type": "string"
+                },
+                "idBundle": {
+                	"type": "object",
+                	"properties": {
+                		"recipeSetId": {
+                    		"type": "string"
+                		},
+						"recipeSetReadableId": {
+                    		"type": "string"
+                		},
+						"recipeId": {
+                    		"type": ["string", "null"]
+                		},
+						"recipeReadableId": {
+                    		"type": ["string", "null"]
+                		}
+                	}
+                },
+                "userIdentifier": {
+                    "type": "string"
+                },
+                "locked": {
+					"type": "boolean"
+				},
+                "clientHandle": {
+                    "type": "string"
+                },
+                "metaData": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "lastModification": {
+                    "type": "string"
+                },
+                "productSetHandle": {
+                    "type": "string"
+                },
+                "locale": {
+                    "type": "string"
+                },
+                "recipes": {
+                	"type": [
+                		"array", 
+                		"object"
+                	],
+                	"properties": {
+                		"index": {
+                    		"type": "number"
+                		},
+						"productHandle": {
+                    		"type": "string"
+                		},
+						"recipeSetId": {
+                    		"type": "string"
+                		},
+						"recipe": {
+            				"type": "object",
+            				"properties": {
+            					"id": {
+                    				"type": "string"
+                				},
+								"readableId": {
+                    				"type": "string"
+                				},
+								"recipeStatusId": {
+                    				"type": "number"
+                				},
+								"idBundle": {
+									"type": "object",
+                					"properties": {
+                						"recipeSetId": {
+                    						"type": "string"
+				                		},
+										"recipeSetReadableId": {
+				                    		"type": "string"
+				                		},
+										"recipeId": {
+				                    		"type": [
+				                    			"string", 
+				                    			"null"
+				                    		]
+				                		},
+										"recipeReadableId": {
+				                    		"type": [
+				                    			"string", 
+				                    			"null"
+				                    		]
+				                		}
+									}
+								},
+								"userIdentifier": {
+                    				"type": "string"
+                				},
+								"productHandle": {
+                    				"type": "string"
+                				},
+								"recipeData": {
+									"type": [
+										"array", 
+										"object"
+									],
+									"properties": {
+										"featureHandle": {
+		                    				"type": "string"
+		                				},
+										"selectionHandle": {
+		                    				"type": [
+		                    					"string",
+		                    					"null"
+		                    				]
+		                				},
+										"values": {
+		                    				"type": [
+		                    					"array",
+		                    					"object"
+		                    				],
+		                    				"patternProperties": {
+		                    					"valueHandle": "monogram-text-line-one",
+												"valueString": "TEST",
+												"valueType": "String"
+		                    				}
+		                				},
+										"childFeatures": [],
+										"selectionGroup": {
+											"type": "object",
+											"properties": {
+										}
+									}
+								},
+								"clientHandle": {
+                    				"type": "string"
+                				},
+								"metaData": {
+                    				"type": [
+                    					"string", 
+                    					"null"
+                    				]
+                				},
+								"name": {
+                    				"type": [
+                    					"string", 
+                    					"null"
+                    				]
+                				},
+								"sku": {
+                    				"type": [
+                    					"string", 
+                    					"null"
+                    				]
+                				},
+								"productNumber": {
+                    				"type": "string"
+                				},
+								"lastModification": {
+                    				"type": "string"
+                				},
+								"product": {
+                    				"type": [
+                    					"string", 
+                    					"null"
+                    				]
+                				},
+								"locked": {
+									"type": "boolean"
+								}
+            				}
+            			}
+                	}
+                }
+            }
+        },
+        "lastModfication": {
+            "type": "string"
+        },
+        "error": {
+            "type": [
+                "string",
+                "null"
+            ]
+        }
+    }
+}

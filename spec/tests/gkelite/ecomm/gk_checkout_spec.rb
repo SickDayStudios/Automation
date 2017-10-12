@@ -60,7 +60,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		end
 
 		it ' - Select Random Options' do
-			@product_page.wait_until(60) { @product_page.product_image? }
+			@product_page.wait_until(120) { @product_page.product_image? }
 			@product_page.random_size
 			expect(@product_page.selected_size).not_to eq("")
 		end
