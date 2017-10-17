@@ -85,24 +85,6 @@ $asset_list = [
 "uau-pro-ujtj1-split",
 "uau-pro-ujtj1-igniter",
 "uau-pro-ujfp1-armourfuse",
-"uau-fdl-ujgcrm-extra",
-"uau-fdl-ujgcls-extra",
-"uau-fdl-ujgtbl-extra",
-"uau-fdl-ujgcbl-extra",
-"uau-fdl-ujghbl-extra",
-"uau-fdl-ujglscm-extra",
-"uau-fdl-ujgs1m-extra",
-"uau-fdl-ujgs1pm-extra",
-"uau-fdl-ujglscw-extra",
-"uau-fdl-ujgsscw-extra",
-"uau-fdl-ujgs5w-extra",
-"uau-fdl-ujgs5pw-extra",
-"uau-fdl-ujuj10m-extra",
-"uau-fdl-ujus10m-extra",
-"uau-fdl-ujuj10w-extra",
-"uau-fdl-ujus10w-extra",
-"uau-fdl-ujuj15m-extra",
-"uau-fdl-ujujppm-extra",
 "uau-pro-ujtj1w-split",
 "uau-pro-ujtj1w-igniter",
 "uau-pro-ujtjc2w-split",
@@ -631,8 +613,6 @@ $asset_list = [
 "ltg-pro-5032-fkblade-closed-extra",
 "ltg-pro-5033-fkthin-closed-extra",
 "ltg-pro-5036-fkthick-closed-extra",
-"cb-fdl-kickback-extra",
-"cb-fdl-tmp-test-extra",
 "cb-pro-chute-cap",
 "cb-pro-chute-vacuum-cap",
 "cb-pro-chute1-bottle",
@@ -671,23 +651,23 @@ $asset_list = [
 "eb-pro-womens-microtherm-hood",
 "eb-pro-womens-sandstone-hood",
 "eb-pro-mens-microtherm-hood",
+"eb-pro-mens-downlight-hood",
+"eb-pro-womens-downlight-hood",
+"eb-pro-womens-mtparka-hood",
+"wil-pro-cfp-1panel",
+"wil-pro-duke",
+"wil-pro-ncaa-1panel",
+"wil-pro-ncaa-2panel",
+"wil-pro-nfl-1panel",
+"wil-pro-throwback-1panel",
+"wil-pro-throwback-2panel",
+"wil-pro-gst-1panel",
+"wil-pro-gst-2panel",
 "eb-pro-mens-sandstone-hood"
 ]
 
 
 
-# eb-fdl-sandstone-extra
-# eb-pro-mens-downlight-hood
-# eb-pro-mens-microtherm-hood
-# eb-pro-mens-sandstone-hood
-# eb-pro-womens-downlight-hood
-# eb-pro-womens-microtherm-hood
-# eb-pro-womens-mtparka-hood
-# eb-pro-womens-sandstone-hood
-# eb-pro-mens-microtherm-hood
-# eb-pro-mens-sandstone-hood
-# eb-pro-womens-microtherm-hood
-# eb-pro-womens-sandstone-hood
 
 	
 end
