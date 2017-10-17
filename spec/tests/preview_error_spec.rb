@@ -8,19 +8,20 @@ describe "Product Preview Test: " do
     	BasePage.resize_window
     	BasePage.navigate_to_starting_page
 		@page = PreviewBasePage.new
+		@arr = Array.new
+		@page.collect_links.each do |link|
+			if $asset_list.include? link.text
+				@arr.push(link.href)
+			end
+		end
 	end
 
 
-	it "TEST COMPLETE" do
-		@arr = Array.new
-		@page.collect_links.each do |link|
-			url = link.href
-			@arr.push(url)
-		end
+	it "Text Complete" do
 		@arr.each do |href|
-			puts "- Testing Page: #{href}"
+			puts "- Testing Asset URL: #{href}"
 			@page.goto ("#{href}")
-			begin @page.wait_until { @page.asset_loaded? }
+			begin @page.wait_until { @page.shader_properties? && @page.json_manifest? }
 			rescue Watir::Wait::TimeoutError, Watir::Exception::UnknownObjectException, Timeout::Error
 				false
 				BasePage.print_js_errors

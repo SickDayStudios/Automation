@@ -110,7 +110,11 @@ class BasePage
           when :staging then $base_url = 'https://staging-gkelite.pollinate.com'
           when :prod then $base_url = 'https://preview.gkelite.com'
         end
-      when :icon then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
+      when :icon 
+        case ENV['ENVIRONMENT']
+          when :staging then $base_url = 'https://staging.underarmour.com'
+          when :prod then $base_url = 'https://www.underarmour.com/en-us/ua-icon-customized-shoes'
+        end
       when :spectrum
         case ENV['ENVIRONMENT']
           when :dev then $base_url = 'https://dev.spectrumcustomizer.com/admin/' and $username = 'test_sa' and $password = 'SuperUser#1'
