@@ -1,8 +1,8 @@
 module EBProducts
 
-	$staging_eb_products = {"JV5FSWGX", "TQ2F6NWT", "NKTN2JJV", "LUA2USRS"}
+	$staging_eb_products = ["JV5FSWGX", "TQ2F6NWT", "NKTN2JJV", "LUA2USRS"]
 
-	$prod_eb_products = {"EZLYTMXJ", "6KAGTRRB", "SM3QW5EY", "Z3M9M66R"}
+	$prod_eb_products = ["EZLYTMXJ", "6KAGTRRB", "SM3QW5EY", "Z3M9M66R"]
 
 ## api Recipes
 ## Men's MT - EZLYTMXJ

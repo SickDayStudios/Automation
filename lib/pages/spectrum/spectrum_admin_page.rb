@@ -4,6 +4,17 @@ class SpectrumAdminPage < BasePage
 
 # Clients
 link(:icon, href: "#/ua-icon")
+link(:eb, href: "#/eddie-bauer")
+link(:wilson, href: "#/wilson")
+link(:camelbak, href: "#/camelbak")
+link(:ua, href: "#/under-armour")
+link(:silhouette, href: "#/silhouette")
+link(:gk, href: "#/gk-elite")
+link(:uasm, href: "#/ua-sports-marketing")
+link(:demo, href: "#/po-demo")
+link(:benchmade, href: "#/benchmade")
+link(:giro, href: "#/giro")
+link(:leatherman, "#/leatherman")
 
 
 #Icon Options
@@ -30,7 +41,6 @@ tr(:first_derived_selection, css: "body > div > div > div.ma-home__view.ma-casca
 
 # Create new Derived Selection
 select(:when_feature, name: "whenFeature")
-options(:when_options, )
 select(:has_selection, name: "hasSelection")
 select(:then_feature, name: "thenFeature")
 select(:then_selection, name: "thenSelection")
