@@ -9,23 +9,25 @@ describe "Eddie Bauer Smoke Test: " do
 		@page = EBBasePage.new
 	end
 
-	context "GUI: " do
-
-		it "whatever" do
-			@page.goto "#{$base_url}TVGDRPHZ"
-			sleep 30
-			@page.body_label_element.click
-			@page.color_elements.each do |color|
-				puts color
-			end
-		end
+	it "- Pricing" do
+		@page.goto "#{$base_url}TVGDRPHZ"
+		@page.wait_until { @page.hood_label? }
+		sleep 10
+		current_price = @page.price
+		@page.add_hood_element.click
+		@page.wait_while { current_price == @page.price}
+		expect(@page.price).to eq("$279.00")
+		@page.select_size
+		sleep 5
 	end
 
-	# 	it "Men's MT: SideNav Tag Labels" do
+	# context "Men's MT: " do
+
+	# 	it "- SideNav Tag Labels" do
 	# 		if ENV['ENVIRONMENT'] == 'staging'
 	# 			@page.goto "#{$base_url}JV5FSWGX"
 	# 		else
-	# 			@page.goto "#{$base_url}EZLYTMXJ"
+	# 			@page.goto "#{$base_url}TVGDRPHZ"
 	# 		end
 	# 		expect(@page.hood_label).to include("HOOD ($30)")
 	# 		expect(@page.body_label).to include("BODY")
@@ -41,10 +43,16 @@ describe "Eddie Bauer Smoke Test: " do
 	# 		expect(@page.chest_monogram_label).to include("ADD CHEST MONOGRAM")
 	# 		expect(@page.sleeve_monogram_label).to include("ADD SLEEVE MONOGRAM")
 	# 		expect(@page.size_label).to include("SIZE")
-	# 		puts 
 	# 	end
 
-	# 	it "Women's MT: SideNav Tag Labels" do
+	# 	it "- Color Options" do
+	# 		expect(@page.product_color_options).to match_array($mt_mens)
+	# 	end
+	# end
+
+	# context "Women's MT: " do
+
+	# 	it "- SideNav Tag Labels" do
 	# 		if ENV['ENVIRONMENT'] == 'staging'
 	# 			@page.goto "#{$base_url}TQ2F6NWT"
 	# 		else
@@ -66,7 +74,14 @@ describe "Eddie Bauer Smoke Test: " do
 	# 		expect(@page.size_label).to include("SIZE")
 	# 	end
 
-	# 	it "Men's SS: SideNav Tag Labels" do
+	# 	it "- Color Options" do
+	# 		expect(@page.product_color_options).to match_array($mt_womens)
+	# 	end
+	# end
+
+	# context "Men's SS: " do
+
+	# 	it "- SideNav Tag Labels" do
 	# 		if ENV['ENVIRONMENT'] == 'staging'
 	# 			@page.goto "#{$base_url}9E7GDN34"
 	# 		else
@@ -88,7 +103,14 @@ describe "Eddie Bauer Smoke Test: " do
 	# 		expect(@page.size_label).to include("SIZE")
 	# 	end
 
-	# 	it "Women's SS - SideNav Tag Labels" do
+	# 	it "- Color Options" do
+	# 		expect(@page.product_color_options).to match_array($ss_mens)
+	# 	end
+	# end
+
+	# context "Women's SS: " do
+
+	# 	it "- SideNav Tag Labels" do
 	# 		if ENV['ENVIRONMENT'] == 'staging'
 	# 			@page.goto "#{$base_url}LUA2USRS"
 	# 		else
@@ -108,6 +130,10 @@ describe "Eddie Bauer Smoke Test: " do
 	# 		expect(@page.chest_monogram_label).to include("ADD CHEST MONOGRAM")
 	# 		expect(@page.sleeve_monogram_label).to include("ADD SLEEVE MONOGRAM")
 	# 		expect(@page.size_label).to include("SIZE")
+	# 	end
+
+	# 	it "- Color Options" do
+	# 		expect(@page.product_color_options).to match_array($ss_womens)
 	# 	end
 	# end
 
