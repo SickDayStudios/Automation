@@ -41,14 +41,17 @@ class EBBasePage < BasePage
 # => sizes
 #chooseSize > li > div > size-options > div.size-type-column > div:nth-child(2)
 	h2(:size_options, css: "#chooseSize > li > h2")
-	select_list(:size_dropdown, css: "#chooseSize > li > div > size-options > div.size-choice-column > div:nth-child(1) > select")
+	select_list(:regular_dropdown, css: "#chooseSize > li > div > size-options > div.size-choice-column > div:nth-child(1) > select")
+	select_list(:tall_dropdown, css: "#chooseSize > li > div > size-options > div.size-choice-column > div:nth-child(2) > select")
 	radio(:radio_regular_size, css: "#chooseSize > li > div > size-options > div.size-type-column > div:nth-child(1) > input[type='radio']")
+	radio(:radio_tall_size, css: "#chooseSize > li > div > size-options > div.size-type-column > div:nth-child(2) > input[type='radio']")
 
 # => Price/Total/AddToCart
 	div(:add_to_bag, id: "total")
 	span(:price, id: "price")
 
 # => added to cart popup
+	div(:cart_popup, class: ["left col-2 clearfix pdp-atc-details"])
 	p(:body, css: "#modalContent > div > div > div.left.col-2.clearfix.pdp-atc-details > div:nth-child(5) > p:nth-child(3)")
 	p(:collar_hood, css: "#modalContent > div > div > div.left.col-2.clearfix.pdp-atc-details > div:nth-child(5) > p:nth-child(4)")
 	p(:sleeves, css: "#modalContent > div > div > div.left.col-2.clearfix.pdp-atc-details > div:nth-child(5) > p:nth-child(5)")
@@ -66,15 +69,20 @@ class EBBasePage < BasePage
 def product_color_options
 	arr = Array.new
 	self.color_elements.each do |color|
-		@arr.push(color.span.attribute_value("aria-label"))
+		arr.push(color.span.attribute_value("aria-label"))
 	end
 	return arr
 end
 
 def select_size
 	self.size_options_element.click
-	self.radio_regular_size_element.set
-	self.size_dropdown = self.size_dropdown_options.sample.set
+	if self.radio_regular_size_element.set?
+		self.radio_tall_size_element.set
+		self.tall_dropdown = self.tall_dropdown_options.sample
+	else
+		self.radio_regular_size_element.set
+		self.regular_dropdown = self.regular_dropdown_options.sample
+	end
 end
 
 

@@ -131,8 +131,8 @@ class BasePage
       when :preview then $base_url = 'http://preview.madetoordercustomizer.com/'
       when :eb
         case ENV['ENVIRONMENT'].to_sym
-          when :prod then $base_url = 'http://api.spectrumcustomizer.com/eddie-bauer/share/'
-          when :staging then $base_url = 'http://staging.spectrumcustomizer.com/eddie-bauer/share/'
+          when :prod then $base_url = 'http://www.eddiebauer.com/product/'
+          when :staging then $base_url = 'http://staging.eddiebauer.com/product/'
         end
       # when :cb
       #   case ENV['ENVIRONMENT']
