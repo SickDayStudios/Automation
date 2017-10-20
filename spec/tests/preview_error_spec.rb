@@ -22,7 +22,7 @@ describe "Product Preview Test: " do
 			puts "- Testing Asset URL: #{href}"
 			@page.goto ("#{href}")
 			begin @page.wait_until { @page.shader_properties? && @page.json_manifest? }
-				sleep 2
+				sleep 5
 			rescue Watir::Wait::TimeoutError, Watir::Exception::UnknownObjectException, Timeout::Error
 				false
 				BasePage.print_js_errors
