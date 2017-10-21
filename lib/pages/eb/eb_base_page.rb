@@ -31,10 +31,10 @@ class EBBasePage < BasePage
 	
 #=> clickable
 	h2(:add_hood, css: "#addHood > li > h2")
-	h2(:interior_label_option, css: "#feature-eb-fea-mens-sandstone-eb-fea-ms-custom-label-text > h2")
+	h2(:input_value_one, text: "#inputValues > li > h2:nth-child(1)")
+	h2(:input_value_two, text: "#inputValues > li > h2:nth-child(2)")
+	h2(:input_value_three, text: "#inputValues > li > h2:nth-child(3)")
 	text_field(:add_interior_label, name: "interior-label-text")
-	h2(:chest_monogram_option, css: "#feature-eb-fea-mens-sandstone-eb-fea-ms-chest-monogram-text > h2")
-	h2(:sleeve_monogram_option, css: "#feature-eb-fea-mens-sandstone-eb-fea-ms-sleeve-monogram-text > h2")
 	text_field(:monogram_line_one, name: "monogram-text-line-one")
 	text_field(:monogram_line_two, name: "monogram-text-line-two")
 
@@ -48,7 +48,7 @@ class EBBasePage < BasePage
 
 # => Price/Total/AddToCart
 	div(:add_to_bag, id: "total")
-	span(:price, id: "price")
+	span(:price, css: "#modalContent > div > div > div.left.col-2.clearfix.pdp-atc-details > table > tbody > tr:nth-child(2) > td:nth-child(3) > span")
 
 # => added to cart popup
 	div(:cart_popup, class: ["left col-2 clearfix pdp-atc-details"])
@@ -76,13 +76,8 @@ end
 
 def select_size
 	self.size_options_element.click
-	if self.radio_regular_size_element.set?
-		self.radio_tall_size_element.set
-		self.tall_dropdown = self.tall_dropdown_options.sample
-	else
-		self.radio_regular_size_element.set
-		self.regular_dropdown = self.regular_dropdown_options.sample
-	end
+	self.radio_tall_size_element.set
+	self.tall_dropdown = self.tall_dropdown_options.sample
 end
 
 

@@ -2,8 +2,6 @@ class PreviewBasePage < BasePage
 	include PageObject
 
 	select_list(:client_dropdown, id: "SelectedClientHandle")
-	div(:asset_loaded, text: "Manifest JSON")
-	canvas(:model, css: "#WebGL-output > canvas")
 	b(:handle, css: "#controls > div.asset-list > div > div.asset-header > b")
 	div(:shader_properties, text: "Shader Properties")
 	div(:json_manifest, text: "Manifest JSON")
