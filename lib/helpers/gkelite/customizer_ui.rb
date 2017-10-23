@@ -15,14 +15,14 @@ link(:sixth_accordian, 									css:   "#gk-custom-app-vue > div > div > div.c-c
 link(:seventh_accordian,								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div:nth-child(7) > div.c-component__header > a")
 link(:eighth_accordian,									css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div:nth-child(8) > div.c-component__header > a")
 span(:accordian_label, 									css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__header > a > span.c-accordion__label-value")
-span(:sub_accordian_label,							css: 		 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__header > a > span.c-accordion__label-value")
-label(:fabric_label, 										css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(1) > div > label")
+span(:sub_accordian_label,								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__header > a > span.c-accordion__label-value")
+label(:fabric_label, 									css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(1) > div > label")
 
 
 
 
 # Accordianception
-link(:sub_accordian, 									css:  			"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div > div.c-component__content.openContent > div:nth-child(2) > div.c-component__header > a")
+link(:sub_accordian, 									css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div > div.c-component__content.openContent > div:nth-child(2) > div.c-component__header > a")
 link(:sub_accordian_one, 								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.c-selection__component > div.c-component__header > a")
 link(:sub_accordian_two, 								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div:nth-child(2) > div.c-component__header > a")
 link(:sub_accordian_three, 								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div:nth-child(3) > div.c-component__header > a")
@@ -37,7 +37,7 @@ select_list(:first_dropdown, 							css:   "#gk-custom-app-vue > div > div > div
 select_list(:second_dropdown, 							css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > div.dropdown_wrapper > select")
 select_list(:second_dropdown_alt,       				css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(4) > div > div.dropdown_wrapper > select")
 select_list(:third_dropdown, 							css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(5) > div > div.dropdown_wrapper > select")
-select_list(:fourth_dropdown,								css: 		 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(7) > div > div.dropdown_wrapper > select")
+select_list(:fourth_dropdown,							css: 		 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(7) > div > div.dropdown_wrapper > select")
 
 
 # Color Modal
@@ -65,15 +65,15 @@ select_list(:colorcount_dropdown, 						css:   "#gk-custom-app-vue > div > div >
 
 
 # Radio Buttons
-radio(:lettering_radio,											css:      "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul > li:nth-child(2) > label > input[type='radio']")		
+radio(:lettering_radio,									css:      "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul > li:nth-child(2) > label > input[type='radio']")		
 radio(:art_radio,										css: 			 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul > li:nth-child(1) > label > input[type='radio']")
 radio(:custom_art_pos_one,								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(1) > li:nth-child(1) > label > input[type='radio']")																							
-radio(:full_artwork_radio,							css:    		"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul > li:nth-child(1) > label > input[type='radio']")
+radio(:full_artwork_radio,								css:    		"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul > li:nth-child(1) > label > input[type='radio']")
 radio(:custom_artwork, 									css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul > li:nth-child(1) > label > input[type='radio']")
 radio(:lettering_pos_one,								css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(1) > li:nth-child(2) > label > input[type='radio']")
 radio(:lettering, 										css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul:nth-child(1) > li:nth-child(2) > label > input[type='radio']")
 radio(:lettering_alt,									css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul > li:nth-child(2) > label > input[type='radio']")
-radio(:full_lettering_radio,					css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul > li:nth-child(2) > label > input[type='radio']")
+radio(:full_lettering_radio,							css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul > li:nth-child(2) > label > input[type='radio']")
 radio(:none, 											id:    "template-selection-none")		
 radio(:long_sleeve, 									css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul > li:nth-child(1) > label > input[type='radio']")
 radio(:three_quarter, 									css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul > li:nth-child(2) > label > input[type='radio']")
@@ -105,7 +105,7 @@ span(:embellishment_modal_header_six,					css:	 "#gk-custom-app-vue > div > div 
 span(:color_modal_header,								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(4) > div > div.c-color-modal > section > h3 > span")
 span(:first_modal_header, 								css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > div.c-color-modal > section > h3 > span")
 span(:third_modal_header,								css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(6) > div > div.c-color-modal > section > h3 > span")
-span(:fourth_modal_header,							css: 		 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(8) > div > div.c-color-modal > section > h3 > span")
+span(:fourth_modal_header,								css: 		 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(8) > div > div.c-color-modal > section > h3 > span")
 span(:lettering_color_header,							css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul:nth-child(2) > li:nth-child(2) > div > div.c-color-modal > section > h3 > span")
 span(:lettering_color_header_alt,						css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(2) > li:nth-child(2) > div > div.c-color-modal > section > h3 > span")
 span(:full_lettering_header,							css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(2) > div > div.c-color-modal > section > h3 > span")
@@ -127,7 +127,7 @@ link(:third_modal_close,								css: 	 "#gk-custom-app-vue > div > div > div.c-c
 link(:fourth_modal_close,								css: 	 	"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(8) > div > div.c-color-modal > header > a")
 link(:lettering_modal_close,							css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul:nth-child(2) > li:nth-child(2) > div > div.c-color-modal > header > a")
 link(:lettering_modal_close_alt,						css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(2) > li:nth-child(2) > div > div.c-color-modal > header > a")
-link(:close_full_letter_modal,						css: 			 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(2) > div > div.c-color-modal > header > a")
+link(:close_full_letter_modal,							css: 			 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(2) > div > div.c-color-modal > header > a")
 link(:lining_modal_close,								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > div.c-color-modal > header > a")
 
 
@@ -154,8 +154,8 @@ button(:multioption_four, 					  			css:   "#gk-custom-app-vue > div > div > div
 link(:multioption_four_color, 			  				css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(8) > div > div.c-accordion__color-edit > a")
 button(:multioption_five, 					  			css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(9) > div > div > button")
 link(:multioption_five_color, 			  				css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(10) > div > div.c-accordion__color-edit > a")
-button(:multioption_six, 											css:     "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(11) > div > div > button")
-link(:multioption_six_color, 								css:     "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(12) > div > div.c-accordion__color-edit > a")
+button(:multioption_six, 								css:     "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(11) > div > div > button")
+link(:multioption_six_color, 							css:     "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(12) > div > div.c-accordion__color-edit > a")
 
 
 
@@ -188,9 +188,9 @@ text_area(:comment,										css:   "#gk-custom-app-vue > div > div > div.c-cust
 text_area(:lettering_comment,							css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul:nth-child(2) > li:nth-child(8) > div > textarea")																								
 text_field(:text_line_two,								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul:nth-child(2) > li:nth-child(6) > div > input[type='text']:nth-child(2)")
 text_field(:text_line_two_alt,							css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(2) > li:nth-child(6) > div > input[type='text']:nth-child(2)")
-text_field(:two_line_text,									css:    "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(6) > div > input[type='text']:nth-child(2)")
+text_field(:two_line_text,								css:    "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(6) > div > input[type='text']:nth-child(2)")
 text_field(:text_line_one, 								css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(2) > li:nth-child(6) > div > input[type='text']:nth-child(1)")
-text_field(:text_line_one_alt,						css: 			"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(6) > div > input[type='text']")
+text_field(:text_line_one_alt,							css: 			"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(6) > div > input[type='text']")
 div(:scale_slider, 										class: "c-accordion__slider-control")
 
 
@@ -201,9 +201,9 @@ div(:scale_slider, 										class: "c-accordion__slider-control")
 div(:font_dropdown,										class: "font-select-header")
 divs(:font_dropdown_list, 								class: "font-select-option")
 span(:selected_font,									css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul:nth-child(2) > li:nth-child(3) > div > div > div > span")
-span(:current_font, 										css:        "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(3) > div > div > div > span")
+span(:current_font, 									css:        "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(3) > div > div > div > span")
 span(:selected_font_alt,								css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(2) > li:nth-child(3) > div > div > div > span")
-select_list(:full_orientation,						css: 		"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(4) > div > div.dropdown_wrapper > select")
+select_list(:full_orientation,							css: 		"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(4) > div > div.dropdown_wrapper > select")
 select_list(:lettering_orientation, 					css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul:nth-child(2) > li:nth-child(4) > div > div.dropdown_wrapper > select")
 select_list(:lettering_orientation_alt, 				css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(2) > li:nth-child(4) > div > div.dropdown_wrapper > select")
 select_list(:lettering_position_full, 					css: 			"#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(3) > div > ul:nth-child(2) > li:nth-child(5) > div > div.dropdown_wrapper > select")
@@ -213,7 +213,7 @@ select_list(:full_embellishment_type,					css:   "#gk-custom-app-vue > div > div
 select_list(:upper_embellishment_type, 					css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > ul:nth-child(2) > li:nth-child(1) > div > div.dropdown_wrapper > select")
 select_list(:embellishment_type,						css: 	 "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li > div > ul:nth-child(2) > li:nth-child(1) > div > div.dropdown_wrapper > select")
 select_list(:sleeve_location_dropdown,  				css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(1) > div > div.dropdown_wrapper > select")
-select_list(:sleeve_dropdown,           css:     "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > div.dropdown_wrapper > select")
+select_list(:sleeve_dropdown,           				css:     "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div.is-open.c-selection__component > div.c-component__content.openContent > div.is-open.c-selection__component > div.c-component__content.openContent > ul > li:nth-child(2) > div > div.dropdown_wrapper > select")
 
 
 
@@ -223,132 +223,6 @@ select_list(:child_leg_dropdown, 						css:   "#gk-custom-app-vue > div > div > 
 select_list(:crotch_liner_dropdown,		  				css:   "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__menu > div.c-accordion__menus > div > div > div.c-component__content.openContent > ul > li:nth-child(3) > div > div.dropdown_wrapper > select")
 
 ### Methods ###
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 end
