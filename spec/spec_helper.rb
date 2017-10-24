@@ -32,7 +32,6 @@ RSpec.configure do |config|
   end
 
   config.after(:each) do |example|
-    BasePage.print_js_errors
     if example.exception
       $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
     end

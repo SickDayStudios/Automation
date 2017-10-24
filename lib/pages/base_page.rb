@@ -19,7 +19,16 @@ class BasePage
     if errors.count > 0
       javascript_errors = errors.map(&:message).join("\n\n")
       puts "\nPageError:\n#{javascript_errors}"
-      puts ""
+    end
+  end
+
+  def self.print_js_warnings
+    log = $driver.driver.manage.logs.get(:browser)
+    errors = log.select{ |entry| entry.level.eql? 'WARNING' }
+    if errors.count > 0
+      javascript_errors = errors.map(&:message).join("\n\n")
+      puts "\nPageError:\n#{javascript_errors}"
+      raise javascript_errors
     end
   end
 
@@ -103,6 +112,12 @@ class BasePage
 
   def self.set_base_url
     case ENV['SITE'].to_sym
+      when :customizer
+        case ENV['ENVIRONMENT'].to_sym
+          when :test then $base_url = 'http://demo.madetoordercustomizer.com/gk-elite/test/frontend/index.html#/products/'
+          when :staging then $base_url = 'http://demo.madetoordercustomizer.com/gk-elite/staging/frontend/index.html#/products/'
+          when :prod then $base_url = 'http://demo.madetoordercustomizer.com/gk-elite/production/frontend/index.html#/products/'
+        end
       when :gk
         case ENV['ENVIRONMENT'].to_sym
           when :dev then $base_url = 'https://dev-gkelite.pollinate.com'

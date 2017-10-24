@@ -1,17 +1,22 @@
 require './lib/helpers/gkelite/gk_garments'
 require './lib/helpers/gkelite/customizer_ui'
+require './lib/helpers/gkelite/gk_search_filters'
+require './lib/pages/base_page'
 
 ### Define Page Class
 class CustomizerPage < BasePage
   include PageObject
   include GKEliteGarments
   include CustomizerUI
+  include GKSearchFilters
 
   ### Declare Class Modules ###
   # Define Page Elements Into Accessor Object(:your_name) Methods
   # Page Elements => accessor(:your_name, identifier: "index")
 
-  div(:page_load, css: "#gk-custom-app-vue > div > div")
+  canvas(:page_load, id: "hero-canvas")
+  div(:load_failed, css: "#gk-custom-app-vue > div > div > div > div")
+  span(:spinner_precentage, class: "spinner-percentage")
   
   ## Design & Color ##
   checkbox(:disclaimer_checkbox, id: "disclaimer")
@@ -25,6 +30,7 @@ class CustomizerPage < BasePage
   button(:save_as_design, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > button")
   div(:error_tooltip, class: ["c-tooltip__error__container"])
   div(:disclaimer, class: ["c-disclaimer"])
+
   
   ## Navigation Buttons ##
   button(:embellishments_button, css: "#navlink-embellishments > button")
