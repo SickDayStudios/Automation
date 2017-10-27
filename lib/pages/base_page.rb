@@ -112,6 +112,7 @@ class BasePage
 
   def self.set_base_url
     case ENV['SITE'].to_sym
+      when :gk_api then $base_url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/gk-elite/scenelib/gk-elite/ua-prs-gym/scene.json"
       when :customizer
         case ENV['ENVIRONMENT'].to_sym
           when :test then $base_url = 'http://demo.madetoordercustomizer.com/gk-elite/test/frontend/index.html#/products/'

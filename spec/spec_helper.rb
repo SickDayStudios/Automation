@@ -15,7 +15,7 @@ require "json_matchers/rspec"
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
-@screenshotfolder = "reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
+@screenshotfolder = "./reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
 unless File.directory?(@screenshotfolder)
   FileUtils.mkdir_p(@screenshotfolder)
 end
@@ -33,7 +33,7 @@ RSpec.configure do |config|
 
   config.after(:each) do |example|
     if example.exception
-      $driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
+      $driver.screenshot.save "./reports/#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
     end
   end
 
