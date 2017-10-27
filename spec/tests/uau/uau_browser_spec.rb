@@ -19,6 +19,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save
@@ -40,6 +43,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save
@@ -61,6 +67,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save
@@ -82,6 +91,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save
@@ -103,6 +115,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save
@@ -124,6 +139,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save
@@ -133,15 +151,6 @@ describe "Under Armour: 3D Model Shader Test" do
 			BasePage.print_js_errors
 		end
 	end
-
-	# $wrestling.each do |id|
-	# 		it "#{id}" do
-	#			puts id
-					# @page.uau_product(id)
-					# @page.wait_until(60) { @page.loader? }
-	# 	expect(@page).not_to have_errors
-	# 	end
-	# end
 
 	$sideline.each do |id|
 		it "#{id}" do
@@ -154,6 +163,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save
@@ -163,15 +175,6 @@ describe "Under Armour: 3D Model Shader Test" do
 			BasePage.print_js_errors
 		end
 	end
-
-	# $lacrosse.each do |id|
-	#  	it "#{id}" do
-	# 			puts id
-	# 				@page.uau_product(id)
-	# 				@page.wait_until(60) { @page.loader? }
-	# 	expect(@page).not_to have_errors
-	# 	end
-	# end
 
 	$baseball.each do |id|
 		it "#{id}" do
@@ -184,6 +187,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save
@@ -193,15 +199,6 @@ describe "Under Armour: 3D Model Shader Test" do
 			BasePage.print_js_errors
 		end
 	end
-
-	# $hockey.each do |id|
-	# 		it "#{id}" do
-	# 			puts id
-	# 				@page.uau_product(id)
-	# 				@page.wait_until(60) { @page.loader? }
-	# 	expect(@page).not_to have_errors
-	# 	end
-	# end
 
 	$softball.each do |id|
 		it "#{id}" do
@@ -214,6 +211,9 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			if @page.color_modal_element.visible?
+				@page.color_modal
+			end
 			@page.wait_until { @page.save_element.visible? }
 			sleep 4
 			@page.save

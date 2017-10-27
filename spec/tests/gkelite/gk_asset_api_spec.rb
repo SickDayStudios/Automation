@@ -9,11 +9,8 @@ describe "" do
 	context "" do
 
 		it "" do
-			puts @page.scene_productgroups_keys
-			puts ""
-			puts @page.scene_productoptions_keys
-			puts ""
-			puts @page.scene_connection_keys(@page.scene_productgroups_keys, @page.scene_productoptions_keys)
+			@page.scene_productgroups_keys
+			@page.scene_connection_keys
 		end
 
 	end

@@ -1,7 +1,5 @@
 class GKAssetAPI < BasePage
 
-	
-
 	def scene_productgroups_keys
 		url = 'http://madetoordertest.blob.core.windows.net/webgl/client/gk-elite/scenelib/gk-elite/ua-prs-gym/scene.json'
 		uri = URI(url)
@@ -26,15 +24,15 @@ class GKAssetAPI < BasePage
 		@options
 	end
 
-	def scene_connection_keys(groups, options)
-		@arr.each do |gr|
-			@options.each do |op|
-				puts @specs["productGroups"]["#{gr}"]["productOptions"]["#{op}"]["connections"].keys
+	def scene_connection_keys
+		@connections = Array.new
+		@arr.each do |group|
+			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
+			list.each do |key|
+				puts @specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].keys
+				puts ""
 			end
 		end
-	end
-
-	def print_keys
-		self.scene_connection_keys(self.scene_productgroups_keys, self.scene_productoptions_keys)
+		@connections
 	end
 end

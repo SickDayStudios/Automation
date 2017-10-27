@@ -12,6 +12,7 @@ button(:save, class: "save")
 text_field(:name_design, name: "name-design")
 button(:submit, text: "SUBMIT")
 button(:select_product, text: "Select")
+button(:color_modal, text: "Done")
 
 def uau_product(id)
 	$driver.goto ("#{$base_url}" + "#{id}")
