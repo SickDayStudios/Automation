@@ -11,13 +11,11 @@ describe "Under Armour: 3D Model Shader Test" do
 	$football.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
 			sleep 3
 			if @page.color_modal?
@@ -36,14 +34,13 @@ describe "Under Armour: 3D Model Shader Test" do
 	$volleyball.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end
@@ -60,14 +57,13 @@ describe "Under Armour: 3D Model Shader Test" do
 	$track.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end
@@ -84,14 +80,13 @@ describe "Under Armour: 3D Model Shader Test" do
 	$soccer.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end
@@ -108,14 +103,13 @@ describe "Under Armour: 3D Model Shader Test" do
 	$basketball.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end
@@ -132,14 +126,13 @@ describe "Under Armour: 3D Model Shader Test" do
 	$training.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end
@@ -156,14 +149,13 @@ describe "Under Armour: 3D Model Shader Test" do
 	$sideline.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end
@@ -180,14 +172,13 @@ describe "Under Armour: 3D Model Shader Test" do
 	$baseball.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end
@@ -204,14 +195,13 @@ describe "Under Armour: 3D Model Shader Test" do
 	$softball.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
+			sleep 10
 			if @page.product_image?
 				@page.product_image_element.click
 			end
-			if @page.select_product?
-				@page.select_product
-			end
-			@page.wait_until(90) { @page.loader? }
+			@page.wait_until(60) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end

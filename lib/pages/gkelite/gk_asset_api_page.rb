@@ -77,12 +77,7 @@ class GKAssetAPI < BasePage
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
-		@specs.each do |key, value|
-			puts key
-			value.values.each do |v|
-				puts v
-			end
-		end
+		self.iterate(@specs)
 	end
 
 
