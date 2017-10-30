@@ -19,7 +19,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
@@ -43,7 +43,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
@@ -67,7 +67,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
@@ -91,7 +91,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
@@ -115,7 +115,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
@@ -139,7 +139,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
@@ -163,7 +163,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
@@ -187,7 +187,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
@@ -211,7 +211,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
-			if @page.color_modal_element.visible?
+			if @page.color_modal?
 				@page.color_modal
 			end
 			@page.wait_until { @page.save_element.visible? }
