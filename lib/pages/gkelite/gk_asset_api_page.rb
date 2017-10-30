@@ -65,19 +65,24 @@ class GKAssetAPI < BasePage
 	def iterate(specs)
 		specs.each do |key, value|
 			if (value.is_a?(Hash) || value.is_a?(Array))
-  				value.values.each do |v|
-    				puts v
-    			end
-    		end
-    	end
-  	end
+				value.values.each do |v|
+					puts v
+				end
+			end
+		end
+	end
 
 	def product_handle_keys
 		url = 'http://test.madetoorder.pollinate.com/api/products/gk-pro-6508-quest'
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
-		self.iterate(@specs)
+		@specs.each do |key, value|
+			puts key
+			value.values.each do |v|
+				puts v
+			end
+		end
 	end
 
 

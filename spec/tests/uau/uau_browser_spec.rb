@@ -19,6 +19,7 @@ describe "Under Armour: 3D Model Shader Test" do
 			end
 			@page.wait_until(90) { @page.loader? }
 			@page.wait_while { @page.loader_element.visible? }
+			sleep 3
 			if @page.color_modal?
 				@page.color_modal
 			end
