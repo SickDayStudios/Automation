@@ -6,6 +6,7 @@ class UAUBasePage < BasePage
 	include UAUGarments
 	include PageObject
 
+element(:page_load, tag_name: "modal", class: ["main-modal-container ng-scope ng-isolate-scope"])
 element(:loader, tag_name: "uau-loader", class: "loaded")
 div(:product_image, class: ["product__image"])
 button(:save, class: "save")
