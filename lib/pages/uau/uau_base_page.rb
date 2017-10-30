@@ -7,7 +7,7 @@ class UAUBasePage < BasePage
 	include PageObject
 
 	element(:page_load, tag_name: "modal", class: ["main-modal-container ng-scope ng-isolate-scope"])
-	element(:loader, tag_name: "uau-loader", class: "loaded")
+	element(:loaded, tag_name: "uau-loader", class: "loaded")
 	div(:product_image, class: ["product__image"])
 	button(:save, class: "save")
 	text_field(:name_design, name: "name-design")
@@ -31,12 +31,12 @@ class UAUBasePage < BasePage
 		rescue Watir::Wait::TimeoutError, Watir::Exception::UnknownObjectException, Timeout::Error
 			false
 		end
-		self.wait_until(60) { self.loader? }
+		self.wait_until(60) { self.loaded? }
 		self.wait_while { self.loader_element.visible? }
 		self.wait_while { self.page_load_element.exists? }
 		begin self.wait_until(10) { self.color_modal_skip? }
 			if self.color_modal_skip?
-				self.color_modal_skip
+				self.color_modal_skip_element.click
 			end
 		rescue Watir::Wait::TimeoutError, Watir::Exception::UnknownObjectException, Timeout::Error
 			false
