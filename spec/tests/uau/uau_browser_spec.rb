@@ -11,207 +11,63 @@ describe "Under Armour: 3D Model Shader Test" do
 	# $football.each do |id|
 	# 	it "#{id}" do
 	# 		@page.uau_product(id)
-	# 		sleep 10
-	# 		if @page.product_image?
-	# 			@page.product_image_element.click
-	# 		end
-	# 		@page.wait_until(60) { @page.loader? }
-	# 		@page.wait_while { @page.page_load_element.visible? }
-	# 		sleep 3
-	# 		if @page.color_modal?
-	# 			@page.color_modal
-	# 		end
-	# 		@page.wait_until { @page.save_element.visible? }
-	# 		sleep 4
-	# 		@page.save
-	# 		@page.name_design = "test"
-	# 		@page.submit
-	# 		sleep 5
-	# 		BasePage.print_js_errors
+	# 		@page.get_page_errors
 	# 	end
 	# end
 
 	$volleyball.each do |id|
 		it "#{id}" do
 			@page.uau_product(id)
-			sleep 10
-			if @page.product_image?
-				@page.product_image_element.click
-			end
-			@page.wait_until(60) { @page.loader? }
-			@page.wait_while { @page.page_load_element.visible? }
-			sleep 3
-			if @page.color_modal?
-				@page.color_modal
-			end
-			@page.wait_until { @page.save_element.visible? }
-			sleep 4
-			@page.save
-			@page.name_design = "test"
-			@page.submit
-			sleep 5
-			BasePage.print_js_errors
+			@page.get_page_errors
 		end
 	end
 
 	# $track.each do |id|
 	# 	it "#{id}" do
 	# 		@page.uau_product(id)
-	# 		sleep 10
-	# 		if @page.product_image?
-	# 			@page.product_image_element.click
-	# 		end
-	# 		@page.wait_until(60) { @page.loader? }
-	# 		@page.wait_while { @page.page_load_element.visible? }
-	# 		sleep 3
-	# 		if @page.color_modal?
-	# 			@page.color_modal
-	# 		end
-	# 		@page.wait_until { @page.save_element.visible? }
-	# 		sleep 4
-	# 		@page.save
-	# 		@page.name_design = "test"
-	# 		@page.submit
-	# 		sleep 5
-	# 		BasePage.print_js_errors
+	# 		@page.get_page_errors
 	# 	end
 	# end
 
 	# $soccer.each do |id|
 	# 	it "#{id}" do
 	# 		@page.uau_product(id)
-	# 		sleep 10
-	# 		if @page.product_image?
-	# 			@page.product_image_element.click
-	# 		end
-	# 		@page.wait_until(60) { @page.loader? }
-	# 		@page.wait_while { @page.page_load_element.visible? }
-	# 		sleep 3
-	# 		if @page.color_modal?
-	# 			@page.color_modal
-	# 		end
-	# 		@page.wait_until { @page.save_element.visible? }
-	# 		sleep 4
-	# 		@page.save
-	# 		@page.name_design = "test"
-	# 		@page.submit
-	# 		sleep 5
-	# 		BasePage.print_js_errors
+	# 		@page.get_page_errors
 	# 	end
 	# end
 
 	# $basketball.each do |id|
 	# 	it "#{id}" do
 	# 		@page.uau_product(id)
-	# 		sleep 10
-	# 		if @page.product_image?
-	# 			@page.product_image_element.click
-	# 		end
-	# 		@page.wait_until(60) { @page.loader? }
-	# 		@page.wait_while { @page.page_load_element.visible? }
-	# 		sleep 3
-	# 		if @page.color_modal?
-	# 			@page.color_modal
-	# 		end
-	# 		@page.wait_until { @page.save_element.visible? }
-	# 		sleep 4
-	# 		@page.save
-	# 		@page.name_design = "test"
-	# 		@page.submit
-	# 		sleep 5
-	# 		BasePage.print_js_errors
+	# 		@page.get_page_errors
 	# 	end
 	# end
 
 	# $training.each do |id|
 	# 	it "#{id}" do
 	# 		@page.uau_product(id)
-	# 		sleep 10
-	# 		if @page.product_image?
-	# 			@page.product_image_element.click
-	# 		end
-	# 		@page.wait_until(60) { @page.loader? }
-	# 		@page.wait_while { @page.page_load_element.visible? }
-	# 		sleep 3
-	# 		if @page.color_modal?
-	# 			@page.color_modal
-	# 		end
-	# 		@page.wait_until { @page.save_element.visible? }
-	# 		sleep 4
-	# 		@page.save
-	# 		@page.name_design = "test"
-	# 		@page.submit
-	# 		sleep 5
-	# 		BasePage.print_js_errors
+	# 		@page.get_page_errors
 	# 	end
 	# end
 
 	# $sideline.each do |id|
 	# 	it "#{id}" do
 	# 		@page.uau_product(id)
-	# 		sleep 10
-	# 		if @page.product_image?
-	# 			@page.product_image_element.click
-	# 		end
-	# 		@page.wait_until(60) { @page.loader? }
-	# 		@page.wait_while { @page.page_load_element.visible? }
-	# 		sleep 3
-	# 		if @page.color_modal?
-	# 			@page.color_modal
-	# 		end
-	# 		@page.wait_until { @page.save_element.visible? }
-	# 		sleep 4
-	# 		@page.save
-	# 		@page.name_design = "test"
-	# 		@page.submit
-	# 		sleep 5
-	# 		BasePage.print_js_errors
+	# 		@page.get_page_errors
 	# 	end
 	# end
 
 	# $baseball.each do |id|
 	# 	it "#{id}" do
 	# 		@page.uau_product(id)
-	# 		sleep 10
-	# 		if @page.product_image?
-	# 			@page.product_image_element.click
-	# 		end
-	# 		@page.wait_until(60) { @page.loader? }
-	# 		@page.wait_while { @page.page_load_element.visible? }
-	# 		sleep 3
-	# 		if @page.color_modal?
-	# 			@page.color_modal
-	# 		end
-	# 		@page.wait_until { @page.save_element.visible? }
-	# 		sleep 4
-	# 		@page.save
-	# 		@page.name_design = "test"
-	# 		@page.submit
-	# 		sleep 5
-	# 		BasePage.print_js_errors
+	# 		@page.get_page_errors
 	# 	end
 	# end
 
 	# $softball.each do |id|
 	# 	it "#{id}" do
 	# 		@page.uau_product(id)
-	# 		sleep 10
-	# 		if @page.product_image?
-	# 			@page.product_image_element.click
-	# 		end
-	# 		@page.wait_until(60) { @page.loader? }
-	# 		@page.wait_while { @page.page_load_element.visible? }
-	# 		sleep 3
-	# 		if @page.color_modal?
-	# 			@page.color_modal
-	# 		end
-	# 		@page.wait_until { @page.save_element.visible? }
-	# 		sleep 4
-	# 		@page.save
-	# 		@page.name_design = "test"
-	# 		@page.submit
-	# 		sleep 5
-	# 		BasePage.print_js_errors
+	# 		@page.get_page_errors
 	# 	end
 	# end
 end
