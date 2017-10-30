@@ -16,8 +16,8 @@ button(:select_product, text: "Select")
 button(:color_modal, text: "Done")
 
 def uau_product(id)
-	$driver.goto ("#{$base_url}" + "#{id}")
-	$driver.goto ("#{$base_url}" + "#{id}")
+	$driver.goto ("#{$base_url}#{id}")
+	$driver.goto ("#{$base_url}#{id}")
 end
 
 
