@@ -52,6 +52,8 @@ group :development, :test do
   gem 'json-schema-rspec'
   gem 'json_matchers'
   gem 'json-schema'
+  gem 'appium_lib'
+  gem 'appium_console'
 end
 
 group :development do
