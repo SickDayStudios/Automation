@@ -14,7 +14,7 @@ text_field(:email, id: "CustomerEmail")
 text_field(:password, id: "CustomerPassword")
 checkbox(:remember_me, id: "remember-me")
 link(:forgot_password, id: "RecoverPassword")
-button(:sign_in_button, css: "#customer_login > ul > li:nth-child(4) > input[type='submit']")
+button(:sign_in_button, value: "Sign In")
 div(:login_error, class: ["errors"])
 
 # Register Account Page
@@ -25,6 +25,7 @@ text_field(:set_password, id: "CreatePassword")
 button(:create_account_button, css: "#create_customer > li:nth-child(8) > input[type='submit']")
 link(:return_to_store, css: "#create_customer > li:nth-child(9) > a")
 link(:register_account_button, id: "customer_register_link")
+radio(:email_login_radio, id: "LoginChoiceEmail")
 
 
 	def quick_logout
@@ -32,6 +33,7 @@ link(:register_account_button, id: "customer_register_link")
 	end
 
 	def login_with(email, password)
+		self.select_email_login_radio
 		self.email = email
 		self.password = password
 		self.sign_in_button

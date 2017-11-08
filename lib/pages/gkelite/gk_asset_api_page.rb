@@ -1,7 +1,7 @@
 class GKAssetAPI < BasePage
 
 	# gets product groups to interpolate into path
-	def scene_productgroups_keys
+	def self.scene_productgroups_keys
 		url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/gk-elite/scenelib/gk-elite/ua-prs-gym/scene.json"
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
@@ -16,9 +16,9 @@ class GKAssetAPI < BasePage
 
 
 	# =>  grab all product handles (eg. gk-fea-6018-smoke)
-	def scene_productoptions_keys
+	def self.scene_productoptions_keys
 		@options = Array.new
-		self.scene_productgroups_keys.each do |group|
+		scene_productgroups_keys.each do |group|
 			list = @specs["productGroups"]["#{group}"]["productOptions"].keys
 			list.each do |key|
 				if key.include? "extra"
@@ -31,9 +31,9 @@ class GKAssetAPI < BasePage
 	end
 
 	# grabs all scene file keys in the 'connections' array
-	def scene_connection_keys
+	def self.scene_connection_keys
 		@connections = Array.new
-		self.scene_productgroups_keys.each do |group|
+		scene_productgroups_keys.each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
 				@connections.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].keys)
@@ -43,9 +43,9 @@ class GKAssetAPI < BasePage
 	end
 
 	# grabs all scene file values in the 'connections' array
-	def scene_connection_values
+	def self.scene_connection_values
 		@values = Array.new
-		self.scene_productgroups_keys.each do |group|
+		scene_productgroups_keys.each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
 				@values.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].values)
@@ -56,7 +56,7 @@ class GKAssetAPI < BasePage
 
 
 	# grabs all values from the product data
-	def product_handle_values(product)
+	def self.product_handle_values(product)
 		array = Array.new
 		url = "http://#{ENV['ENVIRONMENT']}.spectrumcustomizer.com/api/products/#{product}"
 		uri = URI(url)
@@ -65,11 +65,11 @@ class GKAssetAPI < BasePage
 		array = @specs["contents"]["rootFeature"]
 		file = File.open("./lib/helpers/recursive_feature_traversal.js", "r")
 		features = file.read
-		result = self.execute_script(features, @specs["contents"]["rootFeature"])
+		result = $driver.execute_script(features, @specs["contents"]["rootFeature"])
 	end
 
 	# grabs all the keys from the manifest parameters array
-	def manifest_parameter_keys(product)
+	def self.manifest_parameter_keys(product)
 		url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/gk-elite/#{product}/config/product.manifest"
 		uri = URI(url)
 		response = Net::HTTP.get(uri)

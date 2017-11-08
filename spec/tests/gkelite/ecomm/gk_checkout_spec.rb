@@ -19,9 +19,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		@cart_page = GKCartPage.new
 		@checkout_page = GKCheckoutPage.new
 		@payment_page = GKPaymentPage.new
-		if ENV['ENVIRONMENT'] == 'prod'
-			@home_page.enter_password
-		end
 	end
 
 	context "Login to: #{ENV['USER_TYPE'].upcase}" do

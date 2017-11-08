@@ -12,6 +12,7 @@ require 'net/http'
 require 'json-schema'
 require 'json-schema-rspec'
 require "json_matchers/rspec"
+require 'rspec_junit_formatter'
 
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
@@ -22,9 +23,6 @@ unless File.directory?(@screenshotfolder)
 end
 
 RSpec.configure do |config|
-    config.success_color = :cyan
-    config.detail_color = :red
-    config.failure_color = :magenta
     config.shared_context_metadata_behavior = :apply_to_host_groups
 
 #=> Before any tests are run, this block is run

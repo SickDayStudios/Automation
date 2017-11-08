@@ -54,6 +54,7 @@ group :development, :test do
   gem 'json-schema'
   gem 'appium_lib'
   gem 'appium_console'
+  gem 'nyan-cat-formatter'
 end
 
 group :development do

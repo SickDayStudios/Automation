@@ -16,9 +16,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		@cart_page = GKCartPage.new
 		@home_page = GKHomePage.new
 		BasePage.navigate_to_starting_page
-		if ENV['ENVIRONMENT'] == 'prod'
-			@home_page.enter_password
-		end
 	end
 
 	['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
@@ -28,6 +25,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				BasePage.set_user
 				@home_page.login_page
 				expect(@login_page.url).to include('/account/login')
+				@login_page.select_email_login_radio
 				@login_page.login_with($username, $password)
 				expect(@login_page.url).to include('/account')
 			end
@@ -47,6 +45,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				BasePage.set_user
 				@home_page.home_page
 				@home_page.header_signin
+				@login_page.select_email_login_radio
 				@login_page.login_with($username, $password)
 				expect(@login_page.url).to include('/account')
 			end

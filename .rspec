@@ -1,6 +1,5 @@
 --color
 --require spec_helper
---require rspec_junit_formatter
---format documentation
---format html -o ./reports/test_results-<%= ENV['TEST_ENV_NUMBER'] %>.html
+--format NyanCatWideFormatter 
+--format html -o ./reports/test_results-<%= ENV['TEST_ENV_NUMBER'] %>.html 
 --format RspecJunitFormatter -o ./reports/test_results-<%= ENV['TEST_ENV_NUMBER'] %>.xml
