@@ -43,17 +43,17 @@ group :development, :test do
   gem 'page-object'
   gem 'watir'
   gem 'rake'
-  gem "simplecov"
-  gem "simplecov-rcov"
+  # gem "simplecov"
+  # gem "simplecov-rcov"
   gem "ci_reporter_rspec"
   gem "rspec_junit_formatter"
-  gem "watir-scroll"
+  # gem "watir-scroll"
   gem 'coderay'
-  gem 'json-schema-rspec'
-  gem 'json_matchers'
-  gem 'json-schema'
-  gem 'appium_lib'
-  gem 'appium_console'
+  # gem 'json-schema-rspec'
+  # gem 'json_matchers'
+  # gem 'json-schema'
+  # gem 'appium_lib'
+  # gem 'appium_console'
   gem 'nyan-cat-formatter'
 end
 

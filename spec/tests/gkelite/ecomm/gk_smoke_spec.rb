@@ -28,6 +28,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 	it ' - Sign Into Pre-Existing Account' do
+		@login_page.select_email_login_radio
 		@login_page.login_with($username, $password)
 		expect(@login_page.url).to include('/account')
 	end

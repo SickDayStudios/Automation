@@ -54,7 +54,7 @@ class BasePage
   end
 
   def collect_links
-    $driver.links
+    $driver.links.map(&:href)
   end
 
   def self.url
@@ -112,6 +112,7 @@ class BasePage
 
   def self.set_base_url
     case ENV['SITE'].to_sym
+      when :cb then $base_url = "http://madetoorder.azureedge.net/camelbak/frontend/"
       when :gk_api then $base_url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/gk-elite/scenelib/gk-elite/ua-prs-gym/scene.json"
       when :customizer
         case ENV['ENVIRONMENT'].to_sym

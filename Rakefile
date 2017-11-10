@@ -12,7 +12,7 @@ RSpec::Core::RakeTask.new(:cb_social, [:environment, :browser]) do |t, args|
 	ENV['BROWSER'] = args[:browser]
 	ENV['SITE'] = 'cb'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
-	t.pattern = Dir.glob('spec/tests/cb/cb_social_spec.rb')
+	t.pattern = Dir.glob('spec/tests/cb/cb_share_spec.rb')
 end
 
 RSpec::Core::RakeTask.new(:ios, [:deviceName, :deviceType, :platformName, :platformVersion, :app]) do |t, args|

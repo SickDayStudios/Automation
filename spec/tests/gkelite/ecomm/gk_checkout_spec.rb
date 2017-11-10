@@ -25,6 +25,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		it 'Login' do
 			@home_page.login_page
 			expect(@login_page.url).to include('/account/login')
+			@login_page.select_email_login_radio
 			@login_page.login_with($username, $password)
 			expect(@login_page.url).to include('/account')
 		end

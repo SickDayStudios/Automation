@@ -1,8 +1,16 @@
 class GKAssetAPI < BasePage
 
+	$gk_scene_files = [
+						'gk-prs-bottoms',
+						'gk-prs-cheer',
+						'gk-prs-gym',
+						'ua-prs-cheer',
+						'ua-prs-gym',
+						'ua-prs-warmups']
+
 	# gets product groups to interpolate into path
-	def self.scene_productgroups_keys
-		url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/gk-elite/scenelib/gk-elite/ua-prs-gym/scene.json"
+	def self.scene_productgroups_keys(scene)
+		url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/gk-elite/scenelib/gk-elite/#{scene}/scene.json"
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
@@ -16,9 +24,9 @@ class GKAssetAPI < BasePage
 
 
 	# =>  grab all product handles (eg. gk-fea-6018-smoke)
-	def self.scene_productoptions_keys
+	def self.scene_productoptions_keys(scene)
 		@options = Array.new
-		scene_productgroups_keys.each do |group|
+		scene_productgroups_keys(scene).each do |group|
 			list = @specs["productGroups"]["#{group}"]["productOptions"].keys
 			list.each do |key|
 				if key.include? "extra"
@@ -31,9 +39,9 @@ class GKAssetAPI < BasePage
 	end
 
 	# grabs all scene file keys in the 'connections' array
-	def self.scene_connection_keys
+	def self.scene_connection_keys(scene)
 		@connections = Array.new
-		scene_productgroups_keys.each do |group|
+		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
 				@connections.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].keys)
@@ -43,9 +51,9 @@ class GKAssetAPI < BasePage
 	end
 
 	# grabs all scene file values in the 'connections' array
-	def self.scene_connection_values
+	def self.scene_connection_values(scene)
 		@values = Array.new
-		scene_productgroups_keys.each do |group|
+		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
 				@values.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].values)
