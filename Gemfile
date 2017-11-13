@@ -50,11 +50,11 @@ group :development, :test do
   # gem "watir-scroll"
   gem 'coderay'
   # gem 'json-schema-rspec'
-  # gem 'json_matchers'
+  gem 'json_matchers'
   # gem 'json-schema'
   # gem 'appium_lib'
   # gem 'appium_console'
-  gem 'nyan-cat-formatter'
+  # gem 'nyan-cat-formatter'
 end
 
 group :development do
