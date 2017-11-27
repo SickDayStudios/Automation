@@ -11,7 +11,7 @@ class GKCartPage < GKShopifyBasePage
 
 
 
-button(:secure_checkout, name: "checkout")
+button(:secure_checkout, text: "Secure Checkout")
 link(:update_item, css: "#site-container > div.container > form > div > div.col-xs-12.col-sm-8.shopping-cart__primary > div.shopping-cart__item > div:nth-child(1) > div.col-xs-12.col-sm-9 > div:nth-child(4) > div.col-xs-8.col-sm-5.shopping-cart__update-remove > a:nth-child(1)")
 link(:remove_item, class: "shopping-cart__update-remove__remove")
 div(:signin_popup, id: "signin-or-guest")
