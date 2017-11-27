@@ -10,7 +10,7 @@ ENV['CI_REPORTS'] = "./reports"
 RSpec::Core::RakeTask.new(:cb_social, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
-	ENV['SITE'] = 'cb'
+	ENV['SITE'] = 'camelbak'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/cb/cb_share_spec.rb')
 end
@@ -26,7 +26,7 @@ end
 RSpec::Core::RakeTask.new(:icon_products, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
-	ENV['SITE'] = 'icon'
+	ENV['SITE'] = 'ua-icon'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/icon/icon_product_spec.rb')
 end
@@ -34,7 +34,7 @@ end
 RSpec::Core::RakeTask.new(:icon, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
-	ENV['SITE'] = 'icon'
+	ENV['SITE'] = 'ua-icon'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/icon/*_spec.rb')
 end
@@ -42,7 +42,7 @@ end
 RSpec::Core::RakeTask.new(:eb, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
-	ENV['SITE'] = 'eb'
+	ENV['SITE'] = 'eddie-bauer'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/eb/eb_smoke_spec.rb')
 end
@@ -58,7 +58,7 @@ end
 RSpec::Core::RakeTask.new(:uau, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
-	ENV['SITE'] = 'uau'
+	ENV['SITE'] = 'under-armour'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/uau/*_spec.rb')
 end
@@ -69,7 +69,7 @@ RSpec::Core::RakeTask.new(:gk, [:environment, :browser, :user]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/*_spec.rb')
 end
@@ -78,7 +78,7 @@ RSpec::Core::RakeTask.new(:gk_garments, [:environment, :browser, :user]) do |t, 
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/garments/*_spec.rb')
 end
@@ -87,7 +87,7 @@ RSpec::Core::RakeTask.new(:gk_ecomm, [:environment, :browser, :user]) do |t, arg
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/*_spec.rb')
 end
@@ -96,7 +96,7 @@ RSpec::Core::RakeTask.new(:gk_url, [:environment, :browser, :user]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_url_spec.rb')
 end
@@ -105,7 +105,7 @@ RSpec::Core::RakeTask.new(:gk_products, [:environment, :browser, :user]) do |t, 
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_product_spec.rb')
 end
@@ -122,7 +122,7 @@ RSpec::Core::RakeTask.new(:gk_signup, [:environment, :browser, :user]) do |t, ar
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_register_spec.rb')
 end
@@ -131,7 +131,7 @@ RSpec::Core::RakeTask.new(:gk_login, [:environment, :browser, :user]) do |t, arg
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_login_spec.rb')
 end
@@ -140,7 +140,7 @@ RSpec::Core::RakeTask.new(:gk_smoke, [:environment, :browser, :user]) do |t, arg
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_smoke_spec.rb')
 end
@@ -149,7 +149,7 @@ RSpec::Core::RakeTask.new(:gk_search, [:environment, :browser, :user]) do |t, ar
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_search_spec.rb')
 end
@@ -158,7 +158,7 @@ RSpec::Core::RakeTask.new(:gk_checkout, [:environment, :browser, :user]) do |t, 
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_checkout_spec.rb')
 end
@@ -167,15 +167,28 @@ RSpec::Core::RakeTask.new(:gk_two_d, [:environment, :browser, :user]) do |t, arg
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['USER_TYPE'] = args[:user]
-	ENV['SITE'] = 'gk'
+	ENV['SITE'] = 'gk-elite'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/ecomm/gk_two_d_spec.rb')
+end
+
+RSpec::Core::RakeTask.new(:manifest, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
+	t.pattern = Dir.glob('spec/tests/manifest_model_shader_spec.rb')
+end
+
+RSpec::Core::RakeTask.new(:api, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
+	t.pattern = Dir.glob('spec/tests/asset_api_spec.rb')
 end
 
 RSpec::Core::RakeTask.new(:gk_api, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
-	ENV['SITE'] = 'gk_api'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
 	t.pattern = Dir.glob('spec/tests/gkelite/gk_asset_api_spec.rb')
 end
