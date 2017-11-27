@@ -49,7 +49,7 @@ class BasePage
 	end
 	
 	def self.resize_window
-		$driver.window.resize_to(1920, 1080)
+		$driver.window.resize_to(1366, 768)
 		$driver.window.move_to(0, 0)
 	end
 
@@ -81,7 +81,7 @@ class BasePage
 	def self.setup
 		BasePage.set_user
 		BasePage.set_base_url
-		# BasePage.resize_window
+		BasePage.resize_window
 		BasePage.navigate_to_starting_page
 	end
 
