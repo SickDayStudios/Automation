@@ -81,7 +81,7 @@ class BasePage
 	def self.setup
 		BasePage.set_user
 		BasePage.set_base_url
-		BasePage.resize_window
+		# BasePage.resize_window
 		BasePage.navigate_to_starting_page
 	end
 
