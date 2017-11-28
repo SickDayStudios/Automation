@@ -49,8 +49,8 @@ class BasePage
 	end
 	
 	def self.resize_window
-		$driver.window.resize_to(1366, 768)
-		$driver.window.move_to(0, 0)
+		$driver.manage.window.resize_to(1366, 768)
+		$driver.manage.window.move_to(0, 0)
 	end
 
 	def collect_links
@@ -71,7 +71,7 @@ class BasePage
 	end
 
 	def self.maximize_window
-		$driver.window.maximize
+		$driver.manage.window.maximize
 	end
 
 	def self.quit_webdriver
@@ -81,7 +81,7 @@ class BasePage
 	def self.setup
 		BasePage.set_user
 		BasePage.set_base_url
-		# BasePage.resize_window
+		BasePage.maximize_window
 		BasePage.navigate_to_starting_page
 	end
 
