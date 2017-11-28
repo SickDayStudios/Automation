@@ -63,7 +63,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	it ' - Continue to Payment Method' do
 		@checkout_page.continue_to
 		@checkout_page.wait_until { @checkout_page.different_address? }
-		expect(@checkout_page.current_breadcrumb).to eq('Payment method')
 	end
 
 	if ENV['ENVIRONMENT'] == 'prod'
