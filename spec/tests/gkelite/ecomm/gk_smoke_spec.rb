@@ -53,7 +53,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 	it ' - Secure Checkout' do
-		@cart_page.secure_checkout
+		@cart_page.secure_checkout_element.focus
+		@cart_page.secure_checkout_element.click
 	end
 
 	it ' - Continue to Shipping Method' do
