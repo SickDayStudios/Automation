@@ -53,9 +53,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 	it ' - Secure Checkout' do
-		@cart_page.relaxed_locate = false
 		@cart_page.secure_checkout
-		@cart_page.relaxed_locate = true
 	end
 
 	it ' - Continue to Shipping Method' do
