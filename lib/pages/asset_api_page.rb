@@ -1,7 +1,5 @@
 class AssetAPI < BasePage
 
-
-
 	# =>  client/scenelib options:
 			# camelbak
 			# eddie-bauer
@@ -15,20 +13,31 @@ class AssetAPI < BasePage
 			# leatherman
 
 
-	# =>  gets SceneFile product groups to interpolate into path
+	# =>  gets SceneFile product groups to interpolate into path (eg. Tops, Bottoms, Socks, etc.)
 	def self.scene_productgroups_keys(scene)
-		if ENV['SITE'] == 'ua-icon'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/under-armour/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
-		else
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
+		if $gk_scene_files.include? "#{scene}"
+			ENV['SITE'] = 'gk-elite'
 		end
+		if $uau_scene_files.include? "#{scene}"
+			ENV['SITE'] = 'under-armour'
+		end
+		if $uaf_scene_files.include? "#{scene}"
+			ENV['SITE'] = 'ua-icon'
+		end
+		if $cb_scene_files.include? "#{scene}"
+			ENV['SITE'] = 'camelbak'
+		end
+		if $eb_scene_files.include? "#{scene}"
+			ENV['SITE'] = 'eddie-bauer'
+		end
+		url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
 		@arr = Array.new
 		list = @specs["productGroups"].keys
 		list.each do |key|
-			if key.include? "mannequin"
+			if key == "mannequin"
 			else
 				@arr.push(key)
 			end
@@ -43,8 +52,7 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = @specs["productGroups"]["#{group}"]["productOptions"].keys
 			list.each do |key|
-				if key.include? "extra"
-				else
+				if (key.include?("extra")) == false
 					@options.push(key)
 				end
 			end
@@ -88,6 +96,18 @@ class AssetAPI < BasePage
 		@pairs
 	end
 
+	# => grabs manifest url suffix to append to manifest URL
+	def self.scene_manifest_url(scene)
+		@manifest = Array.new
+		scene_productgroups_keys(scene).each do |group|
+			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
+			list.each do |key|
+				@manifest.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["manifest"])
+			end
+		end
+		puts @manifest.uniq.first
+		@manifest.uniq.first
+	end
 
 	# =>  grabs all featureHandle values from the Product Data
 	def self.product_handle_values(product)
@@ -102,24 +122,25 @@ class AssetAPI < BasePage
 	end
 
 	# =>  grabs all the keys from the manifest parameters array
-	def self.manifest_parameter_keys(product)
-		if ENV['SITE'] == 'ua-icon'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/under-armour/#{product}/config/product.manifest"
-		else
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/config/product.manifest"
-		end
+	def self.manifest_parameter_keys(product, manifest)
+		url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
 		manifest = @specs["parameters"].keys
 	end
 
-	def self.manifest_model(product)
-		if ENV['SITE'] == 'ua-icon'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/under-armour/#{product}/config/product.manifest"
-		else
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/config/product.manifest"
-		end
+	# =>  grabs all the keys from the manifest parameters array
+	def self.manifest_parameter_values(product, manifest)
+		url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
+		uri = URI(url)
+		response = Net::HTTP.get(uri)
+		@specs = JSON.parse(response)
+		manifest = @specs["parameters"].values
+	end
+
+	def self.manifest_model(product, manifest)
+		url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
@@ -134,12 +155,8 @@ class AssetAPI < BasePage
 		@models
 	end
 
-	def self.manifest_shader_source(product)
-		if ENV['SITE'] == 'ua-icon'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/under-armour/#{product}/config/product.manifest"
-		else
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/config/product.manifest"
-		end
+	def self.manifest_shader_source(product, manifest)
+		url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
@@ -151,148 +168,17 @@ class AssetAPI < BasePage
 		@shaders
 	end
 
-	$approved_shaders = [ "regionmap",
-		"artbox",
-		"standard",
-		"pshadow" ]
+	$approved_shaders = ['regionmap','artbox','standard','pshadow']
 
+	$gk_scene_files = ['gk-prs-bottoms','gk-prs-cheer','gk-prs-gym','ua-prs-cheer','ua-prs-gym','ua-prs-warmups']
 
-		$gk_scene_files = [ 'gk-prs-bottoms',
-			'gk-prs-cheer',
-			'gk-prs-gym',
-			'ua-prs-cheer',
-			'ua-prs-gym',
-			'ua-prs-warmups' ]
+	$uau_scene_files = ['uau-prs-hockey','uau-prs-lacrosse','uau-prs-volleyball','uau-prs-track','uau-prs-soccer','uau-prs-softball','uau-prs-training','uau-prs-wrestling','uau-prs-baseball','uau-prs-football','uau-prs-basketball','uau-prs-football-brawler','uau-prs-sideline']
 
-			$uau_scene_files = ['uau-prs-hockey',
-				'uau-prs-lacrosse',
-				'uau-prs-volleyball',
-				'uau-prs-track',
-				'uau-prs-soccer',
-				'uau-prs-softball',
-				'uau-prs-training',
-				'uau-prs-wrestling',
-				'uau-prs-baseball',
-				'uau-prs-football',
-				'uau-prs-basketball',
-				'uau-prs-football-brawler',
-				'uau-prs-sideline' ]
+	$uaf_scene_files = ['uaf-prs-curry1-mens','uaf-prs-curry1-youth','uaf-prs-curry25-mens','uaf-prs-icon-sackpack','uaf-prs-drive4low-mens','uaf-prs-charged247-mens','uaf-prs-charged247-womens','uaf-prs-curry1low-mens','uaf-prs-drive4-mens','uaf-prs-drive4-womens','uaf-prs-clutchfit-mens','uaf-prs-clutchfit-womens','uaf-prs-curry25-mens','uaf-prs-highlight-mens']
 
-				$uaf_scene_files = ['uaf-prs-curry1-mens',
-					'uaf-prs-curry1-youth',
-					'uaf-prs-curry25-mens',
-					'uaf-prs-icon-sackpack',
-					'uaf-prs-drive4low-mens',
-					'uaf-prs-charged247-mens',
-					'uaf-prs-charged247-womens',
-					'uaf-prs-curry1low-mens',
-					'uaf-prs-drive4-mens',
-					'uaf-prs-drive4-womens',
-					'uaf-prs-clutchfit-mens',
-					'uaf-prs-clutchfit-womens',
-					'uaf-prs-curry25-mens',
-					'uaf-prs-highlight-mens' ]
+	$cb_scene_files = ['cb-pro-chute1-bottle','cb-pro-chute20-rubberized','cb-pro-chute20-stainless-vacuum-bottle','cb-pro-chute20-vacuum-bottle','cb-pro-chute40-stainless-vacuum-bottle','cb-pro-chute40-vacuum-bottle','cb-pro-chute75-bottle','cb-pro-eddy1-bottle','cb-pro-eddy4-kids-bottle','cb-pro-eddy6-bottle','cb-pro-eddy6-insulated-bottle','cb-pro-eddy20-rubberized','cb-pro-eddy20-vacuum-bottle','cb-pro-eddy75-bottle','cb-pro-forge12-bottle','cb-pro-forge16-bottle','cb-pro-kickbak20-bottle','cb-pro-kickbak20-stainless-bottle','cb-pro-kickbak30-bottle','cb-pro-kickbak30-stainless-bottle','cb-pro-podium-bigchill-bottle','cb-pro-podium-chill-bottle','cb-pro-podium21-bottle','cb-pro-podium24-bottle']
 
-					$cb_scene_files = [ 'cb-pro-chute1-bottle',
-						'cb-pro-chute20-rubberized',
-						'cb-pro-chute20-stainless-vacuum-bottle',
-						'cb-pro-chute20-vacuum-bottle',
-						'cb-pro-chute40-stainless-vacuum-bottle',
-						'cb-pro-chute40-vacuum-bottle',
-						'cb-pro-chute75-bottle',
-						'cb-pro-eddy1-bottle',
-						'cb-pro-eddy4-kids-bottle',
-						'cb-pro-eddy6-bottle',
-						'cb-pro-eddy6-insulated-bottle',
-						'cb-pro-eddy20-rubberized',
-						'cb-pro-eddy20-vacuum-bottle',
-						'cb-pro-eddy75-bottle',
-						'cb-pro-forge12-bottle',
-						'cb-pro-forge16-bottle',
-						'cb-pro-kickbak20-bottle',
-						'cb-pro-kickbak20-stainless-bottle',
-						'cb-pro-kickbak30-bottle',
-						'cb-pro-kickbak30-stainless-bottle',
-						'cb-pro-podium-bigchill-bottle',
-						'cb-pro-podium-chill-bottle',
-						'cb-pro-podium21-bottle',
-						'cb-pro-podium24-bottle' ]
+	$eb_scene_files = ['eb-pro-mens-microtherm-hood','eb-pro-mens-microtherm-nohood','eb-pro-mens-sandstone-hood','eb-pro-mens-sandstone-nohood','eb-pro-womens-microtherm-hood','eb-pro-womens-microtherm-nohood','eb-pro-womens-sandstone-hood','eb-pro-womens-sandstone-nohood']
 
-						$eb_scene_files = [ 'eb-pro-mens-microtherm-hood',
-							'eb-pro-mens-microtherm-nohood',
-							'eb-pro-mens-sandstone-hood',
-							'eb-pro-mens-sandstone-nohood',
-							'eb-pro-womens-microtherm-hood',
-							'eb-pro-womens-microtherm-nohood',
-							'eb-pro-womens-sandstone-hood',
-							'eb-pro-womens-sandstone-nohood' ]
-
-							$scene_files = [ 	'gk-prs-bottoms',
-								'gk-prs-cheer',
-								'gk-prs-gym',
-								'ua-prs-cheer',
-								'ua-prs-gym',
-								'ua-prs-warmups',
-								'uau-prs-hockey',
-								'uau-prs-lacrosse',
-								'uau-prs-volleyball',
-								'uau-prs-track',
-								'uau-prs-soccer',
-								'uau-prs-softball',
-								'uau-prs-training',
-								'uau-prs-wrestling',
-								'uau-prs-baseball',
-								'uau-prs-football',
-								'uau-prs-basketball',
-								'uau-prs-football-brawler',
-								'uau-prs-sideline',
-								'uaf-prs-curry1-mens',
-								'uaf-prs-curry1-youth',
-								'uaf-prs-curry25-mens',
-								'uaf-prs-icon-sackpack',
-								'uaf-prs-drive4low-mens',
-								'uaf-prs-charged247-mens',
-								'uaf-prs-charged247-womens',
-								'uaf-prs-curry1low-mens',
-								'uaf-prs-drive4-mens',
-								'uaf-prs-drive4-womens',
-								'uaf-prs-clutchfit-mens',
-								'uaf-prs-clutchfit-womens',
-								'uaf-prs-curry25-mens',
-								'uaf-prs-highlight-mens',
-								'cb-pro-chute1-bottle',
-								'cb-pro-chute20-rubberized',
-								'cb-pro-chute20-stainless-vacuum-bottle',
-								'cb-pro-chute20-vacuum-bottle',
-								'cb-pro-chute40-stainless-vacuum-bottle',
-								'cb-pro-chute40-vacuum-bottle',
-								'cb-pro-chute75-bottle',
-								'cb-pro-eddy1-bottle',
-								'cb-pro-eddy4-kids-bottle',
-								'cb-pro-eddy6-bottle',
-								'cb-pro-eddy6-insulated-bottle',
-								'cb-pro-eddy20-rubberized',
-								'cb-pro-eddy20-vacuum-bottle',
-								'cb-pro-eddy75-bottle',
-								'cb-pro-forge12-bottle',
-								'cb-pro-forge16-bottle',
-								'cb-pro-kickbak20-bottle',
-								'cb-pro-kickbak20-stainless-bottle',
-								'cb-pro-kickbak30-bottle',
-								'cb-pro-kickbak30-stainless-bottle',
-								'cb-pro-podium-bigchill-bottle',
-								'cb-pro-podium-chill-bottle',
-								'cb-pro-podium21-bottle',
-								'cb-pro-podium24-bottle',
-								'eb-pro-mens-microtherm-hood',
-								'eb-pro-mens-microtherm-nohood',
-								'eb-pro-mens-sandstone-hood',
-								'eb-pro-mens-sandstone-nohood',
-								'eb-pro-womens-microtherm-hood',
-								'eb-pro-womens-microtherm-nohood',
-								'eb-pro-womens-sandstone-hood',
-								'eb-pro-womens-sandstone-nohood' ]
-
-
-
-							end
+	$scene_files = ['gk-prs-bottoms','gk-prs-cheer','gk-prs-gym','ua-prs-cheer','ua-prs-gym','ua-prs-warmups','uau-prs-hockey','uau-prs-lacrosse','uau-prs-volleyball','uau-prs-track','uau-prs-soccer','uau-prs-softball','uau-prs-training','uau-prs-wrestling','uau-prs-baseball','uau-prs-football','uau-prs-basketball','uau-prs-football-brawler','uau-prs-sideline','uaf-prs-curry1-mens','uaf-prs-curry1-youth','uaf-prs-curry25-mens','uaf-prs-icon-sackpack','uaf-prs-drive4low-mens','uaf-prs-charged247-mens','uaf-prs-charged247-womens','uaf-prs-curry1low-mens','uaf-prs-drive4-mens','uaf-prs-drive4-womens','uaf-prs-clutchfit-mens','uaf-prs-clutchfit-womens','uaf-prs-curry25-mens','uaf-prs-highlight-mens','cb-pro-chute1-bottle','cb-pro-chute20-rubberized','cb-pro-chute20-stainless-vacuum-bottle','cb-pro-chute20-vacuum-bottle','cb-pro-chute40-stainless-vacuum-bottle','cb-pro-chute40-vacuum-bottle','cb-pro-chute75-bottle','cb-pro-eddy1-bottle','cb-pro-eddy4-kids-bottle','cb-pro-eddy6-bottle','cb-pro-eddy6-insulated-bottle','cb-pro-eddy20-rubberized','cb-pro-eddy20-vacuum-bottle','cb-pro-eddy75-bottle','cb-pro-forge12-bottle','cb-pro-forge16-bottle','cb-pro-kickbak20-bottle','cb-pro-kickbak20-stainless-bottle','cb-pro-kickbak30-bottle','cb-pro-kickbak30-stainless-bottle','cb-pro-podium-bigchill-bottle','cb-pro-podium-chill-bottle','cb-pro-podium21-bottle','cb-pro-podium24-bottle','eb-pro-mens-microtherm-hood','eb-pro-mens-microtherm-nohood','eb-pro-mens-sandstone-hood','eb-pro-mens-sandstone-nohood','eb-pro-womens-microtherm-hood','eb-pro-womens-microtherm-nohood','eb-pro-womens-sandstone-hood','eb-pro-womens-sandstone-nohood']
+end
