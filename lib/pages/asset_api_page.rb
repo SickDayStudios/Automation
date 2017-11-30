@@ -133,49 +133,73 @@ class AssetAPI < BasePage
 
 	# =>  grabs all the keys from the manifest parameters array
 	def self.manifest_parameter_keys(product, manifest)
-		url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
-		@specs = JSON.parse(response)
-		manifest = @specs["parameters"].keys
+		if product.nil?
+			puts "Missing Product Data"
+		elsif manifest.nil?
+			puts "Missing Manifest"
+		else
+			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
+			uri = URI(url)
+			response = Net::HTTP.get(uri)
+			@specs = JSON.parse(response)
+			manifest = @specs["parameters"].keys
+		end
 	end
 
 	# =>  grabs all the keys from the manifest parameters array
 	def self.manifest_parameter_values(product, manifest)
-		url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
-		@specs = JSON.parse(response)
-		manifest = @specs["parameters"].values
+		if product.nil?
+			puts "Missing Product Data"
+		elsif manifest.nil?
+			puts "Missing Manifest"
+		else
+			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
+			uri = URI(url)
+			response = Net::HTTP.get(uri)
+			@specs = JSON.parse(response)
+			manifest = @specs["parameters"].values
+		end
 	end
 
 	def self.manifest_model(product, manifest)
-		url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
-		@specs = JSON.parse(response)
-		@models = Array.new
-		regionmaps = @specs["shaders"].keys
-		regionmaps.each do |regionMap|
-			model_values = @specs["shaders"]["#{regionMap}"]["models"].values
-			model_values.each do |model|
-				@models.push(model)
+		if product.nil?
+			puts "Missing Product Data"
+		elsif manifest.nil?
+			puts "Missing Manifest"
+		else
+			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
+			uri = URI(url)
+			response = Net::HTTP.get(uri)
+			@specs = JSON.parse(response)
+			@models = Array.new
+			regionmaps = @specs["shaders"].keys
+			regionmaps.each do |regionMap|
+				model_values = @specs["shaders"]["#{regionMap}"]["models"].values
+				model_values.each do |model|
+					@models.push(model)
+				end
 			end
+			@models
 		end
-		@models
 	end
 
 	def self.manifest_shader_source(product, manifest)
-		url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
-		@specs = JSON.parse(response)
-		@shaders = Array.new
-		regionmaps = @specs["shaders"].keys
-		regionmaps.each do |regionMap|
-			@shaders.push(@specs["shaders"]["#{regionMap}"]["source"])
+		if product.nil?
+			puts "Missing Product Data"
+		elsif manifest.nil?
+			puts "Missing Manifest"
+		else
+			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
+			uri = URI(url)
+			response = Net::HTTP.get(uri)
+			@specs = JSON.parse(response)
+			@shaders = Array.new
+			regionmaps = @specs["shaders"].keys
+			regionmaps.each do |regionMap|
+				@shaders.push(@specs["shaders"]["#{regionMap}"]["source"])
+			end
+			@shaders
 		end
-		@shaders
 	end
 
 	$approved_shaders = ['regionmap','artbox','standard','pshadow']
