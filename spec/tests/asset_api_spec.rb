@@ -1,8 +1,8 @@
 require "./lib/pages/asset_api_page"
 
 describe ":: GK-Elite Product Backend API Test ::" do
+
 	before(:all) do
-		puts ":: GK-ELITE PRODUCTS ::"
 		@v = Array.new
 		@k = Array.new
 	end
@@ -18,6 +18,7 @@ describe ":: GK-Elite Product Backend API Test ::" do
 		if @k.uniq.nil?
 			puts ""
 			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ""
 		else
 			puts ""
 			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'].keys not found in Manifest"
@@ -26,7 +27,7 @@ describe ":: GK-Elite Product Backend API Test ::" do
 	end
 
 	$gk_scene_files.each do |scene|
-		it "GK-Elite :: #{scene}" do
+		it "GK-Elite :: #{scene} :: Test Result" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -43,6 +44,7 @@ describe ":: GK-Elite Product Backend API Test ::" do
 									if manifest_values.include?(sceneValue) == false
 										puts "#{sceneKey} : ['#{sceneValue}'] Does not match any Product Manifest['parameter']"
 									end
+									expect("#{scene} :: #{product} :: #{manifest_values}").to include(sceneValue)
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
@@ -67,7 +69,7 @@ end
 describe ":: Under Armour Product Backend API Test ::" do
 
 	before(:all) do
-		puts ":: UA-B2B PRODUCTS ::"
+ 		DeferredGarbageCollection.start
 		@v = Array.new
 		@k = Array.new
 	end
@@ -78,20 +80,22 @@ describe ":: Under Armour Product Backend API Test ::" do
 			puts ">>  0 Product Data discrepancies found!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'] not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
 		end
 		if @k.uniq.nil?
 			puts ""
 			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ""
 		else
 			puts ""
-			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'] not found in Manifest"
+			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'].keys not found in Manifest"
 			puts ""
 		end
+		DeferredGarbageCollection.reconsider
 	end
 
 	$uau_scene_files.each do |scene|
-		it "Under-Armour :: #{scene}" do
+		it "Under-Armour :: #{scene} :: Test Result" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -132,7 +136,7 @@ end
 describe ":: ICON Product Backend API Test ::" do
 
 	before(:all) do
-		puts ":: UA-ICON PRODUCTS ::"
+ 		DeferredGarbageCollection.start
 		@v = Array.new
 		@k = Array.new
 	end
@@ -143,20 +147,22 @@ describe ":: ICON Product Backend API Test ::" do
 			puts ">>  0 Product Data discrepancies found!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'] not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
 		end
 		if @k.uniq.nil?
 			puts ""
 			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ""
 		else
 			puts ""
-			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'] not found in Manifest"
+			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'].keys not found in Manifest"
 			puts ""
 		end
+		DeferredGarbageCollection.reconsider
 	end
 
 	$uaf_scene_files.each do |scene|
-		it "UA-ICON :: #{scene}" do
+		it "UA-ICON :: #{scene} :: Test Result" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -197,7 +203,7 @@ end
 describe ":: CamelBak Product Backend API Test ::" do
 
 	before(:all) do
-		puts ":: CAMELBAK PRODUCTS ::"
+ 		DeferredGarbageCollection.start
 		@v = Array.new
 		@k = Array.new
 	end
@@ -208,20 +214,22 @@ describe ":: CamelBak Product Backend API Test ::" do
 			puts ">>  0 Product Data discrepancies found!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'] not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
 		end
 		if @k.uniq.nil?
 			puts ""
 			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ""
 		else
 			puts ""
-			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'] not found in Manifest"
+			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'].keys not found in Manifest"
 			puts ""
 		end
+		DeferredGarbageCollection.reconsider
 	end
 
 	$cb_scene_files.each do |scene|
-		it "CamelBak :: #{scene}" do
+		it "CamelBak :: #{scene} :: Test Result" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -262,7 +270,7 @@ end
 describe ":: Eddie Bauer Product Backend API Test ::" do
 
 	before(:all) do
-		puts ":: EDDIE-BAUER PRODUCTS ::"
+ 		DeferredGarbageCollection.start
 		@v = Array.new
 		@k = Array.new
 	end
@@ -273,20 +281,22 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 			puts ">>  0 Product Data discrepancies found!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'] not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
 		end
 		if @k.uniq.nil?
 			puts ""
 			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ""
 		else
 			puts ""
-			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'] not found in Manifest"
+			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'].keys not found in Manifest"
 			puts ""
 		end
+		DeferredGarbageCollection.reconsider
 	end
 
 	$eb_scene_files.each do |scene|
-		it "Eddie-Bauer :: #{scene}" do
+		it "Eddie-Bauer :: #{scene} :: Test Result" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|

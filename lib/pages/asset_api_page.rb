@@ -60,7 +60,7 @@ class AssetAPI < BasePage
 		@options
 	end
 
-	# =>  grabs all scenefile keys in the 'connections' array
+	# =>  grabs all scenefile keys in the 'connections' hash
 	def self.scene_connection_keys(scene)
 		@connections = Array.new
 		scene_productgroups_keys(scene).each do |group|
@@ -72,7 +72,7 @@ class AssetAPI < BasePage
 		@connections
 	end
 
-	# =>  grabs all scene file values in the 'connections' array
+	# =>  grabs all scenefile values in the 'connections' hash
 	def self.scene_connection_values(scene)
 		@values = Array.new
 		scene_productgroups_keys(scene).each do |group|
@@ -84,7 +84,7 @@ class AssetAPI < BasePage
 		@values
 	end
 
-
+	# => grabs all scenefile key:value pairs in the 'connections' hash
 	def self.scene_connections(scene)
 		@pairs = Array.new
 		scene_productgroups_keys(scene).each do |group|
@@ -96,7 +96,7 @@ class AssetAPI < BasePage
 		@pairs
 	end
 
-	# => grabs manifest url suffix to append to manifest URL
+	# => grabs scenefile manifest url suffix to append to manifest base URL
 	def self.scene_manifest_url(scene)
 		@manifest = Array.new
 		scene_productgroups_keys(scene).each do |group|
@@ -105,7 +105,17 @@ class AssetAPI < BasePage
 				@manifest.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["manifest"])
 			end
 		end
-		puts @manifest.uniq.first
+		@manifest.uniq.first
+	end
+
+	def self.scene_mobile_manifest_url(scene)
+		@manifest = Array.new
+		scene_productgroups_keys(scene).each do |group|
+			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
+			list.each do |key|
+				@manifest.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["mobileManifest"])
+			end
+		end
 		@manifest.uniq.first
 	end
 
