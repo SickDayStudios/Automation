@@ -136,9 +136,9 @@ describe ":: Under Armour Product Backend API Test ::" do
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
 									end
+									expect("#{scene} :: #{product} :: #{mobile_manifest_keys}").to include(sceneKey)
 								end
 								expect("#{scene} :: #{product} :: #{manifest_keys}").to include(sceneKey)
-								expect("#{scene} :: #{product} :: #{mobile_manifest_keys}").to include(sceneKey)
 							end
 						end
 					end
@@ -218,9 +218,9 @@ describe ":: ICON Product Backend API Test ::" do
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
 									end
+									expect("#{scene} :: #{product} :: #{mobile_manifest_keys}").to include(sceneKey)
 								end
 								expect("#{scene} :: #{product} :: #{manifest_keys}").to include(sceneKey)
-								expect("#{scene} :: #{product} :: #{mobile_manifest_keys}").to include(sceneKey)
 							end
 						end
 					end
@@ -300,9 +300,9 @@ describe ":: CamelBak Product Backend API Test ::" do
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
 									end
+									expect("#{scene} :: #{product} :: #{mobile_manifest_keys}").to include(sceneKey)
 								end
 								expect("#{scene} :: #{product} :: #{manifest_keys}").to include(sceneKey)
-								expect("#{scene} :: #{product} :: #{mobile_manifest_keys}").to include(sceneKey)
 							end
 						end
 					end
@@ -382,9 +382,9 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
 									end
+									expect("#{scene} :: #{product} :: #{mobile_manifest_keys}").to include(sceneKey)
 								end
 								expect("#{scene} :: #{product} :: #{manifest_keys}").to include(sceneKey)
-								expect("#{scene} :: #{product} :: #{mobile_manifest_keys}").to include(sceneKey)
 							end
 						end
 					end
