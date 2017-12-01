@@ -137,15 +137,13 @@ class AssetAPI < BasePage
 	# =>  grabs all the keys from the manifest parameters array
 	def self.manifest_parameter_keys(product, manifest)
 		if product.nil?
-			puts "Missing Product Data"
 		elsif manifest.nil?
-			puts "Missing Manifest"
 		else
 			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
 			uri = URI(url)
 			response = Net::HTTP.get(uri)
 			@specs = JSON.parse(response)
-			manifest = @specs["parameters"].keys
+			result = @specs["parameters"].keys
 		end
 	end
 
@@ -158,7 +156,7 @@ class AssetAPI < BasePage
 			uri = URI(url)
 			response = Net::HTTP.get(uri)
 			@specs = JSON.parse(response)
-			manifest = @specs["parameters"].values
+			result = @specs["parameters"].values
 		end
 	end
 
