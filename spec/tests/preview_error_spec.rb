@@ -11,7 +11,7 @@ describe ":: Product Preview Test ::" do
 		@page.collect_links.each do |link|
 			if link.include? ("extra" || "test" || "dummy" || "asset" || "scene.json" || "firstset")
 			else
-				@arr.push(link.href)
+				@arr.push(link)
 			end
 		end
 	end
