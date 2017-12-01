@@ -30,6 +30,9 @@ class AssetAPI < BasePage
 		if $eb_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'eddie-bauer'
 		end
+		if $bm_scene_files.include? "#{scene}"
+			ENV['SITE'] = 'benchmade'
+		end
 		url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
@@ -199,6 +202,8 @@ class AssetAPI < BasePage
 			@shaders
 		end
 	end
+
+	$bm_scene_files = ['bmk-prs-knives']
 
 	$approved_shaders = ['regionmap','artbox','standard','pshadow']
 
