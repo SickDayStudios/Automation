@@ -132,6 +132,7 @@ class AssetAPI < BasePage
 		file = File.open("./lib/helpers/recursive_feature_traversal.js", "r")
 		features = file.read
 		result = $driver.execute_script(features, @specs["contents"]["rootFeature"])
+		result.reject { |r| r.empty? }
 	end
 
 	# =>  grabs all the keys from the manifest parameters array

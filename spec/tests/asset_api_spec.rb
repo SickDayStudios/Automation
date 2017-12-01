@@ -28,7 +28,7 @@ describe ":: GK-Elite Product Backend API Test ::" do
 	end
 
 	$gk_scene_files.each do |scene|
-		it "GK-Elite :: #{scene} :: Test Complete" do
+		it "GK-Elite :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
@@ -106,7 +106,7 @@ describe ":: Benchmade Product Backend API Test ::" do
 	end
 
 	$bm_scene_files.each do |scene|
-		it "BENCHMADE :: #{scene} :: Test Complete" do
+		it "BENCHMADE :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
@@ -183,7 +183,7 @@ describe ":: Under Armour Product Backend API Test ::" do
 	end
 
 	$uau_scene_files.each do |scene|
-		it "Under-Armour :: #{scene} :: Test Complete" do
+		it "Under-Armour :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
@@ -260,7 +260,7 @@ describe ":: ICON Product Backend API Test ::" do
 	end
 
 	$uaf_scene_files.each do |scene|
-		it "UA-ICON :: #{scene} :: Test Complete" do
+		it "UA-ICON :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
@@ -337,7 +337,7 @@ describe ":: CamelBak Product Backend API Test ::" do
 	end
 
 	$cb_scene_files.each do |scene|
-		it "CamelBak :: #{scene} :: Test Complete" do
+		it "CamelBak :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
@@ -414,7 +414,7 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 	end
 
 	$eb_scene_files.each do |scene|
-		it "Eddie-Bauer :: #{scene} :: Test Complete" do
+		it "Eddie-Bauer :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)

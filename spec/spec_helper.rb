@@ -13,18 +13,16 @@ require 'net/http'
 require "json_matchers/rspec"
 
 
-OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-
-@screenshotfolder = "./reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
-unless File.directory?(@screenshotfolder)
-	FileUtils.mkdir_p(@screenshotfolder)
-end
-
 RSpec.configure do |config|
 	config.shared_context_metadata_behavior = :apply_to_host_groups
 
 	#=> Before any tests are run, this block is run
 	config.before(:all) do
+		OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+		@screenshotfolder = "./reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
+		unless File.directory?(@screenshotfolder)
+			FileUtils.mkdir_p(@screenshotfolder)
+		end
 		$driver = Watir::Browser.new ENV['BROWSER'].to_sym
 	end
 
@@ -44,7 +42,7 @@ RSpec.configure do |config|
 
 	config.after(:each) do |example|
 		if example.exception
-			$driver.screenshot.save "./reports/#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
+			$driver.screenshot.save "#{@screenshotfolder}/fail-#{Time.new.strftime("%d%b%Y-%H%M%S")}.png"
 		end
 	end
 
