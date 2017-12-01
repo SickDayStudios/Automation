@@ -31,12 +31,15 @@ describe ":: GK-Elite Product Backend API Test ::" do
 		it "GK-Elite :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
+				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
 					puts " - #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
+					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
 					manifest_values = AssetAPI.manifest_parameter_values(product,manifest)
+					mobile_manifest_values = AssetAPI.manifest_parameter_values(product,mobile_manifest)
 					aggregate_failures "#{ENV['SITE']} :: #{scene} :: #{product}" do
 						if pairs.nil?
 						else
@@ -104,14 +107,17 @@ describe ":: Benchmade Product Backend API Test ::" do
 
 	$bm_scene_files.each do |scene|
 		it "BENCHMADE :: #{scene} :: Test Complete" do
-aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
+				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
 					puts " - #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
+					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
 					manifest_values = AssetAPI.manifest_parameter_values(product,manifest)
+					mobile_manifest_values = AssetAPI.manifest_parameter_values(product,mobile_manifest)
 					aggregate_failures "#{ENV['SITE']} :: #{scene} :: #{product}" do
 						if pairs.nil?
 						else
@@ -178,14 +184,17 @@ describe ":: Under Armour Product Backend API Test ::" do
 
 	$uau_scene_files.each do |scene|
 		it "Under-Armour :: #{scene} :: Test Complete" do
-aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
+				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
 					puts " - #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
+					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
 					manifest_values = AssetAPI.manifest_parameter_values(product,manifest)
+					mobile_manifest_values = AssetAPI.manifest_parameter_values(product,mobile_manifest)
 					aggregate_failures "#{ENV['SITE']} :: #{scene} :: #{product}" do
 						if pairs.nil?
 						else
@@ -252,14 +261,17 @@ describe ":: ICON Product Backend API Test ::" do
 
 	$uaf_scene_files.each do |scene|
 		it "UA-ICON :: #{scene} :: Test Complete" do
-aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
+				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
 					puts " - #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
+					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
 					manifest_values = AssetAPI.manifest_parameter_values(product,manifest)
+					mobile_manifest_values = AssetAPI.manifest_parameter_values(product,mobile_manifest)
 					aggregate_failures "#{ENV['SITE']} :: #{scene} :: #{product}" do
 						if pairs.nil?
 						else
@@ -328,12 +340,15 @@ describe ":: CamelBak Product Backend API Test ::" do
 		it "CamelBak :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
+				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
 					puts " - #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
+					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
 					manifest_values = AssetAPI.manifest_parameter_values(product,manifest)
+					mobile_manifest_values = AssetAPI.manifest_parameter_values(product,mobile_manifest)
 					aggregate_failures "#{ENV['SITE']} :: #{scene} :: #{product}" do
 						if pairs.nil?
 						else
@@ -402,12 +417,15 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 		it "Eddie-Bauer :: #{scene} :: Test Complete" do
 			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
+				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
 					puts " - #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
+					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
 					manifest_values = AssetAPI.manifest_parameter_values(product,manifest)
+					mobile_manifest_values = AssetAPI.manifest_parameter_values(product,mobile_manifest)
 					aggregate_failures "#{ENV['SITE']} :: #{scene} :: #{product}" do
 						if pairs.nil?
 						else
