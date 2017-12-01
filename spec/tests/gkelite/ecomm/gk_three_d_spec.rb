@@ -8,7 +8,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		# DeferredGarbageCollection.start
 		@page = CustomizerPage.new
 		BasePage.set_base_url
-    	BasePage.resize_window
+    	
 	end
 
 	# after(:each) do

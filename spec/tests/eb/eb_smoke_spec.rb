@@ -5,7 +5,7 @@ describe "Eddie Bauer Smoke Test: " do
 	before(:all) do
 		BasePage.set_user
 		BasePage.set_base_url
-		BasePage.resize_window
+		
 		@page = EBBasePage.new
 	end
 

@@ -5,7 +5,7 @@ describe "UA Icon Schema Test" do
 	before(:all) do
 		BasePage.set_user
     	BasePage.set_base_url
-    	BasePage.resize_window
+    	
 		@page = IconBasePage.new
 		@readable_id = @page.recipe_id_list
 	end

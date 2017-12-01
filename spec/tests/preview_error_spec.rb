@@ -5,7 +5,7 @@ describe "Product Preview Test: " do
 
 	before(:all) do
 		BasePage.set_base_url
-    	BasePage.resize_window
+    	
     	BasePage.navigate_to_starting_page
 		@page = PreviewBasePage.new
 		@arr = Array.new
