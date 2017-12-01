@@ -9,7 +9,7 @@ describe ":: Product Preview Test ::" do
 		@page = PreviewBasePage.new
 		@arr = Array.new
 		@page.collect_links.each do |link|
-			if link.text.include? ("extra" || "test" || "dummy" || "asset" || "scene.json" || "firstset")
+			if link.include? ("extra" || "test" || "dummy" || "asset" || "scene.json" || "firstset")
 			else
 				@arr.push(link.href)
 			end
