@@ -18,17 +18,15 @@ describe ":: Product Preview Test ::" do
 
 
 	it ":: Product Preview Test Complete ::" do
+		aggregate_failures "Page Errors" do
 			@arr.each do |href|
-				aggregate_failures "Page Errors Present On: '#{href}'" do
+				puts ""
 				puts "- Testing Asset URL: #{href}"
 				@page.goto ("#{href}")
-				begin @page.wait_until { @page.shader_properties_element.exists? && @page.json_manifest_element.exists? }
-					sleep 10
-				rescue Watir::Wait::TimeoutError, Watir::Exception::UnknownObjectException, Timeout::Error
-					false
-					BasePage.print_js_errors
-				end
-				expect(BasePage.print_js_errors).not_to raise_error
+				@page.wait_until { @page.shader_properties_element.exists? && @page.json_manifest_element.exists? }
+				sleep 10
+				BasePage.print_js_errors
+				expect(BasePage.raise_js_errors).not_to raise_error
 			end
 		end
 	end
