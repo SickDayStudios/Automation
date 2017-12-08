@@ -54,15 +54,15 @@ class BasePage
 	end
 
 	def self.collect_links
-		$driver.links
+		$driver.links.collect
 	end
 
 	def self.collect_links_href
-		$driver.links.map(&:href)
+		$driver.links.collect(&:href)
 	end
 
 	def self.collect_links_text
-		$driver.links.map(&:text)
+		$driver.links.collect(&:text)
 	end
 
 	def self.url

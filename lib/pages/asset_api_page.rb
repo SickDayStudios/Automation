@@ -19,7 +19,7 @@ class AssetAPI < BasePage
 			@handles.push(AssetAPI.scene_productoptions_keys(scene))
 			@handles.uniq
 		end
-		@handles
+		@handles.flatten
 	end
 
 

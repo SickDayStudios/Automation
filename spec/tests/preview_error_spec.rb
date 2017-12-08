@@ -1,6 +1,7 @@
 require './lib/pages/preview/preview_base_page'
 require './lib/pages/asset_api_page'
 require './lib/pages/base_page'
+require 'set'
 
 
 describe ":: Product Preview Test ::" do
@@ -10,23 +11,20 @@ describe ":: Product Preview Test ::" do
 		@links = Array.new
 		@page = PreviewBasePage.new
 		@page.goto "http://preview.madetoordercustomizer.com/"
-		@hrefs = BasePage.collect_links_href
+		@href = BasePage.collect_links_href
 		@text = BasePage.collect_links_text
-		@hrefs.zip(@texts).each do |href, text|
-			if @handles.include? "#{text}"
-				if text.include? "extra"||"test"||"dummy"||"asset"||"scene.json"||"firstset"
-				else
-					@links.push(href)
-				end
+		@href.zip(@text).each do |href, text|
+			if @handles.include?(text)
+				@links.push(href)
 			end
 		end
 	end
 
-
-
 	it ":: Product Preview Test Complete ::" do
-		aggregate_failures "Failure due to PageError" do
-			puts @links
+		# puts "HANDLES: #{@handles}"
+		# puts "HREFS: #{@href}"
+		# puts "TEXT: #{@text}"
+		aggregate_failures "Asset Tested" do
 			@links.each do |url|
 				puts ""
 				puts "- Testing: #{url}"
