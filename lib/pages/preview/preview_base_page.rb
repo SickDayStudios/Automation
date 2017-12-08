@@ -1,4 +1,6 @@
-class PreviewBasePage < BasePage
+require './lib/pages/asset_api_page'
+
+class PreviewBasePage < BasePage::AssetAPI
 	include PageObject
 
 	select_list(:client_dropdown, id: "SelectedClientHandle")

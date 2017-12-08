@@ -53,8 +53,16 @@ class BasePage
 		$driver.driver.manage.window.move_to(0, 0)
 	end
 
-	def collect_links
+	def self.collect_links
+		$driver.links
+	end
+
+	def self.collect_links_href
 		$driver.links.map(&:href)
+	end
+
+	def self.collect_links_text
+		$driver.links.map(&:text)
 	end
 
 	def self.url
