@@ -24,15 +24,20 @@ describe ":: Product Preview Test ::" do
 		# puts "HANDLES: #{@handles}"
 		# puts "HREFS: #{@href}"
 		# puts "TEXT: #{@text}"
-		aggregate_failures "Asset Tested" do
+		aggregate_failures "" do
 			@links.each do |url|
-				puts ""
-				puts "- Testing: #{url}"
-				@page.goto "#{url}"
-				@page.wait_until { @page.shader_properties_element.exists? && @page.json_manifest_element.exists? }
-				sleep 10
-				BasePage.print_js_errors
-				expect(BasePage.raise_js_errors).not_to raise_error
+				aggregate_failures "Failed: #{url}" do
+					puts ""
+					puts "- Testing: #{url}"
+					@page.goto "#{url}"
+					@page.wait_until { @page.shader_properties_element.exists? && @page.json_manifest_element.exists? }
+					sleep 10
+					if BasePage.raise_js_errors.empty? || BasePage.raise_js_errors.nil?
+						puts "Passed"
+					else
+						puts BasePage.print_js_errors
+					end
+				end
 			end
 		end
 	end
