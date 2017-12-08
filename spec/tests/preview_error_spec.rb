@@ -24,7 +24,7 @@ describe ":: Product Preview Test ::" do
 		# puts "HANDLES: #{@handles}"
 		# puts "HREFS: #{@href}"
 		# puts "TEXT: #{@text}"
-		aggregate_failures "" do
+		aggregate_failures "PageError Spec :: " do
 			@links.each do |url|
 				aggregate_failures "Failed: #{url}" do
 					puts ""
