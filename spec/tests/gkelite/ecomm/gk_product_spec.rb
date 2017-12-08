@@ -1,59 +1,18 @@
 require "./lib/pages/gkelite/gk_product_page"
 require "./lib/pages/gkelite/gk_cart_page"
 require "./lib/helpers/gkelite/gk_cart_lightbox"
-require "/lib/pages/gkelite/customizer_page"
-require "./lib/helpers/deferred_garbage_collection"
+require "./lib/pages/gkelite/customizer_page"
 
-describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase}:#{ENV['USER_TYPE'].upcase} - GK Product Feed Test:" do
-
-
-	context 'Validate Backend Data: ' do
-		$stock_products.each do |id|
-			it "- #{id}" do
-				url = "https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"
-				uri = URI(url)
-				response = Net::HTTP.get(uri)
-				specs = JSON.parse(response)
-				JSON::Validator.fully_validate('./lib/config/gk_product_schema.json', specs)
-			end
-		end
-
-		$three_d_products.each do |id|
-			it "- #{id}" do
-				url = "https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"
-				uri = URI(url)
-				response = Net::HTTP.get(uri)
-				specs = JSON.parse(response)
-				JSON::Validator.fully_validate('./lib/config/gk_product_schema.json', specs)
-			end
-		end
-
-		$two_d_products.each do |id|
-			it "- #{id}" do
-				url = "https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"
-				uri = URI(url)
-				response = Net::HTTP.get(uri)
-				specs = JSON.parse(response)
-				JSON::Validator.fully_validate('./lib/config/gk_product_schema.json', specs)
-			end
-		end
-	end
-end
 
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase}:#{ENV['USER_TYPE'].upcase} - GK Product GUI Test:" do
 
 	before(:all) do
-		# DeferredGarbageCollection.start
 		@page = GKProductPage.new
-		# @customizer = CustomizerPage.new
-		# BasePage.navigate_to_starting_page
+		@customizer = CustomizerPage.new
+		BasePage.navigate_to_starting_page
 		# if ENV['ENVIRONMENT'] == 'prod'
 		# 	@page.enter_password
 		# end
-	end
-
-	after(:all) do
-		DeferredGarbageCollection.reconsider
 	end
 
 	context "Verify Front End GUI: " do

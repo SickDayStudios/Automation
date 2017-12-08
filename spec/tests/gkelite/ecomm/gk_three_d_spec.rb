@@ -1,5 +1,5 @@
 require "./lib/pages/gkelite/customizer_page"
-# require "./lib/helpers/deferred_garbage_collection"
+# 
 
 
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK Cheer 3D Customizer Test: " do
