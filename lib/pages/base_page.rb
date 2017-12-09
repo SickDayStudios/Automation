@@ -54,15 +54,21 @@ class BasePage
 	end
 
 	def self.collect_links
-		$driver.links.collect
+		links = $driver.links.collect
+		results = links.reject { |r| r.include?("extra") }
+		return results
 	end
 
 	def self.collect_links_href
-		$driver.links.collect(&:href)
+		hrefs = $driver.links.collect(&:href)
+		results = hrefs.reject { |r| r.include?("extra") }
+		return results
 	end
 
 	def self.collect_links_text
-		$driver.links.collect(&:text)
+		text = $driver.links.collect(&:text)
+		results = text.reject { |r| r.include?("extra") }
+		return results
 	end
 
 	def self.url
