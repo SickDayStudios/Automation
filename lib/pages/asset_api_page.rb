@@ -12,15 +12,16 @@ class AssetAPI < BasePage
 			# benchmade
 			# leatherman
 
-	def self.get_product_handles
-		@links = Array.new
-		@handles = Array.new
-		$scene_files.each do |scene|
-			@handles.push(AssetAPI.scene_productoptions_keys(scene))
-			@handles.uniq
-		end
-		@handles.flatten
-	end
+			def self.get_product_handles
+				@links = Array.new
+				@handles = Array.new
+				$scene_files.each do |scene|
+					@handles.push(AssetAPI.scene_productoptions_keys(scene))
+					@handles.uniq
+					@handles.reject { |r| r.include?("extra") }
+				end
+				@handles.flatten
+			end
 
 
 	# =>  gets SceneFile product groups to interpolate into path (eg. Tops, Bottoms, Socks, etc.)
@@ -65,7 +66,8 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = @specs["productGroups"]["#{group}"]["productOptions"].keys
 			list.each do |key|
-				if (key.include?("extra")) == false
+				if (key.include?("extra"))
+				else
 					@options.push(key)
 				end
 			end
@@ -79,7 +81,10 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				@connections.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].keys)
+				if (key.include?("extra"))
+				else
+					@connections.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].keys)
+				end
 			end
 		end
 		@connections
@@ -91,7 +96,10 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				@values.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].values)
+				if (key.include?("extra"))
+				else
+					@values.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].values)
+				end
 			end
 		end
 		@values
@@ -103,7 +111,10 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				@pairs.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"])
+				if (key.include?("extra"))
+				else
+					@pairs.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"])
+				end
 			end
 		end
 		@pairs
@@ -218,7 +229,7 @@ class AssetAPI < BasePage
 
 	$gk_scene_files = ['gk-prs-bottoms','gk-prs-cheer','gk-prs-gym','ua-prs-cheer','ua-prs-gym','ua-prs-warmups']
 
-	$uau_scene_files = ['uau-prs-hockey','uau-prs-lacrosse','uau-prs-volleyball','uau-prs-track','uau-prs-soccer','uau-prs-softball','uau-prs-training','uau-prs-wrestling','uau-prs-baseball','uau-prs-football','uau-prs-basketball','uau-prs-football-brawler','uau-prs-sideline']
+	$uau_scene_files = ['uau-prs-football','uau-prs-baseball','uau-prs-basketball','uau-prs-hockey','uau-prs-lacrosse','uau-prs-volleyball','uau-prs-track','uau-prs-soccer','uau-prs-softball','uau-prs-training','uau-prs-wrestling','uau-prs-football-brawler','uau-prs-sideline']
 
 	$uaf_scene_files = ['uaf-prs-curry1-mens','uaf-prs-curry1-youth','uaf-prs-curry25-mens','uaf-prs-icon-sackpack','uaf-prs-drive4low-mens','uaf-prs-charged247-mens','uaf-prs-charged247-womens','uaf-prs-curry1low-mens','uaf-prs-drive4-mens','uaf-prs-drive4-womens','uaf-prs-clutchfit-mens','uaf-prs-clutchfit-womens','uaf-prs-curry25-mens','uaf-prs-highlight-mens']
 
