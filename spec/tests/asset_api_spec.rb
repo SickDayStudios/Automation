@@ -14,14 +14,14 @@ describe ":: GK-Elite Product Backend API Test ::" do
 	after(:all) do
 		if @v.nil?
 			puts ""
-			puts ">>  0 Product Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Product Data Connections!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
 		end
 		if @k.nil?
 			puts ""
-			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Manifest Data!!"
 			puts ""
 		else
 			puts ""
@@ -32,7 +32,7 @@ describe ":: GK-Elite Product Backend API Test ::" do
 
 	$gk_scene_files.each do |scene|
 		it "GK-Elite :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
-			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated productData and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -49,13 +49,13 @@ describe ":: GK-Elite Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "#{sceneKey} : ['#{sceneValue}'] Does not match any Product Manifest['parameter']"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "'#{sceneValue}' Not found in Product Data"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -63,13 +63,13 @@ describe ":: GK-Elite Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "'#{sceneKey}' Not found in Product Manifest"
+									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -92,14 +92,14 @@ describe ":: Benchmade Product Backend API Test ::" do
 	after(:all) do
 		if @v.nil?
 			puts ""
-			puts ">>  0 Product Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Product Data Connections!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
 		end
 		if @k.nil?
 			puts ""
-			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Manifest Data!!"
 			puts ""
 		else
 			puts ""
@@ -110,7 +110,7 @@ describe ":: Benchmade Product Backend API Test ::" do
 
 	$bm_scene_files.each do |scene|
 		it "BENCHMADE :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
-			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated productData and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -127,13 +127,13 @@ describe ":: Benchmade Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "#{sceneKey} : ['#{sceneValue}'] Does not match any Product Manifest['parameter']"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "'#{sceneValue}' Not found in Product Data"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -141,13 +141,13 @@ describe ":: Benchmade Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "'#{sceneKey}' Not found in Product Manifest"
+									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -169,14 +169,14 @@ describe ":: Under Armour Product Backend API Test ::" do
 	after(:all) do
 		if @v.nil?
 			puts ""
-			puts ">>  0 Product Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Product Data Connections!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
 		end
 		if @k.nil?
 			puts ""
-			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Manifest Data!!"
 			puts ""
 		else
 			puts ""
@@ -187,7 +187,7 @@ describe ":: Under Armour Product Backend API Test ::" do
 
 	$uau_scene_files.each do |scene|
 		it "Under-Armour :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
-			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated productData and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -204,13 +204,13 @@ describe ":: Under Armour Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "#{sceneKey} : ['#{sceneValue}'] Does not match any Product Manifest['parameter']"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "'#{sceneValue}' Not found in Product Data"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -218,13 +218,13 @@ describe ":: Under Armour Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "'#{sceneKey}' Not found in Product Manifest"
+									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -246,14 +246,14 @@ describe ":: ICON Product Backend API Test ::" do
 	after(:all) do
 		if @v.nil?
 			puts ""
-			puts ">>  0 Product Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Product Data Connections!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
 		end
 		if @k.nil?
 			puts ""
-			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Manifest Data!!"
 			puts ""
 		else
 			puts ""
@@ -264,7 +264,7 @@ describe ":: ICON Product Backend API Test ::" do
 
 	$uaf_scene_files.each do |scene|
 		it "UA-ICON :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
-			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated productData and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -281,13 +281,13 @@ describe ":: ICON Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "#{sceneKey} : ['#{sceneValue}'] Does not match any Product Manifest['parameter']"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "'#{sceneValue}' Not found in Product Data"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -295,13 +295,13 @@ describe ":: ICON Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "'#{sceneKey}' Not found in Product Manifest"
+									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -323,14 +323,14 @@ describe ":: CamelBak Product Backend API Test ::" do
 	after(:all) do
 		if @v.nil?
 			puts ""
-			puts ">>  0 Product Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Product Data Connections!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
 		end
 		if @k.nil?
 			puts ""
-			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Manifest Data!!"
 			puts ""
 		else
 			puts ""
@@ -341,7 +341,7 @@ describe ":: CamelBak Product Backend API Test ::" do
 
 	$cb_scene_files.each do |scene|
 		it "CamelBak :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
-			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated productData and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -358,13 +358,13 @@ describe ":: CamelBak Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "#{sceneKey} : ['#{sceneValue}'] Does not match any Product Manifest['parameter']"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "'#{sceneValue}' Not found in Product Data"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -372,13 +372,13 @@ describe ":: CamelBak Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "'#{sceneKey}' Not found in Product Manifest"
+									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -400,14 +400,14 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 	after(:all) do
 		if @v.nil?
 			puts ""
-			puts ">>  0 Product Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Product Data Connections!!"
 		else
 			puts ""
-			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in ProductData"
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
 		end
 		if @k.nil?
 			puts ""
-			puts ">>  0 Manifest Data discrepancies found!!"
+			puts ">>  0 Discrepancies found in Manifest Data!!"
 			puts ""
 		else
 			puts ""
@@ -418,7 +418,7 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 
 	$eb_scene_files.each do |scene|
 		it "Eddie-Bauer :: #{ENV['ENVIRONMENT']} :: #{scene} :: Test Complete" do
-			aggregate_failures "Verify #{scene} Product 'connections' exist in associated Product Data and Manifest" do
+			aggregate_failures "Verify #{scene} Product 'connections' exist in associated productData and Manifest" do
 				manifest = AssetAPI.scene_manifest_url(scene)
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
@@ -435,13 +435,13 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "#{sceneKey} : ['#{sceneValue}'] Does not match any Product Manifest['parameter']"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "'#{sceneValue}' Not found in Product Data"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -449,13 +449,13 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "#{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest"
+										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "'#{sceneKey}' Not found in Product Manifest"
+									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
