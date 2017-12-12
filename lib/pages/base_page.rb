@@ -17,8 +17,8 @@ class BasePage
 		log = $driver.driver.manage.logs.get(:browser)
 		errors = log.select{ |entry| entry.level.eql? 'SEVERE' }
 		if errors.count > 0
-			javascript_errors = errors.map(&:message).join("\n\n")
-			puts "\nPageError:\n#{javascript_errors}"
+			javascript_errors = errors.map(&:message).join("\n")
+			puts "PageError:\n#{javascript_errors}"
 		end
 	end
 
