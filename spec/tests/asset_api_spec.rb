@@ -37,7 +37,7 @@ describe ":: GK-Elite Product Backend API Test ::" do
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
-					puts " - #{scene} :: #{product}"
+					puts " - #{ENV['SITE']} :: #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
 					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
@@ -49,13 +49,13 @@ describe ":: GK-Elite Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
+										puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
+										puts "      '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -63,13 +63,13 @@ describe ":: GK-Elite Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
+										puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
+									puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -115,7 +115,7 @@ describe ":: Benchmade Product Backend API Test ::" do
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
-					puts " - #{scene} :: #{product}"
+					puts " - #{ENV['SITE']} :: #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
 					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
@@ -127,13 +127,13 @@ describe ":: Benchmade Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
+										puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
+										puts "      '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -141,13 +141,13 @@ describe ":: Benchmade Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
+										puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
+									puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -192,7 +192,7 @@ describe ":: Under Armour Product Backend API Test ::" do
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
-					puts " - #{scene} :: #{product}"
+					puts " - #{ENV['SITE']} :: #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
 					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
@@ -204,13 +204,13 @@ describe ":: Under Armour Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
+										puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
+										puts "      '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -218,13 +218,13 @@ describe ":: Under Armour Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
+										puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
+									puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -269,7 +269,7 @@ describe ":: ICON Product Backend API Test ::" do
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
-					puts " - #{scene} :: #{product}"
+					puts " - #{ENV['SITE']} :: #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
 					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
@@ -281,13 +281,13 @@ describe ":: ICON Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
+										puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
+										puts "      '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -295,13 +295,13 @@ describe ":: ICON Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
+										puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
+									puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -346,7 +346,7 @@ describe ":: CamelBak Product Backend API Test ::" do
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
-					puts " - #{scene} :: #{product}"
+					puts " - #{ENV['SITE']} :: #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
 					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
@@ -358,13 +358,13 @@ describe ":: CamelBak Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
+										puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
+										puts "      '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -372,13 +372,13 @@ describe ":: CamelBak Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
+										puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
+									puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
@@ -423,7 +423,7 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 				mobile_manifest = AssetAPI.scene_mobile_manifest_url(scene)
 				AssetAPI.scene_productoptions_keys(scene).zip(AssetAPI.scene_connections(scene)).each do |product, pairs|
 					puts ""
-					puts " - #{scene} :: #{product}"
+					puts " - #{ENV['SITE']} :: #{scene} :: #{product}"
 					product_handles = AssetAPI.product_handle_values(product)
 					manifest_keys = AssetAPI.manifest_parameter_keys(product,manifest)
 					mobile_manifest_keys = AssetAPI.manifest_parameter_keys(product,mobile_manifest)
@@ -435,13 +435,13 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 							pairs.each do |sceneKey, sceneValue|
 								if sceneValue.is_a? Array
 									if manifest_values.include?(sceneValue) == false
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
+										puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
 										expect(manifest_values).to include(sceneValue)
 									end
 								else
 									if product_handles.include?(sceneValue) == false
 										@v.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneValue}' Not found in Product Data Connections"
+										puts "      '#{sceneValue}' Not found in Product Data Connections"
 										expect(product_handles).to include(sceneValue)
 									end
 								end
@@ -449,13 +449,13 @@ describe ":: Eddie Bauer Product Backend API Test ::" do
 								else
 									if mobile_manifest_keys.include?(sceneKey) == false
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-										puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in mobileManifest Parameters"
+										puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
 										expect(mobile_manifest_keys).to include(sceneKey)
 									end
 								end
 								if manifest_keys.include?(sceneKey) == false
 									@k.push("#{ENV['SITE']}:#{scene}:#{product}")
-									puts "      #{ENV['SITE']}:#{scene}:#{product}: '#{sceneKey}' Not found in Product Manifest Parameters"
+									puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
 									expect(manifest_keys).to include(sceneKey)
 								end
 							end
