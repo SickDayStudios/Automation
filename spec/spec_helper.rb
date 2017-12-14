@@ -12,7 +12,6 @@ require 'net/http'
 # require 'json-schema'
 # require 'json-schema-rspec'
 require "json_matchers/rspec"
-require 'fastercsv'
 require 'csv'
 
 
