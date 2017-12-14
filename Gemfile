@@ -51,6 +51,7 @@ group :development, :test do
   gem 'coderay'
   # gem 'json-schema-rspec'
   gem 'json_matchers'
+  gem 'fastercsv'
   # gem 'json-schema'
   # gem 'appium_lib'
   # gem 'appium_console'

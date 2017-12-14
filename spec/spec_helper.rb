@@ -7,10 +7,13 @@ require 'openssl'
 require 'rspec_junit_formatter'
 require 'fileutils'
 require 'json'
+require 'csv'
 require 'net/http'
 # require 'json-schema'
 # require 'json-schema-rspec'
 require "json_matchers/rspec"
+require 'fastercsv'
+require 'csv'
 
 
 RSpec.configure do |config|
@@ -19,11 +22,13 @@ RSpec.configure do |config|
 	#=> Before any tests are run, this block is run
 	config.before(:all) do
 		OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-		@screenshotfolder = "./reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
-		unless File.directory?(@screenshotfolder)
-			FileUtils.mkdir_p(@screenshotfolder)
+		$screenshotfolder = "./reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
+		$csv_file = "testResult_#{Time.new.strftime("%d%b%Y-%H%M%S")}.csv"
+		unless File.directory?($screenshotfolder)
+			FileUtils.mkdir_p($screenshotfolder)
 		end
 		$driver = Watir::Browser.new ENV['BROWSER'].to_sym
+		BasePage.create_csv
 	end
 
 	# config.before(:each) do |example|
@@ -42,7 +47,7 @@ RSpec.configure do |config|
 
 	config.after(:each) do |example|
 		if example.exception
-			$driver.screenshot.save "#{@screenshotfolder}/fail-#{Time.new.strftime("%d%b%Y-%H%M%S")}.png"
+			$driver.screenshot.save "#{$screenshotfolder}/fail-#{Time.new.strftime("%d%b%Y-%H%M%S")}.png"
 		end
 	end
 

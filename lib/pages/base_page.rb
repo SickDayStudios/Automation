@@ -99,6 +99,18 @@ class BasePage
 		BasePage.navigate_to_starting_page
 	end
 
+	def self.create_csv
+		CSV.open("#{$screenshotfolder}/#{$csv_file}", "wb") do |csv|
+  			csv << ["Summary","Issue Type","Assignee","Status","Priority","Reporter","Creator","Due Date","Description","Custom field (Epic Link)","Outward Issue Link"]
+  		end
+	end
+
+	def self.update_csv(summary, description)
+		CSV.open("#{$screenshotfolder}/#{$csv_file}", "a+") do |csv| 
+			csv << ["#{summary}","Task","Automatic","To Do","Normal","cwilliams","cwilliams","","#{description}","",""]
+		end
+	end
+
 
 	def self.set_user
 		case ENV['SITE'].to_sym

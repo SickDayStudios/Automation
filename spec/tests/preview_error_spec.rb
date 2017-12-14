@@ -27,7 +27,8 @@ describe ":: Product Preview Test ::" do
 					@page.goto "#{url}"
 					@page.wait_until { @page.shader_properties_element.exists? && @page.json_manifest_element.exists? }
 					sleep 10
-					puts BasePage.print_js_errors
+					# @page.screenshot.save "#{$screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
+					puts BasePage.print_js_errors.length
 				end
 			end
 		end
