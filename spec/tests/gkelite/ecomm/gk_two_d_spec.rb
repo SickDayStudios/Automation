@@ -15,7 +15,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	context "Check Missing Blob" do
 		$two_d_products.each do |product|
 			it "Blob: #{product}" do
-				@page.goto "https://staging-gkelite.pollinate.com/products/#{product}/?view=customizer-2d&color-code=902"
+				@page.goto "https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/products/#{product}/?view=customizer-2d"
 				@page.wait_until { @page.svg_viewer? }
 				expect(@page.missing_blob.exists?).to eq(false)
 			end
