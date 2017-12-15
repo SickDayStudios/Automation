@@ -76,6 +76,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				expect(@product_page.url).to eq($base_url+'/cart')
 				@cart_page.secure_checkout
 				expect(@cart_page.signin_popup?).to eq(true)
+				@login_page.select_email_login_radio
 				@cart_page.login_with($username, $password)
 				@cart_page.wait_until { @cart_page.url == $base_url+'/cart' }
 				expect(@cart_page.url).to include('/cart')
