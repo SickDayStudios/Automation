@@ -27,7 +27,6 @@ RSpec.configure do |config|
 			FileUtils.mkdir_p($screenshotfolder)
 		end
 		$driver = Watir::Browser.new ENV['BROWSER'].to_sym
-		BasePage.create_csv
 	end
 
 	# config.before(:each) do |example|
