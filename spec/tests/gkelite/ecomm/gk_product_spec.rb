@@ -9,6 +9,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	before(:all) do
 		@page = GKProductPage.new
 		@customizer = CustomizerPage.new
+		BasePage.set_base_url
 		BasePage.navigate_to_starting_page
 		# if ENV['ENVIRONMENT'] == 'prod'
 		# 	@page.enter_password
