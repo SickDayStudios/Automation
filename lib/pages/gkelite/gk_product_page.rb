@@ -39,6 +39,7 @@ button(:size_am, css: "#product-attributes-container > form > div.size-selector.
 div(:product_thumbnails, id: "product-thumbnails-container")
 image(:product_image, id: "img-0")
 image(:placeholder_image, css: '#product-images-container > div > img')
+div(:four_oh_four, class: ["four-oh-four"])
 
 
 # Fit & Size
