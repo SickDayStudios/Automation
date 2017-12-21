@@ -16,23 +16,32 @@ class AssetAPI < BasePage
 	def self.scene_productgroups_keys(scene)
 		if $gk_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'gk-elite'
+			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $uau_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'under-armour'
+			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $uaf_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'ua-icon'
+			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $cb_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'camelbak'
+			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $eb_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'eddie-bauer'
+			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $bm_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'benchmade'
+			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
-		url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
+		if $sr_scene_files.include? "#{scene}"
+			ENV['SITE'] = 'shed-rain'
+			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/scene.json"
+		end
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
@@ -210,6 +219,8 @@ class AssetAPI < BasePage
 			@shaders
 		end
 	end
+
+	$sr_scene_files = ['shed-rain']
 
 	$bm_scene_files = ['bmk-prs-knives']
 
