@@ -1,27 +1,15 @@
 class AssetAPI < BasePage
 
-	# =>  client/scenelib options:
-			# camelbak
-			# eddie-bauer
-			# ua-icon
-			# under-armour
-			# gk-elite
-			# giro
-			# timex
-			# shed-rain
-			# benchmade
-			# leatherman
-
-			def self.get_product_handles
-				@links = Array.new
-				@handles = Array.new
-				$scene_files.each do |scene|
-					@handles.push(AssetAPI.scene_productoptions_keys(scene))
-					@handles.uniq
-					@handles.reject { |r| r.include?("extra") }
-				end
-				@handles.flatten
-			end
+	def self.get_product_handles
+		@links = Array.new
+		@handles = Array.new
+		$scene_files.each do |scene|
+			@handles.push(AssetAPI.scene_productoptions_keys(scene))
+			@handles.uniq
+			@handles.reject { |r| r.include?("extra") }
+		end
+		@handles.flatten
+	end
 
 
 	# =>  gets SceneFile product groups to interpolate into path (eg. Tops, Bottoms, Socks, etc.)

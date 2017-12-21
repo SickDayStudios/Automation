@@ -47,13 +47,13 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 							expect(@page.product_image_element.present?).to eq(true)
 						end
 						expect{BasePage.raise_js_errors}.to_not raise_error
-						puts BasePage.print_js_errors
+						BasePage.print_js_errors
 						if @page.customize_button?
 							@page.customize_button
 							@page.wait_until { @customizer.page_load? }
 							expect(@customizer.selected_style?).to eq(true)
 							expect{BasePage.raise_js_errors}.to_not raise_error
-							puts BasePage.print_js_errors
+							BasePage.print_js_errors
 						end
 					end
 				end

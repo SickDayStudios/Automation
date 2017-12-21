@@ -55,11 +55,6 @@ describe "SceneFile Connections Test" do
 							else
 								pairs.each do |sceneKey, sceneValue|
 									if sceneValue.is_a? Array
-										if manifest_values.include?(sceneValue) == false
-											puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
-											@description.push("Manifest Missing Parameter: #{sceneKey}:#{sceneValue}")
-											expect(manifest_values).to include(sceneValue)
-										end
 									else
 										if product_handles.include?(sceneValue) == false
 											puts "      '#{sceneValue}' Not found in Product Data"
@@ -144,11 +139,6 @@ describe "SceneFile Connections Test" do
 							else
 								pairs.each do |sceneKey, sceneValue|
 									if sceneValue.is_a? Array
-										if manifest_values.include?(sceneValue) == false
-											puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
-											@description.push("Manifest Missing Parameter: #{sceneKey}:#{sceneValue}")
-											expect(manifest_values).to include(sceneValue)
-										end
 									else
 										if product_handles.include?(sceneValue) == false
 											puts "      '#{sceneValue}' Not found in Product Data"
@@ -232,11 +222,6 @@ describe "SceneFile Connections Test" do
 							else
 								pairs.each do |sceneKey, sceneValue|
 									if sceneValue.is_a? Array
-										if manifest_values.include?(sceneValue) == false
-											puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
-											@description.push("Manifest Missing Parameter: #{sceneKey}:#{sceneValue}")
-											expect(manifest_values).to include(sceneValue)
-										end
 									else
 										if product_handles.include?(sceneValue) == false
 											puts "      '#{sceneValue}' Not found in Product Data"
@@ -320,11 +305,6 @@ describe "SceneFile Connections Test" do
 							else
 								pairs.each do |sceneKey, sceneValue|
 									if sceneValue.is_a? Array
-										if manifest_values.include?(sceneValue) == false
-											puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
-											@description.push("Manifest Missing Parameter: #{sceneKey}:#{sceneValue}")
-											expect(manifest_values).to include(sceneValue)
-										end
 									else
 										if product_handles.include?(sceneValue) == false
 											puts "      '#{sceneValue}' Not found in Product Data"
@@ -408,11 +388,6 @@ describe "SceneFile Connections Test" do
 							else
 								pairs.each do |sceneKey, sceneValue|
 									if sceneValue.is_a? Array
-										if manifest_values.include?(sceneValue) == false
-											puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
-											@description.push("Manifest Missing Parameter: #{sceneKey}:#{sceneValue}")
-											expect(manifest_values).to include(sceneValue)
-										end
 									else
 										if product_handles.include?(sceneValue) == false
 											puts "      '#{sceneValue}' Not found in Product Data"
@@ -496,11 +471,6 @@ describe "SceneFile Connections Test" do
 							else
 								pairs.each do |sceneKey, sceneValue|
 									if sceneValue.is_a? Array
-										if manifest_values.include?(sceneValue) == false
-											puts "      '#{sceneKey}:#{sceneValue}' Does not match any Product Manifest Parameters"
-											@description.push("Manifest Missing Parameter: #{sceneKey}:#{sceneValue}")
-											expect(manifest_values).to include(sceneValue)
-										end
 									else
 										if product_handles.include?(sceneValue) == false
 											puts "      '#{sceneValue}' Not found in Product Data"
