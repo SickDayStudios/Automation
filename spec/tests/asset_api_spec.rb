@@ -76,7 +76,7 @@ describe "SceneFile Connections Test" do
 										expect(manifest_keys).to include(sceneKey)
 									end
 								end
-								if @description.nil?
+								if @description.empty?
 								else
 									@desc = @description.join("\n")
 									BasePage.update_csv(@summary,@desc)

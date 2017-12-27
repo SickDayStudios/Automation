@@ -107,7 +107,7 @@ class BasePage
 
 	def self.update_csv(summary, description)
 		CSV.open("#{$screenshotfolder}/#{$csv_file}", "a+") do |csv| 
-			csv << ["#{summary}","Task","Automatic","To Do","Normal","cwilliams","cwilliams","","#{description}","",""]
+			csv << ["#{summary}","Task","cwilliams","To Do","Normal","cwilliams","cwilliams","","#{description}","",""]
 		end
 	end
 
