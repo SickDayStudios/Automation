@@ -28,7 +28,6 @@ class BasePage
 		if errors.count > 0
 			javascript_errors = errors.map(&:message).join("\n\n")
 			puts "\nPageError:\n#{javascript_errors}"
-			raise javascript_errors
 		end
 	end
 
