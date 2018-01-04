@@ -21,14 +21,14 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		@product_handles = @arr.flatten
 	end
 
-	it "Verify Front End GUI" do
+	it "Verify:\n -PDP UI Elements\n - PDP/Customizer PageErrors\n -Product Feed" do
 		aggregate_failures "Product Failure: " do
 			@product_handles.each do |id|
 				aggregate_failures "#{id}" do
 					puts " - Testing: #{id}"
 					@page.product_page(id)
 					if @page.four_oh_four?
-						puts "404 Error"
+						puts "404: Asset '#{id}' Missing from Product Feed"
 					else
 						@page.wait_while { @page.placeholder_image? }
 						expect(@page.product_accordions_element.present?).to eq(true)
@@ -46,8 +46,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 							@page.wait_until { @page.product_image? }
 							expect(@page.product_image_element.present?).to eq(true)
 						end
-						expect{BasePage.raise_js_errors}.to_not raise_error
-						BasePage.print_js_errors
 						if @page.customize_button?
 							@page.customize_button
 							@page.wait_until { @customizer.page_load? }

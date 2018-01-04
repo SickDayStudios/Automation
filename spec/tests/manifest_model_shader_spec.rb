@@ -21,7 +21,7 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 			puts ""
 		else
 			puts ""
-			puts ">>  #{@m.uniq.length} Assets Found using .obj Models"
+			puts ">>  #{@m.uniq.length} Assets Found using .obj Model"
 			puts ""
 		end
 	end
