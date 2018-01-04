@@ -90,8 +90,17 @@ divs(:suggested_garments, class: ["swiper-slide"])
 # Lightbox
 div(:cart_popup, id: "added-to-cart")
 
-
-
+def add_product_checkout
+	self.wait_while { $base_url == self.url }
+	self.wait_until { self.url.include?('/products/3728') }
+	self.wait_until { self.product_thumbnails? }
+	self.random_size
+	self.consumer_random_quantity
+	self.add_to_cart
+	self.wait_until { self.cart_popup? }
+	self.checkout
+	self.wait_until { self.url.include?('cart') }
+end
 
 def get_product_data(id)
 	url = "https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"

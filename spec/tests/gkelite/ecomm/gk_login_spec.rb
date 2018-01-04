@@ -17,35 +17,13 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		BasePage.navigate_to_starting_page
 	end
 
-	['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
-		context "#{user.upcase}: Login via Login Page" do
-			it 'Login' do
-				ENV['USER_TYPE'] = user
-				BasePage.set_user
-				@home_page.login_page
-				expect(@login_page.url).to include('/account/login')
-				@login_page.select_email_login_radio
-				@login_page.login_with($username, $password)
-				expect(@login_page.url).to include('/account')
-			end
-
-			it 'Logout' do
-				@login_page.quick_logout
-				expect(@login_page.url).to include($base_url)
-			end
-		end
-	end
-
 
 	['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
 		context "#{user.upcase}: Login via Header Link" do
 			it 'Login' do
 				ENV['USER_TYPE'] = user
 				BasePage.set_user
-				@home_page.home_page
-				@home_page.header_signin
-				@login_page.select_email_login_radio
-				@login_page.login_with($username, $password)
+				@login_page.header_login
 				expect(@login_page.url).to include('/account')
 			end
 
@@ -64,22 +42,9 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				ENV['USER_TYPE'] = user
 				BasePage.set_user
 				@home_page.product_page('3728')
-				@product_page.wait_while { $base_url == @product_page.url }
-				expect(@product_page.url).to include('/products/3728')
-				@product_page.wait_until { @product_page.product_thumbnails? }
-				@product_page.random_size
-				@product_page.consumer_random_quantity
-				@product_page.add_to_cart
-				@product_page.wait_until { @product_page.cart_popup? }
-				expect(@product_page.cart_popup?).to eq(true)
-				@product_page.checkout
-				expect(@product_page.url).to eq($base_url+'/cart')
-				@cart_page.secure_checkout
-				expect(@cart_page.signin_popup?).to eq(true)
-				@login_page.select_email_login_radio
-				@cart_page.login_with($username, $password)
-				@cart_page.wait_until { @cart_page.url == $base_url+'/cart' }
-				expect(@cart_page.url).to include('/cart')
+				@product_page.add_product_checkout
+				@cart_page.login_checkout
+				expect(@cart_page.cart_product?).to eq(true)
 			end
 
 			it 'Logout' do
@@ -87,8 +52,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 					@cart_page.remove_item
 				end
 				@login_page.quick_logout
-				@login_page.wait_until { @login_page.url == $base_url+'/' }
-				expect(@login_page.url).to eq($base_url+'/')
+				@login_page.wait_until { @login_page.url == $base_url + "/" }
+				expect(@login_page.url).to eq($base_url + '/')
 			end
 		end
 	end

@@ -7,7 +7,7 @@ class AssetAPI < BasePage
 			options = AssetAPI.scene_productoptions_keys(scene)
 			@handles.push(options.flatten)
 			@handles.uniq
-			@handles.reject { |r| r.include?("extra" || "mannequin" || "scene.json") }
+			@handles.reject { |r| r.include?("extra" || "mannequin" || "scene.json" || "dummy") }
 		end
 		@handles.flatten
 	end

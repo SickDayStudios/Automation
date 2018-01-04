@@ -8,26 +8,6 @@ class GKLoginPage < GKShopifyBasePage
 	include GKHeader
 
 
-# Login Landing Page
-
-text_field(:email, id: "CustomerEmail")
-text_field(:password, id: "CustomerPassword")
-checkbox(:remember_me, id: "remember-me")
-link(:forgot_password, id: "RecoverPassword")
-button(:sign_in_button, value: "Sign In")
-div(:login_error, class: ["errors"])
-
-# Register Account Page
-text_field(:first_name, id: "FirstName")
-text_field(:last_name, id: "LastName")
-text_field(:set_email, id: "Email")
-text_field(:set_password, id: "CreatePassword")
-button(:create_account_button, css: "#create_customer > li:nth-child(8) > input[type='submit']")
-link(:return_to_store, css: "#create_customer > li:nth-child(9) > a")
-link(:register_account_button, id: "customer_register_link")
-radio(:email_login_radio, id: "LoginChoiceEmail")
-
-
 	def quick_logout
 		$driver.goto $base_url + '/account/logout'
 	end
@@ -36,7 +16,7 @@ radio(:email_login_radio, id: "LoginChoiceEmail")
 		self.select_email_login_radio
 		self.email = email
 		self.password = password
-		self.sign_in_button
+		self.sign_in
 	end
 
 	def register_account
@@ -45,5 +25,12 @@ radio(:email_login_radio, id: "LoginChoiceEmail")
 		self.set_email = 'test@test.com'
 		self.set_password = 'gk123!@#'
 		self.create_account_button
+	end
+
+	def header_login
+		self.home_page
+		self.header_signin
+		self.select_email_login_radio
+		self.login_with($username, $password)
 	end
 end

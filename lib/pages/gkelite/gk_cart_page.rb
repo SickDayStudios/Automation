@@ -11,10 +11,17 @@ class GKCartPage < GKShopifyBasePage
 
 
 
-button(:secure_checkout, css: "#site-container > div.container > div > div > form > div > div.col-xs-12.col-sm-4.shopping-cart__secondary > ul > li:nth-child(2) > button")
-link(:update_item, css: "#site-container > div.container > form > div > div.col-xs-12.col-sm-8.shopping-cart__primary > div.shopping-cart__item > div:nth-child(1) > div.col-xs-12.col-sm-9 > div:nth-child(4) > div.col-xs-8.col-sm-5.shopping-cart__update-remove > a:nth-child(1)")
-link(:remove_item, class: "shopping-cart__update-remove__remove")
-div(:signin_popup, id: "signin-or-guest")
-div(:login_popup, class: ["container login-page"])
+	button(:secure_checkout, css: "#site-container > div.container > div > div > form > div > div.col-xs-12.col-sm-4.shopping-cart__secondary > ul > li:nth-child(2) > button")
+	link(:update_item, css: "#site-container > div.container > form > div > div.col-xs-12.col-sm-8.shopping-cart__primary > div.shopping-cart__item > div:nth-child(1) > div.col-xs-12.col-sm-9 > div:nth-child(4) > div.col-xs-8.col-sm-5.shopping-cart__update-remove > a:nth-child(1)")
+	link(:remove_item, class: "shopping-cart__update-remove__remove")
+	div(:signin_popup, id: "signin-or-guest")
+	div(:login_popup, class: ["container login-page"])
+	div(:cart_product, class: ["shopping-cart__item"])
 
+	def login_checkout
+		self.secure_checkout
+		self.wait_until { self.signin_popup? }
+		self.login_with($username, $password)
+		self.wait_until { self.url.include?("cart") }
+	end
 end
