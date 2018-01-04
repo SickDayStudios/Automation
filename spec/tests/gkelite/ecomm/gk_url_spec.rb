@@ -23,43 +23,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 				@arr.push(url)
 			end
 		end
-		expect(@arr).to be_empty
-	end
-
-	it 'Navigate to each Not Customizable Product Page' do
-		@arr = Array.new
-		$stock_products.each do |id|
-			@page.product_page(id)
-			if @page.four_oh_four?
-				puts("FAILED: #{id}")
-				@arr.push(id)
-			end
-		end
-		expect(@arr).to be_empty
-	end
-
-	it "Navigate to each Customizable Product Page" do
-		@arr = Array.new
-		$three_d_products.each do |id|
-			@page.product_page(id)
-			if @page.four_oh_four?
-				puts("FAILED: #{id}")
-				@arr.push(id)
-			end
-		end
-		expect(@arr).to be_empty
-	end
-
-	it "Navigate to each Customizable Product Page" do
-		@arr = Array.new
-		$two_d_products.each do |id|
-			@page.product_page(id)
-			if @page.four_oh_four?
-				puts("FAILED: #{id}")
-				@arr.push(id)
-			end
-		end
-		expect(@arr).to be_empty
+		puts @arr
 	end
 end
 
