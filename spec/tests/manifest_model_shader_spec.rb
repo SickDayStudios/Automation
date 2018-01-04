@@ -27,9 +27,8 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 	end
 
 	context "Benchmade" do
-		ENV['SITE'] = 'benchmade'
 		$bm_scene_files.each do |scene|
-			it "#{ENV['SITE']} | #{scene}" do
+			it "Benchmade | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
 					manifest = AssetAPI.scene_manifest_url(scene)
 					AssetAPI.scene_productoptions_keys(scene).each do |product|
@@ -96,9 +95,8 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 	end
 
 	context "Eddie-Bauer" do
-		ENV['SITE'] = 'eddie-bauer'
 		$eb_scene_files.each do |scene|
-			it "#{ENV['SITE']} | #{scene}" do
+			it "Eddie-Bauer | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
 					manifest = AssetAPI.scene_manifest_url(scene)
 					AssetAPI.scene_productoptions_keys(scene).each do |product|
@@ -165,9 +163,8 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 	end
 
 	context "CamelBak" do
-		ENV['SITE'] = 'camelbak'
 		$cb_scene_files.each do |scene|
-			it "#{ENV['SITE']} | #{scene}" do
+			it "CamelBak | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
 					manifest = AssetAPI.scene_manifest_url(scene)
 					AssetAPI.scene_productoptions_keys(scene).each do |product|
@@ -234,9 +231,8 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 	end
 
 	context "UA Icon" do
-		ENV['SITE'] = 'ua-icon'
 		$uaf_scene_files.each do |scene|
-			it "#{ENV['SITE']} | #{scene}" do
+			it "UA Icon | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
 					manifest = AssetAPI.scene_manifest_url(scene)
 					AssetAPI.scene_productoptions_keys(scene).each do |product|
@@ -304,9 +300,8 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 
 
 	context "GK-Elite" do
-		ENV['SITE'] = 'gk-elite'
 		$gk_scene_files.each do |scene|
-			it "#{ENV['SITE']} | #{scene}" do
+			it "GK-Elite | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
 					manifest = AssetAPI.scene_manifest_url(scene)
 					AssetAPI.scene_productoptions_keys(scene).each do |product|
@@ -374,9 +369,8 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 
 
 	context "Under-Armour" do
-		ENV['SITE'] = 'under-armour'
 		$uau_scene_files.each do |scene|
-			it "#{ENV['SITE']} | #{scene}" do
+			it "Under-Armour | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
 					manifest = AssetAPI.scene_manifest_url(scene)
 					AssetAPI.scene_productoptions_keys(scene).each do |product|
