@@ -32,9 +32,9 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 	context 'Product Page:' do
-		it ' - Navigate to 1974s' do
-			@home_page.product_page('1974s')
-			expect(@home_page.url).to include('1974s')
+		it ' - Navigate to 2008' do
+			@home_page.product_page('2008')
+			expect(@home_page.url).to include('2008')
 		end
 
 		it ' - Customize Product' do
@@ -43,17 +43,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		end
 
 		it ' - Continue to Customized Product Page' do
-			@customizer.wait_while { @customizer.page_load? }
-			@customizer.check_disclaimer_checkbox
-			@customizer.embellishments_button
-			expect(@customizer.url).to include('embellishments')
-			@customizer.wait_until { @customizer.size_alterations_button? }
-			@customizer.size_alterations_button
-			@customizer.wait_until { @customizer.size_alterations_popup? }
-			expect(@customizer.size_alterations_popup?).to eq(true)
-			@customizer.check_popup_checkbox_one
-			@customizer.check_popup_checkbox_two
-			@customizer.popup_next_button
+			@customizer.quick_custom_asset
 			expect(@customizer.url).to include('sizes-and-alterations')
 		end
 
