@@ -7,7 +7,7 @@ class AssetAPI < BasePage
 			options = AssetAPI.scene_productoptions_keys(scene)
 			@handles.push(options.flatten)
 			@handles.uniq
-			@handles.reject { |r| r.include?("extra") }
+			@handles.reject { |r| r.include?("extra" || "mannequin" || "scene.json") }
 		end
 		@handles.flatten
 	end
@@ -43,7 +43,6 @@ class AssetAPI < BasePage
 			ENV['SITE'] = 'shed-rain'
 			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/scene.json"
 		end
-		puts url
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
@@ -226,7 +225,7 @@ class AssetAPI < BasePage
 
 	$bm_scene_files = ['bmk-prs-knives']
 
-	$approved_shaders = ['regionmap','artbox','standard','pshadow']
+	$approved_shaders = ['regionmap','artbox','standard','pshadow','translucent']
 
 	$gk_scene_files = ['gk-prs-bottoms','gk-prs-cheer','gk-prs-gym','ua-prs-cheer','ua-prs-gym','ua-prs-warmups']
 

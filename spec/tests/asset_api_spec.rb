@@ -16,14 +16,14 @@ describe "SceneFile Connections Test" do
 		after(:all) do
 			if @v.nil?
 				puts ""
-				puts ">>  0 Discrepancies found in Product Data Connections!!"
+				puts ">>  0 Discrepancies found in Product Data Connections"
 			else
 				puts ""
 				puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
 			end
 			if @k.nil?
 				puts ""
-				puts ">>  0 Discrepancies found in Manifest Data!!"
+				puts ">>  0 Discrepancies found in Manifest Data"
 				puts ""
 			else
 				puts ""
