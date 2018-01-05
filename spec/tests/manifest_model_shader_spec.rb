@@ -26,7 +26,7 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 		end
 	end
 
-	context "Benchmade" do
+	context ":: Benchmade ::" do
 		$bm_scene_files.each do |scene|
 			it "Benchmade | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
@@ -94,7 +94,7 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 		end
 	end
 
-	context "Eddie-Bauer" do
+	context ":: Eddie-Bauer ::" do
 		$eb_scene_files.each do |scene|
 			it "Eddie-Bauer | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
@@ -162,7 +162,7 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 		end
 	end
 
-	context "CamelBak" do
+	context ":: CamelBak ::" do
 		$cb_scene_files.each do |scene|
 			it "CamelBak | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
@@ -230,7 +230,7 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 		end
 	end
 
-	context "UA Icon" do
+	context ":: UA Icon ::" do
 		$uaf_scene_files.each do |scene|
 			it "UA Icon | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
@@ -299,7 +299,7 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 	end
 
 
-	context "GK-Elite" do
+	context ":: GK-Elite ::" do
 		$gk_scene_files.each do |scene|
 			it "GK-Elite | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do
@@ -368,7 +368,7 @@ describe "Manifest Shader['model'] & Shader['source'] FileType Validator" do
 	end
 
 
-	context "Under-Armour" do
+	context ":: Under-Armour ::" do
 		$uau_scene_files.each do |scene|
 			it "Under-Armour | #{scene}" do
 				aggregate_failures "Verify Correct Model FileType & ShaderLib" do

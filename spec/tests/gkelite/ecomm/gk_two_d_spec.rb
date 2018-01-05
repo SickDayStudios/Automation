@@ -7,9 +7,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		BasePage.setup
 		@product_page = GKProductPage.new
 		@page = StockCustomizer.new
-		if ENV['ENVIRONMENT'] == 'prod'
-			@page.enter_password
-		end
 	end
 
 	context "Check Missing Blob" do

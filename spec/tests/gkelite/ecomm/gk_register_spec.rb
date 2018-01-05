@@ -8,14 +8,10 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	before(:all) do
 		BasePage.setup
 		@login_page = GKLoginPage.new
-		@home_page = GKHomePage.new 
-		if ENV['ENVIRONMENT'] == 'prod'
-			@login_page.enter_password
-		end
+		@home_page = GKHomePage.new
 		@email = 'cason.williams@pollinate.com'
 		@password = 'gk123!@#'
 		@home_page.home_page
-		@home_page.enter_password
 	end
 
 	context 'Register via Login Page' do

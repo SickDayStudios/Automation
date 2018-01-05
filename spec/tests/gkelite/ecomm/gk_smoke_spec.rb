@@ -20,10 +20,6 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	it ' - Navigate to Login Page' do
 		@home_page.login_page
-		if ENV['ENVIRONMENT'] == 'prod'
-			@home_page.enter_password
-			@home_page.login_page
-		end
 		expect(@login_page.url).to include('/account/login')
 	end
 

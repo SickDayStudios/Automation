@@ -43,6 +43,7 @@ class AssetAPI < BasePage
 			ENV['SITE'] = 'shed-rain'
 			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/scene.json"
 		end
+		puts url
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)
@@ -64,7 +65,7 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = @specs["productGroups"]["#{group}"]["productOptions"].keys
 			list.each do |key|
-				if (key.include?("extra"))
+				if (key.include?("extra") || key.nil? || key.empty? || key == "")
 				else
 					@options.push(key)
 				end
@@ -79,7 +80,7 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				if (key.include?("extra"))
+				if (key.include?("extra") || key.nil? || key.empty? || key == "")
 				else
 					@connections.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].keys)
 				end
@@ -94,7 +95,7 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				if (key.include?("extra"))
+				if (key.include?("extra") || key.nil? || key.empty? || key == "")
 				else
 					@values.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].values)
 				end
@@ -109,9 +110,12 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				if (key.include?("extra"))
+				if (key.include?("extra") || key.nil? || key.empty? || key == "")
 				else
-					@pairs.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"])
+					if (@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"] == nil) || (@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"] == "")
+					else
+						@pairs.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"])
+					end
 				end
 			end
 		end
