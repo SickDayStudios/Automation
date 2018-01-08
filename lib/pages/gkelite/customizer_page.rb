@@ -52,7 +52,7 @@ class CustomizerPage < BasePage
 	span(:disabled_next_button, css: "#gk-custom-app-vue > div > div > div > div > div > div > div > span.disabled")
 	span(:saving_design, css: "#gk-custom-app-vue > div > div > div > div > div > h2 > span")
 	div(:saving_popup, class: ["mask c-save"])
-	div(:selected_style, class: ["c-customizer__menu-selectedstyles"])
+	div(:selected_style, class: ["c-customizer__menu"])
 
 	div(:page_load, id: "site-wrapper")
 	div(:svg_viewer, class: ["svg-viewer-container"])

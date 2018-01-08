@@ -65,8 +65,9 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 				if @page.customize_button?
 					@page.customize_button
 					@page.wait_until { @customizer.page_load? }
-					if @customizer.selected_style? == false
-						puts "Asset: #{id} | Customizer | Incorrect Product Style Info"
+					@customizer.wait_until { @customizer.selected_style? }
+					if @customizer.selected_style_element.visible? == false
+						puts "Asset: #{id} | Customizer | Missing Product Style Info"
 					end
 					if @customizer.missing_blob.exists?
 						puts "Asset: #{id} | Customizer | Missing Blob"

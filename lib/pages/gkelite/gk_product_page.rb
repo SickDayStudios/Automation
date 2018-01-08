@@ -14,17 +14,17 @@ class GKProductPage < GKShopifyBasePage
 
 
 ##=> TODO
-nav(:breadcrumb, class: "module-breadcrumb")
+nav(:breadcrumb, class: ["module-breadcrumb"])
 span(:style_id, css: "#product-attributes-container > div > h1 > span")
 div(:overlay, css: "#basic-boat-neck-comp-leotard > div:nth-child(17)")
 select_list(:user_dropdown, name: "product-type")
 
 # Style Name
 div(:product_info, id: "product-attributes-container")
-span(:price, class: "product-meta__price")
-p(:selected_color, class: "product-color")
-div(:color_picker, class: "color-picker")
-div(:size_dropdown, class: "size-selector")
+span(:price, class: ["product-meta__price"])
+p(:selected_color, class: ["product-color"])
+div(:color_picker, class: ["color-picker"])
+div(:size_dropdown, class: ["size-selector"])
 div(:child_size_options, css: "#product-attributes-container > form > div.size-selector.open > div > div:nth-child(2)")
 div(:adult_size_options, css: "#product-attributes-container > form > div.size-selector.open > div > div:nth-child(3)")
 button(:size_cs, css: "#product-attributes-container > form > div.size-selector.open > div > div:nth-child(2) > button:nth-child(1)")
@@ -43,48 +43,48 @@ div(:four_oh_four, class: ["four-oh-four"])
 
 
 # Fit & Size
-div(:fit_size_info, class: "fit-size")
+div(:fit_size_info, class: ["fit-size"])
 link(:sizing_chart, class: ["size-chart lightbox-trigger"])
 div(:size_lightbox, id: "sizing-chart")
 image(:size_close, css: "#sizing-chart > div.close > img")
 span(:selected_size, css: "#product-attributes-container > form > div.size-selector > label > span")
-div(:consumer_quantity, class: "quantity-list-container")
+div(:consumer_quantity, class: ["quantity-list-container"])
 text_field(:dealer_quantity, name: "cxs")
 button(:q_one, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(1)")
 button(:q_two, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(2)")
 button(:q_three, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(3)")
 button(:q_four, css: "#product-attributes-container > form > div.product-quantity-wrapper > div > button:nth-child(4)")
-button(:q_five, class: "final")
-text_field(:q_manual, class: "input")
+button(:q_five, class: ["final"])
+text_field(:q_manual, class: ["input"])
 button(:add_to_cart, id: "AddToCart")
 link(:customize_button, class: ["addtocart-customize__buttons--customize"])
 link(:customize, css: "#product-attributes-container > form > div.addtocart-customize > div > div:nth-child(2) > a")
 
 # Accordions
-div(:product_accordions, class: "product-accordion")
+div(:product_accordions, class: ["product-accordion"])
 div(:fabric_care, css: "#accordion > section:nth-child(2) > div:nth-child(1)")
 link(:show_more, id: "product-fabric-care-show-more")
 div(:fabric_care_modal, id: "product-fabric-care-modal")
 div(:care_close, css: "#product-fabric-care-modal > div")
 div(:product_details, css: "#accordion > section.open > div:nth-child(2)")
 div(:review, css: "#accordion > section:nth-child(3) > div:nth-child(1)")
-link(:write_cancel_review, class: "jdgm-write-rev-link")
-div(:review_header, class: "jdgm-rev-widg__header")
-div(:review_body, class: "jdgm-rev-widg__body")
+link(:write_cancel_review, class: ["jdgm-write-rev-link"])
+div(:review_header, class: ["jdgm-rev-widg__header"])
+div(:review_body, class: ["jdgm-rev-widg__body"])
 text_field(:review_name, name: "reviewer_name")
 text_field(:review_email, name: "reviewer_email")
 links(:star_rating, class: ["jdgm-star jdgm--on"])
 text_field(:review_title, name: "review_title")
 text_area(:review_body, name: "review_body")
 button(:submit_review, class: ["jdgm-submit-rev btn btn_c button"])
-div(:review_confirm, class: "jdgm-notification")
+div(:review_confirm, class: ["jdgm-notification"])
 label(:errors, id: "reviewer_name-error")
 
 # You May Also Like
 div(:similar_recent_products, id: "product-carousel-container")
 div(:arrow_previous, class: ["swiper-button-prev swiper-button-black"])
 div(:arrow_next, class: ["swiper-button-next swiper-button-black"])
-divs(:suggested_garments, class: "swiper-slide")
+divs(:suggested_garments, class: ["swiper-slide"])
 
 
 # Lightbox
