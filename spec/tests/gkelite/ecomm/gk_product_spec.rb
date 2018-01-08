@@ -24,6 +24,7 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 			if @page.four_oh_four?
 				puts "Asset: #{id} | PDP | PageError :: 404 Missing Product From Product Feed"
 			else
+				@page.wait_until { @page.product_info_element.visible? }
 				if @page.product_accordions_element.present? == false
 					puts "Asset: #{id} | PDP | Missing Product Detail Accordians"
 				end

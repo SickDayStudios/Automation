@@ -24,7 +24,7 @@ class CustomizerPage < BasePage
 	button(:save_design_button, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > div > button:nth-child(1)")
 	button(:save_design_dropdown, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > div > button.c-save__as__dropdown__arrow")
 	button(:save_as_design, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > button")
-	div(:error_tooltip, class: ["c-tooltip__error__container"])
+	div(:error_tooltip, class: "c-tooltip__error__container")
 
 	
 	## Navigation Buttons ##
@@ -52,10 +52,10 @@ class CustomizerPage < BasePage
 	span(:disabled_next_button, css: "#gk-custom-app-vue > div > div > div > div > div > div > div > span.disabled")
 	span(:saving_design, css: "#gk-custom-app-vue > div > div > div > div > div > h2 > span")
 	div(:saving_popup, class: ["mask c-save"])
-	div(:selected_style, class: ["c-customizer__menu-selectedstyles"])
+	div(:selected_style, class: "c-customizer__menu-selectedstyles")
 
 	div(:page_load, id: "site-wrapper")
-	div(:svg_viewer, class: ["svg-viewer-container"])
+	div(:svg_viewer, class: "svg-viewer-container")
 
 	def missing_blob
 	  $driver.element(:tag_name, "code")
