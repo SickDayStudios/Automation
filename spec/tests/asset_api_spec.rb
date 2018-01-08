@@ -8,12 +8,12 @@ describe "SceneFile Connections Test" do
 
 	describe "| Client: ShedRain |" do
 
-		before(:all) do
+		before(:each) do
 			@v = Array.new
 			@k = Array.new
 		end
 
-		after(:all) do
+		after(:each) do
 			if @v.nil?
 				puts ""
 				puts ">>  0 Discrepancies found in Product Data Connections"
