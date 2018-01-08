@@ -14,6 +14,9 @@ div(:filters, class: ["sidebar-filter__accordion-group"])
 h1(:search_result_text, css: "#site-container > div.container > div.search__results > div:nth-child(1) > div > div > h1")
 div(:four_oh_four, class: ["four-oh-four"])
 
+div(:search_results, class: "page-productlisting__image")
+
+svg(:spinner, class: "spinner")
 
 # => Divs
 link(:product_quick_view, css: "#site-container > div.container > div.search__results > div:nth-child(2) > div.col-sm-9.col-xs-12 > div:nth-child(1) > div > div:nth-child(1) > div:nth-child(4) > div.page-productlisting__content--hover > div.page-productlisting__fav-more > a")
@@ -48,6 +51,8 @@ h1(:page_not_found, css: "#site-container > div.container > div > div.col-xs-12 
 div(:quickview_color, class: "color-picker")
 div(:added_to_cart, id: "added-to-cart")
 
+	def get_all_assets
+	end
 
 	def check_rating_filters
 		ratings = ['check_five_star',

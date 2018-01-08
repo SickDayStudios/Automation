@@ -3,9 +3,10 @@ require "./lib/pages/gkelite/gk_cart_page"
 require "./lib/helpers/gkelite/gk_cart_lightbox"
 require "./lib/pages/gkelite/customizer_page"
 require "./lib/pages/asset_api_page"
+require "./lib/pages/gkelite/two_d_page"
 
 
-describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase}:#{ENV['USER_TYPE'].upcase} - GK Product GUI Test:" do
+describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'].upcase} | #{ENV['USER_TYPE'].upcase} - GK Product GUI Test" do
 
 	before(:all) do
 		@arr = Array.new
@@ -13,48 +14,64 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		@customizer = CustomizerPage.new
 		BasePage.set_base_url
 		BasePage.navigate_to_starting_page
-		$gk_scene_files.each do  |scene|
-			AssetAPI.scene_productoptions_keys(scene).each do |handle|
-				@arr.push(handle.scan(/(?=\w*[0-9])\w*/))
-			end
-		end
-		@product_handles = @arr.flatten
 	end
 
-	it "Verify:\n -PDP UI Elements\n - PDP/Customizer PageErrors\n -Product Feed" do
-		aggregate_failures "Product Failure: " do
-			@product_handles.each do |id|
-				aggregate_failures "#{id}" do
-					puts " - Testing: #{id}"
-					@page.product_page(id)
-					if @page.four_oh_four?
-						puts "404: Asset '#{id}' Missing from Product Feed"
-					else
-						@page.wait_while { @page.placeholder_image? }
-						expect(@page.product_accordions_element.present?).to eq(true)
-						expect(@page.product_info_element.present?).to eq(true)
-						expect(@page.price).to include('$')
-						expect(@page.selected_color_element.present?).to eq(true)
-						expect(@page.color_picker_element.present?).to eq(true)
-						expect(@page.size_dropdown_element.present?).to eq(true)
-						expect(@page.fit_size_info_element.present?).to eq(true)
-						expect(@page.add_to_cart_element.present?).to eq(true)
-						expect(@page.similar_recent_products_element.present?).to eq(true)
-						expect(@page.product_thumbnails_element.present?).to eq(true)
-						@page.color_picker_element.buttons.to_a.each do |x|
-							x.click
-							@page.wait_until { @page.product_image? }
-							expect(@page.product_image_element.present?).to eq(true)
-						end
-						if @page.customize_button?
-							@page.customize_button
-							@page.wait_until { @customizer.page_load? }
-							expect(@customizer.selected_style?).to eq(true)
-							expect{BasePage.raise_js_errors}.to_not raise_error
-							BasePage.print_js_errors
-						end
+
+	$gk_assets.each do |id|
+		it "-------------------------------------------" do
+			puts " - Verifying Asset: #{id}"
+			@page.product_page(id)
+			if @page.four_oh_four?
+				puts "Asset: #{id} | PDP | PageError :: 404 Missing Product From Product Feed"
+			else
+				if @page.product_accordions_element.present? == false
+					puts "Asset: #{id} | PDP | Missing Product Detail Accordians"
+				end
+				if @page.product_info_element.present? == false
+					puts "Asset: #{id} | PDP | Missing Product Info"
+				end
+				if @page.price_element.text.nil? == true
+					puts "Asset: #{id} | PDP | Missing Price"
+				end
+				if @page.selected_color_element.present? == false
+					puts "Asset: #{id} | PDP | Missing Color/Style Title"
+				end
+				if @page.color_picker_element.present? == false
+					puts "Asset: #{id} | PDP | Missing Color Options"
+				end
+				if @page.add_to_cart_element.present? == false && @page.customize_button? == false
+					puts "Asset: #{id} | PDP | Missing Add To Cart button"
+				end
+				if @page.size_dropdown_element.present? == false && @page.add_to_cart_element.present? == true
+					puts "Asset: #{id} | PDP | Missing Size Dropdown"
+				end
+				if @page.fit_size_info_element.present? == false
+					puts "Asset: #{id} | PDP | Missing Sizing Info"
+				end
+				if @page.similar_recent_products_element.present? == false
+					puts "Asset: #{id} | PDP | Missing Suggested and Recently Viewed"
+				end
+				if @page.product_thumbnails_element.present? == false
+					puts "Asset: #{id} | PDP | Missing Product Image Thumbnails"
+				end
+				@page.color_picker_element.buttons.to_a.each do |x|
+					x.click
+					if @page.placeholder_image_element.present?
+						puts "Asset: #{id} | PDP | #{@page.selected_color_element.text} Missing Image"
 					end
 				end
+				BasePage.print_js_errors
+				if @page.customize_button?
+					@page.customize_button
+					@page.wait_until { @customizer.page_load? }
+					if @customizer.selected_style? == false
+						puts "Asset: #{id} | Customizer | Incorrect Product Style Info"
+					end
+					if @customizer.missing_blob.exists?
+						puts "Asset: #{id} | Customizer | Missing Blob"
+					end
+				end
+				BasePage.print_js_errors
 			end
 		end
 	end
