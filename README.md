@@ -1,8 +1,9 @@
-# Rspec Continuous Integration qa-pollinate-ci Framework Setup
+# Rspec with PageObject using Watir Webdriver
+# Continuous Integration qa-pollinate-ci Framework Setup
 
 
-
-
+# BitBucket 
+https://bitbucket.org/Cason-Pollinate/qa-pollinate-ci
 
 # Windows Ruby Installation:
 * Download the latest version of Ruby from https://rubyinstaller.org/downloads/
@@ -66,16 +67,19 @@ Note: To check preexisting PATH folder directories, simply type "path" in the co
 
 # Run Rspec Tests via Jenkins
 * Open your browser window of choice
-* Navigate to: http://192.168.1.191:8080 (Note: Must be connected to the office intranet)
-Note: Each project will have a coresponding view per environment visible on the main page.
-
-* To run a Test specification
+* Navigate to: jenkins.pollinate.com (Note: Must be connected to the office intranet)
+* Each project will have a coresponding view per environment visible on the main page.
+* To run a Test specification:
 	- Click on the Project/Environment folder desired
-	- Click the 'Play' button, the Job (test) will begin automating 
-(Note: When a job is running you will be able to see a progress bar in the bottom left corner of the page and the circular icon next to the job name will flash)
+	- Click the  button and the Job (test) will begin automating (Note: When a job is running you will be able to see a progress bar in the bottom left corner of the page and the circular icon next to the job name will blink)
+	- If a Job fails, it will be displayed with a  icon
+	- To view the console log for a previously ran job, navigate to http://jenkins.polliante.com/view/all/builds or click the "Build History" link.
 
-* If a Job fails, it will be displayed with a red circular icon (Please inform the QA department to investigate)
-* To view the console log for any previously ran jobs, navigate to http://192.168.1.191:8080/view/all/builds or click the "Build History" link from the main Jenkins page.
+# Documentation
+- http://www.rubydoc.info/github/cheezy/page-object/PageObject
+- https://github.com/cheezy/page-object/wiki/Elements
+- http://www.rubydoc.info/gems/watir/Watir
+- http://www.rubydoc.info/gems/rspec-core/RSpec
 
 
 If you have any questions or requests, feel free to contact Cason Williams.
