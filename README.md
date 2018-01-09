@@ -1,5 +1,5 @@
-# Rspec with PageObject using Watir Webdriver
-# Continuous Integration qa-pollinate-ci Framework Setup
+## Continuous Integration QA Automation Framework Setup
+
 
 
 # BitBucket 
