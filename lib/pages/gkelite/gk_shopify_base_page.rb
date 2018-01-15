@@ -1,10 +1,9 @@
 require './lib/helpers/gkelite/gk_header'
-require './lib/helpers/gkelite/gk_footer'
+
 
 class GKShopifyBasePage < BasePage
 	include PageObject
 	include GKHeader
-	include GKFooter
 
 
 text_field(:password, id: "password")

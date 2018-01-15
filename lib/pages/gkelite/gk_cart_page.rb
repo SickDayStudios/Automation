@@ -1,11 +1,10 @@
 require './lib/helpers/gkelite/gk_header'
-require './lib/helpers/gkelite/gk_footer'
+
 require './lib/helpers/gkelite/gk_login_popup'
 require './lib/pages/gkelite/gk_shopify_base_page'
 
 class GKCartPage < GKShopifyBasePage
 	include GKHeader
-	include GKFooter
 	include PageObject
 	include GKLoginPopup
 

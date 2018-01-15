@@ -54,7 +54,7 @@ describe "SceneFile Connections Test" do
 									if sceneValue.is_a? Array
 									else
 										if product_handles.include?(sceneValue) == false
-											puts "      '#{sceneValue}' Not found in Product Data"
+											puts "'#{sceneValue}' Not found in Product Data"
 											@description.push("Product Data Missing Feature Handle/Value: #{sceneValue}")
 											@v.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(product_handles).to include(sceneValue)
@@ -63,14 +63,14 @@ describe "SceneFile Connections Test" do
 									if mobile_manifest_values.nil?
 									else
 										if mobile_manifest_keys.include?(sceneKey) == false
-											puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
+											puts "'#{sceneKey}' Not found in mobileManifest Parameters"
 											@description.push("Manifest Missing Parameter: '#{sceneKey}")
 											@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(mobile_manifest_keys).to include(sceneKey)
 										end
 									end
 									if manifest_keys.include?(sceneKey) == false
-										puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
+										puts "'#{sceneKey}' Not found in Product Manifest Parameters"
 										@description.push("Manifest Missing Parameter: '#{sceneKey}")
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										expect(manifest_keys).to include(sceneKey)
@@ -137,7 +137,7 @@ describe "SceneFile Connections Test" do
 									if sceneValue.is_a? Array
 									else
 										if product_handles.include?(sceneValue) == false
-											puts "      '#{sceneValue}' Not found in Product Data"
+											puts "'#{sceneValue}' Not found in Product Data"
 											@description.push("Product Data Missing Feature Handle/Value: #{sceneValue}")
 											@v.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(product_handles).to include(sceneValue)
@@ -146,14 +146,14 @@ describe "SceneFile Connections Test" do
 									if mobile_manifest_values.nil?
 									else
 										if mobile_manifest_keys.include?(sceneKey) == false
-											puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
+											puts "'#{sceneKey}' Not found in mobileManifest Parameters"
 											@description.push("Manifest Missing Parameter: '#{sceneKey}")
 											@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(mobile_manifest_keys).to include(sceneKey)
 										end
 									end
 									if manifest_keys.include?(sceneKey) == false
-										puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
+										puts "'#{sceneKey}' Not found in Product Manifest Parameters"
 										@description.push("Manifest Missing Parameter: '#{sceneKey}")
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										expect(manifest_keys).to include(sceneKey)
@@ -221,7 +221,7 @@ describe "SceneFile Connections Test" do
 									if sceneValue.is_a? Array
 									else
 										if product_handles.include?(sceneValue) == false
-											puts "      '#{sceneValue}' Not found in Product Data"
+											puts "'#{sceneValue}' Not found in Product Data"
 											@description.push("Product Data Missing Feature Handle/Value: #{sceneValue}")
 											@v.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(product_handles).to include(sceneValue)
@@ -230,14 +230,14 @@ describe "SceneFile Connections Test" do
 									if mobile_manifest_values.nil?
 									else
 										if mobile_manifest_keys.include?(sceneKey) == false
-											puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
+											puts "'#{sceneKey}' Not found in mobileManifest Parameters"
 											@description.push("Manifest Missing Parameter: '#{sceneKey}")
 											@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(mobile_manifest_keys).to include(sceneKey)
 										end
 									end
 									if manifest_keys.include?(sceneKey) == false
-										puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
+										puts "'#{sceneKey}' Not found in Product Manifest Parameters"
 										@description.push("Manifest Missing Parameter: '#{sceneKey}")
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										expect(manifest_keys).to include(sceneKey)
@@ -304,7 +304,7 @@ describe "SceneFile Connections Test" do
 									if sceneValue.is_a? Array
 									else
 										if product_handles.include?(sceneValue) == false
-											puts "      '#{sceneValue}' Not found in Product Data"
+											puts "'#{sceneValue}' Not found in Product Data"
 											@description.push("Product Data Missing Feature Handle/Value: #{sceneValue}")
 											@v.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(product_handles).to include(sceneValue)
@@ -313,14 +313,14 @@ describe "SceneFile Connections Test" do
 									if mobile_manifest_values.nil?
 									else
 										if mobile_manifest_keys.include?(sceneKey) == false
-											puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
+											puts "'#{sceneKey}' Not found in mobileManifest Parameters"
 											@description.push("Manifest Missing Parameter: '#{sceneKey}")
 											@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(mobile_manifest_keys).to include(sceneKey)
 										end
 									end
 									if manifest_keys.include?(sceneKey) == false
-										puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
+										puts "'#{sceneKey}' Not found in Product Manifest Parameters"
 										@description.push("Manifest Missing Parameter: '#{sceneKey}")
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										expect(manifest_keys).to include(sceneKey)
@@ -387,7 +387,7 @@ describe "SceneFile Connections Test" do
 									if sceneValue.is_a? Array
 									else
 										if product_handles.include?(sceneValue) == false
-											puts "      '#{sceneValue}' Not found in Product Data"
+											puts "'#{sceneValue}' Not found in Product Data"
 											@description.push("Product Data Missing Feature Handle/Value: #{sceneValue}")
 											@v.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(product_handles).to include(sceneValue)
@@ -396,14 +396,14 @@ describe "SceneFile Connections Test" do
 									if mobile_manifest_values.nil?
 									else
 										if mobile_manifest_keys.include?(sceneKey) == false
-											puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
+											puts "'#{sceneKey}' Not found in mobileManifest Parameters"
 											@description.push("Manifest Missing Parameter: '#{sceneKey}")
 											@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(mobile_manifest_keys).to include(sceneKey)
 										end
 									end
 									if manifest_keys.include?(sceneKey) == false
-										puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
+										puts "'#{sceneKey}' Not found in Product Manifest Parameters"
 										@description.push("Manifest Missing Parameter: '#{sceneKey}")
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										expect(manifest_keys).to include(sceneKey)
@@ -470,7 +470,7 @@ describe "SceneFile Connections Test" do
 									if sceneValue.is_a? Array
 									else
 										if product_handles.include?(sceneValue) == false
-											puts "      '#{sceneValue}' Not found in Product Data"
+											puts "'#{sceneValue}' Not found in Product Data"
 											@description.push("Product Data Missing Feature Handle/Value: #{sceneValue}")
 											@v.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(product_handles).to include(sceneValue)
@@ -479,14 +479,14 @@ describe "SceneFile Connections Test" do
 									if mobile_manifest_values.nil?
 									else
 										if mobile_manifest_keys.include?(sceneKey) == false
-											puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
+											puts "'#{sceneKey}' Not found in mobileManifest Parameters"
 											@description.push("Manifest Missing Parameter: '#{sceneKey}")
 											@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(mobile_manifest_keys).to include(sceneKey)
 										end
 									end
 									if manifest_keys.include?(sceneKey) == false
-										puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
+										puts "'#{sceneKey}' Not found in Product Manifest Parameters"
 										@description.push("Manifest Missing Parameter: '#{sceneKey}")
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										expect(manifest_keys).to include(sceneKey)
@@ -553,7 +553,7 @@ describe "SceneFile Connections Test" do
 									if sceneValue.is_a? Array
 									else
 										if product_handles.include?(sceneValue) == false
-											puts "      '#{sceneValue}' Not found in Product Data"
+											puts "'#{sceneValue}' Not found in Product Data"
 											@description.push("Product Data Missing Feature Handle/Value: #{sceneValue}")
 											@v.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(product_handles).to include(sceneValue)
@@ -562,14 +562,14 @@ describe "SceneFile Connections Test" do
 									if mobile_manifest_values.nil?
 									else
 										if mobile_manifest_keys.include?(sceneKey) == false
-											puts "      '#{sceneKey}' Not found in mobileManifest Parameters"
+											puts "'#{sceneKey}' Not found in mobileManifest Parameters"
 											@description.push("Manifest Missing Parameter: '#{sceneKey}")
 											@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 											expect(mobile_manifest_keys).to include(sceneKey)
 										end
 									end
 									if manifest_keys.include?(sceneKey) == false
-										puts "      '#{sceneKey}' Not found in Product Manifest Parameters"
+										puts "'#{sceneKey}' Not found in Product Manifest Parameters"
 										@description.push("Manifest Missing Parameter: '#{sceneKey}")
 										@k.push("#{ENV['SITE']}:#{scene}:#{product}")
 										expect(manifest_keys).to include(sceneKey)

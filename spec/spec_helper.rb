@@ -13,6 +13,7 @@ require 'net/http'
 # require 'json-schema-rspec'
 require "json_matchers/rspec"
 require 'csv'
+require "watir-scroll"
 
 
 RSpec.configure do |config|
@@ -26,7 +27,11 @@ RSpec.configure do |config|
 		unless File.directory?($screenshotfolder)
 			FileUtils.mkdir_p($screenshotfolder)
 		end
-		$driver = Watir::Browser.new ENV['BROWSER'].to_sym
+		# if ENV['BROWSER'] == 'chrome'
+		# 	$driver = Watir::Browser.new(:chrome, :switches => %w[--load-extension=.../Users/case/Library/Application\ Support/Google/Chrome/Default/Extensions/jbbplnpkjmmeebjpijfedlgcdilocofh/1.0.9_0.crx])
+		# else
+			$driver = Watir::Browser.new ENV['BROWSER'].to_sym
+		# end
 	end
 
 	# config.before(:each) do |example|

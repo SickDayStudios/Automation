@@ -1,4 +1,3 @@
-require './lib/helpers/gkelite/gk_garments'
 require './lib/helpers/gkelite/customizer_ui'
 require './lib/helpers/gkelite/gk_search_filters'
 require './lib/pages/base_page'
@@ -6,7 +5,6 @@ require './lib/pages/base_page'
 ### Define Page Class
 class CustomizerPage < BasePage
 	include PageObject
-	include GKEliteGarments
 	include CustomizerUI
 	include GKSearchFilters
 
@@ -56,6 +54,8 @@ class CustomizerPage < BasePage
 
 	div(:page_load, id: "site-wrapper")
 	div(:svg_viewer, class: ["svg-viewer-container"])
+
+	div(:error_message, class: ["error-message"])
 
 	def missing_blob
 	  $driver.element(:tag_name, "code")

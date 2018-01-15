@@ -47,7 +47,7 @@ group :development, :test do
   # gem "simplecov-rcov"
   gem "ci_reporter_rspec"
   gem "rspec_junit_formatter"
-  # gem "watir-scroll"
+  gem "watir-scroll"
   gem 'coderay'
   # gem 'json-schema-rspec'
   gem 'json_matchers'

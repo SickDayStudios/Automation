@@ -7,6 +7,12 @@ require 'date'
 
 ENV['CI_REPORTS'] = "./reports"
 
+RSpec::Core::RakeTask.new(:accessibility, [:browser]) do |t, args|
+	ENV['BROWSER'] = args[:browser]
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b%Y-%H%M%S')}"
+	t.pattern = Dir.glob('spec/tests/accessibility/accessibility_spec.rb')
+end
+
 RSpec::Core::RakeTask.new(:api, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]

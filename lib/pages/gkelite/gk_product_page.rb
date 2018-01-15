@@ -1,13 +1,12 @@
 require './lib/pages/gkelite/gk_shopify_base_page'
 require './lib/helpers/gkelite/gk_header'
-require './lib/helpers/gkelite/gk_footer'
+
 require './lib/helpers/gkelite/gk_cart_lightbox'
 require './lib/helpers/gkelite/gk_search_filters'
 
 class GKProductPage < GKShopifyBasePage
 	include PageObject
 	include GKHeader
-	include GKFooter
 	include GKCartLightbox
 	include GKSearchFilters
 
@@ -79,6 +78,7 @@ text_area(:review_body, name: "review_body")
 button(:submit_review, class: ["jdgm-submit-rev btn btn_c button"])
 div(:review_confirm, class: ["jdgm-notification"])
 label(:errors, id: "reviewer_name-error")
+div(:error_message, class: "error-message")
 
 # You May Also Like
 div(:similar_recent_products, id: "product-carousel-container")
