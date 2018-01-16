@@ -76,6 +76,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 							end
 						end
 						sleep 10
+						@pdp.wait_while {@pdp.error_message_element.present? == false && $driver.url.include?("sizes-and-alterations")}
 						if @pdp.error_message_element.present?
 							puts "#{id} | PDP | Failed to Load Customized PDP"
 						else
