@@ -43,7 +43,6 @@ class AssetAPI < BasePage
 			ENV['SITE'] = 'shed-rain'
 			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/scene.json"
 		end
-		puts url
 		uri = URI(url)
 		response = Net::HTTP.get(uri)
 		@specs = JSON.parse(response)

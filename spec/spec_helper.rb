@@ -14,6 +14,11 @@ require 'net/http'
 require "json_matchers/rspec"
 require 'csv'
 require "watir-scroll"
+require 'watir-nokogiri'
+require 'open-uri'
+require 'active_support/all'
+# require 'webdriver-user-agent'
+# require 'watir-webdriver-performance'
 
 
 RSpec.configure do |config|
@@ -27,12 +32,17 @@ RSpec.configure do |config|
 		unless File.directory?($screenshotfolder)
 			FileUtils.mkdir_p($screenshotfolder)
 		end
-		# if ENV['BROWSER'] == 'chrome'
-		# 	$driver = Watir::Browser.new(:chrome, :switches => %w[--load-extension=.../Users/case/Library/Application\ Support/Google/Chrome/Default/Extensions/jbbplnpkjmmeebjpijfedlgcdilocofh/1.0.9_0.crx])
-		# else
-			$driver = Watir::Browser.new ENV['BROWSER'].to_sym
-		# end
+		args = ['--user-data-dir=/Users/case/Library/Application Support/Google/Chrome/Profile 2',
+				'--disable-infobars',
+				'--start-maximized',
+				"--enable-precise-memory-info"]
+
+		wave_path = '/Users/case/Library/Application Support/Google/Chrome/Profile 2/Profile 2/Extensions/jbbplnpkjmmeebjpijfedlgcdilocofh/1.0.9_0.crx'
+		lighthouse_path = '/Users/case/Library/Application Support/Google/Chrome/Profile 2/Profile 2/Extensions/blipmdconlkpinefehnmjammfjpmpbjk/2.8.0_0.crx'
+		$driver = Watir::Browser.new :chrome, options: { extensions: [wave_path, lighthouse_path], args: args }
 	end
+
+			# --disable-background-networking --disable-browser-side-navigation --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-infobars --disable-popup-blocking --disable-prompt-on-repost --disable-sync --disable-web-resources --enable-automation --enable-logging --force-fieldtrials=SiteIsolationExtensions/Control --ignore-certificate-errors --load-extension=/var/folders/_k/ty0r3fks0b9dkvhzf2nl6gmr0000gn/T/.org.chromium.Chromium.HAbI3g/extension_mjlcfgnaichicdbekfellhbjcgohcgpp,/var/folders/_k/ty0r3fks0b9dkvhzf2nl6gmr0000gn/T/.org.chromium.Chromium.HAbI3g/extension_jkdfmgpiaagenbddajlbonfpgoajanmm,/var/folders/_k/ty0r3fks0b9dkvhzf2nl6gmr0000gn/T/.org.chromium.Chromium.HAbI3g/internal --log-level=0 --metrics-recording-only --no-first-run --password-store=basic --remote-debugging-port=12629 --safebrowsing-disable-auto-update --start-maximized --test-type=webdriver --use-mock-keychain --user-data-dir=/Users/case/Library/Application Support/Google/Chrome --flag-switches-begin --flag-switches-end
 
 	# config.before(:each) do |example|
 	#     caps = {

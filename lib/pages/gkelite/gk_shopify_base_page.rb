@@ -6,8 +6,8 @@ class GKShopifyBasePage < BasePage
 	include GKHeader
 
 
-text_field(:password, id: "password")
-button(:enter, name: "commit")
+	text_field(:password, id: "password")
+	button(:enter, name: "commit")
 
 	def enter_password
 		self.password = "iawhao"
@@ -43,11 +43,4 @@ button(:enter, name: "commit")
 	def collections(id)
 		$driver.goto $base_url + "/collections/#{id}?view=product"
 	end
-
-	def api_setup(url)
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
-		specs = JSON.parse(response)
-	end
-
 end

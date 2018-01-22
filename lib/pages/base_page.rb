@@ -8,6 +8,18 @@ class BasePage
 		super($driver)
 	end
 
+	def api_setup(url)
+		uri = URI(url)
+		response = Net::HTTP.get(uri)
+		specs = JSON.parse(response)
+		return specs
+	end
+
+	def ua_api_setup(url)
+		response = Nokogiri::HTML(open(url))
+		response.to_json
+	end
+
 	def wait_or_rescue(arg)
 		begin
 			self.wait_until { arg }
