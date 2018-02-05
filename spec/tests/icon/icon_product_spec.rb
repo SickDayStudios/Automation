@@ -1,24 +1,31 @@
 require "./lib/pages/icon/icon_base_page"
 
-describe "UA Icon Schema Test" do 
+describe "ICON | Recipe Verification Test | " do 
 
 	before(:all) do
-		BasePage.set_user
-    	BasePage.set_base_url
-    	
-		@page = IconBasePage.new
-		@readable_id = @page.recipe_id_list
 	end
 
-	context "API Call: " do
-		it "UA Icon Schema Test Complete" do
-			@readable_id.each do |id|
-				url = "https://staging.spectrumcustomizer.com/api/recipesets/readable/#{id}"
-				uri = URI(url)
-				response = Net::HTTP.get(uri)
-				specs = JSON.parse(response)
-				JSON::Validator.fully_validate('./lib/config/eb_product_schema.json', specs)
-			end
-		end
+	it "parse_icon_recipeset" do
+		puts IconBasePage.parse_icon_recipeset("2DKDKWP6")
+	end
+
+	it "parse_icon_packlist" do
+		puts IconBasePage.parse_icon_packlist("2DKDKWP6")
+	end
+
+	it "parse_spec_html" do
+		IconBasePage.parse_spec_html("2DKDKWP6")
+	end
+
+	it "get_text_message_handles" do
+		puts IconBasePage.get_text_message_handles("uaf-prs-clutchfit-mens")
+	end
+
+	it "localize_text_message_handles" do
+		puts IconBasePage.localize_text_message_handles("uaf-prs-clutchfit-mens")
+	end
+
+	it "convert_handle_to_text" do
+		puts IconBasePage.convert_handle_to_text("uaf-prs-clutchfit-mens","2DKDKWP6")
 	end
 end

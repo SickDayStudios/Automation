@@ -18,13 +18,17 @@ class GKProductPage < GKShopifyBasePage
 	span(:style_id, css: "#product-attributes-container > div > h1 > span")
 	div(:overlay, css: "#basic-boat-neck-comp-leotard > div:nth-child(17)")
 	select_list(:user_dropdown, name: "product-type")
+	link(:review_design, class: ["product-meta__review-design-link"])
+	button(:save_design, text: "Save Design")
+	div(:product_container, class: ["product-attributes-container"])
 
 	# Style Name
 	div(:product_info, id: "product-attributes-container")
 	span(:price, class: ["product-meta__price"])
 	p(:selected_color, class: ["product-color"])
 	div(:color_picker, class: ["color-picker"])
-	div(:size_dropdown, class: ["size-selector"])
+	div(:color_chooser, class: "product__color-chooser")
+	div(:size_dropdown, class: "size-selector")
 	div(:child_size_options, css: "#product-attributes-container > form > div.size-selector.open > div > div:nth-child(2)")
 	div(:adult_size_options, css: "#product-attributes-container > form > div.size-selector.open > div > div:nth-child(3)")
 	button(:size_cs, css: "#product-attributes-container > form > div.size-selector.open > div > div:nth-child(2) > button:nth-child(1)")
@@ -57,7 +61,7 @@ class GKProductPage < GKShopifyBasePage
 	button(:q_five, class: ["final"])
 	text_field(:q_manual, class: ["input"])
 	button(:add_to_cart, id: "AddToCart")
-	link(:customize_button, text: "Customize")
+	link(:customize_button, class: "addtocart-customize__buttons--customize")
 	link(:customize, css: "#product-attributes-container > form > div.addtocart-customize > div > div:nth-child(2) > a")
 
 	# Accordions
@@ -86,6 +90,11 @@ class GKProductPage < GKShopifyBasePage
 	div(:arrow_previous, class: ["swiper-button-prev swiper-button-black"])
 	div(:arrow_next, class: ["swiper-button-next swiper-button-black"])
 	divs(:suggested_garments, class: ["swiper-slide"])
+
+	# 2D
+	element(:blob_not_found, css: "#customizer-2d-container > div:nth-child(1) > div.col-md-6.svg-viewer-container > error > code")
+	button(:next_button, text: "Next")
+	button(:saving_design, text: "Saving Design...")
 
 
 	# Lightbox
@@ -129,6 +138,16 @@ class GKProductPage < GKShopifyBasePage
 				end
 			end
 		end
+	end
+
+	def color_buttons
+		@id_array = Array.new
+		colors = self.color_picker_element.buttons
+		colors.each do |ao|
+			ao.click
+			@id_array.push(self.customize_button_element.href)
+		end
+		@id_array.flatten
 	end
 
 	def get_ao_numbers

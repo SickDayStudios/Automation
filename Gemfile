@@ -43,6 +43,7 @@ group :development, :test do
   gem 'page-object'
   gem 'watir'
   gem 'rake'
+  gem 'rest-client'
   # gem "simplecov"
   # gem "simplecov-rcov"
   gem "ci_reporter_rspec"
@@ -57,6 +58,7 @@ group :development, :test do
   # gem 'appium_lib'
   # gem 'appium_console'
   # gem 'nyan-cat-formatter'
+  gem 'colorize'
 end
 
 group :development do
