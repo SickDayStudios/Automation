@@ -97,13 +97,5 @@ describe "BENCHMADE | XML Spec Verification Test | " do
 			end
 			sleep 2
 		end
-
-		it "BMK RECIPE DELIVERY" do
-			@response = BMKBasePage.bmk_saved_spec("#{id}")
-			db_id = @response.search('p').text.scan(/\d+/)
-			if db_id.empty?
-				puts "#{id}:\nFailed to Reach BMK DB"
-			end
-		end
 	end
 end

@@ -146,7 +146,13 @@ class BasePage
 
 	def self.set_base_url
 		case ENV['SITE'].to_sym
-		when :camelbak then $base_url = "http://madetoorder.azureedge.net/camelbak/frontend/"
+		when :benchmade 
+			case ENV['ENVIRONMENT']
+			when :test then $base_url = 'http://madetoordertest.azureedge.net/benchmade' and $price_url = 'http://test.spectrumcustomizer.com/api/recipesets/pricing/' and $spec_url = 'http://test.spectrumcustomizer.com/benchmade/specification/preview/'
+			when :staging then $base_url = 'http://madetoorderstaging.azureedge.net/benchmade' and $price_url = 'http://staging.spectrumcustomizer.com/api/recipesets/pricing/' and $spec_url = 'http://staging.spectrumcustomizer.com/benchmade/specification/preview/'
+			when :prod then $base_url = 'http://madetoorder.azureedge.net/benchmade' and $price_url = 'http://api.spectrumcustomizer.com/api/recipesets/pricing/' and $spec_url = 'http://api.spectrumcustomizer.com/benchmade/specification/preview/'
+			end
+		when :camelbak then $base_url = 'http://madetoorder.azureedge.net/camelbak/frontend/'
 		when :customizer
 			case ENV['ENVIRONMENT'].to_sym
 			when :test then $base_url = 'http://demo.madetoordercustomizer.com/gk-elite/test/frontend/index.html#/products/'
