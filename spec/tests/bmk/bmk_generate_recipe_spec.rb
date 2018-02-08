@@ -8,15 +8,11 @@ describe "BMK Knife Generator" do
 	end
 
 	it "Price: Verified" do
-		puts "Generate 100 Recipes"
 		100.times do
-			aggregate_failures "" do
-				pair = @browser.random_knife
-				expect(pair[1]).to include("#{pair[2]}")
-				@hash.store(pair[0],pair[1])
-			end
+			pair = @browser.random_knife
+			expect(pair[1]).to include("#{pair[2]}")
+			@hash.store(pair[0],pair[1])
 		end
-		puts "Verify Recipe XML"
 		puts @hash
 		@hash.each do |k,v|
 			@response = BMKBasePage.bmk_saved_spec(k)

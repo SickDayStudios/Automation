@@ -12,8 +12,17 @@ class IconCustomizer < IconBasePage
 	div(:done, text: "DONE")
 	div(:exit_pattern, class: ["expanded-feature__content__panel__backbutton"])
 	button(:add_to_bag, class: ["ui--actions__useraction ui--actions__useraction--addtobag"])
-	button(:share, text: "SHARE")
+	button(:share, class: ["ui--actions__useraction--share"])
 	div(:color_modal, class: ["ui--swatchgroup--bigset"])
+	spans(:swatch_names, class: ["swatch-name"])
+
+	def get_colors
+		self.color_tabs_elements.each do |e|
+			self.wait_while { e.element.stale? }
+			e.element.click			
+			if (e.text == 'UPPER' || 'FOREFOOT') == false
+				self.swatch_names.each do |color|
+
 
 
 	def create_random_shoe
@@ -33,7 +42,7 @@ class IconCustomizer < IconBasePage
 		self.color_tabs_elements.each do |e|
 			self.wait_while { e.element.stale? }
 			e.element.click			
-			if (e.text == 'UPPER') == false
+			if (e.text == 'UPPER' || 'FOREFOOT') == false
 				if e.text.include?('SIZE')
 					sizes = self.size_options_element.lis
 					sizes[rand(sizes.length)].click					 
@@ -44,5 +53,9 @@ class IconCustomizer < IconBasePage
 				end
 			end
 		end
+		current_url = self.url
+		self.share.click
+		self.wait_while {self.url == current_url}
+		return self.url.scan(/\w*[0-9]\w*/)
 	end
 end

@@ -4,13 +4,18 @@ require 'watir'
 require './lib/pages/base_page'
 require 'openssl'
 require 'rspec_junit_formatter'
-require "watir-scroll"
 require 'fileutils'
 require 'json'
+require 'csv'
 require 'net/http'
-require 'json-schema'
-require 'json-schema-rspec'
 require "json_matchers/rspec"
+require 'csv'
+require 'watir-nokogiri'
+require 'open-uri'
+require 'active_support/all'
+require 'restclient'
+require 'nokogiri'
+require 'colorize'
 
 
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE

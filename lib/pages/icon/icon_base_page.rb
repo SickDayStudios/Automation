@@ -9,14 +9,6 @@ class IconBasePage < BasePage
 		Nokogiri::XML.parse(RestClient.get("http://share.madetoordercustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
 	end
 
-	def self.tag_checker
-		tags = Hash.new(0)
-		document.traverse do |node|
-			next unless node.is_a?(Nokogiri::XML::Element)
-			tags[node.name] += 1
-		end
-	end
-
 	def self.parse_icon_packlist(recipe_id)
 		@packlist = Array.new
 		@keys = Array.new
@@ -28,22 +20,13 @@ class IconBasePage < BasePage
 			pair.scan(/\S*\w.*\S/).to_a
 			@hash.store(pair[0],pair[1])
 		end
-		# info.each do |i|
-		# end
-		# 	element = e.text.scan(/\S*\w.*\S/)
-		# 	element.each do |s|
-		# 		@packlist.push(s.strip)
-		# 	end
-		# end
-		# return @packlist
-		# puts info
 		return @hash
 	end
 
 	def self.parse_spec_html(recipe_id)
-		details = parse_icon_spec_details("2DKDKWP6")
-		images = parse_icon_spec_images("2DKDKWP6")
-		colors = parse_icon_spec_colors("2DKDKWP6")
+		details = parse_icon_spec_details("#{recipe_id}")
+		images = parse_icon_spec_images("#{recipe_id}")
+		colors = parse_icon_spec_colors("#{recipe_id}")
 		puts ""
 		puts "Details:"
 		details.each do |d|

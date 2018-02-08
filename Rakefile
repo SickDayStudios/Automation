@@ -15,15 +15,15 @@ RSpec::Core::RakeTask.new(:icon, [:environment, :browser]) do |t, args|
 	t.pattern = Dir.glob('spec/tests/icon/icon_product_spec.rb')
 end
 
-RSpec::Core::RakeTask.new(:bmk_xml, [:environment,:browser]) do |t, args|
+RSpec::Core::RakeTask.new(:bmk_cart, [:environment,:browser]) do |t, args|
 	ENV['BROWSER'] = args[:browser]
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['SITE'] = 'benchmade'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-	t.pattern = Dir.glob('spec/tests/bmk/bmk_xml_spec.rb')
+	t.pattern = Dir.glob('spec/tests/bmk/bmk_cart_spec.rb')
 end
 
-RSpec::Core::RakeTask.new(:bmk_knife, [:environment,:browser]) do |t, args|
+RSpec::Core::RakeTask.new(:bmk_xml, [:environment,:browser]) do |t, args|
 	# ENV['SITE'] = 'benchmade'
 	ENV['BROWSER'] = args[:browser]
 	ENV['ENVIRONMENT'] = args[:environment]

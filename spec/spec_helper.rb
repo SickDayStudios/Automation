@@ -10,7 +10,6 @@ require 'csv'
 require 'net/http'
 require "json_matchers/rspec"
 require 'csv'
-require "watir-scroll"
 require 'watir-nokogiri'
 require 'open-uri'
 require 'active_support/all'

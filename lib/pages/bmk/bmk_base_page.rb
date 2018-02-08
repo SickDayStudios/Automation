@@ -10,10 +10,16 @@ class BMKBasePage < BasePage
 	div(:saved_recipe_id, class: "")
 	span(:button_status, text: "Buying...")
 	ul(:shape_option, class: "c-fea-blade-shape__selections")
-	div(:price, class: ["c-customizer__panel__product-largescreencontrols__content__price"])
-	button(:buy, class: ["c-buy-share__cta c-buy-share__cta--buy"])
+	div(:ui_price, class: ["c-customizer__panel__product-largescreencontrols__content__price"])
+	button(:buy, class: ["c-buy-share__cta--buy"])
 	button(:add_to_cart, text: "Add to cart")
 	div(:vue, id: "benchmade-customizer-vue")
+	span(:mini_price, css: "#cart-sidebar > li > div > table > tbody > tr:nth-child(1) > td > span")
+	span(:unit_price, css: "#shopping-cart-table > tbody > tr.first.odd > td.product-cart-price > span > span")
+	link(:checkout, class: ["button checkout-button"])
+	div(:mini_cart, class: ["minicart-wrapper"])
+	links(:delete, text: "Delete")
+
 
 
 
@@ -24,8 +30,8 @@ class BMKBasePage < BasePage
 
 	def self.bmk_saved_spec(id)
 		case ENV['ENVIRONMENT'].to_sym
-		when :prod then Nokogiri::XML.parse(RestClient.get("http://api.spectrumcustomizer.com/benchmade/specification/preview/#{id}"))
-		when :staging then Nokogiri::XML.parse(RestClient.get("http://staging.spectrumcustomizer.com/benchmade/specification/preview/#{id}"))
+		when :prod then Nokogiri::XML.parse(RestClient.get("http://api.spectrumcustomizer.com/benchmade/specification/saved/#{id}"))
+		when :staging then Nokogiri::XML.parse(RestClient.get("http://staging.spectrumcustomizer.com/benchmade/specification/saved/#{id}"))
 		end
 	end
 
@@ -34,6 +40,69 @@ class BMKBasePage < BasePage
 		when :staging then JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/recipesets/pricing/#{id}"))
 		when :prod then JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/pricing/#{id}"))
 		end
+	end
+
+	def check_cart_price
+		asset = $knives.sample
+		case ENV['ENVIRONMENT'].to_sym
+		when :staging
+			case asset
+			when "bmk-pro-crookedriver-full" then
+				$driver.goto("http://staging.benchmade.com/crooked-river-family.html?customize=1#/product/bmk-pro-crookedriver-full")
+			when "bmk-pro-grip-full" || "bmk-pro-grip-mini" then
+				$driver.goto("http://staging.benchmade.com/griptilian-family.html?customize=1#/product/#{asset}")
+			when "bmk-pro-barrage-full" || "bmk-pro-barrage-mini" then
+				$driver.goto("http://staging.benchmade.com/barrage-family.html?customize=1#/product/#{asset}")
+			end
+		when :prod then 
+			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+		end
+		self.wait_until(60) { self.ui_price_element.present? }
+		sleep 2
+		self.catagory_groups_elements.each do |cg|			
+			if cg.button.attribute('title').include?('Lasermark') == false			
+				if cg.attribute('class').include?('active') == false				
+					cg.button.click			
+				end				
+				self.feature_groups_elements.each do |fg|
+					if fg.attribute('class').include?('active') == false						
+						fg.button.click			
+					end										
+					case
+					when fg.button.text.include?("SHAPE")
+						shapes = self.shape_option_element.lis
+						shape = shapes[rand(shapes.length)]
+						shape.button.click
+					when fg.button.text.include?("STEEL")
+						steel = self.steel_option_elements
+						steel.sample.button.click		
+					when fg.button.text.include?("MATERIAL")
+						material = self.material_option_elements
+						material.sample.click
+					when fg.button.text.include?("CLIP")
+						clip = self.clip_option_elements
+						clip.sample.click
+					when fg.button.text.include?("STEEL") == false && fg.button.text.include?("MATERIAL") == false && fg.button.text.include?("CLIP") == false
+						color = self.color_option_elements
+						color.sample.button.click
+					end
+				end
+			end
+		end
+		self.buy
+		self.add_to_cart
+		knife_price = self.ui_price
+		sleep 2
+		self.wait_until { self.mini_cart_element.present? }
+		mini_cart_price = self.mini_price
+		self.checkout_element.click
+		self.wait_until { self.url.include?('cart') }
+		sleep 2
+		cart_price = self.unit_price
+		delete_elements.length.times do
+			delete_elements[0].click
+		end
+		return knife_price, mini_cart_price, cart_price
 	end
 
 	def random_knife
@@ -46,7 +115,7 @@ class BMKBasePage < BasePage
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 		end
-		self.wait_until(60) { self.price_element.present? }
+		self.wait_until(60) { self.ui_price_element.present? }
 		sleep 2
 		self.catagory_groups_elements.each do |cg|			
 			if cg.button.attribute('title').include?('Lasermark') == false			
@@ -79,7 +148,7 @@ class BMKBasePage < BasePage
 			end
 		end
 		sleep 1
-		knife_price = self.price
+		knife_price = self.ui_price
 		self.buy
 		sleep 1
 		self.add_to_cart
