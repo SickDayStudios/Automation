@@ -33,7 +33,7 @@ RSpec.configure do |config|
 		end
 		wave_path = '/Users/case/Library/Application Support/Google/Chrome/Profile 2/Profile 2/Extensions/jbbplnpkjmmeebjpijfedlgcdilocofh/1.0.9_0.crx'
 		lighthouse_path = '/Users/case/Library/Application Support/Google/Chrome/Profile 2/Profile 2/Extensions/blipmdconlkpinefehnmjammfjpmpbjk/2.8.0_0.crx'
-		$driver = Watir::Browser.new :chrome, options: { extensions: [wave_path, lighthouse_path], args: args }
+		$driver = Watir::Browser.new :chrome #, options: { extensions: [wave_path, lighthouse_path], args: args }
 	end
 
 	config.after(:each) do |example|
