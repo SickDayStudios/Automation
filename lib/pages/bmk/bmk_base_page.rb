@@ -115,7 +115,7 @@ class BMKBasePage < BasePage
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 		end
-		self.wait_until(60) { self.ui_price_element.present? }
+		self.wait_while { self.ui_price == "" }
 		sleep 2
 		self.catagory_groups_elements.each do |cg|			
 			if cg.button.attribute('title').include?('Lasermark') == false			
