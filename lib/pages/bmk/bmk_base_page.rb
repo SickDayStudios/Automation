@@ -111,15 +111,17 @@ class BMKBasePage < BasePage
 		case ENV['ENVIRONMENT'].to_sym
 		when :staging then 
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
-			sleep 2
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
-			sleep 2
+			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 		when :prod then 
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
-			sleep 2
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
-			sleep 2
+			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 		end
 		self.wait_while(timeout: 60, message: "Page Failed to Load after 60 seconds") { self.ui_price == "" }
@@ -171,6 +173,7 @@ class BMKBasePage < BasePage
 		knife_id = response['data']['custom_knife_id']
 		remote_price = response['data']['remote_price']
 		return knife_id, knife_price, remote_price
+		sleep 5
 	end
 end
 
