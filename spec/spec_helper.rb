@@ -35,6 +35,7 @@ RSpec.configure do |config|
 		wave_path = '/Users/case/Library/Application Support/Google/Chrome/Profile 2/Profile 2/Extensions/jbbplnpkjmmeebjpijfedlgcdilocofh/1.0.9_0.crx'
 		lighthouse_path = '/Users/case/Library/Application Support/Google/Chrome/Profile 2/Profile 2/Extensions/blipmdconlkpinefehnmjammfjpmpbjk/2.8.0_0.crx'
 		$driver = Watir::Browser.new :chrome , options: { args: args }#, extensions: [wave_path, lighthouse_path], }
+		$driver.window.resize_to(1920, 1080)
 	end
 
 	config.after(:each) do |example|
