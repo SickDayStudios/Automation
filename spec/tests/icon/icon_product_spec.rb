@@ -5,14 +5,19 @@ describe "ICON | Recipe Verification Test | " do
 
 	before(:all) do
 		@page = IconCustomizer.new
-		$driver.goto('https://www.underarmour.com/en-us/pid3000416?recipeSetId=Z47N3G68')
-		sleep 10
 	end
 
+
+	
 	it "Tougher, Colder, Killer" do
-		shoe = @page.create_random_shoe
-		puts shoe[0]
-		puts shoe[1]
+		$icon.each do |style|
+			$driver.goto("http://demo.madetoordercustomizer.com/under-armour/test/uaf/frontend/index.html?style=#{style}")
+			sleep 10
+			shoe = @page.create_random_shoe
+			puts style
+			puts shoe[0]
+			puts shoe[1]
+		end
 	end
 
 	# it "parse_icon_recipeset" do

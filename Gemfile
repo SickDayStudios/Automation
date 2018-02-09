@@ -58,6 +58,7 @@ group :development, :test do
   # gem 'appium_console'
   # gem 'nyan-cat-formatter'
   gem 'colorize'
+  gem 'parallel_tests'
 end
 
 group :development do

@@ -1,6 +1,8 @@
 class IconBasePage < BasePage
 	include PageObject
 
+	$icon = ["uaf-prs-charged247-mens","uaf-prs-charged247-womens","uaf-prs-clutchfit-mens","uaf-prs-clutchfit-womens","uaf-prs-curry1low-mens","uaf-prs-curry1-mens","uaf-prs-curry1-youth","uaf-prs-drive4low-mens","uaf-prs-drive4-mens","uaf-prs-drive4-womens","uaf-prs-highlight-mens","uaf-prs-icon-sackpack"]
+
 	def self.spec_response(recipe_id)
 		Nokogiri::XML.parse(RestClient.get("https://api.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
 	end
