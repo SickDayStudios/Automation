@@ -166,8 +166,8 @@ class BMKBasePage < BasePage
 		# puts "#{knife_id} | #{knife_price}"
 		knife_id = response['data']['custom_knife_id']
 		remote_price = response['data']['remote_price']
-		return knife_id, knife_price, remote_price
 		sleep 5
+		return knife_id, knife_price, remote_price
 	end
 end
 
