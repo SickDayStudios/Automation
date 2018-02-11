@@ -111,11 +111,15 @@ class BMKBasePage < BasePage
 		case ENV['ENVIRONMENT'].to_sym
 		when :staging then 
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
-			sleep 5
+			sleep 1
+			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			sleep 1
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 		when :prod then 
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
-			sleep 5
+			sleep 1
+			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			sleep 1
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 		end
 		self.wait_while(timeout: 60, message: "Page Failed to Load after 60 seconds") { self.ui_price == "" }
