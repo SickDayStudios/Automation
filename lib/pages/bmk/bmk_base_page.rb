@@ -115,12 +115,14 @@ class BMKBasePage < BasePage
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 			sleep 1
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			$driver.url.send_keys :return
 		when :prod then 
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 			sleep 1
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 			sleep 1
 			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			$driver.url.send_keys :return
 		end
 		self.wait_while(timeout: 60, message: "Page Failed to Load after 60 seconds") { self.ui_price == "" }
 		sleep 2
@@ -170,7 +172,8 @@ class BMKBasePage < BasePage
 		# puts "#{knife_id} | #{knife_price}"
 		knife_id = response['data']['custom_knife_id']
 		remote_price = response['data']['remote_price']
-		sleep 5
+		sleep 1
+		$driver.refresh
 		return knife_id, knife_price, remote_price
 	end
 end
