@@ -1,4 +1,3 @@
-require "./lib/pages/icon/icon_base_page"
 require "./lib/pages/icon/icon_customizer_page"
 
 describe "ICON | Recipe Verification Test | " do 
@@ -11,10 +10,10 @@ describe "ICON | Recipe Verification Test | " do
 	
 	it "Tougher, Colder, Killer" do
 		$icon.each do |style|
-			$driver.goto("http://demo.madetoordercustomizer.com/under-armour/test/uaf/frontend/index.html?style=#{style}")
-			sleep 10
-			shoe = @page.create_random_shoe
 			puts style
+			$driver.goto("http://demo.madetoordercustomizer.com/under-armour/staging/uaf/frontend/index.html?style=#{style}")
+			sleep 5
+			shoe = @page.create_random_shoe
 			puts shoe[0]
 			puts shoe[1]
 		end
