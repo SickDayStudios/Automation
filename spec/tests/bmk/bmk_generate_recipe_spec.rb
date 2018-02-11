@@ -12,6 +12,7 @@ describe "BMK Knife Generator" do
 			pair = @browser.random_knife
 			expect(pair[1]).to include("#{pair[2]}")
 			@hash.store(pair[0],pair[1])
+			sleep 1
 		end
 		puts @hash
 		@hash.each do |k,v|
