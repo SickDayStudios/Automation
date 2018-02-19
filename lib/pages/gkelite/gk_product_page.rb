@@ -42,7 +42,7 @@ class GKProductPage < GKShopifyBasePage
 	button(:size_am, css: "#product-attributes-container > form > div.size-selector.open > div > div:nth-child(4) > button:nth-child(5)")
 	div(:product_thumbnails, id: "product-thumbnails-container")
 	image(:product_image, id: "img-0")
-	image(:placeholder_image, src: /placeholder/)
+	image(:placeholder_image, src: /\w+[a-z]\w-gk.jpg/)
 	div(:four_oh_four, class: ["four-oh-four"])
 
 
@@ -61,7 +61,7 @@ class GKProductPage < GKShopifyBasePage
 	button(:q_five, class: ["final"])
 	text_field(:q_manual, class: ["input"])
 	button(:add_to_cart, id: "AddToCart")
-	link(:customize_button, class: "addtocart-customize__buttons--customize")
+	link(:customize_button, class: ["addtocart-customize__buttons--customize"])
 	link(:customize, css: "#product-attributes-container > form > div.addtocart-customize > div > div:nth-child(2) > a")
 
 	# Accordions
@@ -95,6 +95,7 @@ class GKProductPage < GKShopifyBasePage
 	element(:blob_not_found, css: "#customizer-2d-container > div:nth-child(1) > div.col-md-6.svg-viewer-container > error > code")
 	button(:next_button, text: "Next")
 	button(:saving_design, text: "Saving Design...")
+	p(:oops, css: "#customizer-2d-container > div:nth-child(2) > div.col-md-6.save-design > p:nth-child(4)")
 
 
 	# Lightbox

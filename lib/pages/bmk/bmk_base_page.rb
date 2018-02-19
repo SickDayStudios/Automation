@@ -19,6 +19,7 @@ class BMKBasePage < BasePage
 	link(:checkout, class: ["button checkout-button"])
 	div(:mini_cart, class: ["minicart-wrapper"])
 	links(:delete, text: "Delete")
+	checkbox(:checkbox, id: "terms")
 
 
 
@@ -30,33 +31,42 @@ class BMKBasePage < BasePage
 
 	def self.bmk_saved_spec(id)
 		case ENV['ENVIRONMENT'].to_sym
-		when :prod then Nokogiri::XML.parse(RestClient.get("http://api.spectrumcustomizer.com/benchmade/specification/saved/#{id}"))
-		when :staging then Nokogiri::XML.parse(RestClient.get("http://staging.spectrumcustomizer.com/benchmade/specification/saved/#{id}"))
+			when :prod then Nokogiri::XML.parse(RestClient.get("http://api.spectrumcustomizer.com/benchmade/specification/saved/#{id}"))
+			when :staging then Nokogiri::XML.parse(RestClient.get("http://staging.spectrumcustomizer.com/benchmade/specification/saved/#{id}"))
+			when :test then Nokogiri::XML.parse(RestClient.get("http://test.spectrumcustomizer.com/benchmade/specification/saved/#{id}"))
 		end
 	end
 
 	def self.bmk_price(id)
 		case ENV['ENVIRONMENT'].to_sym
-		when :staging then JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/recipesets/pricing/#{id}"))
-		when :prod then JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/pricing/#{id}"))
+			when :test then JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/benchmade/specification/saved/#{id}"))
+			when :staging then JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/recipesets/pricing/#{id}"))
+			when :prod then JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/pricing/#{id}"))
 		end
 	end
 
 	def check_cart_price
 		asset = $knives.sample
 		case ENV['ENVIRONMENT'].to_sym
+		when :test then $driver.goto("http://madetoordertest.blob.core.windows.net/benchmade/frontend/index.html#/product/#{asset}")
 		when :staging
 			case asset
 			when "bmk-pro-crookedriver-full" then
-				$driver.goto("http://staging.benchmade.com/crooked-river-family.html?customize=1#/product/bmk-pro-crookedriver-full")
+				$driver.goto("https://staging.benchmade.com/crooked-river-family.html?customize=1#/product/bmk-pro-crookedriver-full")
 			when "bmk-pro-grip-full" || "bmk-pro-grip-mini" then
-				$driver.goto("http://staging.benchmade.com/griptilian-family.html?customize=1#/product/#{asset}")
+				$driver.goto("https://staging.benchmade.com/griptilian-family.html?customize=1#/product/#{asset}")
 			when "bmk-pro-barrage-full" || "bmk-pro-barrage-mini" then
-				$driver.goto("http://staging.benchmade.com/barrage-family.html?customize=1#/product/#{asset}")
+				$driver.goto("https://staging.benchmade.com/barrage-family.html?customize=1#/product/#{asset}")
 			end
 		when :prod then 
-			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
-			$driver.goto("http://madetoorder.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
+			case asset
+			when "bmk-pro-crookedriver-full" then
+				$driver.goto("https://www.benchmade.com/crooked-river-family.html?customize=1#/product/bmk-pro-crookedriver-full")
+			when "bmk-pro-grip-full" || "bmk-pro-grip-mini" then
+				$driver.goto("https://www.benchmade.com/griptilian-family.html?customize=1#/product/#{asset}")
+			when "bmk-pro-barrage-full" || "bmk-pro-barrage-mini" then
+				$driver.goto("https://www.benchmade.com/barrage-family.html?customize=1#/product/#{asset}")
+			end
 		end
 		self.wait_until(60) { self.ui_price_element.present? }
 		sleep 2
@@ -109,6 +119,9 @@ class BMKBasePage < BasePage
 	def random_knife
 		asset = $knives.sample
 		case ENV['ENVIRONMENT'].to_sym
+		when :test then
+			$driver.goto("http://madetoordertest.blob.core.windows.net/benchmade/frontend/index.html#/product/#{asset}")
+			$driver.goto("http://madetoordertest.blob.core.windows.net/benchmade/frontend/index.html#/product/#{asset}")
 		when :staging then 
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
 			$driver.goto("http://madetoorderstaging.azureedge.net/benchmade/frontend/index.html#/product/#{asset}")
@@ -152,6 +165,7 @@ class BMKBasePage < BasePage
 		knife_price = self.ui_price
 		self.buy
 		sleep 1
+		self.check_checkbox
 		self.add_to_cart
 		sleep 1
 		self.wait_until { $driver.alert.exists? }

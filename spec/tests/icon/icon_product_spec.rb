@@ -1,6 +1,6 @@
 require "./lib/pages/icon/icon_customizer_page"
 
-describe "ICON | Recipe Verification Test | " do 
+describe "ICON | Recipe Verification Test" do 
 
 	before(:all) do
 		@page = IconCustomizer.new

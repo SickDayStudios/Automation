@@ -1,5 +1,6 @@
 require "./lib/pages/gkelite/gk_product_page"
 require "./lib/pages/gkelite/gk_login_page"
+require "./lib/pages/gkelite/customizer_page"
 require "./lib/pages/gkelite/gk_home_page"
 
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - 2D Customizer Test: " do
@@ -10,46 +11,71 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		@login_page = GKLoginPage.new
 	end
 
-	['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
-		context "#{user.upcase}: Check PDP Elements" do
-			it '2D Verification | 3456' do
-				ENV['USER_TYPE'] = user
-				BasePage.set_user
-				@login_page.header_login
-				@login_page.wait_until { @login_page.url.include?('account') }
-				aggregate_failures "FAILURE!!!!!!!" do
-					@page.goto "#{$base_url}/products/3456"
-					@page.wait_until { @page.product_container_element.present? }
-					sleep 2
-					if (@page.add_to_cart? == true && @page.customize_button? == true)
-						@page.color_buttons.each do |link|
-							@page.goto "#{link}"
-							@page.wait_until { @page.next_button? }
-							if @page.blob_not_found_element.exists?
-								puts "Blob Not Found"
-							end
+	
+	it "2D Verification" do
+		['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
+			ENV['USER_TYPE'] = user
+			BasePage.set_user
+			@login_page.header_login
+			@login_page.wait_until { @login_page.url.include?('account') }
+			$two_d_products.each do |id|
+				@page.goto "#{$base_url}/products/#{id}"
+				@page.wait_until { @page.product_container_element.present? }
+				sleep 2
+				if @page.customize_button? == false
+					puts "#{user} | #{id} | Not SWE"
+				else
+					@page.color_buttons.each do |link|
+					aggregate_failures "#{user} | #{id} | #{link}" do
+						@page.goto "#{link}"
+						sleep 2
+						if @page.blob_not_found?
+							puts "#{id} | #{link} | Blob Not Found"
+						else
 							@page.next_button
 							@page.wait_while { @page.saving_design? }
-							@page.wait_until { @page.url.include?('products') }
-							@page.wait_until { @page.product_container_element.present? }
-							sleep 2
-							expect(@page.color_chooser_element.present?).to eq(true)
-							expect(@page.review_design_element.present?).to eq(true)
-							expect(@page.size_dropdown_element.present?).to eq(true)
-							if @page.placeholder_image? == true
-								puts "Missing Product Image #{@page.selected_color_element.text}"
+							sleep 1
+							if @page.next_button?
+								puts "#{id} | #{@page.oops_element.text}"
+							else
+								@page.wait_until { @page.url.include?('products') }
+								if @page.product_accordions_element.present? == false
+									puts "Asset: #{id} | PDP | Missing Product Detail Accordians"
+								end
+								if @page.product_info? == false
+									puts "Asset: #{id} | PDP | Missing Product Info"
+								end
+								if @page.price_element.text.nil? == true
+									puts "Asset: #{id} | PDP | Missing Price"
+								end
+								if @page.selected_color? == false
+									puts "Asset: #{id} | PDP | Missing Color/Style Title"
+								end
+								if @page.color_picker? == false
+									puts "Asset: #{id} | PDP | Missing Color Options"
+								end
+								if @page.add_to_cart? == false
+									puts "Asset: #{id} | PDP | Missing Add To Cart button"
+								end
+								if @page.size_dropdown? == false
+									puts "Asset: #{id} | PDP | Missing Size Dropdown"
+								end
+								if @page.fit_size_info? == false
+									puts "Asset: #{id} | PDP | Missing Sizing Info"
+								end
+								if @page.product_thumbnails? == false
+									puts "Asset: #{id} | PDP | Missing Product Image Thumbnails"
+								end
+								if @page.product_image_element.attribute_value('src').include?('placeholder')
+									puts "Asset: #{id} | PDP | #{@page.selected_color_element.text} Missing Image"
+								end
 							end
-							expect(@page.product_image?).to eq(true)
-							expect(@page.save_design_element.present?).to eq(true)
-							expect(@page.add_to_cart_element.present?).to eq(true)
 						end
-					else
-						puts "Remove from 2D asset list"
 					end
 				end
-				@login_page.quick_logout
 			end
+				end
 		end
+		@login_page.quick_logout
 	end
 end
-
