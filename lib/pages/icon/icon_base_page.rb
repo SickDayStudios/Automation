@@ -1,14 +1,14 @@
 class IconBasePage < BasePage
 	include PageObject
 
-	$icon = ["uaf-prs-charged247-mens","uaf-prs-charged247-womens","uaf-prs-clutchfit-mens","uaf-prs-clutchfit-womens","uaf-prs-curry1low-mens","uaf-prs-curry1-mens","uaf-prs-curry1-youth","uaf-prs-drive4low-mens","uaf-prs-drive4-mens","uaf-prs-drive4-womens","uaf-prs-highlight-mens","uaf-prs-icon-sackpack"]
+	$icon = ["pid3021634","pid3000416","pid3020924","pid3000414","pid3020925","pid3020926","pid3021635","pid3021636","pid3021637","pid3021728","pid3021729","pid1326338","pid3000042","pid3000043","pid3022239","pid3022240","pid3022238"]
 
 	def self.spec_response(recipe_id)
-		Nokogiri::XML.parse(RestClient.get("https://api.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
+		Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
 	end
 
 	def self.packlist_response(recipe_id)
-		Nokogiri::XML.parse(RestClient.get("http://share.madetoordercustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
+		Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
 	end
 
 	def self.parse_icon_packlist(recipe_id)
@@ -18,7 +18,7 @@ class IconBasePage < BasePage
 		@hash = Hash.new
 		response = packlist_response(recipe_id)
 		response.search('div[class="info"]').each do |i|
-			pair = i.inner_text.join('<br>')
+			pair = i.inner_text#.join('<br>')
 			pair.scan(/\S*\w.*\S/).to_a
 			@hash.store(pair[0],pair[1])
 		end
@@ -26,24 +26,22 @@ class IconBasePage < BasePage
 	end
 
 	def self.parse_spec_html(recipe_id)
-		details = parse_icon_spec_details("#{recipe_id}")
-		images = parse_icon_spec_images("#{recipe_id}")
-		colors = parse_icon_spec_colors("#{recipe_id}")
-		puts ""
-		puts "Details:"
+		@details = Hash.new{ |hsh,key| hsh[key] = [] }
+		@images = Array.new
+		@colors = Hash.new{ |hsh,key| hsh[key] = [] }
+		details = parse_icon_spec_details(recipe_id)
+		images = parse_icon_spec_images(recipe_id)
+		colors = parse_icon_spec_colors(recipe_id)
 		details.each do |d|
-			puts "#{d}"
+			@details["#{d[0]}"] = d[1]
 		end
-		puts ""
-		puts "Images:"
 		images.each do |i|
-			puts "#{i}"
+			@images.push(i)
 		end
-		puts ""
-		puts "Colors:"
 		colors.each do |c|
-			puts "#{c}"
+			@colors["#{c[0]}"] = c[1]
 		end
+		returns @details,@images,@colors
 	end
 
 	def self.parse_icon_spec_details(recipe_id)
@@ -69,13 +67,7 @@ class IconBasePage < BasePage
 		end
 		links = response.search('a')
 		@keys.zip(@values).each do |k,v|
-			if v.include?("Download All Printable Assets")
-				@hash.store(k,links[2]['href'])
-			elsif v.include?("Download Printable Pack List")
-				@hash.store(k,links[1]['href'])
-			else
-				@hash.store(k, v)
-			end
+			@hash.store(k, v)
 		end
 		return @hash
 	end
@@ -97,7 +89,7 @@ class IconBasePage < BasePage
 		@table = Array.new
 		@keys = Array.new
 		@values = Array.new
-		response = response = spec_response(recipe_id)
+		response = spec_response(recipe_id)
 		response.search('table[class="table"]').each do |e|
 			element = e.text.scan(/\S*\w.*\S/)
 			element.each do |s|
@@ -120,7 +112,7 @@ class IconBasePage < BasePage
 
 	def self.parse_icon_recipeset(recipe_id)
 		@rset = Hash.new
-		response = JSON.parse(RestClient.get("https://api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
 		response['contents']['recipes'].each do |recipes|
 			recipes['recipe']['recipeData'].each do |recipeData|
 				recipeData['childFeatures'].each do |childFeatures|
@@ -157,7 +149,7 @@ class IconBasePage < BasePage
 
 	def self.get_text_message_handles(scene)
 		@pset = Hash.new
-		response = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/productsets/#{scene}"))
+		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"))
 		response['contents']['productGroups'].each do |productGroups|
 			if productGroups.empty? == false
 				productGroups['products'].each do |products|
@@ -197,7 +189,7 @@ class IconBasePage < BasePage
 	def self.localize_text_message_handles(scene)
 		@msg = get_text_message_handles(scene)
 		@loc = Hash.new
-		response = JSON.parse(RestClient.get("http://#{ENV['ENVIRONMENT']}.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
 		@msg.each do |k, v|
 			response['contents'].each do |contents|
 				if contents['handle'] == "#{v}"

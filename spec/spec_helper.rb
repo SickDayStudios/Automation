@@ -16,6 +16,7 @@ require 'active_support/all'
 require 'restclient'
 require 'nokogiri'
 require 'colorize'
+require 'zip'
 
 
 RSpec.configure do |config|

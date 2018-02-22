@@ -164,7 +164,7 @@ class BasePage
 			when :dev then $base_url = 'https://dev-gkelite.pollinate.com'
 			when :test then $base_url = 'https://test-gkelite.pollinate.com'
 			when :staging then $base_url = 'https://staging-gkelite.pollinate.com'
-			when :prod then $base_url = 'https://preview.gkelite.com'
+			when :prod then $base_url = 'https://www.gkelite.com'
 			end
 		when :'ua-icon'
 			case ENV['ENVIRONMENT']

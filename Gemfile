@@ -59,6 +59,7 @@ group :development, :test do
   # gem 'nyan-cat-formatter'
   gem 'colorize'
   gem 'parallel_tests'
+  gem 'rubyzip'
 end
 
 group :development do
