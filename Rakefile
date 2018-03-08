@@ -12,7 +12,7 @@ ENV['CI_REPORTS'] = "./reports"
 
 # ICON
 
-RSpec::Core::RakeTask.new(:icon_order, [:environment, :browser]) do |t, args|
+RSpec::Core::RakeTask.new(:icon_fe, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['SITE'] = 'ua-icon'
