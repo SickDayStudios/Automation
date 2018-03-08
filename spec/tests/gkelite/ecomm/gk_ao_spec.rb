@@ -7,6 +7,7 @@ require "./lib/pages/icon/icon_base_page"
 describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].upcase} - GK A0 Redirect Test: " do
 
 	before(:all) do
+		puts "#{Time.now.strftime('		%I:%M:%S%p')}".blue
 		@pdp = GKProductPage.new
 	end
 

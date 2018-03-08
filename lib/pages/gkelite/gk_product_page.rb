@@ -102,39 +102,48 @@ class GKProductPage < GKShopifyBasePage
 	div(:cart_popup, id: "added-to-cart")
 
 	def check_ao
-		puts " ID  | RecipeID | Spec ID  | Expected A0#  | Spec A0#"
-		@products = Array.new
-		$gk_scene_files.each do  |scene|
-			AssetAPI.scene_productoptions_keys(scene).each do |handle|
-				@products.push(handle.scan(/\w+[0-9]\w+/))
-			end
-		end
-		@product_handles = @products.flatten.uniq
-		@product_handles.each do |id|
-			$driver.goto "preview.gkelite.com/products/#{id}"
+		# puts " ID  | RecipeID | Spec ID  | Expected A0#  | Spec A0#"
+		# @products = Array.new
+		# $gk_scene_files.each do  |scene|
+		# 	AssetAPI.scene_productoptions_keys(scene).each do |handle|
+		# 		@products.push(handle.scan(/\w+[0-9]\w+/))
+		# 	end
+		# end
+		# @product_handles = @products.flatten.uniq
+		$gk_products.each do |id|
+			$driver.goto "gkelite.com/products/#{id}"
 			if self.four_oh_four?
+				puts "#{id} | 404 Product Page Missing"
 			else
+				self.wait_until { self.color_picker_element.exists? }
 				self.wait_until { self.color_picker_element.present? }
+				self.wait_until { self.color_picker_element.visible? }
 				recipe_set_ids = self.get_recipe_ids
 				ao_numbers = self.get_ao_numbers
-				recipe_set_ids.zip(ao_numbers).each do |rset,ao|
-					@recipe = self.api_setup("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}")
-					if @recipe["contents"].nil?
-						puts "#{id} | #{rset} | Broken Recipe"
-					else
-						@recipe["contents"]["recipes"].each do |indx|
-							if indx["productHandle"].include?("#{id}")
-								@spec_id = indx["recipe"]["readableId"]
-							else
-							end
-						end
-						@spec = self.api_setup("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}")
-						if ao != @spec["A0Number"]
-							puts "#{id} | #{rset} | #{@spec_id} | Expected: #{ao} | Got: #{@spec["A0Number"]}"
-							# puts "From: #{recipe_set_ids} | Using: #{rset}"
-							# puts "From: #{ao_numbers} | Using: #{ao}"
-						else
-						end
+				if recipe_set_ids.empty?
+					puts "#{id} | #{ao_numbers} | Missing Recipe Set ID"
+				else
+					recipe_set_ids.zip(ao_numbers).each do |rset,ao|
+						if rset == id
+							puts "#{id} | #{ao} | #{rset}"
+						# else
+						# 	@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
+						# 	if @recipe["contents"].nil?
+						# 		puts "#{id} | #{rset} | Broken Recipe"
+						# 	else
+						# 		@recipe["contents"]["recipes"].each do |indx|
+						# 			if indx["productHandle"].include?("#{id}")
+						# 				@spec_id = indx["recipe"]["readableId"]
+						# 			else
+						# 			end
+						# 		end
+						# 		@spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
+						# 		if ao != @spec["A0Number"]
+						# 			puts "#{id} | #{rset} | #{@spec_id} | Expected: #{ao} | Got: #{@spec["A0Number"]}"
+						# 		else
+						# 		end
+						# 	end
+						end	
 					end
 				end
 			end
@@ -185,9 +194,7 @@ class GKProductPage < GKShopifyBasePage
 	end
 
 	def get_product_data(id)
-		url = "https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
+		return JSON.parse(RestClient.get("https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"))
 	end
 
 
@@ -217,46 +224,46 @@ class GKProductPage < GKShopifyBasePage
 		@arr.sample.click
 	end
 
-	# def dealer_random_quantity
-	# 	@arr = Array.new
-	# 	self.dealer_quantity_elements.text_field.each do |x|
-	# 		@arr.push(x)
-	# 	end
-	# 	@arr.sample.send_keys rand[1..5].to_s
-	# end
+		# def dealer_random_quantity
+		# 	@arr = Array.new
+		# 	self.dealer_quantity_elements.text_field.each do |x|
+		# 		@arr.push(x)
+		# 	end
+		# 	@arr.sample.send_keys rand[1..5].to_s
+		# end
 
-	def random_size
-		@arr = Array.new
-		self.size_dropdown_element.click
-		self.wait_until { self.child_size_options? }
-		if self.child_size_options?
-			self.child_size_options_element.buttons.each do |x|
+		def random_size
+			@arr = Array.new
+			self.size_dropdown_element.click
+			self.wait_until { self.child_size_options? }
+			if self.child_size_options?
+				self.child_size_options_element.buttons.each do |x|
+					@arr.push(x)
+				end
+			end
+			if self.adult_size_options?
+				self.adult_size_options_element.buttons.each do |x|
+					@arr.push(x)
+				end
+			end
+			@arr.sample.click
+		end
+
+		def random_stars
+			@arr = Array.new
+			self.star_rating_elements.each do |x|
 				@arr.push(x)
 			end
+			@arr.sample.click
 		end
-		if self.adult_size_options?
-			self.adult_size_options_element.buttons.each do |x|
-				@arr.push(x)
-			end
+
+
+		def fill_review
+			self.review_name = 'Tester'
+			self.review_email = 'test@qa.com'
+			self.random_stars
+			self.review_title = 'This is a test'
+			self.review_body = 'TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST'
 		end
-		@arr.sample.click
+
 	end
-
-	def random_stars
-		@arr = Array.new
-		self.star_rating_elements.each do |x|
-			@arr.push(x)
-		end
-		@arr.sample.click
-	end
-
-
-	def fill_review
-		self.review_name = 'Tester'
-		self.review_email = 'test@qa.com'
-		self.random_stars
-		self.review_title = 'This is a test'
-		self.review_body = 'TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST'
-	end
-
-end

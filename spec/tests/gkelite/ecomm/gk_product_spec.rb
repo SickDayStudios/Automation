@@ -25,70 +25,70 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 				puts " - Verifying: #{user} | #{id}"
 				@page.product_page(id)
 				if @page.four_oh_four?
-					puts "#{id} | PDP | PageError | 404 Missing Product From Product Feed"
+					puts "#{id} | #{@page.selected_color_element.text} | PageError | 404 Missing Product From Product Feed"
 				else
 					@page.wait_while { @page.product_image_element.exists? == false }
 					@page.wait_until { @page.product_image_element.visible? }
 					if @page.product_accordions_element.present? == false
-						puts "#{id} | PDP | Missing Product Detail Accordians"
+						puts "#{id} | #{@page.selected_color_element.text} | Missing Product Detail Accordians"
 					end
 					if @page.product_info_element.present? == false
-						puts "#{id} | PDP | Missing Product Info"
+						puts "#{id} | #{@page.selected_color_element.text} | Missing Product Info"
 					end
 					if @page.price_element.text.nil? == true || @page.price_element.text == "$0.00"
-						puts "#{id} | PDP | Missing Price"
+						puts "#{id} | #{@page.selected_color_element.text} | Missing Price"
 					end
 					if @page.selected_color_element.present? == false
-						puts "#{id} | PDP | Missing Color/Style Title"
+						puts "#{id} | #{@page.selected_color_element.text} | Missing Color/Style Title"
 					end
 					if @page.color_picker_element.present? == false
-						puts "#{id} | PDP | Missing Color Options"
+						puts "#{id} | #{@page.selected_color_element.text} | Missing Color Options"
 					end
 					if @page.customize_button_element.present? == true && @page.add_to_cart_element.present? == false && @page.size_dropdown_element.present? == false
 						if @page.fit_size_info_element.present? == false
-							puts "#{id} | PDP | Missing Sizing Info"
+							puts "#{id} | #{@page.selected_color_element.text} | Missing Sizing Info"
 						end
 						if @page.similar_recent_products_element.present? == false
-							puts "#{id} | PDP | Missing Suggested and Recently Viewed"
+							puts "#{id} | #{@page.selected_color_element.text} | Missing Suggested and Recently Viewed"
 						end
 						if @page.product_thumbnails_element.present? == false
-							puts "#{id} | PDP | Missing Product Image Thumbnails"
+							puts "#{id} | #{@page.selected_color_element.text} | Missing Product Image Thumbnails"
 						end
 
 						@page.color_picker_element.buttons.to_a.each do |x|
 							x.click
 							if @page.product_image_element.attribute_value('src').include?('placeholder')
-								puts "#{id} | PDP | #{@page.selected_color_element.text} Placeholder Image"
+								puts "#{id} | #{@page.selected_color_element.text} | Placeholder Image"
 							end
 						end
 						BasePage.print_js_errors
 					else
 						if @page.add_to_cart_element.present? == false && @page.customize_button_element.present? == false
-							puts "#{id} | PDP | Missing Add To Cart button"
+							puts "#{id} | #{@page.selected_color_element.text} | Missing Add To Cart button"
 						end
 						if @page.size_dropdown_element.present? == false && @page.customize_button_element.present? == false 
-							puts "#{id} | PDP | Missing Size Dropdown"
+							puts "#{id} | #{@page.selected_color_element.text} | Missing Size Dropdown"
 						end
 						if @page.fit_size_info_element.present? == false
-							puts "#{id} | PDP | Missing Sizing Info"
+							puts "#{id} | #{@page.selected_color_element.text} | Missing Sizing Info"
 						end
 						if @page.similar_recent_products_element.present? == false
-							puts "#{id} | PDP | Missing Suggested and Recently Viewed"
+							puts "#{id} | #{@page.selected_color_element.text} | Missing Suggested and Recently Viewed"
 						end
 						if @page.product_thumbnails_element.present? == false
-							puts "#{id} | PDP | Missing Product Image Thumbnails"
+							puts "#{id} | #{@page.selected_color_element.text} | Missing Product Image Thumbnails"
 						end
 						@page.color_picker_element.buttons.to_a.each do |x|
 							x.click
 							if @page.product_image_element.attribute_value('src').include?('placeholder')
-								puts "#{id} | PDP | #{@page.selected_color_element.text} Placeholder Image"
+								puts "#{id} | #{@page.selected_color_element.text} | Placeholder Image"
 							end
 						end
 						BasePage.print_js_errors
 					end
 				end
 			end
+			@login_page.quick_logout
 		end
-		@login_page.quick_logout
 	end
 end

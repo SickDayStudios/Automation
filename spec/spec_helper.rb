@@ -17,13 +17,18 @@ require 'restclient'
 require 'nokogiri'
 require 'colorize'
 require 'zip'
+require 'base64'
+require 'pry'
+require 'chunky_png'
+require 'RMagick'
+require 'watir-webdriver-performance'
 
 
 RSpec.configure do |config|
 	config.shared_context_metadata_behavior = :apply_to_host_groups
 	
 	config.before(:all) do
-		$screenshotfolder = "./reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
+		$screenshotfolder = "reports/#{Time.new.strftime("%d%b%Y-%H%M%S")}"
 		$csv_file = "testResult_#{Time.new.strftime("%d%b%Y-%H%M%S")}.csv"
 		unless File.directory?($screenshotfolder)
 			FileUtils.mkdir_p($screenshotfolder)

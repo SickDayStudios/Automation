@@ -7,13 +7,49 @@ require 'date'
 
 ENV['CI_REPORTS'] = "./reports"
 
-RSpec::Core::RakeTask.new(:icon, [:environment, :browser]) do |t, args|
+
+
+
+# ICON
+
+RSpec::Core::RakeTask.new(:icon_order, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
 	ENV['SITE'] = 'ua-icon'
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
 	t.pattern = Dir.glob('spec/tests/icon/icon_product_spec.rb')
 end
+
+RSpec::Core::RakeTask.new(:icon_ber, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['SITE'] = 'ua-icon'
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/icon/icon_ber_spec.rb')
+end
+
+RSpec::Core::RakeTask.new(:icon_palette, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['SITE'] = 'ua-icon'
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/icon/icon_palette_spec.rb')
+end
+
+RSpec::Core::RakeTask.new(:icon_perf, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['SITE'] = 'ua-icon'
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/icon/icon_performance_spec.rb')
+end
+
+
+
+
+
+
+# BENCHMADE
 
 RSpec::Core::RakeTask.new(:bmk_cart, [:environment,:browser]) do |t, args|
 	ENV['BROWSER'] = args[:browser]
@@ -31,6 +67,15 @@ RSpec::Core::RakeTask.new(:bmk_xml, [:environment,:browser]) do |t, args|
 	t.pattern = Dir.glob('spec/tests/bmk/bmk_generate_recipe_spec.rb')
 end
 
+
+
+
+
+
+
+
+# 3D/Data
+
 RSpec::Core::RakeTask.new(:api, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]
@@ -44,6 +89,18 @@ RSpec::Core::RakeTask.new(:manifest, [:environment, :browser]) do |t, args|
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
 	t.pattern = Dir.glob('spec/tests/manifest_model_shader_spec.rb')
 end
+
+
+
+
+
+
+
+
+
+
+
+# B2B
 
 RSpec::Core::RakeTask.new(:preview, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]

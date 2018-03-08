@@ -60,6 +60,10 @@ group :development, :test do
   gem 'colorize'
   gem 'parallel_tests'
   gem 'rubyzip'
+  gem 'pry'
+  gem 'chunky_png'
+  gem 'rmagick'
+  gem 'watir-webdriver-performance'
 end
 
 group :development do

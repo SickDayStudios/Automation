@@ -17,39 +17,37 @@ class AssetAPI < BasePage
 	def self.scene_productgroups_keys(scene)
 		if $gk_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'gk-elite'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
+			url = "http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $uau_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'under-armour'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
+			url = "http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $uaf_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'ua-icon'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
+			url = "http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $cb_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'camelbak'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
+			url = "http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $eb_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'eddie-bauer'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
+			url = "http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $bm_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'benchmade'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
+			url = "http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/#{scene}/scene.json"
 		end
 		if $sr_scene_files.include? "#{scene}"
 			ENV['SITE'] = 'shed-rain'
-			url = "http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/scene.json"
+			url = "http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/scene.json"
 		end
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
-		@specs = JSON.parse(response)
+		@specs = JSON.parse(RestClient.get(url))
 		@arr = Array.new
 		list = @specs["productGroups"].keys
 		list.each do |key|
-			if key == "mannequin"
+			if key == "mannequin" || key.include?("extra" || "mannequin" || "scene.json" || "dummy")
 			else
 				@arr.push(key)
 			end
@@ -147,10 +145,7 @@ class AssetAPI < BasePage
 	# =>  grabs all featureHandle values from the Product Data
 	def self.product_handle_values(product)
 		array = Array.new
-		url = "http://#{ENV['ENVIRONMENT']}.spectrumcustomizer.com/api/products/#{product}"
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
-		@specs = JSON.parse(response)
+		@specs = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"))
 		file = File.open("./lib/helpers/recursive_feature_traversal.js", "r")
 		features = file.read
 		result = $driver.execute_script(features, @specs["contents"]["rootFeature"])
@@ -162,10 +157,7 @@ class AssetAPI < BasePage
 		if product.nil?
 		elsif manifest.nil?
 		else
-			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
-			uri = URI(url)
-			response = Net::HTTP.get(uri)
-			@specs = JSON.parse(response)
+			@specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
 			result = @specs["parameters"].keys
 		end
 	end
@@ -175,10 +167,7 @@ class AssetAPI < BasePage
 		if product.nil?
 		elsif manifest.nil?
 		else
-			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
-			uri = URI(url)
-			response = Net::HTTP.get(uri)
-			@specs = JSON.parse(response)
+			@specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
 			result = @specs["parameters"].values
 		end
 	end
@@ -189,10 +178,7 @@ class AssetAPI < BasePage
 		elsif manifest.nil?
 			puts "Missing Manifest"
 		else
-			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
-			uri = URI(url)
-			response = Net::HTTP.get(uri)
-			@specs = JSON.parse(response)
+			@specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
 			@models = Array.new
 			regionmaps = @specs["shaders"].keys
 			regionmaps.each do |regionMap|
@@ -211,10 +197,7 @@ class AssetAPI < BasePage
 		elsif manifest.nil?
 			puts "Missing Manifest"
 		else
-			url = ("http://madetoorder#{ENV['ENVIRONMENT']}.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest)
-			uri = URI(url)
-			response = Net::HTTP.get(uri)
-			@specs = JSON.parse(response)
+			@specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
 			@shaders = Array.new
 			regionmaps = @specs["shaders"].keys
 			regionmaps.each do |regionMap|
@@ -232,7 +215,7 @@ class AssetAPI < BasePage
 
 	$gk_scene_files = ['gk-prs-bottoms','gk-prs-cheer','gk-prs-gym','ua-prs-cheer','ua-prs-gym','ua-prs-warmups']
 
-	$uau_scene_files = ['uau-prs-football','uau-prs-baseball','uau-prs-basketball','uau-prs-hockey','uau-prs-lacrosse','uau-prs-volleyball','uau-prs-track','uau-prs-soccer','uau-prs-softball','uau-prs-training','uau-prs-wrestling','uau-prs-football-brawler','uau-prs-sideline']
+	$uau_scene_files = ['uau-prs-volleyball','uau-prs-track','uau-prs-soccer','uau-prs-football','uau-prs-baseball','uau-prs-basketball','uau-prs-hockey','uau-prs-lacrosse','uau-prs-softball','uau-prs-training','uau-prs-wrestling','uau-prs-football-brawler','uau-prs-sideline']
 
 	$uaf_scene_files = ['uaf-prs-curry1-mens','uaf-prs-curry1-youth','uaf-prs-curry25-mens','uaf-prs-icon-sackpack','uaf-prs-drive4low-mens','uaf-prs-charged247-mens','uaf-prs-charged247-womens','uaf-prs-curry1low-mens','uaf-prs-drive4-mens','uaf-prs-drive4-womens','uaf-prs-clutchfit-mens','uaf-prs-clutchfit-womens','uaf-prs-curry25-mens','uaf-prs-highlight-mens']
 

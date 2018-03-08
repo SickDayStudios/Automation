@@ -9,10 +9,26 @@ class BasePage
 	end
 
 	def api_setup(url)
-		uri = URI(url)
-		response = Net::HTTP.get(uri)
-		specs = JSON.parse(response)
-		return specs
+		return JSON.parse(RestClient.get(url))
+	end
+
+	def self.performance_check
+	    puts ("Response time: #{$driver.performance.summary[:response_time]}ms.")
+	end
+
+	def self.extract_zip(file)
+		Zip::File.open('./reports/*.zip') do |zip_file|
+			zip_file.each do |f|
+				fpath = File.join($screenshotfolder, f.name)
+				zip_file.extract(f, fpath) unless File.exist?(fpath)
+			end
+		end
+	end
+
+	def self.download_image(src)
+		File.open($screenshotfolder, 'wb') do |f|
+			f.write open(src).read
+		end
 	end
 
 	def wait_or_rescue(arg)
@@ -57,11 +73,6 @@ class BasePage
 		self.print_js_errors
 	end
 
-	def self.resize_window
-		$driver.driver.manage.window.resize_to(1366, 768)
-		$driver.driver.manage.window.move_to(0, 0)
-	end
-
 	def self.collect_links
 		links = $driver.links.collect
 		results = links.reject { |r| r.include?("extra") }
@@ -80,21 +91,8 @@ class BasePage
 		return results
 	end
 
-	def self.url
-		$driver.url
-	end
-
-	def self.go(path, secure)
-		path = $base_url + path
-		$driver.goto(secure ? "https://" + path : "http://" + path)
-	end
-
 	def self.navigate_to_starting_page
 		$driver.goto $base_url
-	end
-
-	def self.maximize_window
-		$driver.driver.manage.window.maximize
 	end
 
 	def self.quit_webdriver
