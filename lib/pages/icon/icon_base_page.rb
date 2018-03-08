@@ -102,7 +102,7 @@ class IconBasePage < BasePage
 
 	$drive_four = {
 		:overlay => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Stone","Under Armour Highlight Upper Artwork Template", "Under Armour Highlight Upper Pattern Template"],
-		:tongue => ["Black","Steel","Red","Taxi","Forest Green","Team Royal","Midnight Navy","Stone"],
+		:tongue => ["Black","Steel","Taxi","Forest Green","Team Royal","Midnight Navy","Stone"], #,"Red"
 		:heel => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
 		:eyelets => ["White","Black","Aluminum","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
 		:midfoot => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Tropic Pink","High Vis Yellow","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
