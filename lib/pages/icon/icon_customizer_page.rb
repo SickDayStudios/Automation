@@ -141,6 +141,7 @@ class IconCustomizer < IconBasePage
 
 	def verify_ber(style)
 		self.goto("http://demo.spectrumcustomizer.com/under-armour/staging/uaf/frontend/?style=#{style}&debug-canvas-data=true")
+		sleep 1
 		self.wait_until {self.loading_bar_element.exists?}
 		self.wait_while(timeout: 60) {self.loading_bar_element.visible?}
 		self.wait_until {self.upper_options_elements.present?}
@@ -160,13 +161,15 @@ class IconCustomizer < IconBasePage
 		self.patterns_elements.sample.click
 		sleep 2
 		self.edit_pattern_element.click
-
+		sleep 1
 		self.pattern_colors_elements.each do |area|
 			self.wait_while(timeout: 60) { area.stale? }
 			area.click
+			sleep 1
 			option = self.pattern_color_modal_element.children.sample
 			option.scroll_into_view
 			option.click
+			sleep 1
 		end
 
 		self.done_element.click

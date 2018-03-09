@@ -20,7 +20,7 @@ require 'zip'
 require 'base64'
 require 'pry'
 require 'chunky_png'
-require 'RMagick'
+require 'rmagick'
 require 'watir-webdriver-performance'
 
 
