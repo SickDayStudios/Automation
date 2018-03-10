@@ -55,12 +55,12 @@ class IconBasePage < BasePage
 		:plate => ["White","Black","Steel","Red","Team Orange","Steeltown Gold","Forest Green","Team Royal","Midnight Navy"],
 		:skeleton => ["White","Black"],
 		:logo => ["White","Black","Steel","Cardinal","Red","Tropic Pink","Team Orange","Steeltown Gold","Team Kelly Green","Forest Green","Carolina Blue","Team Royal","Midnight Navy","Purple"],
-		:logo_outline => ["Charcoal","White","Black","Aluminum","Steel","Cardinal","Red","Tropic Pink","Team Orange","Taxi","Team Kelly Green","Forest Green","Carolina Blue","Team Royal","Midnight Navy","Purple"]
+		:logo_outline => ["Charcoal","White","Black","Aluminum","Steel","Cardinal","Red","Tropic Pink","Team Orange","Steeltown Gold","Team Kelly Green","Forest Green","Carolina Blue","Team Royal","Midnight Navy","Purple"]
 	}
 
 	$charged = {
 		:forefoot => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Artillery Green","Desert Sky","Carolina Blue","Blue Shift","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Under Armour Charged 24/7 Forefoot Pattern Template"],
-		:outsole => ["White","Black","Gum Rubber (Icon 005)"],
+		:outsole => ["White","Black","Gum Rubber"],
 		:logo => ["White","Black"],
 		:base => ["White"],
 		:laces => ["White","Black","Aluminum","Red","Phoenix Fire","Blue Shift","Artillery Green","Midnight Navy"],
@@ -70,9 +70,9 @@ class IconBasePage < BasePage
 	}
 
 	$curry_mid = {
-		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Artwork","Pattern"],
+		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Upper - Artwork","Upper - Pattern"],
 		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Phoenix Fire","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja"],
-		:outsole => ["White","Black","Steel","Gum Rubber (Icon 005)","Ice Blue (Icon 001)"],
+		:outsole => ["White","Black","Steel","Gum Rubber","Ice Blue - Translucent"],
 		:laces => ["White","Black","Steel","Cardinal","Red","Phoenix Fire","Team Orange","Taxi","Neptune","Carolina Blue","Team Royal","Midnight Navy","Purple"],
 		:toecap => ["White","Black","Steel","Cardinal","Red","Taxi","Carolina Blue","Team Royal","Midnight Navy"],
 		:shank => ["White","Black","Metallic Gold","Metallic Silver","Steel","Red","Phoenix Fire","Taxi","Neptune","Team Royal","Midnight Navy"],
@@ -87,21 +87,21 @@ class IconBasePage < BasePage
 
 	$drive_low = {
 		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Stone"],
-		:solid => ["White","Black","Aluminum","Steel","Taxi","Red","Forest Green","Under Armour Highlight Upper Artwork Template"],
+		:solid => ["White","Black","Aluminum","Steel","Taxi","Red","Forest Green","UA Drive4 Upper Artwork Template"],
 		:tongue => ["White","Black","Aluminum","Steel","Red","Taxi","Forest Green","Team Royal","Midnight Navy"],
 		:trim => ["Black","Aluminum","Red","Team Royal","Midnight Navy"],
 		:eyelets => ["White","Black","Steel","Red","Tropic Pink","Taxi","High Vis Yellow","Forest Green","Team Royal","Midnight Navy"],
 		:laces => ["White","Black","Steel","Red","Tropic Pink","Taxi","High Vis Yellow","Forest Green","Team Royal","Midnight Navy"],
 		:colorblock => ["No Treatment","White","Black","Metallic Silver","Metallic Gold","Steel","Red","Tropic Pink","Taxi","High Vis Yellow","Forest Green","Team Royal","Midnight Navy"],
 		:logo => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Tropic Pink","Taxi","High Vis Yellow","Forest Green","Team Royal","Midnight Navy"],
-		:outsole => ["White","Black","Ice Blue (Icon 001)","Gum #3","Powderkeg Blue"],
+		:outsole => ["White","Black","Ice Blue - Translucent","Gum","Powderkeg Blue"],
 		:midsole => ["White","Black","Stone"],
 		:heel => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
 		:midfoot => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Tropic Pink","Taxi","High Vis Yellow","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"]
 	}
 
 	$drive_four = {
-		:overlay => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Stone","Under Armour Highlight Upper Artwork Template", "Under Armour Highlight Upper Pattern Template"],
+		:overlay => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Stone","Under Armour Highlight Upper Pattern Template", "Under Armour Highlight Upper Artwork Template"],
 		:tongue => ["Black","Steel","Taxi","Forest Green","Team Royal","Midnight Navy","Stone"], #,"Red"
 		:heel => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
 		:eyelets => ["White","Black","Aluminum","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
@@ -110,14 +110,14 @@ class IconBasePage < BasePage
 		:trim => ["White","Black","Aluminum","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
 		:laces => ["White","Black","Steel","Red","Tropic Pink","Taxi","High Vis Yellow","Forest Green","Team Royal","Midnight Navy"],
 		:logo => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Tropic Pink","High Vis Yellow","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
-		:outsole => ["White","Black","Ice Blue (Icon 001)","Gum #3","Powderkeg Blue"],
+		:outsole => ["White","Black","Ice Blue - Translucent","Gum","Powderkeg Blue"],
 		:midsole => ["White","Black","Stone"]
 	}
 
 	$curry_low = {
-		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Artwork","Pattern"],
+		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Upper - Artwork","Upper - Pattern"],
 		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Phoenix Fire","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja"],
-		:outsole => ["White","Black","Steel","Gum Rubber (Icon 005)","Ice Blue (Icon 001)"],
+		:outsole => ["White","Black","Steel","Gum Rubber","Ice Blue - Translucent"],
 		:toecap => ["White","Black","Steel","Cardinal","Red","Taxi","Carolina Blue","Team Royal","Midnight Navy"],
 		:tongue => ["White","Black","Steel","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Midnight Navy"],
 		:tongue_logo => ["White","Black","Metallic Silver","Metallic Gold","Steel","Cardinal","Red","Phoenix Fire","Team Orange","Taxi","Neptune","Carolina Blue","Team Royal","Midnight Navy","Purple"],
@@ -129,19 +129,79 @@ class IconBasePage < BasePage
 		:heel => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Phoenix Fire","Taxi","Neptune","Team Royal","Midnight Navy"]
 	}
 
+	$sackpack = {
+		:upper => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Red","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Royal","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Tokyo Lemon","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Academy","Under Armour Highlight Upper Pattern Template","Team Royal"],
+		:logo => ["Black","White","Steel","Red","Academy","Team Royal","Taxi","Team Orange","Tropic Pink","Metallic Silver","Metallic Gold"],
+		:expandable => ["White","Black","Steel","Red","Tropic Pink","Team Orange","Taxi","Team Royal","Academy"],
+		:lining => ["White","Black","Steel"],
+		:zipper => ["White","Black","Steel"],
+		:back => ["White","Black","Steel","Red","Tropic Pink","Team Orange","Taxi","Royal","Academy"],
+		:straps => ["White","Black","Steel","Red","Academy"],
+		:webbing => ["White","Black","Steel"]
+	}
+
+	$mens_ignite = {
+		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template"],
+		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template"],
+		:strap => ["White","Black","Steel","Cardinal","Red","Team Orange","Steeltown Gold","Forest Green","Team Royal","Midnight Navy"],
+		:strap_logo => ["White","Black","Metallic Silver","Steel","Cardinal","Red","Team Orange","Steeltown Gold","Metallic Gold","Forest Green","Team Royal","Midnight Navy"],
+		:lining => ["White","Black","Steel","Cardinal","Red","Team Orange","Steeltown Gold","Forest Green","Team Royal","Midnight Navy"],
+		:outsole => ["White","Black"]
+	}
+
+	$womens_ignite = {
+		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja"],
+		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template"],
+		:strap => ["White","Black","Aluminum","Tropic Pink","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
+		:strap_logo => ["White","Black","Aluminum","Metallic Silver","Tropic Pink","Metallic Gold","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
+		:lining => ["White","Black","Aluminum","Tropic Pink","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
+		:outsole => ["White","Black"]
+	}
+
+	$railfit = {
+		:upper => ["Black/Elemental","Forest Green/Forest Green","Cardinal/Cardinal","Midnight Navy/Midnight Navy","Black/Black","Cardinal/White","White/Elemental","Midnight Navy/White","White/White","Forest Green/White","Elemental/Elemental"],
+		:collar => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red"],
+		:tongue => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
+		:laces => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
+		:guide => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
+		:panel => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Red","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Team Royal","Midnight Navy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Tokyo Lemon","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Railfit Side Panel Artwork Template"],
+		:rails => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
+		:midsole => ["White","Black"],
+		:heel => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
+		:outsole => ["White","Black","Gum"],
+		:sockliner => ["White","Black"]
+	}
+
+	$spotlight = {
+		:pattern => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Red","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Team Royal","Midnight Navy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Tokyo Lemon","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental"],
+		:solid => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Red","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Team Royal","Midnight Navy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Tokyo Lemon","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Spotlight Upper Artwork Template"],
+		:knit => ["White","Black"],
+		:laces => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
+		:eyelets => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
+		:toe_logo => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
+		:toe_logo_outline => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Charcoal","Aluminum","Cardinal"],
+		:heel => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
+		:weld => ["Chrome"],
+		:medial => ["Metallic Silver"],
+		:heel_logo_outline => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
+		:plate => ["Gold Chrome","Silver Chrome","Gunmetal Chrome","Iridescent"],
+		:trim => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
+		:medial_outline => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Charcoal"]
+	}
+
 
 	# tiff endpoint
 	# http://api.spectrumcustomizer.com/api/external/under-armour/icon/webtoprint/download/recipeSet/M4JUBTG9
 	# http://test.spectrumcustomizer.com/api/external/under-armour/icon/webtoprint/download/recipeSet/
-	# http://staging.spectrumcustomizer.com/api/external/under-armour/icon/webtoprint/download/recipeSet/
+	# http://test.spectrumcustomizer.com/api/external/under-armour/icon/webtoprint/download/recipeSet/
 
 
 	def self.spec_response(recipe_id)
-		Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
+		Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
 	end
 
 	def self.packlist_response(recipe_id)
-		Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
+		Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
 	end
 
 	def self.parse_icon_packlist(recipe_id)
@@ -238,14 +298,14 @@ class IconBasePage < BasePage
 	end
 
 	def self.get_product_set_handle(recipe_id)
-		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
 		return response['contents']['productSetHandle']
 	end
 
 
 	def self.parse_icon_recipeset(recipe_id)
 		@rset = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
 		response['contents']['recipes'].each do |recipes|
 			recipes['recipe']['recipeData'].each do |recipeData|
 				recipeData['childFeatures'].each do |childFeatures|
@@ -286,7 +346,7 @@ class IconBasePage < BasePage
 
 	def self.get_text_message_handles(scene)
 		@pset = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"))
+		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"))
 		response['contents']['productGroups'].each do |productGroups|
 			if productGroups.empty? == false
 				productGroups['products'].each do |products|
@@ -329,12 +389,12 @@ class IconBasePage < BasePage
 	def self.localize_text_message_handles(scene)
 		@msg = parse_product_set(scene)
 		@loc = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
 		@msg.each do |k, v|
 			v.each do |value|
-				response['contents'].each do |contents|
-					if contents['handle'] == "#{value}"
-						@loc[k] << (contents['sentence'].gsub(/ \D\d+./,""))
+				response['contents'].each do |c|
+					if c['handle'] == "#{value}"
+						@loc[k] << c['fragment']
 					end
 				end
 			end
@@ -370,7 +430,7 @@ class IconBasePage < BasePage
 
 	def self.parse_product_set(scene)
 		@pset = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"))
+		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"))
 
 		response['contents']['productGroups'][0]['products'].each do |p|
 

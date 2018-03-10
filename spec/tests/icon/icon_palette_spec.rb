@@ -11,6 +11,11 @@ describe "ICON | Color Palette Test" do
 		@drive_four = IconBasePage.localize_text_message_handles('uaf-prs-drive4-mens')
 		@drive_low = IconBasePage.localize_text_message_handles('uaf-prs-drive4low-mens')
 		@curry_low = IconBasePage.localize_text_message_handles('uaf-prs-curry1low-mens')
+		@sackpack = IconBasePage.localize_text_message_handles('uaf-prs-icon-sackpack')
+		@mens_ignite = IconBasePage.localize_text_message_handles('uaf-prs-ignite-mens')
+		@womens_ignite = IconBasePage.localize_text_message_handles('uaf-prs-ignite-womens')
+		@railfit = IconBasePage.localize_text_message_handles('uaf-prs-railfit-mens')
+		@spotlight = IconBasePage.localize_text_message_handles('uaf-prs-spotlight-mens')
 	end
 
 	it "Curry 1 Mid" do
@@ -130,6 +135,75 @@ describe "ICON | Color Palette Test" do
 			expect($curry_low[:tongue_logo]).to match_array(@curry_low["uaf-fea-curry1low-ua-logo-color"])
 			# expect($curry_low[:tongue]).to match_array(@curry_low["uaf-fea-curry1low-tongue-loop-color"])
 			# expect($curry_low[:tongue_logo]).to match_array(@curry_low["uaf-fea-curry1low-men-right-uaicon-logo"])
+		end
+	end
+
+	it "Sackpack" do
+		aggregate_failures "Sackpack" do
+			expect($sackpack[:upper]).to match_array(@sackpack['uaf-fea-icon-sackpack-overlay-solid'])
+			expect($sackpack[:logo]).to match_array(@sackpack['uaf-fea-icon-sackpack-front-logo-color'])
+			expect($sackpack[:expandable]).to match_array(@sackpack['uaf-fea-icon-sackpack-expandable-color'])
+			expect($sackpack[:lining]).to match_array(@sackpack['uaf-fea-icon-sackpack-lining-color'])
+			expect($sackpack[:zipper]).to match_array(@sackpack['uaf-fea-icon-sackpack-zipper-color'])
+			expect($sackpack[:back]).to match_array(@sackpack['uaf-fea-icon-sackpack-back-panel-color'])
+			expect($sackpack[:straps]).to match_array(@sackpack['uaf-fea-icon-sackpack-straps-color'])
+			expect($sackpack[:webbing]).to match_array(@sackpack['uaf-fea-icon-sackpack-back-logo-color'])
+		end
+	end
+
+	it "Men's Ignite" do
+		aggregate_failures "Men's Ignite" do
+			expect($mens_ignite[:pattern]).to match_array(@mens_ignite['uaf-fea-ignite-footbed-overlay-pattern-colors'])
+			expect($mens_ignite[:pattern]).to match_array(@mens_ignite['uaf-fea-ignite-footbed-overlay-solid-color'])
+			expect($mens_ignite[:strap]).to match_array(@mens_ignite['uaf-fea-ignite-mens-strap-color'])
+			expect($mens_ignite[:strap_logo]).to match_array(@mens_ignite['uaf-fea-ignite-mens-strap-logo-color'])
+			expect($mens_ignite[:lining]).to match_array(@mens_ignite['uaf-fea-ignite-mens-strap-lining-color'])
+			expect($mens_ignite[:outsole]).to match_array(@mens_ignite['uaf-fea-ignite-outsole-color'])
+		end
+	end
+
+	it "Women's Ignite" do
+		aggregate_failures "Women's Ignite" do
+			expect($womens_ignite[:pattern]).to match_array(@womens_ignite['uaf-fea-ignite-footbed-overlay-pattern-colors'])
+			expect($womens_ignite[:solid]).to match_array(@womens_ignite['uaf-fea-ignite-footbed-overlay-solid-color'])
+			expect($womens_ignite[:strap]).to match_array(@womens_ignite['uaf-fea-ignite-womens-strap-color'])
+			expect($womens_ignite[:strap_logo]).to match_array(@womens_ignite['uaf-fea-ignite-womens-strap-logo-color'])
+			expect($womens_ignite[:lining]).to match_array(@womens_ignite['uaf-fea-ignite-womens-strap-lining-color'])
+			expect($womens_ignite[:outsole]).to match_array(@womens_ignite['uaf-fea-ignite-outsole-color'])
+		end
+	end
+
+	it "Railfit" do
+		aggregate_failures "" do
+			expect($railfit[:collar]).to match_array(@railfit['uaf-fea-railfit-collar-color'])
+			expect($railfit[:upper]).to match_array(@railfit['uaf-fea-railfit-upper-color'])
+			expect($railfit[:laces]).to match_array(@railfit['uaf-fea-railfit-lace-color'])
+			expect($railfit[:heel]).to match_array(@railfit['uaf-fea-railfit-heel-gore-tongue-patch-color'])
+			expect($railfit[:panel]).to match_array(@railfit['uaf-fea-railfit-side-panel-overlay-solid'])
+			expect($railfit[:rails]).to match_array(@railfit['uaf-fea-railfit-rails-color'])
+			expect($railfit[:tongue]).to match_array(@railfit['uaf-fea-railfit-stopper-webbing-color'])
+			expect($railfit[:guide]).to match_array(@railfit['uaf-fea-railfit-lace-guides-color'])
+			expect($railfit[:outsole]).to match_array(@railfit['uaf-fea-railfit-outsole-color'])
+			expect($railfit[:midsole]).to match_array(@railfit['uaf-fea-railfit-midsole-color'])
+			expect($railfit[:sockliner]).to match_array(@railfit['uaf-fea-railfit-sockliner-color'])
+		end
+	end
+
+	it "Spotlight" do
+		aggregate_failures "Spotlight" do
+			expect($spotlight[:knit]).to match_array(@spotlight['uaf-fea-spotlight-knit-color'])
+			expect($spotlight[:pattern]).to match_array(@spotlight['uaf-fea-spotlight-upper-overlay-pattern-colors'])
+			expect($spotlight[:solid]).to match_array(@spotlight['uaf-fea-spotlight-upper-overlay-solid-color'])
+			expect($spotlight[:trim]).to match_array(@spotlight['uaf-fea-spotlight-trim-color'])
+			expect($spotlight[:eyelets]).to match_array(@spotlight['uaf-fea-spotlight-lace-loops-color'])
+			expect($spotlight[:laces]).to match_array(@spotlight['uaf-fea-spotlight-laces-color'])
+			expect($spotlight[:plate]).to match_array(@spotlight['uaf-fea-spotlight-cleat-plate-color'])
+			expect($spotlight[:toe_logo]).to match_array(@spotlight['uaf-fea-spotlight-toe-logo-color'])
+			expect($spotlight[:toe_logo_outline]).to match_array(@spotlight['uaf-fea-spotlight-toe-logo-outline-color'])
+			expect($spotlight[:heel]).to match_array(@spotlight['uaf-fea-spotlight-heel-color'])
+			expect($spotlight[:weld]).to match_array(@spotlight['uaf-fea-spotlight-heel-weld-color'])
+			expect($spotlight[:medial]).to match_array(@spotlight['uaf-fea-spotlight-medial-logo-color'])
+			expect($spotlight[:medial_outline]).to match_array(@spotlight['uaf-fea-spotlight-medial-logo-outline-color'])
 		end
 	end
 end
