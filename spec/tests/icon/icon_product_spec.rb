@@ -1,6 +1,6 @@
 require "./lib/pages/icon/icon_customizer_page"
 
-describe "ICON | Packlist-Spec Test" do 
+describe "ICON | #{ENV['ENVIRONMENT']} | #{ENV['BROWSER']} | Packlist-Spec Test" do 
 
 	before(:all) do
 		@page = IconCustomizer.new
@@ -8,9 +8,11 @@ describe "ICON | Packlist-Spec Test" do
 
 
 
-	$icon_pid.each do |style|
-		it "iCON | #{style}" do
-			@page.goto("https://staging.underarmour.com/en-us/#{style}")
+	$icon_pid.each do |pid|
+		it "iCON | #{pid}" do
+			case ENV['ENVIRONMENT'].to_sym
+			when :staging then @page.goto("https://staging.underarmour.com/en-us/#{pid}")
+			when :prod then @page.goto("https://www.underarmour.com/en-us/#{pid}")
 			BasePage.performance_check
 			aggregate_failures "" do
 				fe = @page.create_random_shoe
@@ -43,15 +45,18 @@ describe "ICON | Packlist-Spec Test" do
 					end
 				end
 			end
-			@page.goto("staging.spectrumcustomizer.com/under-armour/icon/specification/#{fe[:id]}/html")
-			BasePage.raise_js_errors
-			@page.goto("staging.spectrumcustomizer.com/under-armour/icon/packlist/#{fe[:id]}/html")
-			BasePage.raise_js_errors
+			case ENV['ENVIRONMENT'].to_sym
+			when :staging
+				@page.goto("staging.spectrumcustomizer.com/under-armour/icon/specification/#{fe[:id]}/html")
+				BasePage.raise_js_errors
+				@page.goto("staging.spectrumcustomizer.com/under-armour/icon/packlist/#{fe[:id]}/html")
+				BasePage.raise_js_errors
+			when :prod
+				@page.goto("api.spectrumcustomizer.com/under-armour/icon/specification/#{fe[:id]}/html")
+				BasePage.raise_js_errors
+				@page.goto("api.spectrumcustomizer.com/under-armour/icon/packlist/#{fe[:id]}/html")
+				BasePage.raise_js_errors
+			end
 		end
 	end
-	# it "" do
-	# 	$icon_handles.each do |handle|
-	# 		@page.verify_ber(handle)
-	# 	end
-	# end
 end

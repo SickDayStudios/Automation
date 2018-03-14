@@ -12,8 +12,19 @@ class BasePage
 		return JSON.parse(RestClient.get(url))
 	end
 
+	def self.set_device_to(device)
+		case device.to_sym
+		when :ipad then user = Webdriver::UserAgent.driver(browser: :chrome, agent: :ipad, orientation: :landscape)
+		when :iphone then user = Webdriver::UserAgent.driver(browser: :chrome, agent: :iphone, orientation: :landscape)
+		when :phone then user = Webdriver::UserAgent.driver(browser: :chrome, agent: :android_phone, orientation: :landscape)
+		when :tablet then user = Webdriver::UserAgent.driver(browser: :chrome, agent: :android_tablet, orientation: :landscape)
+		end
+		args = ['--flag-switches-begin','--use-mobile-user-agent','--window-position=0,0','--disable-infobars','--flag-switches-end']
+		$driver = Watir::Browser.new user, options: { args: args }
+	end
+
 	def self.performance_check
-	    puts ("Response time: #{$driver.performance.summary[:response_time]}ms.")
+	    puts ("Response time: #{$driver.performance.summary[:response_time]}ms")
 	end
 
 	def self.extract_zip(file)

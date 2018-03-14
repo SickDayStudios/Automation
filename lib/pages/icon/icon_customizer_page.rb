@@ -103,7 +103,11 @@ class IconCustomizer < IconBasePage
 
 	def get_rasters(recipe_id)
 		@rasters = Array.new
-		response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		case ENV['ENVIRONMENT'].to_sym
+		when :test then response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :staging then response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :prod then  response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		end
 		response['contents']['recipes'].each do |recipes|
 			recipes['recipe']['recipeData'].each do |recipeData|
 				recipeData['childFeatures'].each do |childFeatures|
@@ -140,7 +144,12 @@ class IconCustomizer < IconBasePage
 	end
 
 	def verify_ber(style)
-		self.goto("http://demo.spectrumcustomizer.com/under-armour/staging/uaf/frontend/?style=#{style}&debug-canvas-data=true")
+		case ENV['ENVIRONMENT'].to_sym
+		when :test then url = "http://demo.spectrumcustomizer.com/under-armour/test/uaf/frontend/?style=#{style}&debug-canvas-data=true"
+		when :staging then url = "http://demo.spectrumcustomizer.com/under-armour/staging/uaf/frontend/?style=#{style}&debug-canvas-data=true"
+		when :prod then url = "http://demo.spectrumcustomizer.com/under-armour/production/uaf/frontend/?style=#{style}&debug-canvas-data=true"
+		end
+		self.goto(url)
 		sleep 1
 		self.wait_until {self.loading_bar_element.exists?}
 		self.wait_while(timeout: 60) {self.loading_bar_element.visible?}
@@ -321,8 +330,14 @@ class IconCustomizer < IconBasePage
 			sleep 3
 		end
 		BasePage.print_js_errors
-		self.goto("https://staging.underarmour.com/en-us/cart")
-		self.goto("https://staging.underarmour.com/en-us/cart")
+		case ENV['ENVIRONMENT'].to_sym
+			when :staging
+				self.goto("https://staging.underarmour.com/en-us/cart")
+				self.goto("https://staging.underarmour.com/en-us/cart")
+			when :prod
+				self.goto("https://www.underarmour.com/en-us/cart")
+				self.goto("https://www.underarmour.com/en-us/cart")
+		end
 		self.proceed_to_checkout_element.click
 		@name = self.address_name
 		@sku = self.product_sku_value

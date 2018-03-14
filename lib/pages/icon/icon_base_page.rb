@@ -22,21 +22,25 @@ class IconBasePage < BasePage
 	]
 
 	$icon_handles = [	
+		'uaf-prs-railfit-mens',
+		'uaf-prs-spotlight-mens',
 		'uaf-prs-curry1-mens',
-		'uaf-prs-curry1-youth',
-		'uaf-prs-curry25-mens',
-		'uaf-prs-icon-sackpack',
-		'uaf-prs-drive4low-mens',
-		'uaf-prs-charged247-mens',
-		'uaf-prs-charged247-womens',
-		'uaf-prs-curry1low-mens',
-		'uaf-prs-drive4-mens',
-		'uaf-prs-drive4-womens',
 		'uaf-prs-clutchfit-mens',
+		'uaf-prs-charged247-mens',
+		'uaf-prs-highlight-mens',
+		'uaf-prs-drive4-mens',
+		'uaf-prs-drive4low-mens',
+		'uaf-prs-curry1low-mens',
+		'uaf-prs-icon-sackpack',
+		'uaf-prs-ignite-mens',
+		'uaf-prs-ignite-womens',
+		'uaf-prs-railfit-womens',
+		'uaf-prs-curry1-youth',
 		'uaf-prs-clutchfit-womens',
-		'uaf-prs-curry25-mens',
-		'uaf-prs-highlight-mens'
+		'uaf-prs-charged247-womens',
+		'uaf-prs-drive4-womens'
 	]
+
 	$clutchfit = {
 		:upper => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Upper Artwork Template", "Upper Pattern Template"],
 		:logo => ["White","Black","Steel","Cardinal","Red","Tropic Pink","Team Orange","Taxi","Team Kelly Green","Forest Green","Carolina Blue","Team Royal","Midnight Navy","Purple"],
@@ -101,7 +105,7 @@ class IconBasePage < BasePage
 	}
 
 	$drive_four = {
-		:overlay => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Stone","Under Armour Highlight Upper Pattern Template", "Under Armour Highlight Upper Artwork Template"],
+		:overlay => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Stone","Under Armour Highlight Upper Pattern Template", "Under Armour Highlight Upper Artwork Template"], #,"Red"
 		:tongue => ["Black","Steel","Taxi","Forest Green","Team Royal","Midnight Navy","Stone"], #,"Red"
 		:heel => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
 		:eyelets => ["White","Black","Aluminum","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
@@ -141,7 +145,7 @@ class IconBasePage < BasePage
 	}
 
 	$mens_ignite = {
-		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template"],
+		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja"],
 		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template"],
 		:strap => ["White","Black","Steel","Cardinal","Red","Team Orange","Steeltown Gold","Forest Green","Team Royal","Midnight Navy"],
 		:strap_logo => ["White","Black","Metallic Silver","Steel","Cardinal","Red","Team Orange","Steeltown Gold","Metallic Gold","Forest Green","Team Royal","Midnight Navy"],
@@ -197,11 +201,21 @@ class IconBasePage < BasePage
 
 
 	def self.spec_response(recipe_id)
-		Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
+		case ENV['ENVIRONMENT'].to_sym
+		when :test then @response = Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
+		when :staging then @response = Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
+		when :prod then @response = Nokogiri::XML.parse(RestClient.get("api.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
+		end
+		return @response
 	end
 
 	def self.packlist_response(recipe_id)
-		Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
+		case ENV['ENVIRONMENT'].to_sym
+		when :test then @response = Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
+		when :staging then @response = Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
+		when :prod then @response = Nokogiri::XML.parse(RestClient.get("api.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
+		end
+		return @response
 	end
 
 	def self.parse_icon_packlist(recipe_id)
@@ -209,8 +223,8 @@ class IconBasePage < BasePage
 		@keys = Array.new
 		@values = Array.new
 		@hash = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = packlist_response(recipe_id)
-		response.search('div[class="info"]').each do |i|
+		@response = packlist_response(recipe_id)
+		@response.search('div[class="info"]').each do |i|
 			body = i.inner_text.gsub('<br>',"")
 			pair = body.scan(/\S.*/)
 			@hash.store(pair[0],pair[1].strip)
@@ -231,8 +245,8 @@ class IconBasePage < BasePage
 		@keys = Array.new
 		@values = Array.new
 		@images = Array.new
-		response = spec_response(recipe_id)
-		row_recipe = response.search('div[class="row recipe"]')
+		@response = spec_response(recipe_id)
+		row_recipe = @response.search('div[class="row recipe"]')
 		rows = row_recipe.search('td').each do |node|
 			@arr.push(node.inner_text.scan(/\S.*/))
 		end
@@ -246,7 +260,7 @@ class IconBasePage < BasePage
 				end
 			end
 		end
-		links = response.search('a')
+		links = @response.search('a')
 		@keys.zip(@values).each do |k,v|
 			if v == "Download All Printable Assets"
 				@hash.store(k,links[2]['href'])
@@ -261,8 +275,8 @@ class IconBasePage < BasePage
 
 	def self.parse_icon_spec_images(recipe_id)
 		@images = Array.new
-		response = spec_response(recipe_id)
-		images = response.search('img')
+		@response = spec_response(recipe_id)
+		images = @response.search('img')
 		images.each do |img|
 			if (img['width'] == "400") == false
 				@images.push(img['src'])
@@ -276,8 +290,8 @@ class IconBasePage < BasePage
 		@table = Array.new
 		@keys = Array.new
 		@values = Array.new
-		response = spec_response(recipe_id)
-		response.search('table[class="table"]').each do |e|
+		@response = spec_response(recipe_id)
+		@response.search('table[class="table"]').each do |e|
 			element = e.text.scan(/\S*\w.*\S/)
 			element.each do |s|
 				s.gsub("-"," ")
@@ -298,15 +312,23 @@ class IconBasePage < BasePage
 	end
 
 	def self.get_product_set_handle(recipe_id)
-		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
-		return response['contents']['productSetHandle']
+		case ENV['ENVIRONMENT'].to_sym
+		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		end
+		return @response['contents']['productSetHandle']
 	end
 
 
 	def self.parse_icon_recipeset(recipe_id)
 		@rset = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
-		response['contents']['recipes'].each do |recipes|
+		case ENV['ENVIRONMENT'].to_sym
+		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		end
+		@response['contents']['recipes'].each do |recipes|
 			recipes['recipe']['recipeData'].each do |recipeData|
 				recipeData['childFeatures'].each do |childFeatures|
 					if (childFeatures.empty? == false || childFeatures.nil? == false)
@@ -336,18 +358,18 @@ class IconBasePage < BasePage
 				end
 			end
 		end
-		# esponse['contents']['recipes'].each do |recipes|
-		# 	recipes['recipe']['recipeData'].each do |recipeData|
-		# 		recipeData['childFeatures'].each do |childFeatures|
-		# 			if (childFeatures.
 		return @rset
 	end
 
 
 	def self.get_text_message_handles(scene)
 		@pset = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"))
-		response['contents']['productGroups'].each do |productGroups|
+		case ENV['ENVIRONMENT'].to_sym
+		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"))
+		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"))
+		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/productsets/#{scene}"))
+		end
+		@response['contents']['productGroups'].each do |productGroups|
 			if productGroups.empty? == false
 				productGroups['products'].each do |products|
 					if products.empty? == false
@@ -389,10 +411,17 @@ class IconBasePage < BasePage
 	def self.localize_text_message_handles(scene)
 		@msg = parse_product_set(scene)
 		@loc = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+		case ENV['ENVIRONMENT'].to_sym
+		when :test
+			@response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+		when :staging
+			@response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+		when :prod
+			@response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+		end
 		@msg.each do |k, v|
 			v.each do |value|
-				response['contents'].each do |c|
+				@response['contents'].each do |c|
 					if c['handle'] == "#{value}"
 						@loc[k] << c['fragment']
 					end
@@ -430,9 +459,16 @@ class IconBasePage < BasePage
 
 	def self.parse_product_set(scene)
 		@pset = Hash.new{ |hsh,key| hsh[key] = [] }
-		response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"))
+		case ENV['ENVIRONMENT'].to_sym
+		when :test
+			@response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"))
+		when :staging
+			@response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"))
+		when :prod
+			@response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/productsets/#{scene}"))
+		end
 
-		response['contents']['productGroups'][0]['products'].each do |p|
+		@response['contents']['productGroups'][0]['products'].each do |p|
 
 			if p['rootFeature']['childFeatures'].nil? == false
 				p['rootFeature']['childFeatures'].each do |cf|
