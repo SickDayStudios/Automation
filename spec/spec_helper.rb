@@ -8,7 +8,7 @@ require 'fileutils'
 require 'json'
 require 'csv'
 require 'net/http'
-require "json_matchers/rspec"
+require 'json_matchers/rspec'
 require 'watir-nokogiri'
 require 'open-uri'
 require 'active_support/all'
@@ -19,7 +19,6 @@ require 'zip'
 require 'base64'
 require 'pry'
 require 'chunky_png'
-require 'rmagick'
 require 'watir-webdriver-performance'
 require 'watir-ng'
 require 'axe/rspec'
@@ -40,9 +39,10 @@ RSpec.configure do |config|
 
 		args = ['--flag-switches-begin','--window-size=1920,1080','--window-position=0,0','--disable-infobars','--flag-switches-end']
 		
-		WatirNg.patch!
 		
 		$driver = Watir::Browser.new ENV['BROWSER'].to_sym , options: { args: args }
+
+		WatirNg.patch!
 	end
 
 	config.after(:each) do |example|

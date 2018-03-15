@@ -317,8 +317,6 @@ DEPENDENCIES
   rest-client
   rmagick
   rspec
-  rspec-core
-  rspec-expectations
   rspec-rails
   rspec_junit_formatter
   rubyzip

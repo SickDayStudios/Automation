@@ -7,4 +7,8 @@ class GKHomePage < GKShopifyBasePage
 	include PageObject
 
 
+	def enter_password
+		self.password = "iawhao"
+		self.enter
+	end
 end

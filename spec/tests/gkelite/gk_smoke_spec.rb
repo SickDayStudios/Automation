@@ -19,6 +19,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 	it ' - Navigate to Login Page' do
+		@home_page.home_page
+		@home_page.enter_password
 		@home_page.login_page
 		expect(@login_page.url).to include('/account/login')
 	end

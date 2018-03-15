@@ -12,8 +12,8 @@ $gk_products = ["8788","8731","8787","8253","8252","2008","4854","4875","4882","
 	button(:enter, name: "commit")
 
 	def enter_password
-		self.password = "iawhao"
-		self.enter
+		self.password_element.send_keys "iawhao"
+		self.enter_element.click
 	end
 
 

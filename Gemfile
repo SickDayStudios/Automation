@@ -38,8 +38,6 @@ group :development, :test do
   gem 'jbuilder'
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'web-console'
-  gem 'rspec-core'
-  gem 'rspec-expectations'
   gem 'axe-matchers'
 end
 

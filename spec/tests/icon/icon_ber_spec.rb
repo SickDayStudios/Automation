@@ -1,4 +1,6 @@
 require "./lib/pages/icon/icon_customizer_page"
+require 'rmagick'
+
 
 describe "ICON | Packlist-Spec Test" do 
 
