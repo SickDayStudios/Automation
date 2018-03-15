@@ -21,8 +21,8 @@ require 'pry'
 require 'chunky_png'
 require 'rmagick'
 require 'watir-webdriver-performance'
-require 'google_drive'
 require 'watir-ng'
+require 'axe/rspec'
 
 RSpec.configure do |config|
 
@@ -69,7 +69,7 @@ RSpec.configure do |config|
 	config.mock_with :rspec do |mocks|
 
 		mocks.verify_partial_doubles = true
-		
+
 	end
 end
 

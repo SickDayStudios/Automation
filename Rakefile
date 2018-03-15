@@ -96,10 +96,6 @@ end
 
 
 
-
-
-
-
 # B2B
 
 RSpec::Core::RakeTask.new(:preview, [:environment, :browser]) do |t, args|
@@ -110,11 +106,16 @@ RSpec::Core::RakeTask.new(:preview, [:environment, :browser]) do |t, args|
 	t.pattern = Dir.glob('spec/tests/preview_error_spec.rb')
 end
 
-# RSpec::Core::RakeTask.new(:accessibility, [:browser]) do |t, args|
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/accessibility/accessibility_spec.rb')
-# end
+
+
+
+# => Accessibility
+
+RSpec::Core::RakeTask.new(:accessibility, [:browser]) do |t, args|
+	ENV['BROWSER'] = args[:browser]
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/accessibility/accessibility_spec.rb')
+end
 
 # RSpec::Core::RakeTask.new(:cb_social, [:environment, :browser]) do |t, args|
 # 	ENV['ENVIRONMENT'] = args[:environment]

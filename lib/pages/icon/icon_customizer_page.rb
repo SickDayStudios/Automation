@@ -50,6 +50,7 @@ class IconCustomizer < IconBasePage
 	span(:cart_price, 				class: ["price"])
 	span(:address_name, 			class: ["address-names"])
 	span(:order_number, 			class: ["order-receipt-message-order-number"])
+	h1(:deprecated_color,			id:    "ngdialog1-aria-labelledby")
 
 
 
