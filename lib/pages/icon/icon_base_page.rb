@@ -1,4 +1,5 @@
 class IconBasePage < BasePage
+
 	include PageObject
 
 	$icon_pid = [	
@@ -172,7 +173,7 @@ class IconBasePage < BasePage
 		:rails => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
 		:midsole => ["White","Black"],
 		:heel => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
-		:outsole => ["White","Black","Gum"],
+		:outsole => ["White","Black","Gum Rubber"],
 		:sockliner => ["White","Black"]
 	}
 
@@ -188,7 +189,7 @@ class IconBasePage < BasePage
 		:weld => ["Chrome"],
 		:medial => ["Metallic Silver"],
 		:heel_logo_outline => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
-		:plate => ["Gold Chrome","Silver Chrome","Gunmetal Chrome","Iridescent"],
+		:plate => ["Gold Chrome","Silver Chrome","Iridescent"],#"Gunmetal Chrome",
 		:trim => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
 		:medial_outline => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Charcoal"]
 	}

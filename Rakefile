@@ -7,9 +7,6 @@ require 'date'
 
 ENV['CI_REPORTS'] = "./reports"
 
-
-
-
 # ICON
 
 RSpec::Core::RakeTask.new(:icon_fe, [:environment, :browser]) do |t, args|

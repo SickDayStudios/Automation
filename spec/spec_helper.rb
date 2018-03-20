@@ -13,7 +13,6 @@ require 'watir-nokogiri'
 require 'open-uri'
 require 'active_support/all'
 require 'restclient'
-require 'nokogiri'
 require 'colorize'
 require 'zip'
 require 'base64'
@@ -41,7 +40,6 @@ RSpec.configure do |config|
 		
 		
 		$driver = Watir::Browser.new ENV['BROWSER'].to_sym , options: { args: args }
-
 		WatirNg.patch!
 	end
 

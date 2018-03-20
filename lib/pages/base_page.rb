@@ -2,7 +2,6 @@ require "./lib/helpers/accessibility_helper"
 
 class BasePage
 	include PageObject
-	include AccessibilityModule
 
 	def initialize
 		super($driver)
