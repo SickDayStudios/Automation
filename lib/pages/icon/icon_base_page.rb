@@ -164,15 +164,15 @@ class IconBasePage < BasePage
 	}
 
 	$railfit = {
-		:upper => ["Black/Elemental","Forest Green/Forest Green","Cardinal/Cardinal","Midnight Navy/Midnight Navy","Black/Black","Cardinal/White","White/Elemental","Midnight Navy/White","White/White","Forest Green/White","Elemental/Elemental"],
-		:collar => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red"],
-		:tongue => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
-		:laces => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
-		:guide => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
-		:panel => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Red","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Team Royal","Midnight Navy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Tokyo Lemon","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Railfit Side Panel Artwork Template"],
-		:rails => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
+		:upper => ["Black/Elemental","Forest Green/Forest Green","Cardinal/Cardinal","Midnight Navy/Midnight Navy","Black/Black","White/Elemental","White/White","Elemental/Elemental"],#,"Cardinal/White","Forest Green/White","Midnight Navy/White"
+		:collar => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red"
+		:tongue => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
+		:laces => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
+		:guide => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
+		:panel => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Team Royal","Midnight Navy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Railfit Side Panel Artwork Template"],#,"Tokyo Lemon","Red"
+		:rails => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
 		:midsole => ["White","Black"],
-		:heel => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green","Red","Tokyo Lemon","Team Royal"],
+		:heel => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"], #,"Red","Tokyo Lemon","Team Royal"
 		:outsole => ["White","Black","Gum Rubber"],
 		:sockliner => ["White","Black"]
 	}
