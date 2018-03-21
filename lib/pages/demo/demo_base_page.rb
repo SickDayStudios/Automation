@@ -24,7 +24,7 @@ class DemoBasePage < BasePage
 			acc.element.click
 
 			if self.upload_element.visible?
-				self.upload = (File.dirname(__FILE__) + "chicken.jpg")
+				self.upload = (File.dirname(__FILE__) + "/chicken.jpg")
 			end
 
 			if self.text_element.visible?
