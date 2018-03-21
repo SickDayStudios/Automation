@@ -135,7 +135,7 @@ class IconBasePage < BasePage
 	}
 
 	$sackpack = {
-		:upper => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Red","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Royal","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Tokyo Lemon","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Academy","Under Armour Highlight Upper Pattern Template","Team Royal"],
+		:upper => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Red","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Royal","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Tokyo Lemon","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Academy","Under Armour Highlight Upper Pattern Template"],
 		:logo => ["Black","White","Steel","Red","Academy","Team Royal","Taxi","Team Orange","Tropic Pink","Metallic Silver","Metallic Gold"],
 		:expandable => ["White","Black","Steel","Red","Tropic Pink","Team Orange","Taxi","Team Royal","Academy"],
 		:lining => ["White","Black","Steel"],

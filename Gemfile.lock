@@ -281,6 +281,8 @@ GEM
       selenium-webdriver (>= 2.46.2)
     watir-webdriver-performance (0.2.4)
       watir-webdriver
+    watirsome (0.2.2)
+      watir (>= 6.0)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -329,6 +331,7 @@ DEPENDENCIES
   watir-nokogiri
   watir-rspec
   watir-webdriver-performance
+  watirsome
   web-console
 
 BUNDLED WITH

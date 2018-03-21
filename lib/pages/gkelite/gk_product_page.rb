@@ -101,17 +101,19 @@ class GKProductPage < GKShopifyBasePage
 	# Lightbox
 	div(:cart_popup, id: "added-to-cart")
 
+
+
+
+
+
+	
+
 	def check_ao
-		# puts " ID  | RecipeID | Spec ID  | Expected A0#  | Spec A0#"
-		# @products = Array.new
-		# $gk_scene_files.each do  |scene|
-		# 	AssetAPI.scene_productoptions_keys(scene).each do |handle|
-		# 		@products.push(handle.scan(/\w+[0-9]\w+/))
-		# 	end
-		# end
-		# @product_handles = @products.flatten.uniq
+		puts " ID  | RecipeID | Spec ID  | Expected A0#  | Spec A0#"
+		
 		$gk_products.each do |id|
 			$driver.goto "gkelite.com/products/#{id}"
+
 			if self.four_oh_four?
 				puts "#{id} | 404 Product Page Missing"
 			else
@@ -120,33 +122,38 @@ class GKProductPage < GKShopifyBasePage
 				self.wait_until { self.color_picker_element.visible? }
 				recipe_set_ids = self.get_recipe_ids
 				ao_numbers = self.get_ao_numbers
+
 				if recipe_set_ids.empty?
 					puts "#{id} | #{ao_numbers} | Missing Recipe Set ID"
 				else
 					recipe_set_ids.zip(ao_numbers).each do |rset,ao|
+
 						if rset == id
 							puts "#{id} | #{ao} | #{rset}"
-						# else
-						# 	@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
-						# 	if @recipe["contents"].nil?
-						# 		puts "#{id} | #{rset} | Broken Recipe"
-						# 	else
-						# 		@recipe["contents"]["recipes"].each do |indx|
-						# 			if indx["productHandle"].include?("#{id}")
-						# 				@spec_id = indx["recipe"]["readableId"]
-						# 			else
-						# 			end
-						# 		end
-						# 		@spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
-						# 		if ao != @spec["A0Number"]
-						# 			puts "#{id} | #{rset} | #{@spec_id} | Expected: #{ao} | Got: #{@spec["A0Number"]}"
-						# 		else
-						# 		end
-						# 	end
+						else
+							@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
+							
+							if @recipe["contents"].nil?
+								puts "#{id} | #{rset} | Broken Recipe"
+							else
+								@recipe["contents"]["recipes"].each do |indx|
+									
+									if indx["productHandle"].include?("#{id}")
+										@spec_id = indx["recipe"]["readableId"]
+									end
+								end
+								@spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
+								
+								if ao != @spec["A0Number"]
+									puts "#{id} | #{rset} | #{@spec_id} | Expected: #{ao} | Got: #{@spec["A0Number"]}"
+								end
+							end
 						end	
 					end
 				end
+
 			end
+
 		end
 	end
 

@@ -7,6 +7,19 @@ require 'date'
 
 ENV['CI_REPORTS'] = "./reports"
 
+
+# DEMO
+
+RSpec::Core::RakeTask.new(:demo, [:browser]) do |t, args|
+	ENV['BROWSER'] = args[:browser]
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/demo/demo_spec.rb')
+end
+
+
+
+
+
 # ICON
 
 RSpec::Core::RakeTask.new(:icon_fe, [:environment, :browser]) do |t, args|
@@ -168,33 +181,6 @@ end
 # => 	############# GKELITE ################
 
 
-
-# RSpec::Core::RakeTask.new(:gk, [:environment, :browser, :user]) do |t, args|
-# 	ENV['ENVIRONMENT'] = args[:environment]
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['USER_TYPE'] = args[:user]
-# 	ENV['SITE'] = 'gk-elite'
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/gkelite/*_spec.rb')
-# end
-
-# RSpec::Core::RakeTask.new(:gk_garments, [:environment, :browser, :user]) do |t, args|
-# 	ENV['ENVIRONMENT'] = args[:environment]
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['USER_TYPE'] = args[:user]
-# 	ENV['SITE'] = 'gk-elite'
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/gkelite/garments/*_spec.rb')
-# end
-
-# RSpec::Core::RakeTask.new(:gk_ecomm, [:environment, :browser, :user]) do |t, args|
-# 	ENV['ENVIRONMENT'] = args[:environment]
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['USER_TYPE'] = args[:user]
-# 	ENV['SITE'] = 'gk-elite'
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/gkelite/*_spec.rb')
-# end
 
 RSpec::Core::RakeTask.new(:gk_url, [:environment, :browser, :user]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
