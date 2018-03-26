@@ -19,7 +19,7 @@ class BMKBasePage < BasePage
 	link(:checkout, class: ["button checkout-button"])
 	div(:mini_cart, class: ["minicart-wrapper"])
 	links(:delete, text: "Delete")
-	checkbox(:checkbox, id: "terms")
+	checkbox(:checkbox, id: "termsAccepted")
 
 
 
@@ -101,6 +101,7 @@ class BMKBasePage < BasePage
 			end
 		end
 		self.buy
+		self.check_checkbox
 		self.add_to_cart
 		knife_price = self.ui_price
 		sleep 2
@@ -168,6 +169,7 @@ class BMKBasePage < BasePage
 		self.check_checkbox
 		self.add_to_cart
 		sleep 1
+
 		self.wait_until { $driver.alert.exists? }
 		if $driver.alert.exists?
 			alert_string = $driver.alert.text.scan(/\{.*?\}.+/)

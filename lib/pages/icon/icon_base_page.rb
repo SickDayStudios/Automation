@@ -169,7 +169,7 @@ class IconBasePage < BasePage
 		:tongue => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
 		:laces => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
 		:guide => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
-		:panel => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Team Royal","Midnight Navy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Railfit Side Panel Artwork Template"],#,"Tokyo Lemon","Red"
+		:panel => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Midnight Navy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Railfit Side Panel Artwork Template"],#,"Tokyo Lemon","Red","Team Royal",
 		:rails => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
 		:midsole => ["White","Black"],
 		:heel => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"], #,"Red","Tokyo Lemon","Team Royal"
@@ -189,7 +189,7 @@ class IconBasePage < BasePage
 		:weld => ["Chrome"],
 		:medial => ["Metallic Silver"],
 		:heel_logo_outline => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
-		:plate => ["Gold Chrome","Silver Chrome","Iridescent"],#"Gunmetal Chrome",
+		:plate => ["Gunmetal Chrome","Silver Chrome","Solar Chrome"],
 		:trim => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Cardinal"],
 		:medial_outline => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Charcoal"]
 	}
@@ -210,6 +210,10 @@ class IconBasePage < BasePage
 		return @response
 	end
 
+
+
+
+
 	def self.packlist_response(recipe_id)
 		case ENV['ENVIRONMENT'].to_sym
 		when :test then @response = Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
@@ -218,6 +222,11 @@ class IconBasePage < BasePage
 		end
 		return @response
 	end
+
+
+
+
+
 
 	def self.parse_icon_packlist(recipe_id)
 		@packlist = Array.new
@@ -233,12 +242,23 @@ class IconBasePage < BasePage
 		return @hash
 	end
 
+
+
+
+
+
 	def self.parse_spec_html(recipe_id)
 		details = parse_icon_spec_details(recipe_id)
 		images = parse_icon_spec_images(recipe_id)
 		colors = parse_icon_spec_colors(recipe_id)
 		return details,images,colors
 	end
+
+
+
+
+
+
 
 	def self.parse_icon_spec_details(recipe_id)
 		@arr = Array.new
@@ -274,6 +294,12 @@ class IconBasePage < BasePage
 		return @hash
 	end
 
+
+
+
+
+
+
 	def self.parse_icon_spec_images(recipe_id)
 		@images = Array.new
 		@response = spec_response(recipe_id)
@@ -285,6 +311,15 @@ class IconBasePage < BasePage
 		end
 		return @images
 	end
+
+
+
+
+
+
+
+
+
 
 	def self.parse_icon_spec_colors(recipe_id)
 		@hash = Hash.new{ |hsh,key| hsh[key] = [] }
@@ -312,6 +347,12 @@ class IconBasePage < BasePage
 		return @hash
 	end
 
+
+
+
+
+
+
 	def self.get_product_set_handle(recipe_id)
 		case ENV['ENVIRONMENT'].to_sym
 		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
@@ -320,6 +361,12 @@ class IconBasePage < BasePage
 		end
 		return @response['contents']['productSetHandle']
 	end
+
+
+
+
+
+
 
 
 	def self.parse_icon_recipeset(recipe_id)
@@ -361,6 +408,15 @@ class IconBasePage < BasePage
 		end
 		return @rset
 	end
+
+
+
+
+
+
+
+
+
 
 
 	def self.get_text_message_handles(scene)
@@ -409,6 +465,10 @@ class IconBasePage < BasePage
 
 
 
+
+
+
+
 	def self.localize_text_message_handles(scene)
 		@msg = parse_product_set(scene)
 		@loc = Hash.new{ |hsh,key| hsh[key] = [] }
@@ -431,6 +491,8 @@ class IconBasePage < BasePage
 		end
 		return @loc
 	end
+
+
 
 
 

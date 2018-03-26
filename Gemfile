@@ -8,7 +8,6 @@ end
 
 group :development, :test do
   gem 'capybara'
-  gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'rspec'
   gem 'page-object'
@@ -36,8 +35,9 @@ group :development, :test do
   gem 'uglifier'
   gem 'turbolinks'
   gem 'jbuilder'
-  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
   gem 'web-console'
   gem 'axe-matchers'
+  gem 'schmooze'
+  gem 'launchy'
 end
 
