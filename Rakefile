@@ -18,8 +18,6 @@ end
 
 
 
-
-
 # ICON
 
 RSpec::Core::RakeTask.new(:icon_fe, [:environment, :browser]) do |t, args|

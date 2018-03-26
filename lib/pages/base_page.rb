@@ -1,5 +1,3 @@
-require "./lib/helpers/accessibility_helper"
-
 class BasePage
 	include PageObject
 
