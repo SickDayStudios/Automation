@@ -17,6 +17,8 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 
 	it "Verify A0#'s" do
-		@pdp.check_ao
+		aggregate_failures "" do
+			@pdp.check_ao
+		end
 	end
 end

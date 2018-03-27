@@ -131,8 +131,14 @@ class GKProductPage < GKShopifyBasePage
 						if rset == id
 							puts "#{id} | #{ao} | #{rset}"
 						else
-							@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
-							
+							case ENV['ENVIRONMENT'].to_sym
+							when :test
+								@recipe = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
+							when :staging
+								@recipe = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
+							when :prod
+								@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
+							end
 							if @recipe["contents"].nil?
 								puts "#{id} | #{rset} | Broken Recipe"
 							else
@@ -142,8 +148,11 @@ class GKProductPage < GKShopifyBasePage
 										@spec_id = indx["recipe"]["readableId"]
 									end
 								end
-								@spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
-								
+								case ENV['ENVIRONMENT'].to_sym
+								when :test then @spec = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
+								when :staging then @spec = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
+								when :prod then @spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
+								end
 								if ao != @spec["A0Number"]
 									puts "#{id} | #{rset} | #{@spec_id} | Expected: #{ao} | Got: #{@spec["A0Number"]}"
 								end

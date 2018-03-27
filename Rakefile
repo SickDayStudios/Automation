@@ -125,58 +125,10 @@ RSpec::Core::RakeTask.new(:accessibility, [:browser]) do |t, args|
 	t.pattern = Dir.glob('spec/tests/accessibility/accessibility_spec.rb')
 end
 
-# RSpec::Core::RakeTask.new(:cb_social, [:environment, :browser]) do |t, args|
-# 	ENV['ENVIRONMENT'] = args[:environment]
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['SITE'] = 'camelbak'
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/cb/cb_share_spec.rb')
-# end
-
-# RSpec::Core::RakeTask.new(:ios, [:deviceName, :deviceType, :platformName, :platformVersion, :app]) do |t, args|
-# 	ENV['deviceName'] =	args[:deviceName]
-# 	ENV['deviceType='] = args[:deviceType]
-# 	ENV['platformName'] = args[:platformName]
-# 	ENV['platformVersion'] = args[:platformVersion]
-# 	ENV['app'] = args[:app] 
-# end
-
-# RSpec::Core::RakeTask.new(:icon_products, [:environment, :browser]) do |t, args|
-# 	ENV['ENVIRONMENT'] = args[:environment]
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['SITE'] = 'ua-icon'
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/icon/icon_product_spec.rb')
-# end
-
-# RSpec::Core::RakeTask.new(:icon, [:environment, :browser]) do |t, args|
-# 	ENV['ENVIRONMENT'] = args[:environment]
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['SITE'] = 'ua-icon'
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/icon/*_spec.rb')
-# end
-
-# RSpec::Core::RakeTask.new(:eb, [:environment, :browser]) do |t, args|
-# 	ENV['ENVIRONMENT'] = args[:environment]
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['SITE'] = 'eddie-bauer'
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/eb/eb_smoke_spec.rb')
-# end
-
-# RSpec::Core::RakeTask.new(:uau, [:environment, :browser]) do |t, args|
-# 	ENV['ENVIRONMENT'] = args[:environment]
-# 	ENV['BROWSER'] = args[:browser]
-# 	ENV['SITE'] = 'under-armour'
-# 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-# 	t.pattern = Dir.glob('spec/tests/uau/*_spec.rb')
-# end
 
 
 
-
-# => 	############# GKELITE ################
+# => GKELITE 
 
 
 
