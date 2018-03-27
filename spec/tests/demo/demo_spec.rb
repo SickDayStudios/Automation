@@ -1,6 +1,6 @@
 require "./lib/pages/demo/demo_base_page"
 
-describe "DEMO.describe" do
+describe "DEMO | describe" do
 
 	before(:all) do
 		@page = DemoBasePage.new
@@ -16,8 +16,8 @@ describe "DEMO.describe" do
 	# 	end
 	# end
 
-	context "UA.context" do
-		it "UASM.test" do
+	context "UA | context" do
+		it "UASM | test" do
 			@page.goto("https://madetoordertest.blob.core.windows.net/spectrum/demo/index.html#/")
 			@page.wait_until { @page.password? }
 			@page.password = "UASM_Spectrum_PDP"
