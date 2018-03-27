@@ -23,6 +23,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 			it 'Login' do
 				ENV['USER_TYPE'] = user
 				BasePage.set_user
+				@login_page.enter_password
 				@login_page.header_login
 				expect(@login_page.url).to include('/account')
 			end

@@ -20,32 +20,39 @@ class DemoBasePage < BasePage
 
 	def iterate
 		self.accordions_elements.each do |acc|
-
 			acc.element.click
-
-			if self.upload_element.visible?
-				self.upload = (File.dirname(__FILE__) + "/chicken.jpg")
+			if self.upload? 
+				if self.upload_element.visible?
+					self.upload = (File.dirname(__FILE__) + "/chicken.jpg")
+					sleep 1
+				end
 			end
-
-			if self.text_element.visible?
-				self.text = "QA AUTOMATION"
-
+			if self.text?
+				if self.text_element.visible?
+					self.text = "QA AUTOMATION"
+					sleep 1
+				end
+			end
+			if self.font?
 				if self.font_element.visible?
 					self.font_options.each do |op|
 						self.font = op
+						sleep 1
 					end
 				end
 			end
-
-			self.swatches_elements.each do |sw|
-				if sw.element.visible?
-					sw.element.click
+			if self.swatches_elements.present?
+				self.swatches_elements.each do |sw|
+					if sw.element.visible?
+						sw.element.click
+						sleep 1
+					end
 				end
 			end
 		end
-
 		self.background_options_elements.each do |bg|
 			bg.element.click
+			sleep 5
 		end
 	end
 

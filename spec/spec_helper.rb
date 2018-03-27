@@ -36,10 +36,10 @@ RSpec.configure do |config|
 			FileUtils.mkdir_p($screenshotfolder)
 		end
 
-		args = ['--flag-switches-begin','--window-size=1920,1080','--window-position=0,0','--disable-infobars','--flag-switches-end']
+		args = ['--window-size=1920,1080','--window-position=0,0','--disable-infobars','--disable-gpu-watchdog','--disable-background-timer-throttling']
 		
 		
-		$driver = Watir::Browser.new ENV['BROWSER'].to_sym , options: { args: args }
+		$driver = Watir::Browser.new :chrome, options: { args: args }
 		WatirNg.patch!
 	end
 

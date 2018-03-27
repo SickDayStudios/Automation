@@ -13,6 +13,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	it 'Navigate to each Collection URL' do
 		@arr = Array.new
+		@page.enter_password
 		$collection_links.each do |url|
 			@page.goto("#{$base_url}/collections/#{url}")
 			if @page.four_oh_four?
