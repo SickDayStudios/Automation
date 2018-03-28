@@ -110,7 +110,6 @@ class GKProductPage < GKShopifyBasePage
 
 	def check_ao
 		puts " ID  | RecipeID | Spec ID  | Expected A0#  | Spec A0#"
-		
 		$gk_products.each do |id|
 			$driver.goto "gkelite.com/products/#{id}"
 
@@ -133,11 +132,11 @@ class GKProductPage < GKShopifyBasePage
 						else
 							case ENV['ENVIRONMENT'].to_sym
 							when :test
-								@recipe = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
+								@recipe = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
 							when :staging
-								@recipe = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
+								@recipe = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
 							when :prod
-								@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"))
+								@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
 							end
 							if @recipe["contents"].nil?
 								puts "#{id} | #{rset} | Broken Recipe"
@@ -149,9 +148,9 @@ class GKProductPage < GKShopifyBasePage
 									end
 								end
 								case ENV['ENVIRONMENT'].to_sym
-								when :test then @spec = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
-								when :staging then @spec = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
-								when :prod then @spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"))
+								when :test then @spec = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
+								when :staging then @spec = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
+								when :prod then @spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
 								end
 								if ao != @spec["A0Number"]
 									puts "#{id} | #{rset} | #{@spec_id} | Expected: #{ao} | Got: #{@spec["A0Number"]}"
@@ -210,7 +209,7 @@ class GKProductPage < GKShopifyBasePage
 	end
 
 	def get_product_data(id)
-		return JSON.parse(RestClient.get("https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"))
+		return JSON.parse(RestClient.get("https://#{ENV['ENVIRONMENT']}-gkelite.pollinate.com/collections/#{id}/?view=product"){|response, request, result| response })
 	end
 
 

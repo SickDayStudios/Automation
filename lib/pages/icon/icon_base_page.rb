@@ -203,9 +203,9 @@ class IconBasePage < BasePage
 
 	def self.spec_response(recipe_id)
 		case ENV['ENVIRONMENT'].to_sym
-		when :test then @response = Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
-		when :staging then @response = Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
-		when :prod then @response = Nokogiri::XML.parse(RestClient.get("api.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"))
+		when :test then @response = Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"){|response, request, result| response })
+		when :staging then @response = Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"){|response, request, result| response })
+		when :prod then @response = Nokogiri::XML.parse(RestClient.get("api.spectrumcustomizer.com/under-armour/icon/specification/#{recipe_id}/html"){|response, request, result| response })
 		end
 		return @response
 	end
@@ -216,9 +216,9 @@ class IconBasePage < BasePage
 
 	def self.packlist_response(recipe_id)
 		case ENV['ENVIRONMENT'].to_sym
-		when :test then @response = Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
-		when :staging then @response = Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
-		when :prod then @response = Nokogiri::XML.parse(RestClient.get("api.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"))
+		when :test then @response = Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"){|response, request, result| response })
+		when :staging then @response = Nokogiri::XML.parse(RestClient.get("staging.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"){|response, request, result| response })
+		when :prod then @response = Nokogiri::XML.parse(RestClient.get("api.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"){|response, request, result| response })
 		end
 		return @response
 	end
@@ -355,9 +355,9 @@ class IconBasePage < BasePage
 
 	def self.get_product_set_handle(recipe_id)
 		case ENV['ENVIRONMENT'].to_sym
-		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
-		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
-		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
 		end
 		return @response['contents']['productSetHandle']
 	end
@@ -372,9 +372,9 @@ class IconBasePage < BasePage
 	def self.parse_icon_recipeset(recipe_id)
 		@rset = Hash.new{ |hsh,key| hsh[key] = [] }
 		case ENV['ENVIRONMENT'].to_sym
-		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
-		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
-		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
 		end
 		@response['contents']['recipes'].each do |recipes|
 			recipes['recipe']['recipeData'].each do |recipeData|
@@ -422,9 +422,9 @@ class IconBasePage < BasePage
 	def self.get_text_message_handles(scene)
 		@pset = Hash.new{ |hsh,key| hsh[key] = [] }
 		case ENV['ENVIRONMENT'].to_sym
-		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"))
-		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"))
-		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/productsets/#{scene}"))
+		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"){|response, request, result| response })
+		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"){|response, request, result| response })
+		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/productsets/#{scene}"){|response, request, result| response })
 		end
 		@response['contents']['productGroups'].each do |productGroups|
 			if productGroups.empty? == false
@@ -474,11 +474,11 @@ class IconBasePage < BasePage
 		@loc = Hash.new{ |hsh,key| hsh[key] = [] }
 		case ENV['ENVIRONMENT'].to_sym
 		when :test
-			@response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+			@response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"){|response, request, result| response })
 		when :staging
-			@response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+			@response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"){|response, request, result| response })
 		when :prod
-			@response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"))
+			@response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/localized-messages/productset/#{scene}/"){|response, request, result| response })
 		end
 		@msg.each do |k, v|
 			v.each do |value|
@@ -524,11 +524,11 @@ class IconBasePage < BasePage
 		@pset = Hash.new{ |hsh,key| hsh[key] = [] }
 		case ENV['ENVIRONMENT'].to_sym
 		when :test
-			@response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"))
+			@response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/productsets/#{scene}"){|response, request, result| response })
 		when :staging
-			@response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"))
+			@response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/productsets/#{scene}"){|response, request, result| response })
 		when :prod
-			@response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/productsets/#{scene}"))
+			@response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/productsets/#{scene}"){|response, request, result| response })
 		end
 
 		@response['contents']['productGroups'][0]['products'].each do |p|

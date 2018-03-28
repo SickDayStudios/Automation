@@ -105,9 +105,9 @@ class IconCustomizer < IconBasePage
 	def get_rasters(recipe_id)
 		@rasters = Array.new
 		case ENV['ENVIRONMENT'].to_sym
-		when :test then response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
-		when :staging then response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
-		when :prod then  response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"))
+		when :test then response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :staging then response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :prod then  response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
 		end
 		response['contents']['recipes'].each do |recipes|
 			recipes['recipe']['recipeData'].each do |recipeData|

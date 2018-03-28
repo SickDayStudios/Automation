@@ -6,7 +6,7 @@ class BasePage
 	end
 
 	def api_setup(url)
-		return JSON.parse(RestClient.get(url))
+		return JSON.parse(RestClient.get(url){|response, request, result| response })
 	end
 
 	def self.set_device_to(device)

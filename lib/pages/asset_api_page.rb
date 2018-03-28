@@ -71,7 +71,7 @@ class AssetAPI < BasePage
 			when :prod then url = "http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/scenelib/#{ENV['SITE']}/scene.json"
 			end
 		end
-		@specs = JSON.parse(RestClient.get(url))
+		@specs = JSON.parse(RestClient.get(url){|response, request, result| response })
 		@arr = Array.new
 		list = @specs["productGroups"].keys
 		list.each do |key|
@@ -174,9 +174,9 @@ class AssetAPI < BasePage
 	def self.product_handle_values(product)
 		array = Array.new
 		case ENV['ENVIRONMENT'].to_sym
-		when :test then @specs = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"))
-		when :staging then @specs = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/products/#{product}"))
-		when :prod then @specs = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/products/#{product}"))
+		when :test then @specs = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"){|response, request, result| response })
+		when :staging then @specs = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/products/#{product}"){|response, request, result| response })
+		when :prod then @specs = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/products/#{product}"){|response, request, result| response })
 		end
 		file = File.open("./lib/helpers/recursive_feature_traversal.js", "r")
 		features = file.read
@@ -190,9 +190,9 @@ class AssetAPI < BasePage
 		elsif manifest.nil?
 		else
 			case ENV['ENVIRONMENT'].to_sym
-			when :test then @specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
-			when :staging then @specs = JSON.parse(RestClient.get("http://madetoorderstaging.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
-			when :prod then @specs = JSON.parse(RestClient.get("http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
+			when :test then @specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
+			when :staging then @specs = JSON.parse(RestClient.get("http://madetoorderstaging.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
+			when :prod then @specs = JSON.parse(RestClient.get("http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
 			end
 			result = @specs["parameters"].keys
 		end
@@ -204,9 +204,9 @@ class AssetAPI < BasePage
 		elsif manifest.nil?
 		else
 			case ENV['ENVIRONMENT'].to_sym
-			when :test then @specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
-			when :staging then @specs = JSON.parse(RestClient.get("http://madetoorderstaging.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
-			when :prod then @specs = JSON.parse(RestClient.get("http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
+			when :test then @specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
+			when :staging then @specs = JSON.parse(RestClient.get("http://madetoorderstaging.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
+			when :prod then @specs = JSON.parse(RestClient.get("http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
 			end
 			result = @specs["parameters"].values
 		end
@@ -219,9 +219,9 @@ class AssetAPI < BasePage
 			puts "Missing Manifest"
 		else
 			case ENV['ENVIRONMENT'].to_sym
-			when :test then @specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
-			when :staging then @specs = JSON.parse(RestClient.get("http://madetoorderstaging.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
-			when :prod then @specs = JSON.parse(RestClient.get("http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
+			when :test then @specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
+			when :staging then @specs = JSON.parse(RestClient.get("http://madetoorderstaging.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
+			when :prod then @specs = JSON.parse(RestClient.get("http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
 			end
 			@models = Array.new
 			regionmaps = @specs["shaders"].keys
@@ -242,9 +242,9 @@ class AssetAPI < BasePage
 			puts "Missing Manifest"
 		else
 			case ENV['ENVIRONMENT'].to_sym
-			when :test then @specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
-			when :staging then @specs = JSON.parse(RestClient.get("http://madetoorderstaging.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
-			when :prod then @specs = JSON.parse(RestClient.get("http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest))
+			when :test then @specs = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
+			when :staging then @specs = JSON.parse(RestClient.get("http://madetoorderstaging.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
+			when :prod then @specs = JSON.parse(RestClient.get("http://madetoorder.blob.core.windows.net/webgl/client/#{ENV['SITE']}/#{product}/" + manifest){|response, request, result| response })
 			end
 			@shaders = Array.new
 			regionmaps = @specs["shaders"].keys
