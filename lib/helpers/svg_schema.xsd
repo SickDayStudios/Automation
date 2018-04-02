@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema 
+    attributeFormDefault="unqualified" 
+    elementFormDefault="qualified" 
+    targetNamespace="http://www.w3.org/2000/svg" 
+    xmlns:svg="http://www.w3.org/2000/svg" 
+    xmlns:xml="http://www.w3.org/XML/1998/namespace"  
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:import 
+        schemaLocation="http://www.w3.org/2001/xml.xsd" 
+        namespace="http://www.w3.org/XML/1998/namespace"
+    />
+
+    <xsd:element name="rect">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                    <xsd:attribute type="xsd:string" name="y" use="optional"/>
+                    <xsd:attribute type="xsd:string" name="fill" use="required"/>
+                    <xsd:attribute type="xsd:string" name="width" use="optional"/>
+                    <xsd:attribute type="xsd:string" name="height" use="optional"/>
+                    <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                    <xsd:attribute type="xsd:string" name="x" use="optional"/>
+                    <xsd:attribute type="xsd:string" name="data-name" use="optional"/>
+                    <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+                    <xsd:attribute type="xsd:string" name="points" use="optional"/>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="polyline">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                    <xsd:attribute type="xsd:string" name="fill" use="required"/>
+                    <xsd:attribute type="xsd:string" name="points" use="optional"/>
+                    <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="ellipse">
+        <xsd:complexType>
+          <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+              <xsd:attribute type="xsd:string" name="fill" use="optional"/>
+              <xsd:attribute type="xsd:string" name="cx" use="optional"/>
+              <xsd:attribute type="xsd:string" name="cy" use="optional"/>
+              <xsd:attribute type="xsd:string" name="rx" use="optional"/>
+              <xsd:attribute type="xsd:string" name="ry" use="optional"/>
+              <xsd:attribute type="xsd:string" name="d" use="optional"/>
+              <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+          </xsd:extension>
+      </xsd:simpleContent>
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="polygon">
+    <xsd:complexType>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                <xsd:attribute type="xsd:string" name="fill" use="required"/>
+                <xsd:attribute type="xsd:string" name="data-name" use="optional"/>
+                <xsd:attribute type="xsd:string" name="points" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="path">
+    <xsd:complexType>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute type="xsd:string" name="fill" use="required"/>
+                <xsd:attribute type="xsd:string" name="d" use="optional"/>
+                <xsd:attribute type="xsd:string" name="points" use="optional"/>
+                <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                <xsd:attribute type="xsd:string" name="data-name" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="svg">
+    <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+            <xsd:element ref="svg:g" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:svg" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:title" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:polygon" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:rect" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:path" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+        </xsd:choice>
+        <xsd:attribute type="xsd:float" name="version" use="optional"/>
+        <xsd:attribute type="xsd:string" name="style" use="optional"/>
+        <xsd:attribute type="xsd:string" name="x" use="optional"/>
+        <xsd:attribute type="xsd:string" name="y" use="optional"/>
+        <xsd:attribute type="xsd:integer" name="width" use="required"/>
+        <xsd:attribute type="xsd:integer" name="height" use="required"/>
+        <xsd:attribute type="xsd:string" name="viewBox" use="required"/>
+        <xsd:attribute type="xsd:string" name="enable-background" use="optional"/>
+        <xsd:attribute type="xsd:string" name="id" use="optional"/>
+        <xsd:attribute ref="xml:space" xmlns:svg="http://www.w3.org/2000/svg"/>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="g">
+    <xsd:complexType mixed="true">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+            <xsd:element ref="svg:svg" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:g" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:polygon" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:polyline" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:ellipse" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:path" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+            <xsd:element ref="svg:rect" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+        </xsd:choice>
+        <xsd:attribute type="xsd:string" name="id" use="required"/>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="title" type="xsd:string"/>
+</xsd:schema>

@@ -8,6 +8,16 @@ require 'date'
 ENV['CI_REPORTS'] = "./reports"
 
 
+
+# Schema
+
+RSpec::Core::RakeTask.new(:schema, [:browser]) do |t, args|
+	ENV['BROWSER'] = args[:browser]
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/svg_validator_spec.rb')
+end
+
+
 # DEMO
 
 RSpec::Core::RakeTask.new(:demo, [:browser]) do |t, args|

@@ -5,6 +5,21 @@ class BasePage
 		super($driver)
 	end
 
+	def self.validate_svg(zip_dir, schema)
+		schema = Nokogiri::XML::Schema(File.read(schema))
+		# doc = Nokogiri::XML(File.open("#{zip_dir, schema}"))
+		Zip::File.open(zip_dir, schema) do |zip_file|
+			zip_file.each do |entry|
+				if entry.get_input_stream.is_a?(Zip::InputStream) && entry.name.include?(".svg")
+					doc = Nokogiri::XML.parse(entry.get_input_stream)
+					schema.validate(doc).each do |error|
+						puts "#{entry.name}: #{error.message}"
+					end
+				end
+			end
+		end
+	end
+
 	def api_setup(url)
 		return JSON.parse(RestClient.get(url){|response, request, result| response })
 	end
@@ -21,7 +36,7 @@ class BasePage
 	end
 
 	def self.performance_check
-	    puts ("Response time: #{$driver.performance.summary[:response_time]}ms")
+		puts ("Response time: #{$driver.performance.summary[:response_time]}ms")
 	end
 
 	def self.extract_zip(file)
