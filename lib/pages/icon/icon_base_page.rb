@@ -106,7 +106,7 @@ class IconBasePage < BasePage
 	}
 
 	$drive_four = {
-		:overlay => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Tokyo Lemon","Team Kelly Green","Downtown Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Forest Green","Stone","Taxi","Under Armour Highlight Upper Pattern Template", "Under Armour Highlight Upper Artwork Template"], #,"Red",
+		:overlay => ["Red","White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Tokyo Lemon","Team Kelly Green","Downtown Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Forest Green","Stone","Taxi","Under Armour Highlight Upper Pattern Template", "Under Armour Highlight Upper Artwork Template"],
 		:tongue => ["Black","Steel","Team Royal","Midnight Navy"], #,"Red","Taxi","Forest Green","Stone",
 		:heel => ["White","Black","Metallic Silver","Metallic Gold","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
 		:eyelets => ["White","Black","Aluminum","Steel","Red","Taxi","Forest Green","Powderkeg Blue","Team Royal","Midnight Navy"],
