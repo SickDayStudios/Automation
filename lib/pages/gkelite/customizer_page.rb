@@ -117,12 +117,10 @@ class CustomizerPage < BasePage
 
 
 	def quick_custom_asset
-		self.wait_while { self.page_load? }
-		sleep 3
+		self.wait_until { self.disclaimer_checkbox? }
 		self.check_disclaimer_checkbox
-		self.embellishments_button
-		self.additional_options_button
-		self.size_alterations_button
+		sleep 1
+		self.breadcrumb_sizes_alterations_element.click
 	end
   
 

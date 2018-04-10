@@ -10,6 +10,7 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 
 	before(:all) do
 		BasePage.setup
+		@customizer = CustomizerPage.new
 		@login_page = GKLoginPage.new
 		@product_page = GKProductPage.new
 		@cart_page = GKCartPage.new
@@ -39,27 +40,35 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 
-	it ' - Navigate to Product Page' do
-		@home_page.product_page('3734')
-		sleep 1
-		expect(@home_page.url).to include('3734')
+	it ' - Navigate to 2008' do
+		@home_page.product_page('2008')
+		expect(@home_page.url).to include('2008')
+	end
+
+	it ' - Customize Product' do
+		@product_page.customize_button
+		expect(@product_page.url).to include("design")
+	end
+
+	it ' - Continue to Customized Product Page' do
+		@customizer.quick_custom_asset
+		expect(@customizer.url).to include('sizes-and-alterations')
+	end
+
+	it ' - Select Random Options' do
+		@product_page.wait_until(120) { @product_page.product_image? }
+		@product_page.random_size
+		expect(@product_page.selected_size).not_to eq("")
 	end
 
 	it ' - Add Product to Cart' do
-		@product_page.wait_until { @product_page.product_thumbnails? }
-		sleep 1
-		@product_page.random_options
-		sleep 1
 		@product_page.add_to_cart
-		sleep 1
 		@product_page.wait_until { @product_page.cart_popup? }
-		sleep 1
 		expect(@product_page.cart_popup?).to eq(true)
 	end
 
-	it ' - Lightbox Checkout' do
+	it ' - Lightbox: Checkout' do
 		@product_page.checkout
-		sleep 1
 		expect(@product_page.url).to include('/cart')
 	end
 
