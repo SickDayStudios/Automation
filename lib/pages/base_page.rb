@@ -14,9 +14,23 @@ class BasePage
 					doc = Nokogiri::XML.parse(entry.get_input_stream)
 					schema.validate(doc).each do |error|
 						puts "#{entry.name}: #{error.message}"
+						puts ""
 					end
 				end
 			end
+		end
+	end
+
+	def self.validate_svg_url(url, schema)
+		File.write 'image.svg', open("#{url}").read
+		schema = Nokogiri::XML::Schema(File.read(schema))
+		doc = Nokogiri::XML(File.open("#{Dir.pwd}/image.svg"))
+		# source = Nokogiri::XML(open(url))
+		# source.remove_namespaces!
+		# svg = Nokogiri::XML.parse(source)
+		schema.validate(doc).each do |error|
+			puts "#{url} | #{error.message}"
+			puts ""
 		end
 	end
 

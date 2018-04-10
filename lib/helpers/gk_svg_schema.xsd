@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema 
+    attributeFormDefault="unqualified" 
+    elementFormDefault="qualified" 
+    targetNamespace="http://www.w3.org/2000/svg" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <xsd:import 
+        namespace="http://www.w3.org/1999/xlink" 
+        schemaLocation="http://www.w3.org/1999/xlink.xsd"
+        />
+
+        <xsd:element name="ellipse">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:float" name="cx" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="cy" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="rx" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="ry" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="fill" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-miterlimit" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-width" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="d" use="optional"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="linearGradient">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element ref="svg:stop" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                </xsd:sequence>
+                <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                <xsd:attribute type="xsd:float" name="x1" use="optional"/>
+                <xsd:attribute type="xsd:float" name="y1" use="optional"/>
+                <xsd:attribute type="xsd:float" name="x2" use="optional"/>
+                <xsd:attribute type="xsd:float" name="y2" use="optional"/>
+                <xsd:attribute type="xsd:string" name="gradientTransform" use="optional"/>
+                <xsd:attribute ref="xlink:href" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+                <xsd:attribute type="xsd:string" name="gradientUnits" use="optional"/>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="polygon">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:string" name="points" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="fill" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-miterlimit" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-dasharray" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-width" use="optional"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="polyline">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:string" name="points" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="fill" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-miterlimit" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-dasharray" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-width" use="optional"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="circle">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:float" name="cx" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="cy" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="r" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="fill" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-miterlimit" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-width" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-dasharray" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="d" use="optional"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="line">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:float" name="x1" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="y1" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="x2" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="y2" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="fill" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-miterlimit" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-width" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                        <xsd:attribute type="xsd:byte" name="data-name" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-linecap" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-dasharray" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-linejoin" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="clip-path" use="optional"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="stop">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:float" name="offset" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stop-color" use="optional"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="path">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:string" name="d" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="fill" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="clip-rule" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="fill-rule" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="data-name" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-width" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-miterlimit" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="clip-path" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-dasharray" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="opacity" use="optional"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="clipPath">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element ref="svg:path" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:line" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:rect" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                </xsd:sequence>
+                <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="image">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:string" name="data-name" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="width" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="height" use="optional"/>
+                        <xsd:attribute ref="xlink:href" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+        
+        <xsd:element name="rect">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="data-name" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="x" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="y" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="width" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="height" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-width" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="stroke-dasharray" use="optional"/>
+                        <xsd:attribute type="xsd:float" name="stroke-miterlimit" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="fill" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="g">
+            <xsd:complexType>
+                <xsd:choice maxOccurs="unbounded" minOccurs="0">
+                    <xsd:element ref="svg:defs" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:title" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:g" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:line" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:svg" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:linearGradient" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:image" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:polygon" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:circle" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:polyline" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:clipPath" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:use" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:path" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:rect" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>   
+                    <xsd:element ref="svg:ellipse" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>   
+                    <xsd:element ref="svg:stop" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                </xsd:choice>
+                <xsd:attribute type="xsd:string" name="id" use="optional"/>
+                <xsd:attribute type="xsd:string" name="data-name" use="optional"/>
+                <xsd:attribute type="xsd:string" name="clip-path" use="optional"/>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="use">
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:extension base="xsd:string">
+                        <xsd:attribute type="xsd:string" name="transform" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="y" use="optional"/>
+                        <xsd:attribute type="xsd:string" name="x" use="optional"/>
+                        <xsd:attribute ref="xlink:href" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+                    </xsd:extension>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="defs">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element ref="svg:linearGradient" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:clipPath" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:image" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+
+        <xsd:element name="title" type="xsd:string"/>
+
+        <xsd:element name="svg">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element ref="svg:defs" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:title" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:g" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:line" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:svg" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:linearGradient" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:image" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:polygon" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:circle" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:polyline" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:clipPath" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:use" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:path" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>
+                    <xsd:element ref="svg:stop" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>   
+                    <xsd:element ref="svg:ellipse" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>   
+                    <xsd:element ref="svg:rect" maxOccurs="unbounded" minOccurs="0" xmlns:svg="http://www.w3.org/2000/svg"/>   
+                </xsd:sequence>
+                <xsd:attribute type="xsd:string" name="id"/>
+                <xsd:attribute type="xsd:string" name="data-name"/>
+                <xsd:attribute type="xsd:float" name="width"/>
+                <xsd:attribute type="xsd:float" name="height"/>
+                <xsd:attribute ref="xlink:href" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+                <xsd:attribute type="xsd:string" name="viewBox"/>
+            </xsd:complexType>
+        </xsd:element>
+    </xsd:schema>
