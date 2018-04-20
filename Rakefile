@@ -27,6 +27,16 @@ RSpec::Core::RakeTask.new(:demo, [:browser]) do |t, args|
 end
 
 
+# Timex
+
+RSpec::Core::RakeTask.new(:timex, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['SITE'] = 'ua-icon'
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/timex/timex_customizer_spec.rb')
+end
+
 
 # ICON
 
@@ -140,6 +150,14 @@ end
 
 # => GKELITE 
 
+
+RSpec::Core::RakeTask.new(:gk_opts, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['SITE'] = 'gk-elite'
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/gkelite/gk_options_spec.rb')
+end
 
 
 RSpec::Core::RakeTask.new(:gk_url, [:environment, :browser, :user]) do |t, args|

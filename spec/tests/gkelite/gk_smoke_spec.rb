@@ -20,9 +20,11 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 	end
 
 	it ' - Navigate to Login Page' do
-		@home_page.wait_until { @home_page.password? }
 		sleep 1
-		@home_page.enter_password
+		if ENV['ENVIRONMENT'] != "prod"
+			@home_page.wait_until { @home_page.password? }
+			@home_page.enter_password
+		end
 		sleep 1
 		@home_page.home_page
 		sleep 1

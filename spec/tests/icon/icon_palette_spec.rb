@@ -3,28 +3,9 @@ require "./lib/pages/icon/icon_customizer_page"
 
 describe "ICON | Color Palette Test" do 
 
-	before(:all) do
-		@railfit_mens = IconBasePage.localize_text_message_handles('uaf-prs-railfit-mens')
-		@spotlight_mens = IconBasePage.localize_text_message_handles('uaf-prs-spotlight-mens')
-		@curry_mid_mens = IconBasePage.localize_text_message_handles('uaf-prs-curry1-mens')
-		@clutchfit_mens = IconBasePage.localize_text_message_handles('uaf-prs-clutchfit-mens')
-		@charged_mens = IconBasePage.localize_text_message_handles('uaf-prs-charged247-mens')
-		@highlight_mens = IconBasePage.localize_text_message_handles('uaf-prs-highlight-mens')
-		@drive_four_mens = IconBasePage.localize_text_message_handles('uaf-prs-drive4-mens')
-		@drive_low_mens = IconBasePage.localize_text_message_handles('uaf-prs-drive4low-mens')
-		@curry_low_mens = IconBasePage.localize_text_message_handles('uaf-prs-curry1low-mens')
-		@sackpack = IconBasePage.localize_text_message_handles('uaf-prs-icon-sackpack')
-		@mens_ignite = IconBasePage.localize_text_message_handles('uaf-prs-ignite-mens')
-		@womens_ignite = IconBasePage.localize_text_message_handles('uaf-prs-ignite-womens')
-		@railfit_womens = IconBasePage.localize_text_message_handles('uaf-prs-railfit-womens')
-		@curry_mid_youth = IconBasePage.localize_text_message_handles('uaf-prs-curry1-youth')
-		@clutchfit_womens = IconBasePage.localize_text_message_handles('uaf-prs-clutchfit-womens')
-		@charged_womens = IconBasePage.localize_text_message_handles('uaf-prs-charged247-womens')
-		@drive_four_womens = IconBasePage.localize_text_message_handles('uaf-prs-drive4-womens')
-	end
-
 	it "Curry 1 Mid Men's" do
 		aggregate_failures "Curry 1 Mid Men's" do
+			@curry_mid_mens = IconBasePage.localize_text_message_handles('uaf-prs-curry1-mens')
 			expect($curry_mid[:solid]).to match_array(@curry_mid_mens["uaf-fea-curry1-upper-solid-color"])
 			expect($curry_mid[:pattern]).to match_array(@curry_mid_mens["uaf-fea-curry1-upper-pattern-colors"])
 			expect($curry_mid[:outsole]).to match_array(@curry_mid_mens["uaf-fea-curry1-outsole-color"])
@@ -43,6 +24,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Curry 1 Mid Youth" do
 		aggregate_failures "Curry 1 Mid Youth" do
+			@curry_mid_youth = IconBasePage.localize_text_message_handles('uaf-prs-curry1-youth')
 			expect($curry_mid[:solid]).to match_array(@curry_mid_youth["uaf-fea-curry1-upper-solid-color"])
 			expect($curry_mid[:pattern]).to match_array(@curry_mid_youth["uaf-fea-curry1-upper-pattern-colors"])
 			expect($curry_mid[:outsole]).to match_array(@curry_mid_youth["uaf-fea-curry1-outsole-color"])
@@ -61,6 +43,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Clutchfit Men's" do
 		aggregate_failures "Clutchfit Men's" do
+			@clutchfit_mens = IconBasePage.localize_text_message_handles('uaf-prs-clutchfit-mens')
 			expect($clutchfit[:upper]).to match_array(@clutchfit_mens["uaf-fea-clutchfit-upper-solid-color"])
 			expect($clutchfit[:lining]).to match_array(@clutchfit_mens["uaf-fea-clutchfit-collar-rib-lining-color"])
 			expect($clutchfit[:laces]).to match_array(@clutchfit_mens["uaf-fea-clutchfit-shoelace-color"])
@@ -73,6 +56,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Clutchfit Women's" do
 		aggregate_failures "Clutchfit Women's" do
+			@clutchfit_womens = IconBasePage.localize_text_message_handles('uaf-prs-clutchfit-womens')
 			expect($clutchfit[:upper]).to match_array(@clutchfit_womens["uaf-fea-clutchfit-upper-solid-color"])
 			expect($clutchfit[:lining]).to match_array(@clutchfit_womens["uaf-fea-clutchfit-collar-rib-lining-color"])
 			expect($clutchfit[:laces]).to match_array(@clutchfit_womens["uaf-fea-clutchfit-shoelace-color"])
@@ -85,6 +69,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Charged 24/7 Men's" do
 		aggregate_failures "Charged 24/7 Men's" do
+			@charged_mens = IconBasePage.localize_text_message_handles('uaf-prs-charged247-mens')
 			expect($charged[:forefoot]).to match_array(@charged_mens["uaf-fea-charged247-forefoot-solid-color"])
 			expect($charged[:strap]).to match_array(@charged_mens["uaf-fea-charged247-strap-color"])
 			expect($charged[:heel]).to match_array(@charged_mens["uaf-fea-charged247-heel-color"])
@@ -98,6 +83,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Charged 24/7 Women's" do
 		aggregate_failures "Charged 24/7 Women's" do
+			@charged_womens = IconBasePage.localize_text_message_handles('uaf-prs-charged247-womens')
 			expect($charged[:forefoot]).to match_array(@charged_womens["uaf-fea-charged247-forefoot-solid-color"])
 			expect($charged[:strap]).to match_array(@charged_womens["uaf-fea-charged247-strap-color"])
 			expect($charged[:heel]).to match_array(@charged_womens["uaf-fea-charged247-heel-color"])
@@ -111,6 +97,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Highlight Men's" do
 		aggregate_failures "Highlight Men's" do
+			@highlight_mens = IconBasePage.localize_text_message_handles('uaf-prs-highlight-mens')
 			expect($highlight[:upper]).to match_array(@highlight_mens["uaf-fea-highlight-upper-solid-color"])
 			expect($highlight[:laces]).to match_array(@highlight_mens["uaf-fea-highlight-shoelace-color"])
 			expect($highlight[:tongue]).to match_array(@highlight_mens["uaf-fea-highlight-tongue-color"])
@@ -129,6 +116,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Drive 4 Men's" do
 		aggregate_failures "Drive 4 Men's" do
+			@drive_four_mens = IconBasePage.localize_text_message_handles('uaf-prs-drive4-mens')
 			expect($drive_four[:overlay]).to match_array(@drive_four_mens["uaf-fea-drive4-overlay-solid-color"])
 			expect($drive_four[:tongue]).to match_array(@drive_four_mens["uaf-fea-drive4-tongue-color"])
 			expect($drive_four[:trim]).to match_array(@drive_four_mens["uaf-fea-drive4-overlay-trim-color"])
@@ -145,6 +133,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Drive 4 Women's" do
 		aggregate_failures "Drive 4 Women's" do
+			@drive_four_womens = IconBasePage.localize_text_message_handles('uaf-prs-drive4-womens')
 			expect($drive_four[:overlay]).to match_array(@drive_four_womens["uaf-fea-drive4-overlay-solid-color"])
 			expect($drive_four[:tongue]).to match_array(@drive_four_womens["uaf-fea-drive4-tongue-color"])
 			expect($drive_four[:trim]).to match_array(@drive_four_womens["uaf-fea-drive4-overlay-trim-color"])
@@ -161,6 +150,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Drive 4 Low Men's" do
 		aggregate_failures "Drive 4 Low Men's" do
+			@drive_low_mens = IconBasePage.localize_text_message_handles('uaf-prs-drive4low-mens')
 			expect($drive_low[:pattern]).to match_array(@drive_low_mens["uaf-fea-drive4low-overlay-pattern-colors"])
 			expect($drive_low[:solid]).to match_array(@drive_low_mens["uaf-fea-drive4low-overlay-solid-color"])
 			expect($drive_low[:tongue]).to match_array(@drive_low_mens["uaf-fea-drive4low-tongue-color"])
@@ -179,6 +169,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Curry 1 Low Men's" do
 		aggregate_failures "Curry 1 Low Men's" do
+			@curry_low_mens = IconBasePage.localize_text_message_handles('uaf-prs-curry1low-mens')
 			expect($curry_low[:shank]).to match_array(@curry_low_mens["uaf-fea-curry1low-shank-color"])
 			expect($curry_low[:midsole]).to match_array(@curry_low_mens["uaf-fea-curry1low-lower-midsole-color"])
 			expect($curry_low[:tongue_logo]).to match_array(@curry_low_mens["uaf-fea-curry1low-tongue-top-logo-color"])
@@ -204,6 +195,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Sackpack" do
 		aggregate_failures "Sackpack" do
+			@sackpack = IconBasePage.localize_text_message_handles('uaf-prs-icon-sackpack')
 			expect($sackpack[:upper]).to match_array(@sackpack['uaf-fea-icon-sackpack-overlay-solid'])
 			expect($sackpack[:logo]).to match_array(@sackpack['uaf-fea-icon-sackpack-front-logo-color'])
 			expect($sackpack[:expandable]).to match_array(@sackpack['uaf-fea-icon-sackpack-expandable-color'])
@@ -217,6 +209,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Ignite Men's" do
 		aggregate_failures "Men's Ignite" do
+			@mens_ignite = IconBasePage.localize_text_message_handles('uaf-prs-ignite-mens')
 			expect($mens_ignite[:pattern]).to match_array(@mens_ignite['uaf-fea-ignite-footbed-overlay-pattern-colors'])
 			expect($mens_ignite[:solid]).to match_array(@mens_ignite['uaf-fea-ignite-footbed-overlay-solid-color'])
 			expect($mens_ignite[:strap]).to match_array(@mens_ignite['uaf-fea-ignite-mens-strap-color'])
@@ -228,6 +221,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Ignite Women's" do
 		aggregate_failures "Women's Ignite" do
+			@womens_ignite = IconBasePage.localize_text_message_handles('uaf-prs-ignite-womens')
 			expect($womens_ignite[:pattern]).to match_array(@womens_ignite['uaf-fea-ignite-footbed-overlay-pattern-colors'])
 			expect($womens_ignite[:solid]).to match_array(@womens_ignite['uaf-fea-ignite-footbed-overlay-solid-color'])
 			expect($womens_ignite[:strap]).to match_array(@womens_ignite['uaf-fea-ignite-womens-strap-color'])
@@ -239,6 +233,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Railfit Men's" do
 		aggregate_failures "Railfit Men's" do
+			@railfit_mens = IconBasePage.localize_text_message_handles('uaf-prs-railfit-mens')
 			expect($railfit[:collar]).to match_array(@railfit_mens['uaf-fea-railfit-collar-color'])
 			expect($railfit[:upper]).to match_array(@railfit_mens['uaf-fea-railfit-upper-color'])
 			expect($railfit[:laces]).to match_array(@railfit_mens['uaf-fea-railfit-lace-color'])
@@ -255,6 +250,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Railfit Women's" do
 		aggregate_failures "Railfit Women's" do
+			@railfit_womens = IconBasePage.localize_text_message_handles('uaf-prs-railfit-womens')
 			expect($railfit[:collar]).to match_array(@railfit_womens['uaf-fea-railfit-collar-color'])
 			expect($railfit[:upper]).to match_array(@railfit_womens['uaf-fea-railfit-upper-color'])
 			expect($railfit[:laces]).to match_array(@railfit_womens['uaf-fea-railfit-lace-color'])
@@ -271,6 +267,7 @@ describe "ICON | Color Palette Test" do
 
 	it "Spotlight Men's" do
 		aggregate_failures "Spotlight Men's" do
+			@spotlight_mens = IconBasePage.localize_text_message_handles('uaf-prs-spotlight-mens')
 			expect($spotlight[:knit]).to match_array(@spotlight_mens['uaf-fea-spotlight-knit-color'])
 			expect($spotlight[:pattern]).to match_array(@spotlight_mens['uaf-fea-spotlight-upper-overlay-pattern-colors'])
 			expect($spotlight[:solid]).to match_array(@spotlight_mens['uaf-fea-spotlight-upper-overlay-solid-color'])
@@ -286,4 +283,44 @@ describe "ICON | Color Palette Test" do
 			expect($spotlight[:medial_outline]).to match_array(@spotlight_mens['uaf-fea-spotlight-medial-logo-outline-color'])
 		end
 	end
+
+	it "Men's Curry 5" do
+		aggregate_failures "Men's Curry 5" do
+		@curry_five_mens = IconBasePage.localize_text_message_handles("uaf-prs-curry5-mens")
+			expect($curry_five[:pattern]).to match_array(@curry_five_mens['uaf-fea-curry5-side-panel-overlay-pattern-colors'])
+			expect($curry_five[:solid]).to match_array(@curry_five_mens['uaf-fea-curry5-side-panel-overlay-solid-color'])
+			expect($curry_five[:upper]).to match_array(@curry_five_mens['uaf-fea-curry5-upper-knit-color'])
+			expect($curry_five[:upper]).to match_array(@curry_five_mens['uaf-fea-curry5-heel-tape-color'])
+			expect($curry_five[:upper]).to match_array(@curry_five_mens['uaf-fea-curry5-eyestay-color'])
+			expect($curry_five[:upper]).to match_array(@curry_five_mens['uaf-fea-curry5-counter-lining-color'])
+			expect($curry_five[:laces]).to match_array(@curry_five_mens['uaf-fea-curry5-laces-color'])
+			expect($curry_five[:tongue]).to match_array(@curry_five_mens['uaf-fea-curry5-tongue-label-color'])
+			expect($curry_five[:tongue]).to match_array(@curry_five_mens['uaf-fea-curry5-tongue-logo-color'])
+			expect($curry_five[:midsole]).to match_array(@curry_five_mens['uaf-fea-curry5-midsole-color'])
+			expect($curry_five[:side]).to match_array(@curry_five_mens['uaf-fea-curry5-side-tpu-color'])
+			expect($curry_five[:bottom]).to match_array(@curry_five_mens['uaf-fea-curry5-bottom-tpu-color'])
+			expect($curry_five[:outsole]).to match_array(@curry_five_mens['uaf-fea-curry5-outsole-color'])
+			expect($curry_five[:logo]).to match_array(@curry_five_mens['uaf-fea-curry5-outsole-logo-color'])
+		end
+	end
+
+	# it "Youth Curry 5" do
+	# 	aggregate_failures "Youth Curry 5" do
+	# 	@curry_five_youth = IconBasePage.localize_text_message_handles("uaf-prs-curry5-youth")
+	# 		expect($curry_five[:pattern]).to match_array(@curry_five_youth['uaf-fea-curry5-side-panel-overlay-pattern-colors'])
+	# 		expect($curry_five[:solid]).to match_array(@curry_five_youth['uaf-fea-curry5-side-panel-overlay-solid-color'])
+	# 		expect($curry_five[:upper]).to match_array(@curry_five_youth['uaf-fea-curry5-upper-knit-color'])
+	# 		expect($curry_five[:upper]).to match_array(@curry_five_youth['uaf-fea-curry5-heel-tape-color'])
+	# 		expect($curry_five[:upper]).to match_array(@curry_five_youth['uaf-fea-curry5-eyestay-color'])
+	# 		expect($curry_five[:upper]).to match_array(@curry_five_youth['uaf-fea-curry5-counter-lining-color'])
+	# 		expect($curry_five[:laces]).to match_array(@curry_five_youth['uaf-fea-curry5-laces-color'])
+	# 		expect($curry_five[:tongue]).to match_array(@curry_five_youth['uaf-fea-curry5-tongue-label-color'])
+	# 		expect($curry_five[:tongue]).to match_array(@curry_five_youth['uaf-fea-curry5-tongue-logo-color'])
+	# 		expect($curry_five[:midsole]).to match_array(@curry_five_youth['uaf-fea-curry5-midsole-color'])
+	# 		expect($curry_five[:side]).to match_array(@curry_five_youth['uaf-fea-curry5-side-tpu-color'])
+	# 		expect($curry_five[:bottom]).to match_array(@curry_five_youth['uaf-fea-curry5-bottom-tpu-color'])
+	# 		expect($curry_five[:outsole]).to match_array(@curry_five_youth['uaf-fea-curry5-outsole-color'])
+	# 		expect($curry_five[:logo]).to match_array(@curry_five_youth['uaf-fea-curry5-outsole-logo-color'])
+	# 	end
+	# end
 end

@@ -39,7 +39,9 @@ class IconBasePage < BasePage
 		'uaf-prs-curry1-youth',
 		'uaf-prs-clutchfit-womens',
 		'uaf-prs-charged247-womens',
-		'uaf-prs-drive4-womens'
+		'uaf-prs-drive4-womens',
+		'uaf-prs-curry5-youth',
+		'uaf-prs-curry5-mens'
 	]
 
 	$clutchfit = {
@@ -136,8 +138,8 @@ class IconBasePage < BasePage
 
 	$sackpack = {
 		:upper => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Red","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Royal","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Tokyo Lemon","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Academy","Under Armour Highlight Upper Pattern Template"],
-		:logo => ["Black","White","Steel","Red","Academy","Team Royal","Taxi","Team Orange","Tropic Pink","Metallic Silver","Metallic Gold"],
-		:expandable => ["White","Black","Steel","Red","Tropic Pink","Team Orange","Taxi","Team Royal","Academy"],
+		:logo => ["Black","White","Steel","Red","Academy","Royal","Taxi","Team Orange","Tropic Pink","Metallic Silver","Metallic Gold"],
+		:expandable => ["White","Black","Steel","Red","Tropic Pink","Team Orange","Taxi","Royal","Academy"],
 		:lining => ["White","Black","Steel"],
 		:zipper => ["White","Black","Steel"],
 		:back => ["White","Black","Steel","Red","Tropic Pink","Team Orange","Taxi","Royal","Academy"],
@@ -169,7 +171,7 @@ class IconBasePage < BasePage
 		:tongue => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
 		:laces => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
 		:guide => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
-		:panel => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Academy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Tokyo Lemon","Red","Team Royal","Railfit Side Panel Artwork Template"],#
+		:panel => ["White","Black","Aluminum","Steel","Graphite","Taxi","Steeltown Gold","Team Orange","Cardinal","Maroon","Tropic Pink","Purple","Carolina Blue","St. Tropez","Midnight Navy","Team Kelly Green","Forest Green","Texas Orange","Cleveland Brown","Dark Orange","Downtown Green","Desert Sky","Merit Purple","Vermillion","Jupiter Blue","Tin","Baja","Elemental","Tokyo Lemon","Red","Team Royal","Railfit Side Panel Artwork Template"],#
 		:rails => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"],#,"Red","Tokyo Lemon","Team Royal"
 		:midsole => ["White","Black"],
 		:heel => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"], #,"Red","Tokyo Lemon","Team Royal"
@@ -194,6 +196,19 @@ class IconBasePage < BasePage
 		:medial_outline => ["Black","Midnight Navy","Red","White","Forest Green","Team Orange","Steeltown Gold","Steel","Team Royal","Charcoal"]
 	}
 
+	$curry_five = {
+		:pattern => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Academy", "Venetian Blue", "Brick Red", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Charcoal"],
+		:solid => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Academy", "Venetian Blue", "Brick Red", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Charcoal", "Curry 5 Side Panel Artwork Template"],
+		:upper => ["White","Black","Team Royal","Red","Taxi"],
+		:laces => ["White","Black","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
+		:tongue => ["White","Black","Metallic Gold","Metallic Silver","Red","Taxi","Team Royal"],
+		:midsole => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
+		:outsole => ["White","Black","Ice Blue - Translucent","Gum Rubber","Green Glow in the Dark"],
+		:logo => ["White","Black","Ice Blue - Translucent","Gum Rubber","Green Glow in the Dark"],
+		:side => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
+		:bottom => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"]
+	}
+
 
 	# tiff endpoint
 	# http://api.spectrumcustomizer.com/api/external/under-armour/icon/webtoprint/download/recipeSet/M4JUBTG9
@@ -212,8 +227,6 @@ class IconBasePage < BasePage
 
 
 
-
-
 	def self.packlist_response(recipe_id)
 		case ENV['ENVIRONMENT'].to_sym
 		when :test then @response = Nokogiri::XML.parse(RestClient.get("test.spectrumcustomizer.com/under-armour/icon/packlist/#{recipe_id}/html"){|response, request, result| response })
@@ -222,9 +235,6 @@ class IconBasePage < BasePage
 		end
 		return @response
 	end
-
-
-
 
 
 
@@ -244,19 +254,12 @@ class IconBasePage < BasePage
 
 
 
-
-
-
 	def self.parse_spec_html(recipe_id)
 		details = parse_icon_spec_details(recipe_id)
 		images = parse_icon_spec_images(recipe_id)
 		colors = parse_icon_spec_colors(recipe_id)
 		return details,images,colors
 	end
-
-
-
-
 
 
 
@@ -296,10 +299,6 @@ class IconBasePage < BasePage
 
 
 
-
-
-
-
 	def self.parse_icon_spec_images(recipe_id)
 		@images = Array.new
 		@response = spec_response(recipe_id)
@@ -311,12 +310,6 @@ class IconBasePage < BasePage
 		end
 		return @images
 	end
-
-
-
-
-
-
 
 
 
@@ -372,9 +365,9 @@ class IconBasePage < BasePage
 	def self.parse_icon_recipeset(recipe_id)
 		@rset = Hash.new{ |hsh,key| hsh[key] = [] }
 		case ENV['ENVIRONMENT'].to_sym
-		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
-		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
-		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+			when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+			when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+			when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
 		end
 		@response['contents']['recipes'].each do |recipes|
 			recipes['recipe']['recipeData'].each do |recipeData|
@@ -463,12 +456,6 @@ class IconBasePage < BasePage
 
 
 
-
-
-
-
-
-
 	def self.localize_text_message_handles(scene)
 		@msg = parse_product_set(scene)
 		@loc = Hash.new{ |hsh,key| hsh[key] = [] }
@@ -495,11 +482,6 @@ class IconBasePage < BasePage
 
 
 
-
-
-
-
-
 	def self.convert_handle_to_text(scene, recipe_id)
 		@rset = parse_icon_recipeset(recipe_id)
 		@msg = localize_text_message_handles(scene)
@@ -516,10 +498,6 @@ class IconBasePage < BasePage
 
 
 
-
-
-
-
 	def self.parse_product_set(scene)
 		@pset = Hash.new{ |hsh,key| hsh[key] = [] }
 		case ENV['ENVIRONMENT'].to_sym
@@ -530,13 +508,13 @@ class IconBasePage < BasePage
 		when :prod
 			@response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/productsets/#{scene}"){|response, request, result| response })
 		end
-
 		@response['contents']['productGroups'][0]['products'].each do |p|
 
+			#binding.pry
 			if p['rootFeature']['childFeatures'].nil? == false
 				p['rootFeature']['childFeatures'].each do |cf|
 
-					if cf['handle'].include?("size") || cf['handle'].include?("metalness") || cf['handle'].include?("artwork")
+					if cf['handle'].include?("size") || cf['handle'].include?("metalness") || cf['handle'].include?("artwork") || cf['handle'].nil?
 					else
 
 						handle = cf['handle']
@@ -549,7 +527,7 @@ class IconBasePage < BasePage
 								if s['features'].nil? == false
 									s['features'].each do |f|
 
-										if f['handle'].include?("size") || f['handle'].include?("metalness") || f['handle'].include?("artwork")
+										if f['handle'].include?("size") || f['handle'].include?("metalness") || f['handle'].include?("artwork") || f['handle'].nil?
 										else
 
 											if f['childFeatures'].nil? == false

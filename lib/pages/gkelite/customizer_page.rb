@@ -1,9 +1,9 @@
 require './lib/helpers/gkelite/customizer_ui'
 require './lib/helpers/gkelite/gk_search_filters'
-require './lib/pages/base_page'
+require './lib/pages/gkelite/gk_shopify_base_page'
 
 ### Define Page Class
-class CustomizerPage < BasePage
+class CustomizerPage < GKShopifyBasePage
 	include PageObject
 	include CustomizerUI
 	include GKSearchFilters
@@ -22,7 +22,12 @@ class CustomizerPage < BasePage
 	button(:save_design_button, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > div > button:nth-child(1)")
 	button(:save_design_dropdown, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > div > button.c-save__as__dropdown__arrow")
 	button(:save_as_design, css: "#gk-custom-app-vue > div > div > div.c-customizer__content > div.c-customizer__primary > div.c-customizer__controls > div.c-customizer__ctas > div > div.c-save__design > button")
-	div(:error_tooltip, class: ["c-tooltip__error__container"])
+	divs(:swatch_name, class: ["c-color-modal__swatch-name"])
+	links(:accordians, class: ["c-component__heading"])
+	select_lists(:dropdown, class: ["dropdown-select"])
+	link(:edit_color, text: "Edit")
+	div(:close_modal, class: ["c-close-modal"])
+
 
 	
 	## Navigation Buttons ##
@@ -52,67 +57,70 @@ class CustomizerPage < BasePage
 	div(:saving_popup, class: ["mask c-save"])
 	div(:selected_style, class: ["c-customizer__menu"])
 
+
+	## MISC
 	div(:page_load, id: "site-wrapper")
 	div(:svg_viewer, class: ["svg-viewer-container"])
-
 	div(:error_message, class: ["error-message"])
+	div(:load_complete, class: ["gk-custom-app-loader loaded hidden"])
+	div(:error_tooltip, class: ["c-tooltip__error__container"])
+
 
 	def missing_blob
-	  $driver.element(:tag_name, "code")
+		$driver.element(:tag_name, "code")
 	end
 
 	def svg
-	  $driver.element(:tag_name, "svg")
+		$driver.element(:tag_name, "svg")
 	end
 
 	def back_side
-	  $driver.element(id: /^Back/)
+		$driver.element(id: /^Back/)
 	end
 
 	def front_side
-	  $driver.element(id: /^Front/)
+		$driver.element(id: /^Front/)
 	end
 
 	def silhouette
-	  $driver.element(id: 'Silhouette')
+		$driver.element(id: 'Silhouette')
 	end
 
-
 	def get_color_code(name, id)
-	  url = "https://staging-gkelite.pollinate.com/collections/#{id}?view=product"
-	  uri = URI(url)
-	  response = Net::HTTP.get(uri)
-	  specs = JSON.parse(response)
-	  return specs["colors"]["#{name}"]["erp_color_code"]
+		url = "https://staging-gkelite.pollinate.com/collections/#{id}?view=product"
+		uri = URI(url)
+		response = Net::HTTP.get(uri)
+		specs = JSON.parse(response)
+		return specs["colors"]["#{name}"]["erp_color_code"]
 	end
 
 
 	def get_data(id)
-	  @arr = Array.new
-	  url = "https://staging-gkelite.pollinate.com/collections/#{id}?view=product"
-	  uri = URI(url)
-	  response = Net::HTTP.get(uri)
-	  specs = JSON.parse(response)
-	  specs["colors"].each_key do |x|
-		@arr.push(specs["colors"]["#{x}"]["erp_color_code"])
-	  end
-	  return @arr
+		@arr = Array.new
+		url = "https://staging-gkelite.pollinate.com/collections/#{id}?view=product"
+		uri = URI(url)
+		response = Net::HTTP.get(uri)
+		specs = JSON.parse(response)
+		specs["colors"].each_key do |x|
+			@arr.push(specs["colors"]["#{x}"]["erp_color_code"])
+		end
+		return @arr
 	end
 
 	def get_back_color_ids
-	  @arr = Array.new
-	  self.back_side.elements(:tag_name, "g").each do |x|
-		@arr.push(x.id)
-	  end
-	  return @arr.reject(&:empty?)
+		@arr = Array.new
+		self.back_side.elements(:tag_name, "g").each do |x|
+			@arr.push(x.id)
+		end
+		return @arr.reject(&:empty?)
 	end
 
 	def get_front_color_ids
-	  @arr = Array.new
-	  self.front_side.elements(:tag_name, "g").each do |x|
-		@arr.push(x.id)
-	  end
-	  return @arr.reject(&:empty?)
+		@arr = Array.new
+		self.front_side.elements(:tag_name, "g").each do |x|
+			@arr.push(x.id)
+		end
+		return @arr.reject(&:empty?)
 	end
 
 
@@ -122,506 +130,557 @@ class CustomizerPage < BasePage
 		sleep 1
 		self.breadcrumb_sizes_alterations_element.click
 	end
-  
-
-	$sequinz_colors = ['WHITE',
-					   'SILVER',
-					   'SILVER HOLOGRAM',
-					   'BLACK',
-					   'RED',
-					   'RED HOLOGRAM',
-					   'GOLD',
-					   'GOLD HOLOGRAM',
-					   'LEMON-LIME',
-					   'LEMON-LIME HOLOGRAM',
-					   'KELLY GREEN',
-					   'KELLY GREEN HOLOGRAM',
-					   'TURQUOISE',
-					   'TURQUOISE HOLOGRAM',
-					   'ROYAL',
-					   'ROYAL HOLOGRAM',
-					   'PURPLE',
-					   'BERRY',
-					   'BERRY HOLOGRAM',
-					   'PINK',
-					   'PINK HOLOGRAM',
-					   'ORANGE',
-					   'ORANGE HOLOGRAM']
-
-
-
-	$spanglez_colors = ['SILVER GLOSSY',
-						'GOLD GLOSSY',
-						'BERRY GLOSSY',
-						'BLACK GLOSSY',
-						'KELLY GREEN GLOSSY',
-						'ORANGE GLOSSY',
-						'PURPLE GLOSSY',
-						'RED FLAT',
-						'ROYAL FLAT',
-						'TURQ GLOSSY',
-						'SEAGLASS GLOSSY',
-						'LEMON LIME FLAT',
-						'SILVER HOLO',
-						'GOLD HOLO',
-						'BERRY HOLO',
-						'RED HOLO',
-						'ROYAL HOLO',
-						'KELLY GREEN HOLO',
-						'LEMON LIME HOLO',
-						'PINK GLOSSY']
-
-
-	$sublimation_colors = ['VEGAS GOLD',
-							'GOLD',
-							'YELLOW',
-							'NEON YELLOW',
-							'TANGERINE',
-							'ORANGE',
-							'CORAL',
-							'COSMO',
-							'CANDY APPLE',
-							'RED',
-							'CRIMSON',
-							'NEON PINK',
-							'PINK',
-							'BERRY',
-							'HOT PINK',
-							'CHERRY',
-							'FUCHSIA',
-							'SANGRIA',
-							'WILDBERRY',
-							'WISTERIA',
-							'ULTRA VIOLET',
-							'PURPLE',
-							'SAPPHIRE',
-							'NAVY',
-							'MIDNIGHT',
-							'COLUMBIA BLUE',
-							'BRIGHT TURQUOISE',
-							'ROYAL',
-							'ELECTRIC BLUE',
-							'TURQUOISE',
-							'SPRUCE',
-							'EVERGREEN',
-							'KELLY',
-							'KEY LIME',
-							'GRAY',
-							'FLANNEL GRAY',
-							'CARBON',
-							'BLACK',
-							'BROWN',
-							'ALUMINUM',
-							'PEWTER',
-							'WHITE',
-							'TEAL',
-							'BLUE RIBBON',
-							'CARDINAL']
-
-
-	$mesh_colors = ['NUDE',
-					'CONCORD',
-					'OCEAN',
-					'HOT RED',
-					'MERLOT',
-					'BROWN',
-					'MAGENTA',
-					'WHITE',
-					'BERRY',
-					'BLACK',
-					'CALYPSO',
-					'NAVY']
-
-
-	$embroidery_colors = ['WHITE',
-						  'SILVER',
-						  'BLACK',
-						  'RED',
-						  'ORANGE',
-						  'GOLD',
-						  'GOLD GLIMMER',
-						  'YELLOW',
-						  'NEON YELLOW',
-						  'FOREST GREEN',
-						  'LIME GREEN',
-						  'EMERALD GREEN',
-						  'TEAL',
-						  'LIGHT BLUE',
-						  'TURQUOISE',
-						  'ROYAL',
-						  'NAVY',
-						  'PURPLE',
-						  'VIOLET',
-						  'MAROON',
-						  'ORCHID',
-						  'RUBY GLINT',
-						  'PINK',
-						  'WILD PINK',
-						  'FLAMINGO',
-						  'CHEEKY PINK']
-
-
-	$imprinting_colors = ['WHITE',
-							  'BLACK',
-							  'RED',
-							  'ORANGE',
-							  'GOLD',
-							  'VEGAS GOLD',
-							  'BRIGHT GOLD',
-							  'FOREST GREEN',
-							  'HUNTER GREEN',
-							  'ROYAL',
-							  'NAVY',
-							  'ALUMINUM',
-							  'PURPLE',
-							  'BURGUNDY',
-							  'NEON CHERRY',
-							  'NEON CORAL',
-							  'NEON ORANGE',
-							  'NEON YELLOW',
-							  'NEON GREEN',
-							  'NEON BLUE',
-							  'NEON PINK',
-							  'SILVER PRISM',
-							  'METALLIC RED',
-							  'GOLD PRISM',
-							  'METALLIC BLUE',
-							  'METALLIC WYSTERIA',
-							  'METALLIC MAGENTA',
-							  'GLITTER WHITE',
-							  'GLITTER ORANGE',
-							  'GLITTER YELLOW',
-							  'GLITTER GREEN',
-							  'GLITTER BLUE',
-							  'GLITTER PURPLE',
-							  'GLITTER PINK',
-							  'NEON RASPBERRY']
-
-
-	$orientation_full = ['VERTICAL UP', 
-							  'VERTICAL DOWN',
-							  'VERTICAL STACKED']
-
-	$orientation_upper = ['HORIZONTAL', 
-							   'VERTICAL UP', 
-							   'VERTICAL DOWN']
-
-
-	$font_options = ['NULSHOCK',
-					 'AACHAN BOLD',
-					 'LUBIN GRAPH BOOK BOLD',
-					 'BOOKMAN OLD STYLE BOLD',
-					 'BOOKMAN ITALIC',
-					 'SWING BOLD',
-					 'BRUSH SCRIPT',
-					 'BRODY',
-					 'IMPACT',
-					 'ADELON SERIAL',
-					 'FRESHMAN',
-					 'HELVETICA BOLD',
-					 'POPLAR']
-
-
-	$embellishment_types = ['EMBROIDERY',
-						   'IMPRINTING',
-						   'CRYSTALS',
-						   'SEQUINZ',
-						   'SPANGLEZ',
-						   'IMPRINTZ']
-
-
-	$crystal_colors = ['CLEAR',
-							 'BRILLIANCE',
-							 'METALLIC SILVER',
-							 'BLACK DIAMOND',
-							 'BLACK',
-							 'METALLIC GOLD',
-							 'RUBY',
-							 'TANGERINE',
-							 'GOLD BRILLIANCE',
-							 'CITRINE',
-							 'MANGO',
-							 'KIWI',
-							 'JADE',
-							 'AQUAMARINE',
-							 'ELECTRIC BLUE',
-							 'COBALT',
-							 'MIDNIGHT',
-							 'LAVENDER',
-							 'VIOLET',
-							 'AMETHYST',
-							 'ULTRAVIOLET BRILLIANCE',
-							 'FUCHSIA',
-							 'SANGRIA',
-							 'PINK',
-							 'PEACOCK BRILLIANCE',
-							 'DARK BRILLIANCE']
-
-
-	$hologram_colors = ['GRAPE OPALESCENCE',
-						'BLACK SPARKLE',
-						'WHITE SPARKLE',
-						'KELLY SPARKLE',
-						'RADIANT ROYAL SPARKLE',
-						'FIESTA OPALESCENCE',
-						'JET OPALESCENCE',
-						'FIESTA SPARKLE',
-						'MAGENTA SPARKLE',
-						'GOLD OPALESCENCE',
-						'BERRY OPALESCENCE',
-						'NEON GREEN OPALESCENCE',
-						'SEAGLASS OPALESCENCE',
-						'NEON YELLOW OPALESCENCE',
-						'WHITE OPALESCENCE',
-						'LEMON LIME SPARKLE',
-						'TURQUOISE OPALESCENCE',
-						'MAGENTA OPALESCENCE',
-						'IMPERIAL PURPLE SPARKLE',
-						'PACIFIC OPALESCENCE',
-						'SEAGLASS SPARKLE',
-						'TURQUOISE SPARKLE',
-						'WILD SANGRIA SPARKLE',
-						'AZURE SPARKLE',
-						'IMPERIAL PURPLE OPALESCENCE']
-
-	$nylon_spandex_colors = ['BERRY',
-							  'BURGUNDY',
-							  'EVERGREEN',
-							  'GOLD',
-							  'KELLY GREEN',
-							  'NAVY',
-							  'ORANGE',
-							  'PEWTER',
-							  'PURPLE',
-							  'RED',
-							  'ROYAL',
-							  'SAPPHIRE',
-							  'TURQUOISE',
-							  'WHITE',
-							  'SANGRIA',
-							  'ELECTRIC BLUE',
-							  'MAGENTA',
-							  'CALYPSO',
-							  'LIPSTICK',
-							  'WYSTERIA',
-							  'BLACK',
-							  'STEEL']
-
-	$velvet_colors = ['BLACK',
-					  'SAPPHIRE',
-					  'EGGPLANT']
-
-
-	$foil_colors = ['GOLD MYSTIQUE',
-					'COLUMBIA BLUE MYSTIQUE',
-					'OCEAN MYSTIQUE',
-					'WILD ORCHID MYSTIQUE',
-					'RED MYSTIQUE',
-					'SUNSHINE MYSTIQUE',
-					'GRAPE MYSTIQUE',
-					'CHERRY MYSTIQUE',
-					'NAVY MYSTIQUE',
-					'BLUE RASPBERRY MYSTIQUE',
-					'SILVER MYSTIQUE',
-					'BERRY MYSTIQUE',
-					'BLACK MYSTIQUE',
-					'RAINFOREST MYSTIQUE',
-					'WHITE MYSTIQUE',
-					'ELECTRIC TURQUOISE MYSTIQUE',
-					'LEMON LIME MYSTIQUE',
-					'EVERGREEN MYSTIQUE',
-					'VINCA MYSTIQUE',
-					'LAVENDER ICE MYSTIQUE',
-					'RICH ROYAL MYSTIQUE',
-					'MINT JULEP MYSTIQUE',
-					'PLUM MYSTIQUE',
-					'LIME MYSTIQUE',
-					'GUNMETAL MYSTIQUE',
-					'STEEL MYSTIQUE',
-					'AZURE MYSTIQUE',
-					'YELLOW MYSTIQUE',
-					'CHARCOAL MYSTIQUE',
-					'MERLOT MYSTIQUE',
-					'KELLY GREEN MYSTIQUE',
-					'SANGRIA MYSTIQUE',
-					'IMPERIAL PURPLE MYSTIQUE',
-					'NEON YELLOW MYSTIQUE',
-					'PASSION MYSTIQUE',
-					'STERLING SILVER MYSTIQUE',
-					'NEON CORAL MYSTIQUE',
-					'PEACOCK IRIDESCENT',
-					'CHAMPAGNE MYSTIQUE',
-					'FLUORESCENT LIME MYSTIQUE',
-					'FLUORESCENT PINK MYSTIQUE',
-					'FLUORESCENT ORANGE MYSTIQUE',
-					'FLUORESCENT YELLOW MYSTIQUE',
-					'GOLD LEAF']
-
-
-	$shadowproof_colors = ['NUDE',
-						  'BROWN']
-
-
-	$two_color_combo = ['PINK',
-						'PURPLE',
-						'BLACK AND WHITE',
-						'BLUES',
-						'REDS',
-						'GREENS']
-
-
-	$two_color_pink = ['SANGRIA TO WHITE',
-						'SANGRIA TO BLACK',
-						'SANGRIA TO BERRY',
-						'FUCHSIA TO WHITE',
-						'FUCHSIA TO BLACK',
-						'BERRY TO WHITE',
-						'BERRY TO BLACK',
-						'CORAL TO BLACK',
-						'NEON PINK TO BLACK',
-						'CHERRY TO CORAL',
-						'CORAL TO WHITE']
-
-
-	$two_color_purple = ['PURPLE TO WHITE',
-						  'PURPLE TO BLACK',
-						  'PURPLE TO ULTRA VIOLET',
-						  'PURPLE TO WISTERIA',
-						  'ULTRA VIOLET TO WHITE']
-
-
-	$two_color_blue = ['NAVY TO WHITE',
-						'NAVY TO BLACK',
-						'NAVY TO COLUMBIA BLUE',
-						'SAPPHIRE TO WHITE',
-						'ROYAL TO WHITE',
-						'ROYAL TO BLACK',
-						'ELECTRIC BLUE TO WHITE',
-						'ELECTRIC BLUE TO BLACK',
-						'ELECTRIC BLUE TO ROYAL',
-						'COLUMBIA BLUE TO WHITE',
-						'TURQUOISE TO WHITE',
-						'TURQUOISE TO BLACK',
-						'ELECTRIC BLUE TO NAVY']
-
-
-	$two_color_red = ['CRIMSON TO WHITE',
-					  'CRIMSON TO BLACK',
-					  'RED TO WHITE',
-					  'RED TO BLACK',
-					  'CANDY APPLE TO WHITE',
-					  'CANDY APPLE TO BLACK',
-					  'COSMO TO WHITE',
-					  'COSMO TO BLACK',
-					  'CHERRY TO BLACK']
-
-
-	$two_color_green = ['SPRUCE TO WHITE',
-						'KELLY TO WHITE']
-
-
-	$reverse_two_color_pink = ['WHITE TO SANGRIA',
-								'BLACK TO SANGRIA',
-								'BERRY TO SANGRIA',
-								'WHITE TO FUCHSIA',
-								'BLACK TO FUCHSIA',
-								'WHITE TO BERRY',
-								'BLACK TO BERRY',
-								'BLACK TO CORAL',
-								'BLACK TO NEON PINK',
-								'CORAL TO CHERRY',
-								'WHITE TO CORAL']
-
-
-	$reverse_two_color_purple = ['WHITE TO PURPLE',
-								  'BLACK TO PURPLE',
-								  'ULTRA VIOLET TO PURPLE',
-								  'WISTERIA TO PURPLE',
-								  'WHITE TO ULTRA VIOLET']
-
-
-	$reverse_two_color_blue = ['WHITE TO NAVY',
-								'BLACK TO NAVY',
-								'COLUMBIA BLUE TO NAVY',
-								'WHITE TO SAPPHIRE',
-								'WHITE TO ROYAL',
-								'BLACK TO ROYAL',
-								'WHITE TO ELECTRIC BLUE',
-								'BLACK TO ELECTRIC BLUE',
-								'ROYAL TO ELECTRIC BLUE',
-								'WHITE TO COLUMBIA BLUE',
-								'WHITE TO TURQUOISE',
-								'BLACK TO TURQUOISE',
-								'NAVY TO ELECTRIC BLUE']
-
-
-	$reverse_two_color_red = ['WHITE TO CRIMSON',
-							  'BLACK TO CRIMSON',
-							  'WHITE TO RED',
-							  'BLACK TO RED',
-							  'WHITE TO CANDY APPLE',
-							  'BLACK TO CANDY APPLE',
-							  'WHITE TO COSMO',
-							  'BLACK TO COSMO',
-							  'BLACK TO CHERRY']
-
-
-	$reverse_two_color_green = ['WHITE TO SPRUCE',
-								'WHITE TO KELLY']
-
-
-	$three_color_combo = ['PINK',
-						  'PURPLE',
-						  'PATRIOTIC',
-						  'BLUE']
-
-
-	$three_color_pink = ['WHITE TO SANGRIA TO BLACK',
-						  'WHITE TO CHERRY TO BLACK',
-						  'WHITE TO BERRY TO BLACK']
-
-
-	$three_color_purple = ['WHITE TO PURPLE TO BLACK',
-							'WHITE TO ULTRA VIOLET TO PURPLE',
-							'WHITE TO WISTERIA TO PURPLE']
-
-
-	$three_color_patriotic = ['RED TO WHITE TO NAVY',
-							  'RED TO WHITE TO ROYAL',
-							  'CANDY APPLE TO WHITE TO NAVY']
-
-
-	$three_color_blue = ['NAVY TO COLUMBIA BLUE TO WHITE',
-						  'NAVY TO ROYAL TO WHITE',
-						  'WHITE TO ROYAL TO BLACK',
-						  'WHITE TO TURQUOISE TO BLACK',
-						  'NAVY TO WHITE TO CANDY APPLE',
-						  'ROYAL TO WHITE TO CANDY APPLE']
-
-
-	$reverse_three_color_pink = ['BLACK TO SANGRIA TO WHITE',
-								  'BLACK TO CHERRY TO WHITE',
-								  'BLACK TO BERRY TO WHITE']
-
-
-	$reverse_three_color_purple = ['BLACK TO PURPLE TO WHITE',
-									'PURPLE TO ULTRA VIOLET TO WHITE',
-									'PURPLE TO WISTERIA TO WHITE']
-
-
-	$reverse_three_color_patriotic = ['NAVY TO WHITE TO RED',
-									  'ROYAL TO WHITE TO RED',
-									  'NAVY TO WHITE TO CANDY APPLE']
-
-
-	$reverse_three_color_blue = ['CANDY APPLE TO WHITE TO ROYAL',
-								  'CANDY APPLE TO WHITE TO NAVY',
-								  'WHITE TO COLUMBIA BLUE TO NAVY',
-								  'WHITE TO ROYAL TO NAVY',
-								  'BLACK TO ROYAL TO WHITE',
-								  'BLACK TO TURQUOISE TO WHITE']
-
-
-
-	$stretch_tech_colors = ['RED','ROYAL','NAVY','WHITE','BLACK']
+
+
+	$sequinz_colors = [
+		'WHITE',
+		'SILVER',
+		'SILVER HOLOGRAM',
+		'BLACK',
+		'RED',
+		'RED HOLOGRAM',
+		'GOLD',
+		'GOLD HOLOGRAM',
+		'LEMON-LIME',
+		'LEMON-LIME HOLOGRAM',
+		'KELLY GREEN',
+		'KELLY GREEN HOLOGRAM',
+		'TURQUOISE',
+		'TURQUOISE HOLOGRAM',
+		'ROYAL',
+		'ROYAL HOLOGRAM',
+		'PURPLE',
+		'BERRY',
+		'BERRY HOLOGRAM',
+		'PINK',
+		'PINK HOLOGRAM',
+		'ORANGE',
+		'ORANGE HOLOGRAM'
+	]
+
+
+
+	$spanglez_colors = [
+		'SILVER GLOSSY',
+		'GOLD GLOSSY',
+		'BERRY GLOSSY',
+		'BLACK GLOSSY',
+		'KELLY GREEN GLOSSY',
+		'ORANGE GLOSSY',
+		'PURPLE GLOSSY',
+		'RED FLAT',
+		'ROYAL FLAT',
+		'TURQ GLOSSY',
+		'SEAGLASS GLOSSY',
+		'LEMON LIME FLAT',
+		'SILVER HOLO',
+		'GOLD HOLO',
+		'BERRY HOLO',
+		'RED HOLO',
+		'ROYAL HOLO',
+		'KELLY GREEN HOLO',
+		'LEMON LIME HOLO',
+		'PINK GLOSSY'
+	]
+
+
+	$sublimation_colors = [
+		'VEGAS GOLD',
+		'GOLD',
+		'YELLOW',
+		'NEON YELLOW',
+		'TANGERINE',
+		'ORANGE',
+		'CORAL',
+		'COSMO',
+		'CANDY APPLE',
+		'RED',
+		'CRIMSON',
+		'NEON PINK',
+		'PINK',
+		'BERRY',
+		'HOT PINK',
+		'CHERRY',
+		'FUCHSIA',
+		'SANGRIA',
+		'WILDBERRY',
+		'WISTERIA',
+		'ULTRA VIOLET',
+		'PURPLE',
+		'SAPPHIRE',
+		'NAVY',
+		'MIDNIGHT',
+		'COLUMBIA BLUE',
+		'BRIGHT TURQUOISE',
+		'ROYAL',
+		'ELECTRIC BLUE',
+		'TURQUOISE',
+		'SPRUCE',
+		'EVERGREEN',
+		'KELLY',
+		'KEY LIME',
+		'GRAY',
+		'FLANNEL GRAY',
+		'CARBON',
+		'BLACK',
+		'BROWN',
+		'ALUMINUM',
+		'PEWTER',
+		'WHITE',
+		'TEAL',
+		'BLUE RIBBON',
+		'CARDINAL'
+	]
+
+
+	$mesh_colors = [
+		'NUDE',
+		'CONCORD',
+		'OCEAN',
+		'HOT RED',
+		'MERLOT',
+		'BROWN',
+		'MAGENTA',
+		'WHITE',
+		'BERRY',
+		'BLACK',
+		'CALYPSO',
+		'NAVY'
+	]
+
+
+	$embroidery_colors = [
+		'WHITE',
+		'SILVER',
+		'BLACK',
+		'RED',
+		'ORANGE',
+		'GOLD',
+		'GOLD GLIMMER',
+		'YELLOW',
+		'NEON YELLOW',
+		'FOREST GREEN',
+		'LIME GREEN',
+		'EMERALD GREEN',
+		'TEAL',
+		'LIGHT BLUE',
+		'TURQUOISE',
+		'ROYAL',
+		'NAVY',
+		'PURPLE',
+		'VIOLET',
+		'MAROON',
+		'ORCHID',
+		'RUBY GLINT',
+		'PINK',
+		'WILD PINK',
+		'FLAMINGO',
+		'CHEEKY PINK'
+	]
+
+
+	$imprinting_colors = [
+		'WHITE',
+		'BLACK',
+		'RED',
+		'ORANGE',
+		'GOLD',
+		'VEGAS GOLD',
+		'BRIGHT GOLD',
+		'FOREST GREEN',
+		'HUNTER GREEN',
+		'ROYAL',
+		'NAVY',
+		'ALUMINUM',
+		'PURPLE',
+		'BURGUNDY',
+		'NEON CHERRY',
+		'NEON CORAL',
+		'NEON ORANGE',
+		'NEON YELLOW',
+		'NEON GREEN',
+		'NEON BLUE',
+		'NEON PINK',
+		'SILVER PRISM',
+		'METALLIC RED',
+		'GOLD PRISM',
+		'METALLIC BLUE',
+		'METALLIC WYSTERIA',
+		'METALLIC MAGENTA',
+		'GLITTER WHITE',
+		'GLITTER ORANGE',
+		'GLITTER YELLOW',
+		'GLITTER GREEN',
+		'GLITTER BLUE',
+		'GLITTER PURPLE',
+		'GLITTER PINK',
+		'NEON RASPBERRY'
+	]
+
+
+	$font_options = [
+		'NULSHOCK',
+		'AACHAN BOLD',
+		'LUBIN GRAPH BOOK BOLD',
+		'BOOKMAN OLD STYLE BOLD',
+		'BOOKMAN ITALIC',
+		'SWING BOLD',
+		'BRUSH SCRIPT',
+		'BRODY',
+		'IMPACT',
+		'ADELON SERIAL',
+		'FRESHMAN',
+		'HELVETICA BOLD',
+		'POPLAR'
+	]
+
+
+	$crystal_colors = [
+		'CLEAR',
+		'BRILLIANCE',
+		'METALLIC SILVER',
+		'BLACK DIAMOND',
+		'BLACK',
+		'METALLIC GOLD',
+		'RUBY',
+		'TANGERINE',
+		'GOLD BRILLIANCE',
+		'CITRINE',
+		'MANGO',
+		'KIWI',
+		'JADE',
+		'AQUAMARINE',
+		'ELECTRIC BLUE',
+		'COBALT',
+		'MIDNIGHT',
+		'LAVENDER',
+		'VIOLET',
+		'AMETHYST',
+		'ULTRAVIOLET BRILLIANCE',
+		'FUCHSIA',
+		'SANGRIA',
+		'PINK',
+		'PEACOCK BRILLIANCE',
+		'DARK BRILLIANCE'
+	]
+
+
+	$hologram_colors = [
+		'GRAPE OPALESCENCE',
+		'BLACK SPARKLE',
+		'WHITE SPARKLE',
+		'KELLY SPARKLE',
+		'RADIANT ROYAL SPARKLE',
+		'FIESTA OPALESCENCE',
+		'JET OPALESCENCE',
+		'FIESTA SPARKLE',
+		'MAGENTA SPARKLE',
+		'GOLD OPALESCENCE',
+		'BERRY OPALESCENCE',
+		'NEON GREEN OPALESCENCE',
+		'SEAGLASS OPALESCENCE',
+		'NEON YELLOW OPALESCENCE',
+		'WHITE OPALESCENCE',
+		'LEMON LIME SPARKLE',
+		'TURQUOISE OPALESCENCE',
+		'MAGENTA OPALESCENCE',
+		'IMPERIAL PURPLE SPARKLE',
+		'PACIFIC OPALESCENCE',
+		'SEAGLASS SPARKLE',
+		'TURQUOISE SPARKLE',
+		'WILD SANGRIA SPARKLE',
+		'AZURE SPARKLE',
+		'IMPERIAL PURPLE OPALESCENCE'
+	]
+
+	$nylon_spandex_colors = [
+		'BERRY',
+		'BURGUNDY',
+		'EVERGREEN',
+		'GOLD',
+		'KELLY GREEN',
+		'NAVY',
+		'ORANGE',
+		'PEWTER',
+		'PURPLE',
+		'RED',
+		'ROYAL',
+		'SAPPHIRE',
+		'TURQUOISE',
+		'WHITE',
+		'SANGRIA',
+		'ELECTRIC BLUE',
+		'MAGENTA',
+		'CALYPSO',
+		'LIPSTICK',
+		'WYSTERIA',
+		'BLACK',
+		'STEEL'
+	]
+
+	$velvet_colors = [
+		'BLACK',
+		'SAPPHIRE',
+		'EGGPLANT'
+	]
+
+
+	$foil_colors = [
+		'GOLD MYSTIQUE',
+		'COLUMBIA BLUE MYSTIQUE',
+		'OCEAN MYSTIQUE',
+		'WILD ORCHID MYSTIQUE',
+		'RED MYSTIQUE',
+		'SUNSHINE MYSTIQUE',
+		'GRAPE MYSTIQUE',
+		'CHERRY MYSTIQUE',
+		'NAVY MYSTIQUE',
+		'BLUE RASPBERRY MYSTIQUE',
+		'SILVER MYSTIQUE',
+		'BERRY MYSTIQUE',
+		'BLACK MYSTIQUE',
+		'RAINFOREST MYSTIQUE',
+		'WHITE MYSTIQUE',
+		'ELECTRIC TURQUOISE MYSTIQUE',
+		'LEMON LIME MYSTIQUE',
+		'EVERGREEN MYSTIQUE',
+		'VINCA MYSTIQUE',
+		'LAVENDER ICE MYSTIQUE',
+		'RICH ROYAL MYSTIQUE',
+		'MINT JULEP MYSTIQUE',
+		'PLUM MYSTIQUE',
+		'LIME MYSTIQUE',
+		'GUNMETAL MYSTIQUE',
+		'STEEL MYSTIQUE',
+		'AZURE MYSTIQUE',
+		'YELLOW MYSTIQUE',
+		'CHARCOAL MYSTIQUE',
+		'MERLOT MYSTIQUE',
+		'KELLY GREEN MYSTIQUE',
+		'SANGRIA MYSTIQUE',
+		'IMPERIAL PURPLE MYSTIQUE',
+		'NEON YELLOW MYSTIQUE',
+		'PASSION MYSTIQUE',
+		'STERLING SILVER MYSTIQUE',
+		'NEON CORAL MYSTIQUE',
+		'PEACOCK IRIDESCENT',
+		'CHAMPAGNE MYSTIQUE',
+		'FLUORESCENT LIME MYSTIQUE',
+		'FLUORESCENT PINK MYSTIQUE',
+		'FLUORESCENT ORANGE MYSTIQUE',
+		'FLUORESCENT YELLOW MYSTIQUE',
+		'GOLD LEAF'
+	]
+
+
+	$shadowproof_colors = [
+		'NUDE',
+		'BROWN'
+	]
+
+
+	$two_color_combo = [
+		'PINK',
+		'PURPLE',
+		'BLACK AND WHITE',
+		'BLUES',
+		'REDS',
+		'GREENS'
+	]
+
+
+	$two_color_pink = [
+		'SANGRIA TO WHITE',
+		'SANGRIA TO BLACK',
+		'SANGRIA TO BERRY',
+		'FUCHSIA TO WHITE',
+		'FUCHSIA TO BLACK',
+		'BERRY TO WHITE',
+		'BERRY TO BLACK',
+		'CORAL TO BLACK',
+		'NEON PINK TO BLACK',
+		'CHERRY TO CORAL',
+		'CORAL TO WHITE'
+	]
+
+
+	$two_color_purple = [
+		'PURPLE TO WHITE',
+		'PURPLE TO BLACK',
+		'PURPLE TO ULTRA VIOLET',
+		'PURPLE TO WISTERIA',
+		'ULTRA VIOLET TO WHITE'
+	]
+
+
+	$two_color_blue = [
+		'NAVY TO WHITE',
+		'NAVY TO BLACK',
+		'NAVY TO COLUMBIA BLUE',
+		'SAPPHIRE TO WHITE',
+		'ROYAL TO WHITE',
+		'ROYAL TO BLACK',
+		'ELECTRIC BLUE TO WHITE',
+		'ELECTRIC BLUE TO BLACK',
+		'ELECTRIC BLUE TO ROYAL',
+		'COLUMBIA BLUE TO WHITE',
+		'TURQUOISE TO WHITE',
+		'TURQUOISE TO BLACK',
+		'ELECTRIC BLUE TO NAVY'
+	]
+
+
+	$two_color_red = [
+		'CRIMSON TO WHITE',
+		'CRIMSON TO BLACK',
+		'RED TO WHITE',
+		'RED TO BLACK',
+		'CANDY APPLE TO WHITE',
+		'CANDY APPLE TO BLACK',
+		'COSMO TO WHITE',
+		'COSMO TO BLACK',
+		'CHERRY TO BLACK'
+	]
+
+
+	$two_color_green = [
+		'SPRUCE TO WHITE',
+		'KELLY TO WHITE'
+	]
+
+
+	$reverse_two_color_pink = [
+		'WHITE TO SANGRIA',
+		'BLACK TO SANGRIA',
+		'BERRY TO SANGRIA',
+		'WHITE TO FUCHSIA',
+		'BLACK TO FUCHSIA',
+		'WHITE TO BERRY',
+		'BLACK TO BERRY',
+		'BLACK TO CORAL',
+		'BLACK TO NEON PINK',
+		'CORAL TO CHERRY',
+		'WHITE TO CORAL'
+	]
+
+
+	$reverse_two_color_purple = [
+		'WHITE TO PURPLE',
+		'BLACK TO PURPLE',
+		'ULTRA VIOLET TO PURPLE',
+		'WISTERIA TO PURPLE',
+		'WHITE TO ULTRA VIOLET'
+	]
+
+
+	$reverse_two_color_blue = [
+		'WHITE TO NAVY',
+		'BLACK TO NAVY',
+		'COLUMBIA BLUE TO NAVY',
+		'WHITE TO SAPPHIRE',
+		'WHITE TO ROYAL',
+		'BLACK TO ROYAL',
+		'WHITE TO ELECTRIC BLUE',
+		'BLACK TO ELECTRIC BLUE',
+		'ROYAL TO ELECTRIC BLUE',
+		'WHITE TO COLUMBIA BLUE',
+		'WHITE TO TURQUOISE',
+		'BLACK TO TURQUOISE',
+		'NAVY TO ELECTRIC BLUE'
+	]
+
+
+	$reverse_two_color_red = [
+		'WHITE TO CRIMSON',
+		'BLACK TO CRIMSON',
+		'WHITE TO RED',
+		'BLACK TO RED',
+		'WHITE TO CANDY APPLE',
+		'BLACK TO CANDY APPLE',
+		'WHITE TO COSMO',
+		'BLACK TO COSMO',
+		'BLACK TO CHERRY'
+	]
+
+
+	$reverse_two_color_green = [
+		'WHITE TO SPRUCE',
+		'WHITE TO KELLY'
+	]
+
+
+	$three_color_combo = [
+		'PINK',
+		'PURPLE',
+		'PATRIOTIC',
+		'BLUE'
+	]
+
+
+	$three_color_pink = [
+		'WHITE TO SANGRIA TO BLACK',
+		'WHITE TO CHERRY TO BLACK',
+		'WHITE TO BERRY TO BLACK'
+	]
+
+
+	$three_color_purple = [
+		'WHITE TO PURPLE TO BLACK',
+		'WHITE TO ULTRA VIOLET TO PURPLE',
+		'WHITE TO WISTERIA TO PURPLE'
+	]
+
+
+	$three_color_patriotic = [
+		'RED TO WHITE TO NAVY',
+		'RED TO WHITE TO ROYAL',
+		'CANDY APPLE TO WHITE TO NAVY'
+	]
+
+
+	$three_color_blue = [
+		'NAVY TO COLUMBIA BLUE TO WHITE',
+		'NAVY TO ROYAL TO WHITE',
+		'WHITE TO ROYAL TO BLACK',
+		'WHITE TO TURQUOISE TO BLACK',
+		'NAVY TO WHITE TO CANDY APPLE',
+		'ROYAL TO WHITE TO CANDY APPLE'
+	]
+
+
+	$reverse_three_color_pink = [
+		'BLACK TO SANGRIA TO WHITE',
+		'BLACK TO CHERRY TO WHITE',
+		'BLACK TO BERRY TO WHITE'
+	]
+
+
+	$reverse_three_color_purple = [
+		'BLACK TO PURPLE TO WHITE',
+		'PURPLE TO ULTRA VIOLET TO WHITE',
+		'PURPLE TO WISTERIA TO WHITE'
+	]
+
+
+	$reverse_three_color_patriotic = [
+		'NAVY TO WHITE TO RED',
+		'ROYAL TO WHITE TO RED',
+		'NAVY TO WHITE TO CANDY APPLE'
+	]
+
+
+	$reverse_three_color_blue = [
+		'CANDY APPLE TO WHITE TO ROYAL',
+		'CANDY APPLE TO WHITE TO NAVY',
+		'WHITE TO COLUMBIA BLUE TO NAVY',
+		'WHITE TO ROYAL TO NAVY',
+		'BLACK TO ROYAL TO WHITE',
+		'BLACK TO TURQUOISE TO WHITE'
+	]
+
+
+
+	$stretch_tech_colors = [
+		'RED','ROYAL','NAVY','WHITE','BLACK'
+	]
 end

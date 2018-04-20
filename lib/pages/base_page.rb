@@ -5,6 +5,51 @@ class BasePage
 		super($driver)
 	end
 
+	def self.image_diff(recipe_id)
+		self.adjust_fe_images(recipe_id)
+		n = 0
+		Dir["#{$screenshotfolder}/#{recipe_id}/FE/*.png"].zip(Dir["#{$screenshotfolder}/#{recipe_id}/BER/*.png"]).each do |fe, ber|
+			n += 1
+			images = [
+				ChunkyPNG::Image.from_file("#{fe}"),
+				ChunkyPNG::Image.from_file("#{ber}")
+			]
+			output = ChunkyPNG::Image.new(images.first.width, images.last.width, WHITE)
+
+			diff = []
+
+			images.first.height.times do |y|
+				images.first.row(y).each_with_index do |pixel, x|
+					unless pixel == images.last[x,y]
+						score = Math.sqrt(
+							(r(images.last[x,y]) - r(pixel)) ** 2 +
+							(g(images.last[x,y]) - g(pixel)) ** 2 +
+							(b(images.last[x,y]) - b(pixel)) ** 2
+							) / Math.sqrt(MAX ** 2 * 3)
+
+						output[x,y] = grayscale(MAX - (score * 255).round)
+						diff << score
+					end
+				end
+			end
+
+			puts "pixels (total):     #{images.first.pixels.length}"
+			puts "pixels changed:     #{diff.length}"
+			puts "image changed (%): #{(diff.inject {|sum, value| sum + value} / images.first.pixels.length) * 100}%"
+
+			output.save("#{$screenshotfolder}/#{recipe_id}/diff-#{n}.png")
+		end
+	end
+
+	def self.adjust_fe_images(recipe_id)
+		Dir["#{$screenshotfolder}/#{recipe_id}/FE/*.png"].each do |img|
+			new_image = Magick::Image.read(img)[0]
+			new_image.resize_to_fit!(512,512)
+			new_image.sharpen(radius=0.0, sigma=1.0)
+			new_image.write img
+		end
+	end
+
 	def self.validate_svg(zip_dir, schema)
 		schema = Nokogiri::XML::Schema(File.read(schema))
 		# doc = Nokogiri::XML(File.open("#{zip_dir, schema}"))
@@ -25,9 +70,6 @@ class BasePage
 		File.write 'image.svg', open("#{url}").read
 		schema = Nokogiri::XML::Schema(File.read(schema))
 		doc = Nokogiri::XML(File.open("#{Dir.pwd}/image.svg"))
-		# source = Nokogiri::XML(open(url))
-		# source.remove_namespaces!
-		# svg = Nokogiri::XML.parse(source)
 		schema.validate(doc).each do |error|
 			puts "#{url} | #{error.message}"
 			puts ""
@@ -50,7 +92,12 @@ class BasePage
 	end
 
 	def self.performance_check
-		puts ("Response time: #{$driver.performance.summary[:response_time]}ms")
+		case 
+		when $driver.performance.summary[:response_time] > 3000
+			puts ("Response time: #{$driver.performance.summary[:response_time]}ms".bold.red)
+		when $driver.performance.summary[:response_time] < 2999
+			puts ("Response time: #{$driver.performance.summary[:response_time]}ms".bold.green)
+		end
 	end
 
 	def self.extract_zip(file)
@@ -62,8 +109,10 @@ class BasePage
 		end
 	end
 
-	def self.download_image(src)
-		File.open($screenshotfolder, 'wb') do |f|
+	def self.download_image(src,df)
+		file_name = File.basename(src)
+		file_name = file_name.scan(/^[^\?]*/)
+		File.open("#{df}/#{file_name[0]}", 'wb') do |f|
 			f.write open(src).read
 		end
 	end
