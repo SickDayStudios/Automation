@@ -58,6 +58,7 @@ class GKShopifyBasePage < BasePage
 
 	$gk_palette_colors = {
 		"gk-slg-holo-palette" => [
+			"gk-sel-holo-49b-red-prism-color",
 			"gk-sel-holo-u74-grape-opalescence-color",
 			"gk-sel-holo-l35-black-sparkle-color",
 			"gk-sel-holo-799-white-sparkle-color",
