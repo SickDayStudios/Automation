@@ -5,9 +5,9 @@ describe "Fabrics & Colors" do
 
 	before(:all) do
 		@page = CustomizerPage.new
-		@palette = Hash.new{ |hsh,key| hsh[key] = [] }
 		@handles = Array.new
 		options = AssetAPI.scene_productoptions_keys('gk-prs-gym')
+		# options.push(AssetAPI.scene_productoptions_keys('gk-prs-cheer'))
 		options.flatten
 		options.each do |opts|
 			@handles.push(opts)
@@ -18,38 +18,67 @@ describe "Fabrics & Colors" do
 	end
 
 	it "Verify Color/Fabric Options" do
-		@handles.each do |id|
-			@specs = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/products/#{id}"){|response, request, result| response })
-			@specs['contents']['rootFeature']['childFeatures'].each do |cf|
-				cf['childFeatures'].each do |ccf|
-					ccf['featureSelectionGroups'].each do |fsg|
-						if fsg['thenSelectionGroup']['handle'].nil? == false && fsg['thenSelectionGroup']['handle'].include?('palette') && fsg['thenSelectionGroup']['handle'].include?('cheer') == false
-							fsg_key = fsg['thenSelectionGroup']['handle']
-						end
-						fsg['thenSelectionGroup']['selections'].each do |sel|
-							if sel['handle'].nil? == false && sel['handle'].include?('color') && sel['handle'].include?('colorcount') == false
-								@palette[fsg_key] << sel['handle']
+		aggregate_failures "" do
+			@handles.each do |id|
+				aggregate_failures "#{id}" do
+					palette = Hash.new{ |hsh,key| hsh[key] = [] }
+					@specs = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{id}"){|response, request, result| response })
+					@specs['contents']['rootFeature']['childFeatures'].each do |cf|
+						if cf["selectionGroup"]["selections"].nil? == false
+							cf["selectionGroup"]["selections"].each do |s|
+								if s["features"].nil? == false
+									s["features"].each do |fea|
+										if fea["featureSelectionGroups"].nil? == false
+											fea["featureSelectionGroups"].each do |fg|
+												if (fg['thenSelectionGroup']['handle'].nil? == false && fg['thenSelectionGroup']['handle'].include?('palette'))
+													fg_key = fg["thenSelectionGroup"]["handle"]
+												end
+												fg["thenSelectionGroup"]["selections"].each do |fgs|
+													if (fgs['handle'].nil? == false && fgs['handle'].include?('color') && fgs['handle'].include?('colorcount') == false && fgs['available'] == true)
+														palette[fg_key] << fgs['handle']
+													end
+												end
+											end
+										end
+									end
+								end
 							end
 						end
-					end
-					ccf['childFeatures'].each do |cccf|
-						if cccf['selectionGroup']['handle'].nil? == false && cccf['selectionGroup']['handle'].include?('palette') && cccf['selectionGroup']['handle'].include?('cheer') == false
-							cf_key = cccf['selectionGroup']['handle']
-						end
-						cccf['selectionGroup']['selections'].each do |sels|
-							if sels['handle'].nil? == false && sels['handle'].include?('color') && sels['handle'].include?('colorcount') 
-								@palette[cf_key] << sels['handle']
+						cf['childFeatures'].each do |ccf|
+							ccf['featureSelectionGroups'].each do |fsg|
+								if (fsg['thenSelectionGroup']['handle'].nil? == false && fsg['thenSelectionGroup']['handle'].include?('palette'))
+									fsg_key = fsg['thenSelectionGroup']['handle']
+								end
+								fsg['thenSelectionGroup']['selections'].each do |sel|
+									if (sel['handle'].nil? == false && sel['handle'].include?('color') && sel['handle'].include?('colorcount') == false && sel['available'] == true)
+										palette[fsg_key] << sel['handle']
+									end
+								end
+							end
+							ccf['childFeatures'].each do |cccf|
+								if (cccf['selectionGroup']['handle'].nil? == false && cccf['selectionGroup']['handle'].include?('palette'))
+									cf_key = cccf['selectionGroup']['handle']
+								end
+								cccf['selectionGroup']['selections'].each do |sels|
+									if (sels['handle'].nil? == false && sels['handle'].include?('color') && sels['handle'].include?('colorcount') && sels['available'] == true)
+										palette[cf_key] << sels['handle']
+									end
+								end
 							end
 						end
-					end
-				end
-				@palette.each do |key,vals|
-					if key == nil
-						puts "Palette is nil for product: #{id}".bold.red.underline
-					else
-						@palette.delete(nil)
-						@palette[key].uniq!
-						expect($gk_palette_colors[key]).to match_array(@palette[key])
+						palette.delete(nil)
+						palette.each do |key,vals|
+							if key == nil
+								puts "Palette is nil for product: #{id}".red.bold
+							else
+								palette[key].uniq!
+								if $gk_palette_colors[key].nil?
+									puts "#{id} | #{key}"
+								else
+									expect($gk_palette_colors[key]).to match_array(palette[key])
+								end
+							end
+						end
 					end
 				end
 			end

@@ -239,46 +239,46 @@ class GKProductPage < GKShopifyBasePage
 		@arr.sample.click
 	end
 
-		# def dealer_random_quantity
-		# 	@arr = Array.new
-		# 	self.dealer_quantity_elements.text_field.each do |x|
-		# 		@arr.push(x)
-		# 	end
-		# 	@arr.sample.send_keys rand[1..5].to_s
-		# end
+	# def dealer_random_quantity
+	# 	@arr = Array.new
+	# 	self.dealer_quantity_elements.text_field.each do |x|
+	# 		@arr.push(x)
+	# 	end
+	# 	@arr.sample.send_keys rand[1..5].to_s
+	# end
 
-		def random_size
-			@arr = Array.new
-			self.size_dropdown_element.click
-			self.wait_until { self.child_size_options? }
-			if self.child_size_options?
-				self.child_size_options_element.buttons.each do |x|
-					@arr.push(x)
-				end
-			end
-			if self.adult_size_options?
-				self.adult_size_options_element.buttons.each do |x|
-					@arr.push(x)
-				end
-			end
-			@arr.sample.click
-		end
-
-		def random_stars
-			@arr = Array.new
-			self.star_rating_elements.each do |x|
+	def random_size
+		@arr = Array.new
+		self.size_dropdown_element.click
+		self.wait_until { self.child_size_options? }
+		if self.child_size_options?
+			self.child_size_options_element.buttons.each do |x|
 				@arr.push(x)
 			end
-			@arr.sample.click
 		end
-
-
-		def fill_review
-			self.review_name = 'Tester'
-			self.review_email = 'test@qa.com'
-			self.random_stars
-			self.review_title = 'This is a test'
-			self.review_body = 'TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST'
+		if self.adult_size_options?
+			self.adult_size_options_element.buttons.each do |x|
+				@arr.push(x)
+			end
 		end
-
+		@arr.sample.click
 	end
+
+	def random_stars
+		@arr = Array.new
+		self.star_rating_elements.each do |x|
+			@arr.push(x)
+		end
+		@arr.sample.click
+	end
+
+
+	def fill_review
+		self.review_name = 'Tester'
+		self.review_email = 'test@qa.com'
+		self.random_stars
+		self.review_title = 'This is a test'
+		self.review_body = 'TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST'
+	end
+
+end

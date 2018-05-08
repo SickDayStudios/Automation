@@ -77,8 +77,8 @@ class IconBasePage < BasePage
 	}
 
 	$curry_mid = {
-		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Upper - Artwork","Upper - Pattern"],
-		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Phoenix Fire","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja"],
+		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Upper - Artwork","Upper - Pattern","Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
+		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Phoenix Fire","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
 		:outsole => ["White","Black","Steel","Gum Rubber","Ice Blue - Translucent"],
 		:laces => ["White","Black","Steel","Cardinal","Red","Phoenix Fire","Team Orange","Taxi","Neptune","Carolina Blue","Team Royal","Midnight Navy","Purple"],
 		:toecap => ["White","Black","Steel","Cardinal","Red","Taxi","Carolina Blue","Team Royal","Midnight Navy"],
@@ -93,7 +93,7 @@ class IconBasePage < BasePage
 	}
 
 	$drive_low = {
-		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Stone"],
+		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Powderkeg Blue","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Stone","Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
 		:solid => ["White","Black","Aluminum","Steel","Taxi","Red","Forest Green","UA Drive4 Upper Artwork Template"],
 		:tongue => ["White","Black","Aluminum","Steel","Red","Taxi","Forest Green","Team Royal","Midnight Navy"],
 		:trim => ["Black","Aluminum","Red","Team Royal","Midnight Navy"],
@@ -122,8 +122,8 @@ class IconBasePage < BasePage
 	}
 
 	$curry_low = {
-		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Upper - Artwork","Upper - Pattern"],
-		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Phoenix Fire","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja"],
+		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Upper - Artwork","Upper - Pattern","Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
+		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Dark Orange","Team Orange","Phoenix Fire","Texas Orange","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Neptune","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Cleveland Brown","Baja","Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
 		:outsole => ["White","Black","Steel","Gum Rubber","Ice Blue - Translucent"],
 		:toecap => ["White","Black","Steel","Cardinal","Red","Taxi","Carolina Blue","Team Royal","Midnight Navy"],
 		:tongue => ["White","Black","Steel","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Midnight Navy"],
