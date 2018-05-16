@@ -51,6 +51,7 @@ class IconCustomizer < IconBasePage
 	span(:address_name, 			class: ["address-names"])
 	span(:order_number, 			class: ["order-receipt-message-order-number"])
 	h1(:deprecated_color,			id:    "ngdialog1-aria-labelledby")
+	button(:close_footer,			class: ["gs-btn--reset gs-alert-close icon--cross"])
 
 
 
@@ -212,7 +213,9 @@ class IconCustomizer < IconBasePage
 		size.click
 		
 		self.share
-		self.wait_while {$driver.url == old_url}
+		if $driver.url == old_url
+			self.wait_while(timeout: 60) {$driver.url == old_url}
+		end
 
 		recipe_id = (self.url.scan(/\w+......$/))
 
@@ -243,7 +246,6 @@ class IconCustomizer < IconBasePage
 
 
 	def create_random_shoe
-		puts "#{Time.now.strftime('		%I:%M:%S%p')}".blue
 		@recipe = Hash.new{ |hsh,key| hsh[key] = [] }
 		sleep 1
 		self.wait_until {self.loading_bar_element.exists?}

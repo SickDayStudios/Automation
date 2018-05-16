@@ -48,6 +48,14 @@ RSpec::Core::RakeTask.new(:icon_fe, [:environment, :browser]) do |t, args|
 	t.pattern = Dir.glob('spec/tests/icon/icon_product_spec.rb')
 end
 
+RSpec::Core::RakeTask.new(:icon_shoewall, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['SITE'] = 'ua-icon'
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/icon/icon_shoewall_spec.rb')
+end
+
 RSpec::Core::RakeTask.new(:icon_ber, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]
 	ENV['BROWSER'] = args[:browser]

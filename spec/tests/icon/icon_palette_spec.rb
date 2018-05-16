@@ -301,26 +301,28 @@ describe "ICON | Color Palette Test" do
 			expect($curry_five[:bottom]).to match_array(@curry_five_mens['uaf-fea-curry5-bottom-tpu-color'])
 			expect($curry_five[:outsole]).to match_array(@curry_five_mens['uaf-fea-curry5-outsole-color'])
 			expect($curry_five[:logo]).to match_array(@curry_five_mens['uaf-fea-curry5-outsole-logo-color'])
+			expect($curry_five[:signature]).to match_array(@curry_five_mens['uaf-fea-curry5-side-tpu-sc-signature-color'])
 		end
 	end
 
-	it "Youth Curry 5" do
-		aggregate_failures "Youth Curry 5" do
-		@curry_five_youth = IconBasePage.localize_text_message_handles("uaf-prs-curry5-youth")
-			expect($curry_five[:pattern]).to match_array(@curry_five_youth['uaf-fea-curry5-side-panel-overlay-pattern-colors'])
-			expect($curry_five[:solid]).to match_array(@curry_five_youth['uaf-fea-curry5-side-panel-overlay-solid-color'])
-			expect($curry_five[:upper]).to match_array(@curry_five_youth['uaf-fea-curry5-upper-knit-color'])
-			expect($curry_five[:upper]).to match_array(@curry_five_youth['uaf-fea-curry5-heel-tape-color'])
-			expect($curry_five[:upper]).to match_array(@curry_five_youth['uaf-fea-curry5-eyestay-color'])
-			expect($curry_five[:upper]).to match_array(@curry_five_youth['uaf-fea-curry5-counter-lining-color'])
-			expect($curry_five[:laces]).to match_array(@curry_five_youth['uaf-fea-curry5-laces-color'])
-			expect($curry_five[:tongue]).to match_array(@curry_five_youth['uaf-fea-curry5-tongue-label-color'])
-			expect($curry_five[:tongue]).to match_array(@curry_five_youth['uaf-fea-curry5-tongue-logo-color'])
-			expect($curry_five[:midsole]).to match_array(@curry_five_youth['uaf-fea-curry5-midsole-color'])
-			expect($curry_five[:side]).to match_array(@curry_five_youth['uaf-fea-curry5-side-tpu-color'])
-			expect($curry_five[:bottom]).to match_array(@curry_five_youth['uaf-fea-curry5-bottom-tpu-color'])
-			expect($curry_five[:outsole]).to match_array(@curry_five_youth['uaf-fea-curry5-outsole-color'])
-			expect($curry_five[:logo]).to match_array(@curry_five_youth['uaf-fea-curry5-outsole-logo-color'])
+	it "Kid's Curry 5" do
+		aggregate_failures "Kid's Curry 5" do
+		@curry_five_kids = IconBasePage.localize_text_message_handles("uaf-prs-curry5-kids")
+			expect($curry_five[:pattern]).to match_array(@curry_five_kids['uaf-fea-curry5-side-panel-overlay-pattern-colors'])
+			expect($curry_five[:solid]).to match_array(@curry_five_kids['uaf-fea-curry5-side-panel-overlay-solid-color'])
+			expect($curry_five[:upper]).to match_array(@curry_five_kids['uaf-fea-curry5-upper-knit-color'])
+			expect($curry_five[:upper]).to match_array(@curry_five_kids['uaf-fea-curry5-heel-tape-color'])
+			expect($curry_five[:upper]).to match_array(@curry_five_kids['uaf-fea-curry5-eyestay-color'])
+			expect($curry_five[:upper]).to match_array(@curry_five_kids['uaf-fea-curry5-counter-lining-color'])
+			expect($curry_five[:laces]).to match_array(@curry_five_kids['uaf-fea-curry5-laces-color'])
+			expect($curry_five[:tongue]).to match_array(@curry_five_kids['uaf-fea-curry5-tongue-label-color'])
+			expect($curry_five[:tongue]).to match_array(@curry_five_kids['uaf-fea-curry5-tongue-logo-color'])
+			expect($curry_five[:midsole]).to match_array(@curry_five_kids['uaf-fea-curry5-midsole-color'])
+			expect($curry_five[:side]).to match_array(@curry_five_kids['uaf-fea-curry5-side-tpu-color'])
+			expect($curry_five[:bottom]).to match_array(@curry_five_kids['uaf-fea-curry5-bottom-tpu-color'])
+			expect($curry_five[:outsole]).to match_array(@curry_five_kids['uaf-fea-curry5-outsole-color'])
+			expect($curry_five[:logo]).to match_array(@curry_five_kids['uaf-fea-curry5-outsole-logo-color'])
+			expect($curry_five[:signature]).to match_array(@curry_five_kids['uaf-fea-curry5-side-tpu-sc-signature-color'])
 		end
 	end
 end

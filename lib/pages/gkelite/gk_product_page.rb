@@ -1,6 +1,5 @@
 require './lib/pages/gkelite/gk_shopify_base_page'
 require './lib/helpers/gkelite/gk_header'
-
 require './lib/helpers/gkelite/gk_cart_lightbox'
 require './lib/helpers/gkelite/gk_search_filters'
 
@@ -112,56 +111,48 @@ class GKProductPage < GKShopifyBasePage
 		puts " ID  | RecipeID | Spec ID  | Expected A0#  | Spec A0#"
 		$gk_products.each do |id|
 			$driver.goto "gkelite.com/products/#{id}"
-
 			if self.four_oh_four?
 				puts "#{id} | 404 Product Page Missing"
 			else
-				self.wait_until { self.color_picker_element.exists? }
-				self.wait_until { self.color_picker_element.present? }
-				self.wait_until { self.color_picker_element.visible? }
+				self.wait_until {self.color_picker_element.exist?}
+				self.wait_until {self.color_picker_element.visible?}
+				self.wait_until { self.color_picker? }
 				recipe_set_ids = self.get_recipe_ids
 				ao_numbers = self.get_ao_numbers
+				recipe_set_ids.zip(ao_numbers).each do |rset,ao|
 
-				if recipe_set_ids.empty?
-					puts "#{id} | #{ao_numbers} | Missing Recipe Set ID"
-				else
-					recipe_set_ids.zip(ao_numbers).each do |rset,ao|
-
-						if rset == id
-							puts "#{id} | #{ao} | #{rset}"
+					if rset == id
+						puts "#{id} | #{ao} | #{rset}"
+					else
+						case ENV['ENVIRONMENT'].to_sym
+						when :test
+							@recipe = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
+						when :staging
+							@recipe = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
+						when :prod
+							@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
+						end
+						if @recipe["contents"].nil?
+							puts "#{id} | #{rset} | Broken Recipe"
 						else
+							@recipe["contents"]["recipes"].each do |indx|
+
+								if indx["productHandle"].include?("#{id}")
+									@spec_id = indx["recipe"]["readableId"]
+								end
+							end
 							case ENV['ENVIRONMENT'].to_sym
-							when :test
-								@recipe = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
-							when :staging
-								@recipe = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
-							when :prod
-								@recipe = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/recipesets/readable/#{rset}"){|response, request, result| response })
+							when :test then @spec = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
+							when :staging then @spec = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
+							when :prod then @spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
 							end
-							if @recipe["contents"].nil?
-								puts "#{id} | #{rset} | Broken Recipe"
-							else
-								@recipe["contents"]["recipes"].each do |indx|
-									
-									if indx["productHandle"].include?("#{id}")
-										@spec_id = indx["recipe"]["readableId"]
-									end
-								end
-								case ENV['ENVIRONMENT'].to_sym
-								when :test then @spec = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
-								when :staging then @spec = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
-								when :prod then @spec = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/external/gk-elite/specification/#{@spec_id}"){|response, request, result| response })
-								end
-								if ao != @spec["A0Number"]
-									puts "#{id} | #{rset} | #{@spec_id} | Expected: #{ao} | Got: #{@spec["A0Number"]}"
-								end
+							if ao != @spec["A0Number"]
+								puts "#{id} | #{rset} | #{@spec_id} | Expected: #{ao} | Got: #{@spec["A0Number"]}"
 							end
-						end	
-					end
+						end
+					end	
 				end
-
 			end
-
 		end
 	end
 

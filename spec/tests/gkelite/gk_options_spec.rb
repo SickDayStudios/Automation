@@ -22,7 +22,11 @@ describe "Fabrics & Colors" do
 			@handles.each do |id|
 				aggregate_failures "#{id}" do
 					palette = Hash.new{ |hsh,key| hsh[key] = [] }
-					@specs = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{id}"){|response, request, result| response })
+					case ENV['ENVIRONMENT'].to_sym
+						when :test then @specs = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{id}"){|response, request, result| response })
+						when :staging then @specs = JSON.parse(RestClient.get("http://staging.spectrumcustomizer.com/api/products/#{id}"){|response, request, result| response })
+						when :prod then @specs = JSON.parse(RestClient.get("http://api.spectrumcustomizer.com/api/products/#{id}"){|response, request, result| response })
+					end
 					@specs['contents']['rootFeature']['childFeatures'].each do |cf|
 						if cf["selectionGroup"]["selections"].nil? == false
 							cf["selectionGroup"]["selections"].each do |s|
@@ -73,7 +77,9 @@ describe "Fabrics & Colors" do
 							else
 								palette[key].uniq!
 								if $gk_palette_colors[key].nil?
-									puts "#{id} | #{key}"
+									puts "#{key}"
+									puts "#{vals}"
+									puts ""
 								else
 									expect($gk_palette_colors[key]).to match_array(palette[key])
 								end

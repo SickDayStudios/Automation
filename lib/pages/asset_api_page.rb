@@ -7,7 +7,7 @@ class AssetAPI < BasePage
 			options = AssetAPI.scene_productoptions_keys(scene)
 			@handles.push(options.flatten)
 			@handles.uniq
-			@handles.reject { |r| r.include?("extra" || "mannequin" || "scene.json" || "dummy") }
+			@handles.reject { |r| r.include?("extra") || r.include?("mannequin") || r.include?("scene.json") || r.include?("dummy") || r.include?("test") }
 		end
 		@handles.flatten
 	end
@@ -75,7 +75,7 @@ class AssetAPI < BasePage
 		@arr = Array.new
 		list = @specs["productGroups"].keys
 		list.each do |key|
-			if key == "mannequin" || key.include?("extra" || "mannequin" || "scene.json" || "dummy")
+			if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
 			else
 				@arr.push(key)
 			end
@@ -90,7 +90,7 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = @specs["productGroups"]["#{group}"]["productOptions"].keys
 			list.each do |key|
-				if (key.include?("extra") || key.nil? || key.empty? || key == "")
+				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
 				else
 					@options.push(key)
 				end
@@ -105,7 +105,7 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				if (key.include?("extra") || key.nil? || key.empty? || key == "")
+				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
 				else
 					@connections.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].keys)
 				end
@@ -120,7 +120,7 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				if (key.include?("extra") || key.nil? || key.empty? || key == "")
+				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
 				else
 					@values.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].values)
 				end
@@ -135,7 +135,7 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				if (key.include?("extra") || key.nil? || key.empty? || key == "")
+				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
 				else
 					if (@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"] == nil) || (@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"] == "")
 					else
@@ -153,7 +153,10 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				@manifest.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["manifest"])
+				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
+				else
+					@manifest.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["manifest"])
+				end
 			end
 		end
 		@manifest.uniq.first
@@ -164,7 +167,10 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
+				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
+				else
 				@manifest.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["mobileManifest"])
+			end
 			end
 		end
 		@manifest.uniq.first
@@ -180,8 +186,12 @@ class AssetAPI < BasePage
 		end
 		file = File.open("./lib/helpers/recursive_feature_traversal.js", "r")
 		features = file.read
-		result = $driver.execute_script(features, @specs["contents"]["rootFeature"])
-		result.reject { |r| r.empty? }
+		if $driver.execute_script(features, @specs["contents"]["rootFeature"]).nil?
+			puts "#{product} | Missing Product Data"
+		else
+			result = $driver.execute_script(features, @specs["contents"]["rootFeature"])
+			result.reject { |r| r.empty? }
+		end
 	end
 
 	# =>  grabs all the keys from the manifest parameters array

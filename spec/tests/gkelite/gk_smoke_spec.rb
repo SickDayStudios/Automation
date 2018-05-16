@@ -63,6 +63,10 @@ describe "#{ENV['SITE'].upcase}:#{ENV['ENVIRONMENT'].upcase}:#{ENV['BROWSER'].up
 		expect(@product_page.selected_size).not_to eq("")
 	end
 
+	it ' - Verify Product Spec' do
+		
+	end
+
 	it ' - Add Product to Cart' do
 		@product_page.add_to_cart
 		@product_page.wait_until { @product_page.cart_popup? }
