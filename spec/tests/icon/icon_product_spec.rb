@@ -21,7 +21,9 @@ describe "ICON | #{ENV['ENVIRONMENT']} | #{ENV['BROWSER']} | Packlist-Spec Test"
 			@page.wait_until {@page.upper_options_elements.present?}
 			@page.wait_until {@page.color_tabs_elements.present?}
 			sleep 5
-			@page.close_footer
+			if @page.close_footer_element.visible?
+				@page.close_footer
+			end
 			BasePage.performance_check
 			aggregate_failures "#{pid}" do
 				fe = @page.create_random_shoe
