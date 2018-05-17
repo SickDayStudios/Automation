@@ -15,6 +15,7 @@ describe "ICON | #{ENV['ENVIRONMENT']} | #{ENV['BROWSER']} | Packlist-Spec Test"
 			when :prod then url = "https://www.underarmour.com/en-us/#{pid}"
 			end
 			@page.goto(url)
+			@page.goto(url)
 			sleep 1
 			@page.wait_until {@page.loading_bar_element.exists?}
 			@page.wait_while(timeout: 60) {@page.loading_bar_element.visible?}
