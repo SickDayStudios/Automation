@@ -18,10 +18,10 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 	it "-------------------------------------------" do
 		['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
 			ENV['USER_TYPE'] = user
-			if @page.password? && @page.password_element.visible?
-				BasePage.set_user
+			BasePage.set_user
+			if @page.password?
+				@page.enter_password
 			end
-			@page.enter_password
 			@login_page.header_login
 			@login_page.wait_until { @login_page.url.include?('account') }
 			$gk_assets.each do |id|
