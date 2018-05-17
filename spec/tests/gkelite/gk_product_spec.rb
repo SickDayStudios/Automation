@@ -31,8 +31,8 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 				if @page.four_oh_four?
 					puts "#{id} | #{@page.selected_color_element.text} | PageError | 404 Missing Product From Product Feed"
 				else
-					@page.wait_while { @page.product_image_element.exists? == false }
-					@page.wait_until { @page.product_image_element.visible? }
+					@page.wait_while(timeout: 60) { @page.product_image_element.exists? == false }
+					@page.wait_until(60) { @page.product_image_element.visible? }
 					if @page.product_accordions_element.present? == false
 						puts "#{id} | #{@page.selected_color_element.text} | Missing Product Detail Accordians"
 					end
