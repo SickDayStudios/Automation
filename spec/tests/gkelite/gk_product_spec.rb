@@ -27,6 +27,7 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 			$gk_assets.each do |id|
 				puts " - Verifying: #{user} | #{id}"
 				@page.product_page(id)
+				sleep 2
 				if @page.four_oh_four?
 					puts "#{id} | #{@page.selected_color_element.text} | PageError | 404 Missing Product From Product Feed"
 				else
@@ -60,6 +61,7 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 
 						@page.color_picker_element.buttons.to_a.each do |x|
 							x.click
+							sleep 1
 							if @page.product_image_element.attribute_value('src').include?('placeholder')
 								puts "#{id} | #{@page.selected_color_element.text} | Placeholder Image"
 							end
