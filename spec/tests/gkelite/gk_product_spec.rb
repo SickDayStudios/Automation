@@ -18,7 +18,9 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 	it "-------------------------------------------" do
 		['consumer', 'dealer', 'distributor', 'salesrep', 'teamlead'].each do |user|
 			ENV['USER_TYPE'] = user
-			BasePage.set_user
+			if @page.password?
+				BasePage.set_user
+			end
 			@page.enter_password
 			@login_page.header_login
 			@login_page.wait_until { @login_page.url.include?('account') }

@@ -13,7 +13,11 @@ describe "Timex Customizer" do
 	context "UI Test" do
 
 		it "Load Test" do
-			@page.goto("http://madetoordertest.blob.core.windows.net/timex/frontend/index.html#/productset/tmx-prs-wrist-watches")
+			case ENV['ENVIRONMENT'].to_sym
+				when :test then @page.goto("http://madetoordertest.blob.core.windows.net/timex/frontend/index.html#/productset/tmx-prs-wrist-watches")
+				when :staging then @page.goto("http://madetoorderstaging.blob.core.windows.net/timex/frontend/index.html#/productset/tmx-prs-wrist-watches")
+				when :prod then @page.goto("http://dev05-us-timex.demandware.net/s/sequel/guess-original/GuessOriginal.html#/productset/tmx-prs-wrist-watches")
+			end
 			@page.wait_until {@page.loading_bar?}
 			@page.wait_while {@page.loading_bar?}
 			BasePage.performance_check
