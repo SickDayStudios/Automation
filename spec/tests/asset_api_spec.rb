@@ -1,10 +1,10 @@
 require "./lib/pages/asset_api_page"
 
-# describe "SceneFile Connections Test" do
+describe "SceneFile Connections Test" do
 
-# 	before(:all) do 
-# 		BasePage.create_csv
-# 	end
+	before(:all) do 
+		BasePage.create_csv
+	end
 
 # 	describe "| Client: ShedRain |" do
 
