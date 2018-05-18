@@ -29,7 +29,7 @@ describe "#{ENV['SITE'].upcase} | #{ENV['ENVIRONMENT'].upcase} | #{ENV['BROWSER'
 				@page.product_page(id)
 				sleep 2
 				if @page.four_oh_four?
-					puts "#{id} | #{@page.selected_color_element.text} | PageError | 404 Missing Product From Product Feed"
+					puts "#{id} | PageError | 404 Missing Product From Product Feed"
 				else
 					@page.wait_while(timeout: 60) { @page.product_image_element.exists? == false }
 					@page.wait_until(60) { @page.product_image_element.visible? }
