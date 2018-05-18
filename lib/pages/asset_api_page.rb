@@ -271,15 +271,161 @@ class AssetAPI < BasePage
 
 	$approved_shaders = ['regionmap','artbox','standard','pshadow','translucent']
 
-	$gk_scene_files = ['gk-prs-bottoms','gk-prs-cheer','gk-prs-gym','ua-prs-cheer','ua-prs-gym','ua-prs-warmups']
+	$gk_scene_files = [
+		'gk-prs-bottoms',
+		'gk-prs-cheer',
+		'gk-prs-gym',
+		'ua-prs-cheer',
+		'ua-prs-gym',
+		'ua-prs-warmups'
+	]
 
-	$uau_scene_files = ['uau-prs-volleyball','uau-prs-track','uau-prs-soccer','uau-prs-football','uau-prs-baseball','uau-prs-basketball','uau-prs-hockey','uau-prs-lacrosse','uau-prs-softball','uau-prs-training','uau-prs-wrestling','uau-prs-football-brawler','uau-prs-sideline']
+	$uau_scene_files = [
+		'uau-prs-volleyball',
+		'uau-prs-track',
+		'uau-prs-soccer',
+		'uau-prs-football',
+		'uau-prs-baseball',
+		'uau-prs-basketball',
+		'uau-prs-hockey',
+		'uau-prs-lacrosse',
+		'uau-prs-softball',
+		'uau-prs-training',
+		'uau-prs-wrestling',
+		'uau-prs-football-brawler',
+		'uau-prs-sideline'
+	]
 
-	$uaf_scene_files = ['uaf-prs-curry1-mens','uaf-prs-curry1-youth','uaf-prs-curry25-mens','uaf-prs-icon-sackpack','uaf-prs-drive4low-mens','uaf-prs-charged247-mens','uaf-prs-charged247-womens','uaf-prs-curry1low-mens','uaf-prs-drive4-mens','uaf-prs-drive4-womens','uaf-prs-clutchfit-mens','uaf-prs-clutchfit-womens','uaf-prs-curry25-mens','uaf-prs-highlight-mens']
+	$uaf_scene_files = [	
+		'uaf-prs-railfit-mens',
+		'uaf-prs-spotlight-mens',
+		'uaf-prs-curry1-mens',
+		'uaf-prs-clutchfit-mens',
+		'uaf-prs-charged247-mens',
+		'uaf-prs-highlight-mens',
+		'uaf-prs-drive4-mens',
+		'uaf-prs-drive4low-mens',
+		'uaf-prs-curry1low-mens',
+		'uaf-prs-icon-sackpack',
+		'uaf-prs-ignite-mens',
+		'uaf-prs-ignite-womens',
+		'uaf-prs-railfit-womens',
+		'uaf-prs-curry1-youth',
+		'uaf-prs-clutchfit-womens',
+		'uaf-prs-charged247-womens',
+		'uaf-prs-drive4-womens',
+		'uaf-prs-curry5-kids',
+		'uaf-prs-curry5-mens'
+	]
 
-	$cb_scene_files = ['cb-pro-chute1-bottle','cb-pro-chute20-rubberized','cb-pro-chute20-stainless-vacuum-bottle','cb-pro-chute20-vacuum-bottle','cb-pro-chute40-stainless-vacuum-bottle','cb-pro-chute40-vacuum-bottle','cb-pro-chute75-bottle','cb-pro-eddy1-bottle','cb-pro-eddy4-kids-bottle','cb-pro-eddy6-bottle','cb-pro-eddy6-insulated-bottle','cb-pro-eddy20-rubberized','cb-pro-eddy20-vacuum-bottle','cb-pro-eddy75-bottle','cb-pro-forge12-bottle','cb-pro-forge16-bottle','cb-pro-kickbak20-bottle','cb-pro-kickbak20-stainless-bottle','cb-pro-kickbak30-bottle','cb-pro-kickbak30-stainless-bottle','cb-pro-podium-bigchill-bottle','cb-pro-podium-chill-bottle','cb-pro-podium21-bottle','cb-pro-podium24-bottle']
+	$cb_scene_files = [
+		'cb-pro-chute1-bottle',
+		'cb-pro-chute20-rubberized',
+		'cb-pro-chute20-stainless-vacuum-bottle',
+		'cb-pro-chute20-vacuum-bottle',
+		'cb-pro-chute40-stainless-vacuum-bottle',
+		'cb-pro-chute40-vacuum-bottle',
+		'cb-pro-chute75-bottle',
+		'cb-pro-eddy1-bottle',
+		'cb-pro-eddy4-kids-bottle',
+		'cb-pro-eddy6-bottle',
+		'cb-pro-eddy6-insulated-bottle',
+		'cb-pro-eddy20-rubberized',
+		'cb-pro-eddy20-vacuum-bottle',
+		'cb-pro-eddy75-bottle',
+		'cb-pro-forge12-bottle',
+		'cb-pro-forge16-bottle',
+		'cb-pro-kickbak20-bottle',
+		'cb-pro-kickbak20-stainless-bottle',
+		'cb-pro-kickbak30-bottle',
+		'cb-pro-kickbak30-stainless-bottle',
+		'cb-pro-podium-bigchill-bottle',
+		'cb-pro-podium-chill-bottle',
+		'cb-pro-podium21-bottle',
+		'cb-pro-podium24-bottle'
+	]
 
-	$eb_scene_files = ['eb-pro-mens-microtherm-hood','eb-pro-mens-microtherm-nohood','eb-pro-mens-sandstone-hood','eb-pro-mens-sandstone-nohood','eb-pro-womens-microtherm-hood','eb-pro-womens-microtherm-nohood','eb-pro-womens-sandstone-hood','eb-pro-womens-sandstone-nohood']
+	$eb_scene_files = [
+		'eb-pro-mens-microtherm-hood',
+		'eb-pro-mens-microtherm-nohood',
+		'eb-pro-mens-sandstone-hood',
+		'eb-pro-mens-sandstone-nohood',
+		'eb-pro-womens-microtherm-hood',
+		'eb-pro-womens-microtherm-nohood',
+		'eb-pro-womens-sandstone-hood',
+		'eb-pro-womens-sandstone-nohood'
+	]
 
-	$scene_files = ['bmk-prs-knives','gk-prs-bottoms','gk-prs-cheer','gk-prs-gym','ua-prs-cheer','ua-prs-gym','ua-prs-warmups','uau-prs-hockey','uau-prs-lacrosse','uau-prs-volleyball','uau-prs-track','uau-prs-soccer','uau-prs-softball','uau-prs-training','uau-prs-wrestling','uau-prs-baseball','uau-prs-football','uau-prs-basketball','uau-prs-football-brawler','uau-prs-sideline','uaf-prs-curry1-mens','uaf-prs-curry1-youth','uaf-prs-curry25-mens','uaf-prs-icon-sackpack','uaf-prs-drive4low-mens','uaf-prs-charged247-mens','uaf-prs-charged247-womens','uaf-prs-curry1low-mens','uaf-prs-drive4-mens','uaf-prs-drive4-womens','uaf-prs-clutchfit-mens','uaf-prs-clutchfit-womens','uaf-prs-curry25-mens','uaf-prs-highlight-mens','cb-pro-chute1-bottle','cb-pro-chute20-rubberized','cb-pro-chute20-stainless-vacuum-bottle','cb-pro-chute20-vacuum-bottle','cb-pro-chute40-stainless-vacuum-bottle','cb-pro-chute40-vacuum-bottle','cb-pro-chute75-bottle','cb-pro-eddy1-bottle','cb-pro-eddy4-kids-bottle','cb-pro-eddy6-bottle','cb-pro-eddy6-insulated-bottle','cb-pro-eddy20-rubberized','cb-pro-eddy20-vacuum-bottle','cb-pro-eddy75-bottle','cb-pro-forge12-bottle','cb-pro-forge16-bottle','cb-pro-kickbak20-bottle','cb-pro-kickbak20-stainless-bottle','cb-pro-kickbak30-bottle','cb-pro-kickbak30-stainless-bottle','cb-pro-podium-bigchill-bottle','cb-pro-podium-chill-bottle','cb-pro-podium21-bottle','cb-pro-podium24-bottle','eb-pro-mens-microtherm-hood','eb-pro-mens-microtherm-nohood','eb-pro-mens-sandstone-hood','eb-pro-mens-sandstone-nohood','eb-pro-womens-microtherm-hood','eb-pro-womens-microtherm-nohood','eb-pro-womens-sandstone-hood','eb-pro-womens-sandstone-nohood']
+	$scene_files = [
+		'bmk-prs-knives',
+		'gk-prs-bottoms',
+		'gk-prs-cheer',
+		'gk-prs-gym',
+		'ua-prs-cheer',
+		'ua-prs-gym',
+		'ua-prs-warmups',
+		'uau-prs-hockey',
+		'uau-prs-lacrosse',
+		'uau-prs-volleyball',
+		'uau-prs-track',
+		'uau-prs-soccer',
+		'uau-prs-softball',
+		'uau-prs-training',
+		'uau-prs-wrestling',
+		'uau-prs-baseball',
+		'uau-prs-football',
+		'uau-prs-basketball',
+		'uau-prs-football-brawler',
+		'uau-prs-sideline',
+		'uaf-prs-railfit-mens',
+		'uaf-prs-spotlight-mens',
+		'uaf-prs-curry1-mens',
+		'uaf-prs-clutchfit-mens',
+		'uaf-prs-charged247-mens',
+		'uaf-prs-highlight-mens',
+		'uaf-prs-drive4-mens',
+		'uaf-prs-drive4low-mens',
+		'uaf-prs-curry1low-mens',
+		'uaf-prs-icon-sackpack',
+		'uaf-prs-ignite-mens',
+		'uaf-prs-ignite-womens',
+		'uaf-prs-railfit-womens',
+		'uaf-prs-curry1-youth',
+		'uaf-prs-clutchfit-womens',
+		'uaf-prs-charged247-womens',
+		'uaf-prs-drive4-womens',
+		'uaf-prs-curry5-kids',
+		'uaf-prs-curry5-mens',
+		'cb-pro-chute1-bottle',
+		'cb-pro-chute20-rubberized',
+		'cb-pro-chute20-stainless-vacuum-bottle',
+		'cb-pro-chute20-vacuum-bottle',
+		'cb-pro-chute40-stainless-vacuum-bottle',
+		'cb-pro-chute40-vacuum-bottle',
+		'cb-pro-chute75-bottle',
+		'cb-pro-eddy1-bottle',
+		'cb-pro-eddy4-kids-bottle',
+		'cb-pro-eddy6-bottle',
+		'cb-pro-eddy6-insulated-bottle',
+		'cb-pro-eddy20-rubberized',
+		'cb-pro-eddy20-vacuum-bottle',
+		'cb-pro-eddy75-bottle',
+		'cb-pro-forge12-bottle',
+		'cb-pro-forge16-bottle',
+		'cb-pro-kickbak20-bottle',
+		'cb-pro-kickbak20-stainless-bottle',
+		'cb-pro-kickbak30-bottle',
+		'cb-pro-kickbak30-stainless-bottle',
+		'cb-pro-podium-bigchill-bottle',
+		'cb-pro-podium-chill-bottle',
+		'cb-pro-podium21-bottle',
+		'cb-pro-podium24-bottle',
+		'eb-pro-mens-microtherm-hood',
+		'eb-pro-mens-microtherm-nohood',
+		'eb-pro-mens-sandstone-hood',
+		'eb-pro-mens-sandstone-nohood',
+		'eb-pro-womens-microtherm-hood',
+		'eb-pro-womens-microtherm-nohood',
+		'eb-pro-womens-sandstone-hood',
+		'eb-pro-womens-sandstone-nohood']
 end

@@ -19,7 +19,9 @@ class IconBasePage < BasePage
 		"pid3000043",
 		"pid3022239",
 		"pid3022240",
-		"pid3022238"
+		"pid3022238",
+		"pid3022400",
+		"pid3022401"
 	]
 
 	$icon_handles = [	
