@@ -43,7 +43,10 @@ class IconBasePage < BasePage
 		'uaf-prs-charged247-womens',
 		'uaf-prs-drive4-womens',
 		'uaf-prs-curry5-kids',
-		'uaf-prs-curry5-mens'
+		'uaf-prs-curry5-mens',
+		'uaf-prs-hovrhavoclow-mens',
+		'uaf-prs-hovrhavoc-mens',
+		'uaf-prs-hovrhavoc-womens'
 	]
 
 	$clutchfit = {
@@ -206,10 +209,54 @@ class IconBasePage < BasePage
 		:tongue => ["White","Black","Metallic Gold","Metallic Silver","Red","Taxi","Team Royal"],
 		:midsole => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
 		:outsole => ["White","Black","Ice Blue - Translucent","Gum Rubber","Lime Fizz", "Team Royal"],
-		:logo => ["White","Black","Ice Blue - Translucent","Gum Rubber","Green Glow in the Dark"],
+		:logo => ["White","Black","Ice Blue - Translucent","Gum Rubber", "Team Royal"],#"Green Glow in the Dark"],
 		:side => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
 		:bottom => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
 		:signature => ["White","Black","Metallic Silver"]
+	}
+
+	$hovr_havoc_mid = {
+		:pattern => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Academy", "Techno Teal", "Venetian Blue", "Pixel Purple", "Flushed Pink", "Brick Red", "Ghost Gray", "Mink Gray", "Constellation Purple", "Charcoal"],
+		:solid => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy", "Upper Artwork"],
+		:tongue => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:heel => ["Black", "Steel", "Metallic Silver", "Metallic Gold", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:heel_logo => ["Black", "Steel", "Metallic Silver", "Metallic Gold", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:lining => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:lycra => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:bemis => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:midfoot => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:forefoot => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:laces => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:lace_strap => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:strap_logo => ["White", "Steel", "Black"],
+		:eyelets => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:webbing => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:midsole => ["White", "Black", "Steel"],
+		:cushion => ["White", "Steel", "Black"],
+		:mesh => ["Elemental", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:outsole => ["White", "Black", "Ice Blue - Translucent"],
+		:logo => ["Black", "White"]
+	}
+
+	$hovr_havoc = {
+		:pattern => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Academy", "Techno Teal", "Venetian Blue", "Pixel Purple", "Flushed Pink", "Brick Red", "Ghost Gray", "Mink Gray", "Constellation Purple", "Charcoal"],
+		:solid => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy", "Upper Artwork"],
+		:tongue => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:heel => ["Black", "Steel", "Metallic Silver", "Metallic Gold", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:heel_logo => ["Black", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green", "Metallic Gold", "Metallic Silver"],
+		:lining => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:lycra => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:midfoot => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:forefoot => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:laces => ["White", "Black", "Steel", "Cardinal", "Red", "Taxi", "Forest Green", "Carolina Blue", "Team Royal", "Academy"],
+		:webbing => ["Black", "White", "Team Royal", "Academy", "Taxi", "Red", "Steel", "Cardinal", "Carolina Blue", "Forest Green"],
+		:tongue_logo => ["White", "Black", "Elemental"],
+		:eyelets => ["White", "Steel", "Red", "Team Royal", "Black", "Taxi", "Carolina Blue", "Cardinal", "Forest Green", "Academy"],
+		:stitching => ["Steel", "Team Royal", "Black", "White", "Red", "Taxi", "Cardinal", "Carolina Blue", "Academy", "Forest Green"],
+		:midsole => ["Black", "White", "Steel"],
+		:mesh => ["Elemental", "Black", "Steel", "Cardinal", "Red", "Taxi", "Carolina Blue", "Team Royal", "Academy", "Forest Green"],
+		:outsole => ["Black", "White", "Ice Blue - Translucent"],
+		:logo => ["Black", "White"]
 	}
 
 

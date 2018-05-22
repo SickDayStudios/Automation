@@ -325,4 +325,80 @@ describe "ICON | Color Palette Test" do
 			expect($curry_five[:signature]).to match_array(@curry_five_kids['uaf-fea-curry5-side-tpu-sc-signature-color'])
 		end
 	end
+
+	it "HOVR HAVOC MID Mens" do
+		aggregate_failures "HOVR HAVOC MID Mens" do
+			@hovr_mid_mens = IconBasePage.localize_text_message_handles('uaf-prs-hovrhavoc-mens')
+			expect($hovr_havoc_mid[:pattern]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-upper-overlay-pattern-colors"])
+			expect($hovr_havoc_mid[:solid]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-upper-overlay-solid-color"])
+			expect($hovr_havoc_mid[:tongue]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-tongue-color"])
+			expect($hovr_havoc_mid[:heel]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-heel-color"])
+			expect($hovr_havoc_mid[:heel_logo]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-heel-logo-color"])
+			expect($hovr_havoc_mid[:lining]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-lining-color"])
+			expect($hovr_havoc_mid[:lycra]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-lycra-binding-color"])
+			expect($hovr_havoc_mid[:bemis]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-bemis-tape-color"])
+			expect($hovr_havoc_mid[:midfoot]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-midfoot-panel-color"])
+			expect($hovr_havoc_mid[:forefoot]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-forefoot-film-color"])
+			expect($hovr_havoc_mid[:laces]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-laces-color"])
+			expect($hovr_havoc_mid[:lace_strap]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-lace-strap-color"])
+			expect($hovr_havoc_mid[:strap_logo]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-lace-strap-logo-color"])
+			expect($hovr_havoc_mid[:eyelets]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-welded-eyelets-color"])
+			expect($hovr_havoc_mid[:webbing]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-lace-webbing-color"])
+			expect($hovr_havoc_mid[:midsole]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-midsole-color"])
+			expect($hovr_havoc_mid[:cushion]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-hovr-cushioning-color"])
+			expect($hovr_havoc_mid[:mesh]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-hovr-mesh-color"])
+			expect($hovr_havoc_mid[:outsole]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-outsole-color"])
+			expect($hovr_havoc_mid[:logo]).to match_array(@hovr_mid_mens["uaf-fea-hovrhavoc-mid-ua-logo-color"])
+		end
+	end
+
+	it "HOVR HAVOC MID WoMens" do
+		aggregate_failures "HOVR HAVOC MID WoMen" do
+			@hovr_mid_womens = IconBasePage.localize_text_message_handles('uaf-prs-hovrhavoc-womens')
+			expect($hovr_havoc_mid[:pattern]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-upper-overlay-pattern-colors"])
+			expect($hovr_havoc_mid[:solid]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-upper-overlay-solid-color"])
+			expect($hovr_havoc_mid[:tongue]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-tongue-color"])
+			expect($hovr_havoc_mid[:heel]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-heel-color"])
+			expect($hovr_havoc_mid[:heel_logo]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-heel-logo-color"])
+			expect($hovr_havoc_mid[:lining]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-lining-color"])
+			expect($hovr_havoc_mid[:lycra]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-lycra-binding-color"])
+			expect($hovr_havoc_mid[:bemis]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-bemis-tape-color"])
+			expect($hovr_havoc_mid[:midfoot]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-midfoot-panel-color"])
+			expect($hovr_havoc_mid[:forefoot]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-forefoot-film-color"])
+			expect($hovr_havoc_mid[:laces]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-laces-color"])
+			expect($hovr_havoc_mid[:lace_strap]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-lace-strap-color"])
+			expect($hovr_havoc_mid[:strap_logo]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-lace-strap-logo-color"])
+			expect($hovr_havoc_mid[:eyelets]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-welded-eyelets-color"])
+			expect($hovr_havoc_mid[:webbing]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-lace-webbing-color"])
+			expect($hovr_havoc_mid[:midsole]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-midsole-color"])
+			expect($hovr_havoc_mid[:cushion]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-hovr-cushioning-color"])
+			expect($hovr_havoc_mid[:mesh]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-hovr-mesh-color"])
+			expect($hovr_havoc_mid[:outsole]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-outsole-color"])
+			expect($hovr_havoc_mid[:logo]).to match_array(@hovr_mid_womens["uaf-fea-hovrhavoc-mid-ua-logo-color"])
+		end
+	end
+
+	it "HOVR HAVOC" do 
+		aggregate_failures "HOVR HAVOC" do
+			@hovr_mens = IconBasePage.localize_text_message_handles('uaf-prs-hovrhavoclow-mens')
+			expect($hovr_havoc[:pattern]).to match_array(@hovr_mens["uaf-fea-hovrhavoc-upper-overlay-pattern-colors"])
+			expect($hovr_havoc[:solid]).to match_array(@hovr_mens["uaf-fea-hovrhavoc-upper-overlay-solid-color"])
+			expect($hovr_havoc[:tongue]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-tongue-color"])
+			expect($hovr_havoc[:heel]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-heel-color"])
+			expect($hovr_havoc[:heel_logo]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-heel-logo-color"])
+			expect($hovr_havoc[:lining]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-lining-color"])
+			expect($hovr_havoc[:lycra]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-lycra-binding-color"])
+			expect($hovr_havoc[:midfoot]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-midfoot-panel-color"])
+			expect($hovr_havoc[:forefoot]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-forefoot-film-color"])
+			expect($hovr_havoc[:laces]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-laces-color"])
+			expect($hovr_havoc[:webbing]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-lace-webbing-color"])
+			expect($hovr_havoc[:tongue_logo]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-tongue-tab-logo-color"])
+			expect($hovr_havoc[:eyelets]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-welded-eyelets-color"])
+			expect($hovr_havoc[:stitching]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-stitching-color"])
+			expect($hovr_havoc[:midsole]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-midsole-color"])
+			expect($hovr_havoc[:mesh]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-hovr-mesh-color"])
+			expect($hovr_havoc[:outsole]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-outsole-color"])
+			expect($hovr_havoc[:logo]).to match_array(@hovr_mens["uaf-fea-hovrhavoclow-ua-logo-color"])
+		end
+	end
 end

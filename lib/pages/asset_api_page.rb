@@ -96,7 +96,7 @@ class AssetAPI < BasePage
 				end
 			end
 		end
-		@options
+		@options.reject { |r| r.include?("raster") || r == "" }
 	end
 
 	# =>  grabs all scenefile keys in the 'connections' hash
@@ -105,13 +105,13 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
+				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "" || key.include?("raster") )
 				else
 					@connections.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].keys)
 				end
 			end
 		end
-		@connections
+		@connections.reject { |r| r.include?("raster") || r == "" }
 	end
 
 	# =>  grabs all scenefile values in the 'connections' hash
@@ -120,13 +120,14 @@ class AssetAPI < BasePage
 		scene_productgroups_keys(scene).each do |group|
 			list = (@specs["productGroups"]["#{group}"]["productOptions"].keys)
 			list.each do |key|
-				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
+				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == '' || key.kind_of?(Array) || key.include?("raster"))
+				elsif @specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].values == ""
 				else
 					@values.push(@specs["productGroups"]["#{group}"]["productOptions"]["#{key}"]["connections"].values)
 				end
 			end
 		end
-		@values
+		@values.reject { |r| r.include?("raster") || r == "" }
 	end
 
 	# => grabs all scenefile key:value pairs in the 'connections' hash
@@ -315,7 +316,10 @@ class AssetAPI < BasePage
 		'uaf-prs-charged247-womens',
 		'uaf-prs-drive4-womens',
 		'uaf-prs-curry5-kids',
-		'uaf-prs-curry5-mens'
+		'uaf-prs-curry5-mens',
+		'uaf-prs-hovrhavoclow-mens',
+		'uaf-prs-hovrhavoc-mens',
+		'uaf-prs-hovrhavoc-womens'
 	]
 
 	$cb_scene_files = [

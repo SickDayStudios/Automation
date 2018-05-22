@@ -160,6 +160,14 @@ end
 
 # => GKELITE 
 
+RSpec::Core::RakeTask.new(:gk_spec, [:environment, :browser]) do |t, args|
+	ENV['ENVIRONMENT'] = args[:environment]
+	ENV['BROWSER'] = args[:browser]
+	ENV['SITE'] = 'gk-elite'
+	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
+	t.pattern = Dir.glob('spec/tests/gkelite/gk_spec_spec.rb')
+end
+
 
 RSpec::Core::RakeTask.new(:gk_opts, [:environment, :browser]) do |t, args|
 	ENV['ENVIRONMENT'] = args[:environment]

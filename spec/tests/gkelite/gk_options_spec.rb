@@ -81,6 +81,10 @@ describe "Fabrics & Colors" do
 									puts "#{vals}"
 									puts ""
 								else
+									if (($gk_palette_colors[key] - palette[key]).empty? == false)
+										puts "#{id} | #{key} | Palette Inconsistency"
+										expect($gk_palette_colors[key]).to match_array(palette[key])
+									end
 									expect($gk_palette_colors[key]).to match_array(palette[key])
 								end
 							end

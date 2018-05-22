@@ -56,6 +56,21 @@ class GKShopifyBasePage < BasePage
 		$driver.goto $base_url + "/collections/#{id}?view=product"
 	end
 
+	def spec_data(valueGroup)
+		case ENV['ENVIRONMENT'].to_sym
+		when :test then @data = JSON.parse(RestClient.get("https://test.spectrumcustomizer.com/api/settings/valuegroup/#{valueGroup}"))
+		when :staging then @data = JSON.parse(RestClient.get("https://staging.spectrumcustomizer.com/api/settings/valuegroup/#{valueGroup}"))
+		when :prod then @data = JSON.parse(RestClient.get("https://api.spectrumcustomizer.com/api/settings/valuegroup/#{valueGroup}"))
+		end
+		@hash = Hash.new{ |hsh,key| hsh[key] = [] }
+		@data['valueMaps'].each do |vm|
+			@hash.store(vm['inputValue'],vm['outputValueFormat'])
+		end
+		return @hash
+	end
+
+	$embellishment_msg = {"J14"=>"Area A Neckline", "9SP00203"=>"Body, not availble if there is a 3/4 sleeve", "J1131"=>"Along Style Lines Area A", "9SP00204"=>"Body, not availble if there is a 3/4 sleeve", "J1133"=>"Along Style Lines Area B", "9SQ01184"=>"Center Chest", "J1134"=>"Along Style Lines Area E", "9SQ01582"=>"Body, not availble if there is a 3/4 sleeve", "T11273"=>"Sleeves and Shoulders", "9SQ01601"=>"Body, not availble if there is a 3/4 sleeve", "T1128"=>"Center Chest", "9SQ03598"=>"Center Front Body", "9SQ05894"=>"Front Center Chest", "9SQ05895"=>"Front Center Chest", "9SQ08634"=>"Center Chest: Area B", "J1001"=>"Along Style Lines Area B", "J1002"=>"Along Style Lines Area B", "J1003"=>"Along Style Lines Area B", "J1010"=>"Area B Along Style Lines", "J1022"=>"Along Style Lines Area B/ Inner Sleeve", "J10223"=>"Along Style Lines Area B/ Inner Sleeve", "J1023"=>"Along Style Lines Area A", "J1029"=>"Area A/C Along Style Lines", "J1030"=>"Area A Along Style Lines", "J1031"=>"Area D Along Style Lines", "J1032"=>"Along Style Lines Area B", "J1033"=>"Along Style Lines Area A", "J1109"=>"Along Style Lines Area A", "J1110"=>"Along Style Lines Area D", "J1112"=>"Along Style Lines Area A", "J1113"=>"Along Style Lines Area A", "J1114"=>"Along Style Lines Area C", "J1115"=>"Along Style Lines Area A", "J1117"=>"Area B Along Style Lines", "J1118"=>"Area B", "J1119"=>"Area B Along Style Lines", "J1120"=>"Area B Along Style Lines", "J1121"=>"Area C Along Style Lines", "J1122"=>"Area B", "J1123"=>"Area D", "J1124"=>"Area B Along Style Lines", "J1125"=>"Area C", "J1128"=>"Area C", "J1129"=>"Area C", "J1135"=>"Along Styles Lines Area A", "J1138"=>"Along Style Lines Area A", "J1139"=>"Along Style Lines Area 1", "J1140"=>"Along Style Lines Area B", "J1141"=>"Along Style Lines Area C/D", "J1142"=>"Along Style Lines Area B", "J1143"=>"Alogn Style Lines Area 2", "J1144"=>"Along Front Style Lines Area A", "J1145"=>"Along Lower Front and Back Style Lines Area A", "J1146"=>"Area C", "J1148"=>"Along Style Lines Area B", "J1149"=>"Along Upper Style Lines Area A", "J1150"=>"Along Style Lines Area B", "J1151"=>"Along Style Lines", "J1152"=>"Along Style Designs", "J1156"=>"Along Style Lines Areas C/D", "J1157"=>"Along Style Lines Area A", "J1158"=>"Along Style Lines Area B", "J1159"=>"Along Style Lines Area A", "J1160"=>"Along Style Line Center Chest", "J1161"=>"Along Style Lines Area B", "J1162"=>"Along Style Lines Area C", "J1163"=>"Along Style Lines Area A Upper Chest", "J1166"=>"Along Style Lines Area B", "J1167"=>"Along Style Lines", "J1170"=>"Area B Along Style Lines", "J1171"=>"Area B Along Style Lines", "J1172"=>"Area A Along Style Lines", "J1173"=>"LOC2: Neckline", "J1177"=>"Area B Along Style Lines", "J1178"=>"Along Style Lines Area A Upper Chest", "J1179"=>"Along Style Lines Area A", "J1180"=>"Along Style Lines Area A", "J1181"=>"Along Style Lines Area B", "J1182"=>"Around Style Design", "J1189"=>"Area A", "J1190"=>"Area B", "J1191"=>"Set 2", "J1192"=>"Area B", "J1193"=>"Area A", "J1194"=>"AREA A", "J1223"=>"AREA A", "J1224"=>"AREA A", "J1225"=>"AREA B", "J1226"=>"AREA C", "J1227"=>"SET 2", "J1228"=>"Area A", "J1229"=>"Area A/B", "J1230"=>"Area C", "J1231"=>"SET 1", "J1232"=>"SET 2", "J1233"=>"AREA D", "J1234"=>"Necklline", "J1235"=>"AREA B", "J1236"=>"SET 2", "J1237"=>"SET 2", "J1238"=>"AREA A", "J1239"=>"AREA 1", "J1240"=>"AREA D", "J1241"=>"AREA C", "J12413"=>"AREA C", "J1242"=>"SET 2", "J1243"=>"AREA B", "J1244"=>"AREA C", "J1245"=>"AREA B", "J1246"=>"AREA B", "J1247"=>"AREA A", "J1248"=>"SET 2", "J1249"=>"Area A", "J1250"=>"Area A", "J1251"=>"Area B", "J1252"=>"Area A", "J1253"=>"Area C Along Style Lines", "J1254"=>"Area B Along Style Lines", "J1255"=>"AREA A", "J1256"=>"SET 1", "J1257"=>"SET 2", "J1258"=>"SET 1", "J1259"=>"AREA C/D", "J1260"=>"AREA B", "J1261"=>"AREA B", "J1262"=>"AREA B", "J1263"=>"AREA A", "J1264"=>"SET 2", "J1265"=>"AREA 1", "J1266"=>"SET 1", "J1267"=>"SET 3", "J1268"=>"Area A", "J1269"=>"Area C", "J1270"=>"AREA A", "J1271"=>"SET 2", "J1272"=>"Set 1", "J1273"=>"Area B", "J1274"=>"SET 1", "J1275"=>"Area B", "J1276"=>"Set 1", "J1277"=>"AREA A", "J1278"=>"AREA 1/C", "J1280"=>"Along Area A", "J1367"=>"Set 1", "J250"=>"LOC14: Cuffs", "J2503"=>"LOC14: Cuffs", "J535"=>"Area A", "J651"=>"Area A", "J662"=>"Area A Along Style Lines", "J690"=>"Area 1 Neckline", "J691"=>"Area C Along Style Lines", "J750"=>"Area B Along Style Lines", "J751"=>"Area A/B Along Style Lines", "J755"=>"Area B Along Style Lines", "J756"=>"Area A/B Along Style Lines", "J757"=>"Area A Along Style Lines", "J828"=>"Area C", "J829"=>"Area B/C/D Along Style Lines", "J830"=>"Area C Along Style Lines", "J831"=>"Area A", "J839"=>"Area A", "J840"=>"Area C/D/E", "J867"=>"Along Style Lines Area B", "J868"=>"Upper Bodice", "J869"=>"Upper Bodice and Sleevs", "J878"=>"Along Style Lines Area A", "J879"=>"Along Style Lines Area C", "J916"=>"Area 1", "J917"=>"Area 2", "J918"=>"Area B Along Style Lines", "J942"=>"Area A", "J947"=>"Along Style Lines Area A", "J948"=>"Along Style Lines Area B", "J980"=>"Area B Along Style Lines", "J981"=>"Area A/C", "J982"=>"Area D Along Style Lines", "J985"=>"Area B Along Style Lines", "J986"=>"Area C", "J992"=>"Area B", "J993"=>"Area A Front Side Body", "J994"=>"Area B", "T1004"=>"Sleeves", "T10043"=>"Sleeves", "T1005"=>"Front Body", "T1006"=>"Front Body", "T1010"=>"LOC04: Front Center Chest", "T1011"=>"Sleeves", "T10113"=>"Sleeves", "T1012"=>"Sleeves", "T10123"=>"Sleeves", "T1072"=>"Sleeves and Shoulders", "T10723"=>"Sleeves and Shoulders", "T1073"=>"Chest", "T1074"=>"Chest", "T1075"=>"Sleeves and Shoulders", "T10753"=>"Sleeves and Shoulders", "T1080"=>"Sleeves", "T10803"=>"Sleeves", "T1081"=>"LOC04: Front Center Chest", "T1082"=>"Sleeves", "T10823"=>"Sleeves", "T1083"=>"Sleeves", "T10833"=>"Sleeves", "T1084"=>"Sleeves", "T10843"=>"Sleeves", "T1090"=>"Area B", "T1091"=>"Area A", "T1092"=>"Area A", "T10923"=>"Area A", "T1093"=>"Area A", "T10933"=>"Area A", "T1094"=>"Area B", "T1100"=>"Area A", "T11003"=>"Area A", "T1101"=>"Area B", "T1102"=>"Area A", "T11023"=>"Area A", "T1103"=>"Area A", "T1104"=>"Area A", "T1105"=>"Area B", "T1107"=>"Area B", "T1108"=>"Area A", "T1109"=>"Area A", "T1116"=>"Sleeves", "T11163"=>"Sleeves", "T1117"=>"Area B Front Body", "T1118"=>"Sleeves", "T11183"=>"Sleeves", "T1119"=>"Area B Front Body", "T1121"=>"Area A", "T1122"=>"Area B", "T1123"=>"Area B Front Body", "T1127"=>"Sleeves and Shoulders", "T1129"=>"Center Chest", "T1130"=>"Sleeves", "T1131"=>"Center Chest", "T1132"=>"Sleeves", "T1135"=>"Along Styles Lines Area A", "T1136"=>"Center Chest", "T1137"=>"Sleeves", "T1140"=>"Center Chest", "T1141"=>"Sleeves", "T11413"=>"Sleeves", "T1147"=>"Upper Bodice", "T1148"=>"Center Body", "T1149"=>"Along Design Lines", "T1150"=>"Sleeves and Upper Bodice", "T1151"=>"Sleeves and Upper Bodice", "T1152"=>"Front Body", "T1153"=>"Front Body", "T1154"=>"Center Chest and Sleeves", "T11543"=>"Center Chest and Sleeves", "T1155"=>"Center Body", "T1156"=>"Sleeves and Shoulders", "T11563"=>"Sleeves and Shoulders", "T1158"=>"Sleeves and Shoulders", "T11583"=>"Sleeves and Shoulders", "T1159"=>"Sleeves and Upper Bodice", "T11593"=>"Sleeves and Upper Bodice", "T1160"=>"Upper Chest", "T1161"=>"Sleeves and Upper Bodice", "T11613"=>"Sleeves and Upper Bodice", "T1166"=>"Along Style Lines", "T1167"=>"Shoulders", "T1168"=>"Shoulders", "T1171"=>"Sleeves and Upper bodice", "T11713"=>"Sleeves and Upper bodice", "T1172"=>"Sleeves and Upper bodice", "T11723"=>"Sleeves and Upper bodice", "T1173"=>"Body", "T1184"=>"Sleeves", "T11843"=>"Sleeves", "T1185"=>"Body", "T1186"=>"Sleeves", "T11863"=>"Sleeves", "T1187"=>"Center Chest", "T1188"=>"Center Chest", "T1189"=>"Along Style Lines Area C", "T11893"=>"Along Style Lines Area C", "T1190"=>"Center Chest", "T1191"=>"Along style Lines Area C", "T1193"=>"Center Chest", "T1194"=>"Sleeves and Shoulders", "T11943"=>"Sleeves and Shoulders", "T1195"=>"Center Chest", "T1196"=>"Sleeves and Shoulders", "T11963"=>"Sleeves and Shoulders", "T1197"=>"Center Chest", "T1202"=>"Front body", "T1203"=>"Sleeves and Upper bodice", "T12033"=>"Sleeves and Upper bodice", "T1205"=>"Sleeves and Upper bodice", "T12053"=>"Sleeves and Upper bodice", "T1206"=>"Front Body", "T1207"=>"Sleeves", "T12073"=>"Sleeves", "T1209"=>"Sleeves", "T12093"=>"Sleeves", "T1210"=>"Left Front Body", "T1213"=>"Front Body", "T1214"=>"Area A & Sleeves", "T1215"=>"Area A & Sleeves", "T1217"=>"Front Body", "T1218"=>"Front Body", "T1219"=>"Sleeves", "T12193"=>"Sleeves", "T1220"=>"Back", "T1221"=>"Front Body & Sleeves", "T1222"=>"Front Body & Sleeves", "T1237"=>"Area A", "T12373"=>"Area A", "T1238"=>"Front Body", "T1239"=>"Area A", "T12393"=>"Area A", "T1240"=>"Area B", "T1243"=>"Center Body", "T1244"=>"Sleeves", "T1245"=>"Center Body", "T1246"=>"Sleeves", "T1249"=>"Around Style Design", "T1250"=>"Front Body", "T1251"=>"Front Body", "T12513"=>"Front Body", "T1252"=>"Front Body", "T1253"=>"Sleeves", "T12533"=>"Sleeves", "T1254"=>"Area A", "T1256"=>"Lower Sleeves", "T1257"=>"Lower Sleeves", "T1267"=>"Set 1", "T12673"=>"Set 1", "T1268"=>"Set 2", "T1269"=>"Set 1", "T12693"=>"Set 1", "T1270"=>"Set 2", "T1271"=>"SET 1", "T12713"=>"SET 1", "T1272"=>"SET 1", "T12723"=>"SET 1", "T1273"=>"Set 1", "T12733"=>"Set 1", "T1274"=>"Set 2", "T1275"=>"Set 1", "T12753"=>"Set 1", "T1276"=>"Set 2", "T1277"=>"SET 1", "T12773"=>"SET 1", "T1278"=>"SET 1", "T12783"=>"SET 1", "T1279"=>"Front Center Chest", "T1280"=>"SET 1", "T12803"=>"SET 1", "T1281"=>"AREA B", "T1282"=>"SET 1", "T12823"=>"SET 1", "T1295"=>"SET 1", "T12953"=>"SET 1", "T1296"=>"SET 1", "T12963"=>"SET 1", "T1297"=>"SET 2", "T1298"=>"SET 2", "T1299"=>"SET 1", "T12993"=>"SET 1", "T1300"=>"SET 2", "T1301"=>"SET 2", "T1302"=>"SET 1", "T13023"=>"SET 1", "T1303"=>"SET 1", "T1304"=>"SET 2", "T1305"=>"SET 1", "T13053"=>"SET 1", "T1306"=>"SET 2", "T13063"=>"SET 2", "T1307"=>"SET 1", "T13073"=>"SET 1", "T1308"=>"SET 3", "T13083"=>"SET 3", "T1309"=>"SET 3", "T13093"=>"SET 3", "T1310"=>"SET 1", "T1311"=>"SET 2", "T1312"=>"SET 3", "T13123"=>"SET 3", "T1313"=>"Set 1", "T13133"=>"Set 1", "T1314"=>"Set 2", "T1315"=>"Area B", "T1316"=>"Set 1", "T13163"=>"Set 1", "T1317"=>"Set 2", "T1318"=>"SET 1", "T1319"=>"SET 3", "T1320"=>"SET 2", "T1321"=>"SET 1", "T13213"=>"SET 1", "T1322"=>"SET 1", "T13223"=>"SET 1", "T1323"=>"SET 3", "T1324"=>"SET 1", "T13243"=>"SET 1", "T1325"=>"SET 2", "T1326"=>"SET 3", "T1327"=>"SET 1", "T13273"=>"SET 1", "T1328"=>"SET 3", "T1329"=>"SET 1", "T13293"=>"SET 1", "T1330"=>"SET 2", "T1331"=>"SET 1", "T13313"=>"SET 1", "T1332"=>"SET 2", "T13323"=>"SET 2", "T1333"=>"SET 2", "T1334"=>"SET 1", "T1335"=>"SET 2", "T13353"=>"SET 2", "T1336"=>"SET 2", "T13363"=>"SET 2", "T1337"=>"SET 1", "T13373"=>"Sleeves", "T1338"=>"SET 2", "T1339"=>"SET 1", "T1340"=>"AREA B", "T13403"=>"AREA B", "T1341"=>"SET 1", "T1342"=>"SET 1", "T1343"=>"SET 3", "T13433"=>"SET 3", "T1344"=>"SET 1", "T1345"=>"SET 2", "T1346"=>"SET 1", "T1347"=>"SET 3", "T13473"=>"SET 3", "T1348"=>"SET 1", "T13483"=>"SET 1", "T1349"=>"SET 2", "T1350"=>"SET 1", "T13503"=>"SET 1", "T1351"=>"SET 1", "T13513"=>"SET 1", "T1352"=>"SET 2", "T1353"=>"SET 1", "T1354"=>"SET 2", "T1355"=>"SET 1", "T1356"=>"SET 2", "T1357"=>"SET 1", "T1358"=>"SET 2", "T13583"=>"SET 2", "T1359"=>"SET 2", "T13593"=>"SET 2", "T1360"=>"SET 1", "T1362"=>"Set 2", "T1363"=>"Set 1", "T13633"=>"Set 1", "T1364"=>"Set 2", "T1365"=>"Set 1", "T13653"=>"Set 1", "T1366"=>"Sleeves", "T13663"=>"Sleeves", "T1367"=>"Chest", "T1368"=>"Chest", "T1369"=>"Sleeves", "T13693"=>"Sleeves", "T1370"=>"Body", "T1371"=>"Front Body", "T1372"=>"SET 1", "T1373"=>"SET 1", "T13733"=>"SET 1", "T1374"=>"SET 1", "T13743"=>"SET 1", "T1375"=>"SET 2", "T1376"=>"SET 1", "T13763"=>"SET 1", "T1377"=>"SET 2", "T1378"=>"SET 1", "T13783"=>"SET 1", "T1379"=>"SET 1", "T1380"=>"SET 2", "T13803"=>"SET 2", "T1381"=>"SET 1", "T1382"=>"SET 2", "T13823"=>"SET 2", "T1383"=>"SET 1", "T1384"=>"SET 2", "T13843"=>"SET 2", "T1385"=>"SET 1", "T1386"=>"SET 2", "T13863"=>"SET 2", "T1387"=>"SET 2", "T13873"=>"SET 2", "T1388"=>"SET 1", "T1389"=>"SET 1", "T1390"=>"SET 2", "T13903"=>"SET 2", "T1391"=>"SET 2", "T13913"=>"SET 2", "T1392"=>"SET 1", "T1393"=>"SET 1", "T13933"=>"SET 1", "T1394"=>"SET1", "T13943"=>"SET 1", "T1395"=>"SET 2", "T1396"=>"SET 2", "T1397"=>"SET 1", "T13973"=>"SET 1", "T1398"=>"AREA A", "T1399"=>"SET 2", "J1402"=>"SET 1", "J14023"=>"SET 1", "T13993"=>"SET 2", "T1400"=>"SET 2", "T14003"=>"SET 2", "T1401"=>"SET 3", "T1402"=>"SET 1", "T1403"=>"SET 3", "T1404"=>"Set 1", "T1405"=>"Set 2", "T14053"=>"Set 2", "T1406"=>"Set 1", "T1407"=>"Set 2", "T14073"=>"Set 2", "T1408"=>"Set 1", "T1409"=>"SET 1", "T14093"=>"SET 1", "T1410"=>"SET 2", "T1411"=>"SET 1", "T14113"=>"SET 1", "T1412"=>"SET 1", "T14123"=>"SET 1", "T1413"=>"Set 2", "T14133"=>"Set 2", "T1414"=>"Set 2", "T14143"=>"Set 2", "T1415"=>"Set 1", "T1416"=>"SET 2", "T1417"=>"AREA C", "T1418"=>"SET 2", "T14183"=>"SET 2", "T1419"=>"SET 1", "T1420"=>"SET 2", "T14203"=>"SET 2", "T1421"=>"Set 1", "T14213"=>"Set 1", "T1422"=>"Set 2", "T1423"=>"Set 2", "T1424"=>"Area C", "T1425"=>"Set 2", "T1426"=>"SET 1", "T1427"=>"SET 1", "T14273"=>"SET 1", "T1428"=>"AREA A", "T1429"=>"SET 1", "T1430"=>"Upper Front Shoulders & Sleeves", "T14303"=>"Upper Front Shoulders & Sleeves", "T1431"=>"Neckline", "T1432"=>"Chest", "T1433"=>"Upper Front Shoulders & Sleeves", "T14333"=>"Upper Front Shoulders & Sleeves", "T1434"=>"Chest", "T249"=>"LOC14: Cuffs", "T2493"=>"LOC14: Cuffs", "T468"=>"Area B", "T4683"=>"Area B", "T469"=>"Front Body", "T471"=>"Front Body", "T472"=>"Front Body", "T553"=>"Front Body", "T574"=>"Front Body", "T580"=>"Sleeves", "T5803"=>"Sleeves", "T620"=>"Area A", "T6203"=>"Area A", "T621"=>"Front Body & Upper Back", "T622"=>"Area B", "T623"=>"Area A Along Style Lines", "T625"=>"Area B", "T6253"=>"Area B", "T630"=>"Sleeves and Shoulders", "T6303"=>"Sleeves and Shoulders", "T631"=>"Front Body", "T632"=>"Front & Back Body", "T669"=>"Sleeves", "T6693"=>"Sleeves", "T675"=>"Center Body", "T679"=>"Center chest", "T721"=>"Area A", "T7213"=>"Area A", "T722"=>"Area A", "T7223"=>"Area A", "T723"=>"Front Body & Center Back", "T724"=>"Area B", "T7243"=>"Area B", "T728"=>"LOC14: Cuffs", "T7283"=>"LOC14: Cuffs", "T743"=>"Area A Left Sleeve", "T7433"=>"Area A Left Sleeve", "T746"=>"Front Body", "T777"=>"Front Body", "T780"=>"Upper Bodice", "T7803"=>"Upper Bodice", "T781"=>"Chest", "T782"=>"Chest", "T797"=>"Sleeves", "T7973"=>"Sleeves", "T838"=>"Front Body", "T839"=>"Sleeves and Upper Body", "T840"=>"Front Chest", "T841"=>"Sleeves and Upper Body", "T848"=>"Area A", "T849"=>"Area B/Right Sleeve", "T858"=>"Sleeves", "T8583"=>"Sleeves", "T860"=>"LOC14: Cuffs", "T8603"=>"LOC14: Cuffs", "T869"=>"Area B Front Body", "T870"=>"Area A", "T904"=>"Chest", "T905"=>"Sleeves", "T908"=>"Front Center Chest", "T909"=>"Sleeves", "T9093"=>"Sleeves", "T931"=>"Center Chest", "T934"=>"Sleeves", "T9343"=>"Sleeves", "T935"=>"Area B", "T936"=>"Sleeves", "T9363"=>"Sleeves", "T941"=>"Area A", "T9413"=>"Area A", "T942"=>"Area A", "T9423"=>"Area A", "T943"=>"Area B", "T954"=>"Area B", "T955"=>"Sleeves", "T9553"=>"Sleeves", "T956"=>"Sleeves", "T9563"=>"Sleeves", "T961"=>"Sleeves", "T9613"=>"Sleeves", "T962"=>"Along Style Lines Area B", "T975"=>"Sleeves", "T9753"=>"Sleeves", "T976"=>"Area B", "T996"=>"Center Chest", "T997"=>"Along Style Lines Area A", "T9973"=>"Along Style Lines Area A", "T998"=>"Center Chest"}
+
 	$gk_palette_colors = {
 		"gk-slg-armourfuse-palette" => [],
 		"gk-slg-armourfuse-none-palette" => [],
@@ -103,7 +118,7 @@ class GKShopifyBasePage < BasePage
 			"gk-sel-nylspanfoil-76a-blackmatte-mystique-color",
 			"gk-sel-nylspanfoil-39b-spearmintpearl-mystique-color",
 			"gk-sel-nylspanfoil-40b-lilacpearl-mystique-color",
-			# "gk-sel-nylspanfoil-41b-rosepearl-mystique-color",
+			"gk-sel-nylspanfoil-41b-rosepearl-mystique-color",
 			"gk-sel-nylspanfoil-42b-smokepearl-mystique-color",
 			"gk-sel-nylspanfoil-f24-gold-mystique-color",
 			"gk-sel-nylspanfoil-752-columbiablue-mystique-color",
@@ -138,7 +153,7 @@ class GKShopifyBasePage < BasePage
 			"gk-sel-nylspanfoil-n98-kellygreen-mystique-color",
 			"gk-sel-nylspanfoil-p30-sangria-mystique-color",
 			"gk-sel-nylspanfoil-q18-imperialpurple-mystique-color",
-			"gk-sel-nylspanfoil-u73-neonyellow-mystique-color",
+			# "gk-sel-nylspanfoil-u73-neonyellow-mystique-color",
 			"gk-sel-nylspanfoil-v04-passion-mystique-color",
 			"gk-sel-nylspanfoil-v05-sterlingsilver-mystique-color",
 			"gk-sel-nylspanfoil-x77-neoncoral-mystique-color",
@@ -148,7 +163,8 @@ class GKShopifyBasePage < BasePage
 			"gk-sel-nylspanfoil-52a-fluorescentpink-mystique-color",
 			"gk-sel-nylspanfoil-53a-fluorescentorange-mystique-color",
 			"gk-sel-nylspanfoil-54a-fluorescentyellow-mystique-color"
-			# "gk-sel-nylspanfoil-u78-neonlime-mystique-color", "gk-sel-nylspanfoil-u79-neonpink-msytique-color"
+			# "gk-sel-nylspanfoil-u79-neonpink-mystique-color",
+			# "gk-sel-nylspanfoil-u78-neonlime-mystique-color"
 		],
 		"gk-slg-cheer-holo-palette" => [
 			"gk-sel-holo-48b-merlot-sparkle-color",
@@ -228,7 +244,7 @@ class GKShopifyBasePage < BasePage
 			"gk-sel-nylspan-v83-wysteria-color",
 			"gk-sel-nylspan-016-black-color",
 			"gk-sel-nylspan-y06-steel-color",
-			# "gk-sel-nylspan-70a-cobalt-color", 
+			"gk-sel-nylspan-70a-cobalt-color", 
 			"gk-sel-nylspan-u81-powderkegblue-color"
 		],
 		"gk-slg-cheer-mesh-palette" => [
@@ -254,10 +270,10 @@ class GKShopifyBasePage < BasePage
 			"gk-sel-techmesh-n43-neongreen-color",
 			"gk-sel-techmesh-041-charcoal-color",
 			"gk-sel-techmesh-854-neonyellow-color",
-			"gk-sel-techmesh-175-turquoise-color",
-			"gk-sel-techmesh-824-magenta-color"
+			"gk-sel-techmesh-175-turquoise-color"
+			#{}"gk-sel-techmesh-824-magenta-color"
 		],
-		"gk-slg-cheer-meshfoil-palette" => ["gk-sel-meshfoil-43b-black-color",  "gk-sel-meshfoil-44b-white-color"], #"gk-sel-meshfoil-46b-spearmint-color", "gk-sel-meshfoil-47b-amethyst-color" "gk-sel-meshfoil-45b-nude-color",
+		"gk-slg-cheer-meshfoil-palette" => ["gk-sel-meshfoil-43b-black-color", "gk-sel-meshfoil-45b-nude-color","gk-sel-meshfoil-46b-spearmint-color", "gk-sel-meshfoil-47b-amethyst-color", "gk-sel-meshfoil-44b-white-color"], #
 		
 		"gk-slg-cheer-crystals-palette" => [
 			"gk-sel-crystals-010-clear-color",
@@ -285,9 +301,11 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-crystals-192-sangria-color",
 				"gk-sel-crystals-140-pink-color",
 				"gk-sel-crystals-u09-peacock-brilliance-color",
+				"gk-sel-crystals-70b-perdoit-shimmer-color",
 				"gk-sel-crystals-48a-dark-brilliance-color",
-				# "gk-sel-crystals-066-garnet-color", "gk-sel-crystals-69b-turquoise-shimmer-color", "gk-sel-crystals-70b-perdoit-shimmer-color",
-				# "gk-sel-crystals-49a-white-pearl-color"
+				# "gk-sel-crystals-066-garnet-color", 
+				# "gk-sel-crystals-69b-turquoise-shimmer-color", 
+				"gk-sel-crystals-49a-white-pearl-color"
 			],
 
 			"gk-slg-cheer-embroidery-palette" => [
@@ -317,13 +335,13 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-embroidery-j81-wildpink-color",
 				"gk-sel-embroidery-y07-flamingo-color",
 				"gk-sel-embroidery-18a-cheekypink-color",
-				# "gk-sel-embroidery-076-grey-color", 
+				"gk-sel-embroidery-076-grey-color", 
 				"gk-sel-embroidery-100-lilac-color"
 			],
 			"gk-slg-drytech-ombre-palette" => ["gk-sel-drytech-ombre-015-berry-color","gk-sel-drytech-ombre-160-royal-color","gk-sel-drytech-ombre-124-orange-color", "gk-sel-drytech-ombre-148-purple-color", "gk-sel-drytech-ombre-016-black-color", "gk-sel-drytech-ombre-024-brown-color", "gk-sel-drytech-ombre-065-forestgreen-color", "gk-sel-drytech-ombre-n31-carbon-color", "gk-sel-drytech-ombre-n43-neongreen-color", "gk-sel-drytech-ombre-p47-redhot-color", "gk-sel-drytech-ombre-w71-truenavy-color","gk-sel-drytech-ombre-067-evergreen-color", "gk-sel-drytech-ombre-068-gold-color","gk-sel-drytech-ombre-079-graphite-color", "gk-sel-drytech-ombre-088-kellygreen-color","gk-sel-drytech-ombre-b57-vegasgold-color", "gk-sel-drytech-ombre-c36-columbiablue-color", "gk-sel-drytech-ombre-824-magenta-color", "gk-sel-drytech-ombre-854-neonyellow-color","gk-sel-drytech-ombre-110-maroon-color", "gk-sel-drytech-ombre-116-navy-color","gk-sel-drytech-ombre-180-white-color", "gk-sel-drytech-ombre-483-yellow-color", "gk-sel-drytech-ombre-165-sapphire-color", "gk-sel-drytech-ombre-175-turquoise-color" ],
 
 			"gk-slg-cheer-holotek-palette" => [
-				# "gk-sel-holotek-73b-aqua-color", 
+				"gk-sel-holotek-73b-aqua-color", 
 				"gk-sel-holotek-74b-honeydew-color", 
 				"gk-sel-holotek-75b-strawberry-color", 
 				"gk-sel-holotek-76b-peach-color",
@@ -419,14 +437,14 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-inktek-y03-teal-color",
 				"gk-sel-inktek-y04-blue-ribbon-color",
 				"gk-sel-inktek-y02-cardinal-color",
-				# "gk-sel-inktek-73b-aqua-color",
+				"gk-sel-inktek-73b-aqua-color",
 				"gk-sel-inktek-74b-honeydew-color",
 				"gk-sel-inktek-75b-strawberry-color",
 				"gk-sel-inktek-76b-peach-color"
 			],
 
 			"gk-slg-cheer-submesh-palette" => [
-				# "gk-sel-submesh-73b-aqua-color", 
+				"gk-sel-submesh-73b-aqua-color", 
 				"gk-sel-submesh-74b-honeydew-color", 
 				"gk-sel-submesh-75b-strawberry-color", 
 				"gk-sel-submesh-76b-peach-color",
@@ -523,7 +541,7 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-inktek-y03-teal-color",
 				"gk-sel-inktek-y04-blue-ribbon-color",
 				"gk-sel-inktek-y02-cardinal-color",
-				# "gk-sel-inktek-73b-aqua-color",
+				"gk-sel-inktek-73b-aqua-color",
 				"gk-sel-inktek-74b-honeydew-color",
 				"gk-sel-inktek-75b-strawberry-color",
 				"gk-sel-inktek-76b-peach-color"],
@@ -574,7 +592,7 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-inktek-ombre-y03-teal-color",
 					"gk-sel-inktek-ombre-y04-blue-ribbon-color",
 					"gk-sel-inktek-ombre-y02-cardinal-color",
-					# "gk-sel-inktek-ombre-73b-aqua-color",
+					"gk-sel-inktek-ombre-73b-aqua-color",
 					"gk-sel-inktek-ombre-74b-honeydew-color",
 					"gk-sel-inktek-ombre-75b-strawberry-color",
 					"gk-sel-inktek-ombre-76b-peach-color"
@@ -625,13 +643,13 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-inktek-ombre-y03-teal-color",
 					"gk-sel-inktek-ombre-y04-blue-ribbon-color",
 					"gk-sel-inktek-ombre-y02-cardinal-color",
-					# "gk-sel-inktek-ombre-73b-aqua-color",
+					"gk-sel-inktek-ombre-73b-aqua-color",
 					"gk-sel-inktek-ombre-74b-honeydew-color",
 					"gk-sel-inktek-ombre-75b-strawberry-color",
 					"gk-sel-inktek-ombre-76b-peach-color"
 				],
 				"gk-slg-subtechmesh-palette" => [
-					# "gk-sel-submesh-73b-aqua-color", 
+					"gk-sel-submesh-73b-aqua-color", 
 					"gk-sel-submesh-74b-honeydew-color", 
 					"gk-sel-submesh-75b-strawberry-color", 
 					"gk-sel-submesh-76b-peach-color",
@@ -691,8 +709,8 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-techmesh-ombre-n43-neongreen-color",
 					"gk-sel-techmesh-ombre-041-charcoal-color",
 					"gk-sel-techmesh-ombre-854-neonyellow-color",
-					"gk-sel-techmesh-ombre-175-turquoise-color",
-					"gk-sel-techmesh-ombre-824-magenta-color"
+					"gk-sel-techmesh-ombre-175-turquoise-color"
+					# "gk-sel-techmesh-ombre-824-magenta-color"
 				],
 
 				"gk-slg-techmesh-palette" => [
@@ -704,8 +722,8 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-techmesh-n43-neongreen-color",
 					"gk-sel-techmesh-041-charcoal-color",
 					"gk-sel-techmesh-854-neonyellow-color",
-					"gk-sel-techmesh-175-turquoise-color",
-					"gk-sel-techmesh-824-magenta-color"
+					"gk-sel-techmesh-175-turquoise-color"
+					# "gk-sel-techmesh-824-magenta-color"
 				],
 
 				"gk-slg-imprinting-palette" => [
@@ -777,7 +795,7 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-nylspanfoil-76a-blackmatte-mystique-color",
 					"gk-sel-nylspanfoil-39b-spearmintpearl-mystique-color",
 					"gk-sel-nylspanfoil-40b-lilacpearl-mystique-color",
-					# "gk-sel-nylspanfoil-41b-rosepearl-mystique-color",
+					"gk-sel-nylspanfoil-41b-rosepearl-mystique-color",
 					"gk-sel-nylspanfoil-42b-smokepearl-mystique-color",
 					"gk-sel-nylspanfoil-f24-gold-mystique-color",
 					"gk-sel-nylspanfoil-752-columbiablue-mystique-color",
@@ -812,7 +830,7 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-nylspanfoil-n98-kellygreen-mystique-color",
 					"gk-sel-nylspanfoil-p30-sangria-mystique-color",
 					"gk-sel-nylspanfoil-q18-imperialpurple-mystique-color",
-					"gk-sel-nylspanfoil-u73-neonyellow-mystique-color",
+					# "gk-sel-nylspanfoil-u73-neonyellow-mystique-color",
 					"gk-sel-nylspanfoil-v04-passion-mystique-color",
 					"gk-sel-nylspanfoil-v05-sterlingsilver-mystique-color",
 					"gk-sel-nylspanfoil-x77-neoncoral-mystique-color",
@@ -822,10 +840,11 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-nylspanfoil-52a-fluorescentpink-mystique-color",
 					"gk-sel-nylspanfoil-53a-fluorescentorange-mystique-color",
 					"gk-sel-nylspanfoil-54a-fluorescentyellow-mystique-color"
-					# "gk-sel-nylspanfoil-u78-neonlime-mystique-color", "gk-sel-nylspanfoil-u79-neonpink-msytique-color"				
+					# "gk-sel-nylspanfoil-u79-neonpink-mystique-color",
+					# "gk-sel-nylspanfoil-u78-neonlime-mystique-color" 				
 				],
 
-				"gk-slg-meshfoil-palette" => ["gk-sel-meshfoil-43b-black-color",  "gk-sel-meshfoil-44b-white-color"], #, "gk-sel-meshfoil-46b-spearmint-color", "gk-sel-meshfoil-47b-amethyst-color","gk-sel-meshfoil-45b-nude-color",
+				"gk-slg-meshfoil-palette" => ["gk-sel-meshfoil-43b-black-color","gk-sel-meshfoil-45b-nude-color", "gk-sel-meshfoil-44b-white-color", "gk-sel-meshfoil-46b-spearmint-color", "gk-sel-meshfoil-47b-amethyst-color"], #,
 
 				"gk-slg-mesh-palette" => [
 					"gk-sel-mesh-027-nude-color",
@@ -869,7 +888,7 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-embroidery-j81-wildpink-color",
 					"gk-sel-embroidery-y07-flamingo-color",
 					"gk-sel-embroidery-18a-cheekypink-color",
-					# "gk-sel-embroidery-076-grey-color", 
+					"gk-sel-embroidery-076-grey-color", 
 					"gk-sel-embroidery-100-lilac-color"
 				],
 
@@ -894,7 +913,7 @@ class GKShopifyBasePage < BasePage
 					"gk-sel-nylspan-v83-wysteria-color",
 					"gk-sel-nylspan-016-black-color",
 					"gk-sel-nylspan-y06-steel-color",
-					# "gk-sel-nylspan-70a-cobalt-color", 
+					"gk-sel-nylspan-70a-cobalt-color", 
 					"gk-sel-nylspan-u81-powderkegblue-color"
 				],
 
@@ -942,7 +961,7 @@ class GKShopifyBasePage < BasePage
 				],
 
 				"gk-slg-polytek-palette" => [
-					# "gk-sel-polytek-73b-aqua-color", 
+					"gk-sel-polytek-73b-aqua-color", 
 					"gk-sel-polytek-74b-honeydew-color", 
 					"gk-sel-polytek-75b-strawberry-color", 
 					"gk-sel-polytek-76b-peach-color",
@@ -994,7 +1013,7 @@ class GKShopifyBasePage < BasePage
 				],
 
 				"gk-slg-polytek-none-palette" => [
-					# "gk-sel-polytek-73b-aqua-color", 
+					"gk-sel-polytek-73b-aqua-color", 
 					"gk-sel-polytek-74b-honeydew-color", 
 					"gk-sel-polytek-75b-strawberry-color", 
 					"gk-sel-polytek-76b-peach-color",
@@ -1072,7 +1091,8 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-crystals-140-pink-color",
 				"gk-sel-crystals-u09-peacock-brilliance-color",
 				"gk-sel-crystals-48a-dark-brilliance-color",
-				# "gk-sel-crystals-066-garnet-color", "gk-sel-crystals-69b-turquoise-shimmer-color", "gk-sel-crystals-70b-perdoit-shimmer-color",
+				"gk-sel-crystals-70b-perdoit-shimmer-color",
+				# "gk-sel-crystals-066-garnet-color", "gk-sel-crystals-69b-turquoise-shimmer-color",
 				"gk-sel-crystals-49a-white-pearl-color"
 			],
 
@@ -1112,12 +1132,12 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-nylspan-ombre-v83-wysteria-color",
 				"gk-sel-nylspan-ombre-016-black-color",
 				"gk-sel-nylspan-ombre-y06-steel-color", 
-				# "gk-sel-nylspan-ombre-70a-cobalt-color", 
+				"gk-sel-nylspan-ombre-70a-cobalt-color", 
 				"gk-sel-nylspan-ombre-u81-powderkegblue-color"
 			],
 
 			"gk-slg-submesh-palette" => [
-				# "gk-sel-submesh-73b-aqua-color", 
+				"gk-sel-submesh-73b-aqua-color", 
 				"gk-sel-submesh-74b-honeydew-color", 
 				"gk-sel-submesh-75b-strawberry-color", 
 				"gk-sel-submesh-76b-peach-color",
@@ -1169,7 +1189,7 @@ class GKShopifyBasePage < BasePage
 			], 
 
 			"gk-slg-submesh-none-palette" => [
-				# "gk-sel-submesh-73b-aqua-color", 
+				"gk-sel-submesh-73b-aqua-color", 
 				"gk-sel-submesh-74b-honeydew-color", 
 				"gk-sel-submesh-75b-strawberry-color", 
 				"gk-sel-submesh-76b-peach-color",
@@ -1221,7 +1241,7 @@ class GKShopifyBasePage < BasePage
 			], 
 
 			"gk-slg-submesh-ombre-none-palette" => [
-				# "gk-sel-submesh-ombre-73b-aqua-color", 
+				"gk-sel-submesh-ombre-73b-aqua-color", 
 				"gk-sel-submesh-ombre-74b-honeydew-color", 
 				"gk-sel-submesh-ombre-75b-strawberry-color", 
 				"gk-sel-submesh-ombre-76b-peach-color",
@@ -1273,7 +1293,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-submesh-ombre-palette" => [
-				# "gk-sel-submesh-ombre-73b-aqua-color", 
+				"gk-sel-submesh-ombre-73b-aqua-color", 
 				"gk-sel-submesh-ombre-74b-honeydew-color", 
 				"gk-sel-submesh-ombre-75b-strawberry-color", 
 				"gk-sel-submesh-ombre-76b-peach-color",
@@ -1324,7 +1344,7 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-submesh-ombre-y04-blue-ribbon-color"
 			],
 
-			"gk-slg-meshfoil-ombre-palette" => ["gk-sel-meshfoil-ombre-43b-black-color",  "gk-sel-meshfoil-ombre-44b-white-color"], #"gk-sel-meshfoil-ombre-45b-nude-color",, "gk-sel-meshfoil-ombre-46b-spearmint-color", "gk-sel-meshfoil-ombre-47b-amethyst-color"
+			"gk-slg-meshfoil-ombre-palette" => ["gk-sel-meshfoil-ombre-43b-black-color", "gk-sel-meshfoil-ombre-45b-nude-color", "gk-sel-meshfoil-ombre-46b-spearmint-color", "gk-sel-meshfoil-ombre-47b-amethyst-color", "gk-sel-meshfoil-ombre-44b-white-color"], #
 
 			"gk-slg-mesh-ombre-palette" => [
 				"gk-sel-mesh-ombre-027-nude-color",
@@ -1345,7 +1365,7 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-nylspanfoil-ombre-76a-blackmatte-mystique-color",
 				"gk-sel-nylspanfoil-ombre-39b-spearmintpearl-mystique-color",
 				"gk-sel-nylspanfoil-ombre-40b-lilacpearl-mystique-color",
-				# "gk-sel-nylspanfoil-ombre-41b-rosepearl-mystique-color",
+				"gk-sel-nylspanfoil-ombre-41b-rosepearl-mystique-color",
 				"gk-sel-nylspanfoil-ombre-42b-smokepearl-mystique-color",
 				"gk-sel-nylspanfoil-ombre-f24-gold-mystique-color",
 				"gk-sel-nylspanfoil-ombre-752-columbiablue-mystique-color",
@@ -1380,7 +1400,7 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-nylspanfoil-ombre-n98-kellygreen-mystique-color",
 				"gk-sel-nylspanfoil-ombre-p30-sangria-mystique-color",
 				"gk-sel-nylspanfoil-ombre-q18-imperialpurple-mystique-color",
-				"gk-sel-nylspanfoil-ombre-u73-neonyellow-mystique-color",
+				# "gk-sel-nylspanfoil-ombre-u73-neonyellow-mystique-color",
 				"gk-sel-nylspanfoil-ombre-u78-neonlime-mystique-color",
 				"gk-sel-nylspanfoil-ombre-u79-neonpink-msytique-color",
 				"gk-sel-nylspanfoil-ombre-v04-passion-mystique-color",
@@ -1424,7 +1444,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-holotek-ombre-palette" => [
-				# "gk-sel-holotek-ombre-73b-aqua-color", 
+				"gk-sel-holotek-ombre-73b-aqua-color", 
 				"gk-sel-holotek-ombre-74b-honeydew-color", 
 				"gk-sel-holotek-ombre-75b-strawberry-color", 
 				"gk-sel-holotek-ombre-76b-peach-color",
@@ -1476,7 +1496,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-sublimation-palette" => [
-				# "gk-sel-sub-73b-aqua-color", 
+				"gk-sel-sub-73b-aqua-color", 
 				"gk-sel-sub-74b-honeydew-color", 
 				"gk-sel-sub-75b-strawberry-color", 
 				"gk-sel-sub-76b-peach-color",
@@ -1528,7 +1548,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-sublimation-color-palette" => [
-				# "gk-sel-sub-73b-aqua-color", 
+				"gk-sel-sub-73b-aqua-color", 
 				"gk-sel-sub-74b-honeydew-color", 
 				"gk-sel-sub-75b-strawberry-color", 
 				"gk-sel-sub-76b-peach-color",
@@ -1580,7 +1600,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-polytek-ombre-palette" => [
-				# "gk-sel-polytek-ombre-73b-aqua-color", 
+				"gk-sel-polytek-ombre-73b-aqua-color", 
 				"gk-sel-polytek-ombre-74b-honeydew-color", 
 				"gk-sel-polytek-ombre-75b-strawberry-color", 
 				"gk-sel-polytek-ombre-76b-peach-color",
@@ -1632,7 +1652,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-subfuse-palette"=>[
-				# "gk-sel-subfuse-73b-aqua-color", 
+				"gk-sel-subfuse-73b-aqua-color", 
 				"gk-sel-subfuse-74b-honeydew-color", 
 				"gk-sel-subfuse-75b-strawberry-color", 
 				"gk-sel-subfuse-76b-peach-color",
@@ -1684,7 +1704,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-subfuse-none-palette"=>[
-				# "gk-sel-subfuse-73b-aqua-color", 
+				"gk-sel-subfuse-73b-aqua-color", 
 				"gk-sel-subfuse-74b-honeydew-color", 
 				"gk-sel-subfuse-75b-strawberry-color", 
 				"gk-sel-subfuse-76b-peach-color",
@@ -1736,7 +1756,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-subfuse-ombre-palette"=>[
-				# "gk-sel-subfuse-ombre-73b-aqua-color", 
+				"gk-sel-subfuse-ombre-73b-aqua-color", 
 				"gk-sel-subfuse-ombre-74b-honeydew-color", 
 				"gk-sel-subfuse-ombre-75b-strawberry-color", 
 				"gk-sel-subfuse-ombre-76b-peach-color",
@@ -1788,7 +1808,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-holotek-palette" => [
-				# "gk-sel-holotek-73b-aqua-color", 
+				"gk-sel-holotek-73b-aqua-color", 
 				"gk-sel-holotek-74b-honeydew-color", 
 				"gk-sel-holotek-75b-strawberry-color", 
 				"gk-sel-holotek-76b-peach-color",
@@ -1840,7 +1860,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-holotek-none-palette" => [
-				# "gk-sel-holotek-73b-aqua-color", 
+				"gk-sel-holotek-73b-aqua-color", 
 				"gk-sel-holotek-74b-honeydew-color", 
 				"gk-sel-holotek-75b-strawberry-color", 
 				"gk-sel-holotek-76b-peach-color",
@@ -1892,7 +1912,7 @@ class GKShopifyBasePage < BasePage
 			],
 
 			"gk-slg-holotek-ombre-none-palette" => [
-				# "gk-sel-holotek-ombre-73b-aqua-color", 
+				"gk-sel-holotek-ombre-73b-aqua-color", 
 				"gk-sel-holotek-ombre-74b-honeydew-color", 
 				"gk-sel-holotek-ombre-75b-strawberry-color", 
 				"gk-sel-holotek-ombre-76b-peach-color",
