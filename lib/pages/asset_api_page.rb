@@ -91,7 +91,7 @@ class AssetAPI < BasePage
 			list = @specs["productGroups"]["#{group}"]["productOptions"].keys
 			list.each do |key|
 				if (key.include?("mannequin") || key.include?("extra") || key.include?("scene.json") || key.include?("dummy") || key.nil? || key.empty? || key == "")
-				else
+				else	
 					@options.push(key)
 				end
 			end
@@ -266,6 +266,39 @@ class AssetAPI < BasePage
 		end
 	end
 
+	def self.product_data_selection_values(product)
+		@values = Array.new
+		@data = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"))
+		@manifest = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/gk-elite/#{product}/config/product.manifest"))
+		# if (@manifest['shaders']['instances']['models'].keys) == nil
+		# 	puts "#{product} >>> Check Manifest Structure"
+		# else
+			@data['contents']['rootFeature']['childFeatures'].each do |cf|
+				cf['childFeatures'].each do |ccf|
+					ccf['selectionGroup']['selections'].each do |sgs|
+						@values.push(sgs['value'])
+					end
+					ccf['childFeatures'].each do |cccf|
+						cccf['selectionGroup']['selections'].each do |sgsels|
+							@values.push(sgsels['value'])
+						end
+					end
+					ccf['featureSelectionGroups'].each do |fsg|
+						fsg['thenSelectionGroup']['selections'].each do |tsgs|
+							@values.push(tsgs['value'])
+						end
+					end
+				end
+			end
+			@values.reject! { |r| r.include?("#") || r.empty? || r.nil? || r == "1" || r == 'inktek' || r == "tricot" || r == "forward" || r == "reverse" || r == "2" || r == "3" || r == "blue" || r == "blues" || r == "reds" || r == "black white" || r == "greens" || r == "orange" || r == "patriotic" || r == "pink" || r == "purple" || r.include?('-') || r.include?('nylpf') || r.include?('mesh') || r.include?('hologram') || r.include?('velvet') || r.include?('embroidery') || r.include?('crystals') || r.include?('drytech') || r.include?('holotek') || r.include?('subfuse') || r.include?('sublimated') || r.include?('polytek')}
+			@models.reject! { |r| r.include?('jewel') || r.include?('sequin') || r.include?('spangle')  }
+			return [@models.sort,@values.sort]
+		# end
+	end
+
+
+
+
 	$sr_scene_files = ['shed-rain']
 
 	$bm_scene_files = ['bmk-prs-knives']
@@ -275,10 +308,11 @@ class AssetAPI < BasePage
 	$gk_scene_files = [
 		'gk-prs-bottoms',
 		'gk-prs-cheer',
-		'gk-prs-gym',
-		'ua-prs-cheer',
-		'ua-prs-gym',
-		'ua-prs-warmups'
+		'gk-prs-warmups',
+		'gk-prs-gym'
+		# 'ua-prs-cheer',
+		# 'ua-prs-gym',
+		# 'ua-prs-warmups'
 	]
 
 	$uau_scene_files = [
@@ -286,14 +320,14 @@ class AssetAPI < BasePage
 		'uau-prs-track',
 		'uau-prs-soccer',
 		'uau-prs-football',
-		'uau-prs-baseball',
-		'uau-prs-basketball',
-		'uau-prs-hockey',
-		'uau-prs-lacrosse',
-		'uau-prs-softball',
+		# 'uau-prs-baseball',
+		# 'uau-prs-basketball',
+		# 'uau-prs-hockey',
+		# 'uau-prs-lacrosse',
+		# 'uau-prs-softball',
 		'uau-prs-training',
-		'uau-prs-wrestling',
-		'uau-prs-football-brawler',
+		# 'uau-prs-wrestling',
+		# 'uau-prs-football-brawler',
 		'uau-prs-sideline'
 	]
 
@@ -365,21 +399,22 @@ class AssetAPI < BasePage
 		'gk-prs-bottoms',
 		'gk-prs-cheer',
 		'gk-prs-gym',
-		'ua-prs-cheer',
-		'ua-prs-gym',
-		'ua-prs-warmups',
-		'uau-prs-hockey',
-		'uau-prs-lacrosse',
+		'gk-prs-warmups',
+		# 'ua-prs-cheer',
+		# 'ua-prs-gym',
+		# 'ua-prs-warmups',
+		# 'uau-prs-hockey',
+		# 'uau-prs-lacrosse',
 		'uau-prs-volleyball',
 		'uau-prs-track',
 		'uau-prs-soccer',
-		'uau-prs-softball',
+		# 'uau-prs-softball',
 		'uau-prs-training',
-		'uau-prs-wrestling',
-		'uau-prs-baseball',
+		# 'uau-prs-wrestling',
+		# 'uau-prs-baseball',
 		'uau-prs-football',
 		'uau-prs-basketball',
-		'uau-prs-football-brawler',
+		# 'uau-prs-football-brawler',
 		'uau-prs-sideline',
 		'uaf-prs-railfit-mens',
 		'uaf-prs-spotlight-mens',

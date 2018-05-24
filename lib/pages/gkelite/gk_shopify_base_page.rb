@@ -302,10 +302,10 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-crystals-140-pink-color",
 				"gk-sel-crystals-u09-peacock-brilliance-color",
 				"gk-sel-crystals-70b-perdoit-shimmer-color",
-				"gk-sel-crystals-48a-dark-brilliance-color",
+				"gk-sel-crystals-48a-dark-brilliance-color"
 				# "gk-sel-crystals-066-garnet-color", 
 				# "gk-sel-crystals-69b-turquoise-shimmer-color", 
-				"gk-sel-crystals-49a-white-pearl-color"
+				# "gk-sel-crystals-49a-white-pearl-color"
 			],
 
 			"gk-slg-cheer-embroidery-palette" => [
@@ -1769,7 +1769,7 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-subfuse-ombre-y24-coral-color",
 				"gk-sel-subfuse-ombre-y29-crimson-color",
 				"gk-sel-subfuse-ombre-y28-red-color",
-				"gk-sel-subfuse-ombre-y25-cosmos-color",
+				"gk-sel-subfuse-ombre-y25-cosmo-color",
 				"gk-sel-subfuse-ombre-y55-neon-pink-color",
 				"gk-sel-subfuse-ombre-y26-candy-apple-color",
 				"gk-sel-subfuse-ombre-y31-pink-color",
@@ -1792,7 +1792,7 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-subfuse-ombre-y44-turquoise-color",
 				"gk-sel-subfuse-ombre-y46-evergreen-color",
 				"gk-sel-subfuse-ombre-y45-spruce-color",
-				"gk-sel-subfuse-ombre-y47-kelly-green-color",
+				"gk-sel-subfuse-ombre-y47-kelly-color",
 				"gk-sel-subfuse-ombre-y58-key-lime-color",
 				"gk-sel-subfuse-ombre-y48-gray-color",
 				"gk-sel-subfuse-ombre-y49-flannel-gray-color",
@@ -1803,7 +1803,7 @@ class GKShopifyBasePage < BasePage
 				"gk-sel-subfuse-ombre-y59-aluminum-color",
 				"gk-sel-subfuse-ombre-180-white-color",
 				"gk-sel-subfuse-ombre-y03-teal-color",
-				"gk-sel-subfuse-ombre-y04-blueribbon-color",
+				"gk-sel-subfuse-ombre-y04-blue-ribbon-color",
 				"gk-sel-subfuse-ombre-y02-cardinal-color"
 			],
 
@@ -2093,6 +2093,8 @@ class GKShopifyBasePage < BasePage
 			"https://www.gkelite.com/apps/storage/images/project/style/swu10.svg",
 			"https://www.gkelite.com/apps/storage/images/project/style/swu11.svg"
 		]
+
+		
 
 
 		$gk_products = ["8788","8731","8787","8253","8252","2008","4854","4875","4882","4885","4883","4888s","4892s","4893s","4894s","4895","4896s","7551","7557","7560","7561","7562","7567","7578","7585","7593","7596","7597","7598","7599","7600","7601","7603","7604","7605","7606","7607","7608","7609","7610","7611s","7613s","7616s","7617","7618","7619","7620","7621","7622","7623","7624","7625","7626","7627","7628","7629","7630","7631","9541","9585","9587","9591","9599","9600","9601","9602","9603","9604","9605","9608","9609","9610","9611","9612","9613","9614","9615s","9616","9617","9618","9619","9620","8777","9594","wl355","wl371","wl374","wl381","wl382","wl389","wl397","wl440","wl428","1103s","1817","1853","1873","1933","1939","1946","1954","1960","1964","1966","1974s","1101s","1102s","1104s","1105s","1106s","1108s","1107s","1109s","1110s","1112","1113","1965","1111","1846","1818","6108","6109","6110","6111","6112","6113","6114","6115","6502","6506","6508","6710","6711","6713","6714","6501","6503","6701","6712s","6509s","6104","6116","6626","6654","6655","6656","6628","6627","4885S","7560S","7562S","7578S","7597S","7600S","7601S","7603S","7604S","7605S","7606S","7607S","7609S","7621S","7622S"]

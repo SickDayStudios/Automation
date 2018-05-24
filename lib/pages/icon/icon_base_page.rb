@@ -203,15 +203,15 @@ class IconBasePage < BasePage
 
 	$curry_five = {
 		:pattern => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Academy", "Venetian Blue", "Brick Red", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Charcoal"],
-		:solid => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Academy", "Venetian Blue", "Brick Red", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Charcoal", "Side Panel Artwork"],
-		:upper => ["White","Black","Team Royal","Red","Taxi"],
-		:laces => ["White","Black","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
-		:tongue => ["White","Black","Metallic Gold","Metallic Silver","Red","Taxi","Team Royal"],
-		:midsole => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
-		:outsole => ["White","Black","Ice Blue - Translucent","Gum Rubber","Lime Fizz", "Team Royal"],
-		:logo => ["White","Black","Ice Blue - Translucent","Gum Rubber", "Team Royal"],#"Green Glow in the Dark"],
-		:side => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
-		:bottom => ["White","Black","Metallic Silver","Metallic Gold","Elemental","Cardinal","Red","Taxi","Forest Green","Carolina Blue","Team Royal","Academy"],
+		:solid => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Academy", "Venetian Blue", "Brick Red", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Charcoal", "Upper - Overlay Artwork"],
+		:upper => ["White","Black","Team Royal","Taxi"],
+		:laces => ["White","Black","Red","Taxi","Team Royal","Academy","Ghost Gray"],
+		:tongue => ["Academy","White","Black","Metallic Gold","Metallic Silver","Red","Taxi","Team Royal"],
+		:midsole => ["White","Black","Metallic Silver","Team Royal"],
+		:outsole => ["White","Black","Ice Blue - Translucent", "Team Royal"],
+		:logo => ["White","Black","Ice Blue - Translucent","Team Royal"],
+		:side => ["White","Black","Metallic Silver","Metallic Gold","Red","Taxi","Team Royal","Academy"],
+		:bottom => ["White","Black","Metallic Silver","Metallic Gold","Red","Taxi","Team Royal","Academy"],
 		:signature => ["White","Black","Metallic Silver"]
 	}
 
