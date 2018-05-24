@@ -268,8 +268,8 @@ class AssetAPI < BasePage
 
 	def self.product_data_selection_values(product)
 		@values = Array.new
-		@data = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"))
-		@manifest = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/gk-elite/#{product}/config/product.manifest"))
+		@data = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"){|response, request, result| response })
+		@manifest = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/gk-elite/#{product}/config/product.manifest"){|response, request, result| response })
 		# if (@manifest['shaders']['instances']['models'].keys) == nil
 		# 	puts "#{product} >>> Check Manifest Structure"
 		# else

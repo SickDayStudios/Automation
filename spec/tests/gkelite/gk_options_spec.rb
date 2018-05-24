@@ -7,6 +7,9 @@ describe "Fabrics & Colors" do
 		@page = CustomizerPage.new
 		@handles = Array.new
 		options = AssetAPI.scene_productoptions_keys('gk-prs-gym')
+		options << AssetAPI.scene_productoptions_keys('gk-prs-cheer')
+		options << AssetAPI.scene_productoptions_keys('gk-prs-bottoms')
+		options << AssetAPI.scene_productoptions_keys('gk-prs-warmups')
 		# options.push(AssetAPI.scene_productoptions_keys('gk-prs-cheer'))
 		options.flatten
 		options.each do |opts|
