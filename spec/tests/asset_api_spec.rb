@@ -89,44 +89,71 @@ describe "SceneFile Connections Test" do
 # 		end
 # 	end
 
-	describe "| Client: GK-Elite |" do
+describe "| Client: GK-Elite |" do
 
-		before(:all) do
-			@v = Array.new
-			@k = Array.new
+	before(:all) do
+		@v = Array.new
+		@k = Array.new
+	end
+
+	after(:all) do
+		if @v.nil?
+			puts ""
+			puts ">>  0 Discrepancies found in Product Data Connections!!"
+		else
+			puts ""
+			puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
 		end
-
-		after(:all) do
-			if @v.nil?
-				puts ""
-				puts ">>  0 Discrepancies found in Product Data Connections!!"
-			else
-				puts ""
-				puts ">>  #{@v.uniq.length} Assets with SceneFile['connections'].values not found in Product Data Connections"
-			end
-			if @k.nil?
-				puts ""
-				puts ">>  0 Discrepancies found in Manifest Data!!"
-				puts ""
-			else
-				puts ""
-				puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'].keys not found in Manifest"
-				puts ""
-			end
+		if @k.nil?
+			puts ""
+			puts ">>  0 Discrepancies found in Manifest Data!!"
+			puts ""
+		else
+			puts ""
+			puts ">>  #{@k.uniq.length} Assets with SceneFile['connections'].keys not found in Manifest"
+			puts ""
 		end
+	end
 
-		$gk_scene_files.each do |scene|
-			it "GK-Elite | #{ENV['ENVIRONMENT']} | #{scene} | Test Complete" do
-				aggregate_failures "#{scene}" do
-					AssetAPI.scene_productoptions_keys(scene).each do |product|
+	$gk_scene_files.each do |scene|
+		it "GK-Elite | #{ENV['ENVIRONMENT']} | #{scene} | Test Complete" do
+			aggregate_failures "#{scene}" do
+				AssetAPI.scene_productoptions_keys(scene).each do |product|
+					@data_values = Array.new
+					@data = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"){|response, request, result| response })
+					@manifest = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/gk-elite/#{product}/config/product.manifest"){|response, request, result| response })
+					if @manifest['shaders'].nil?
+					elsif @manifest['shaders']['instances'].nil?
+					elsif @manifest['shaders']['instances']['models'].nil?
+					else
 						aggregate_failures "#{product}" do
-							compare = AssetAPI.product_data_selection_values(product)
-							expect(compare[0]).to match_array(compare[1])
+							@manifest_models = @manifest['shaders']['instances']['models'].keys
+							@data['contents']['rootFeature']['childFeatures'].each do |cf|
+								cf['childFeatures'].each do |ccf|
+									ccf['selectionGroup']['selections'].each do |sgs|
+										@data_values.push(sgs['value'])
+									end
+									ccf['childFeatures'].each do |cccf|
+										cccf['selectionGroup']['selections'].each do |sgsels|
+											@data_values.push(sgsels['value'])
+										end
+									end
+									ccf['featureSelectionGroups'].each do |fsg|
+										fsg['thenSelectionGroup']['selections'].each do |tsgs|
+											@data_values.push(tsgs['value'])
+										end
+									end
+								end
+							end
+							@data_values.reject! { |r| r.include?("#") || r.empty? || r.nil? || r == "1" || r == 'inktek' || r == "tricot" || r == "forward" || r == "reverse" || r == "2" || r == "3" || r == "blue" || r == "blues" || r == "reds" || r == "black white" || r == "greens" || r == "orange" || r == "patriotic" || r == "pink" || r == "purple" || r.include?('-') || r.include?('nylpf') || r.include?('mesh') || r.include?('hologram') || r.include?('velvet') || r.include?('embroidery') || r.include?('crystals') || r.include?('drytech') || r.include?('holotek') || r.include?('subfuse') || r.include?('sublimated') || r.include?('polytek')}
+							@manifest_models.reject! { |r| r.include?('jewel') || r.include?('sequin') || r.include?('spangle')  }
+							expect(@data_values).to match_array(@manifest_models)
 						end
 					end
 				end
 			end
 		end
+	end
 
 
 		# $gk_scene_files.each do |scene|

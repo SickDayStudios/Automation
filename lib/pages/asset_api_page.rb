@@ -266,35 +266,35 @@ class AssetAPI < BasePage
 		end
 	end
 
-	def self.product_data_selection_values(product)
-		@values = Array.new
-		@data = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"){|response, request, result| response })
-		@manifest = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/gk-elite/#{product}/config/product.manifest"){|response, request, result| response })
-		# if (@manifest['shaders']['instances']['models'].keys) == nil
-		# 	puts "#{product} >>> Check Manifest Structure"
-		# else
-			@data['contents']['rootFeature']['childFeatures'].each do |cf|
-				cf['childFeatures'].each do |ccf|
-					ccf['selectionGroup']['selections'].each do |sgs|
-						@values.push(sgs['value'])
-					end
-					ccf['childFeatures'].each do |cccf|
-						cccf['selectionGroup']['selections'].each do |sgsels|
-							@values.push(sgsels['value'])
-						end
-					end
-					ccf['featureSelectionGroups'].each do |fsg|
-						fsg['thenSelectionGroup']['selections'].each do |tsgs|
-							@values.push(tsgs['value'])
-						end
-					end
-				end
-			end
-			@values.reject! { |r| r.include?("#") || r.empty? || r.nil? || r == "1" || r == 'inktek' || r == "tricot" || r == "forward" || r == "reverse" || r == "2" || r == "3" || r == "blue" || r == "blues" || r == "reds" || r == "black white" || r == "greens" || r == "orange" || r == "patriotic" || r == "pink" || r == "purple" || r.include?('-') || r.include?('nylpf') || r.include?('mesh') || r.include?('hologram') || r.include?('velvet') || r.include?('embroidery') || r.include?('crystals') || r.include?('drytech') || r.include?('holotek') || r.include?('subfuse') || r.include?('sublimated') || r.include?('polytek')}
-			@models.reject! { |r| r.include?('jewel') || r.include?('sequin') || r.include?('spangle')  }
-			return [@models.sort,@values.sort]
-		# end
-	end
+	# def self.product_data_selection_values(product)
+	# 	@values = Array.new
+	# 	@data = JSON.parse(RestClient.get("http://test.spectrumcustomizer.com/api/products/#{product}"){|response, request, result| response })
+	# 	@manifest = JSON.parse(RestClient.get("http://madetoordertest.blob.core.windows.net/webgl/client/gk-elite/#{product}/config/product.manifest"){|response, request, result| response })
+	# 	# if (@manifest['shaders']['instances']['models'].keys) == nil
+	# 	# 	puts "#{product} >>> Check Manifest Structure"
+	# 	# else
+	# 		@data['contents']['rootFeature']['childFeatures'].each do |cf|
+	# 			cf['childFeatures'].each do |ccf|
+	# 				ccf['selectionGroup']['selections'].each do |sgs|
+	# 					@values.push(sgs['value'])
+	# 				end
+	# 				ccf['childFeatures'].each do |cccf|
+	# 					cccf['selectionGroup']['selections'].each do |sgsels|
+	# 						@values.push(sgsels['value'])
+	# 					end
+	# 				end
+	# 				ccf['featureSelectionGroups'].each do |fsg|
+	# 					fsg['thenSelectionGroup']['selections'].each do |tsgs|
+	# 						@values.push(tsgs['value'])
+	# 					end
+	# 				end
+	# 			end
+	# 		end
+	# 		@values.reject! { |r| r.include?("#") || r.empty? || r.nil? || r == "1" || r == 'inktek' || r == "tricot" || r == "forward" || r == "reverse" || r == "2" || r == "3" || r == "blue" || r == "blues" || r == "reds" || r == "black white" || r == "greens" || r == "orange" || r == "patriotic" || r == "pink" || r == "purple" || r.include?('-') || r.include?('nylpf') || r.include?('mesh') || r.include?('hologram') || r.include?('velvet') || r.include?('embroidery') || r.include?('crystals') || r.include?('drytech') || r.include?('holotek') || r.include?('subfuse') || r.include?('sublimated') || r.include?('polytek')}
+	# 		@models.reject! { |r| r.include?('jewel') || r.include?('sequin') || r.include?('spangle')  }
+	# 		return [@models.sort,@values.sort]
+	# 	# end
+	# end
 
 
 
