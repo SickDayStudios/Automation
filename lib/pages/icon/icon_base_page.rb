@@ -153,8 +153,8 @@ class IconBasePage < BasePage
 	}
 
 	$mens_ignite = {
-		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Academy", "Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
-		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template","Academy", "Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
+		:pattern => ["Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Academy", "Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
+		:solid => ["Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template","Academy", "Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
 		:strap => ["White","Black","Steel","Cardinal","Red","Team Orange","Steeltown Gold","Forest Green","Team Royal","Midnight Navy"],
 		:strap_logo => ["White","Black","Metallic Silver","Steel","Cardinal","Red","Team Orange","Steeltown Gold","Metallic Gold","Forest Green","Team Royal","Midnight Navy"],
 		:lining => ["White","Black","Steel","Cardinal","Red","Team Orange","Steeltown Gold","Forest Green","Team Royal","Midnight Navy"],
@@ -162,8 +162,8 @@ class IconBasePage < BasePage
 	}
 
 	$womens_ignite = {
-		:pattern => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Academy", "Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
-		:solid => ["White","Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template","Academy", "Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
+		:pattern => ["Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","Academy", "Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
+		:solid => ["Black","Elemental","Aluminum","Steel","Tin","Graphite","Maroon","Cardinal","Red","Tropic Pink","Vermillion","Team Orange","Texas Orange","Dark Orange","Cleveland Brown","Steeltown Gold","Taxi","Tokyo Lemon","Team Kelly Green","Downtown Green","Forest Green","Desert Sky","Carolina Blue","St. Tropez","Jupiter Blue","Team Royal","Midnight Navy","Purple","Merit Purple","Baja","UA Ignite Footbed Artwork Template","Academy", "Brick Red", "Charcoal", "Flushed Pink", "Ghost Gray", "Mink Gray", "Pixel Purple", "Techno Teal", "Venetian Blue"],
 		:strap => ["White","Black","Aluminum","Tropic Pink","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
 		:strap_logo => ["White","Black","Aluminum","Metallic Silver","Tropic Pink","Metallic Gold","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
 		:lining => ["White","Black","Aluminum","Tropic Pink","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
@@ -208,7 +208,7 @@ class IconBasePage < BasePage
 		:laces => ["White","Black","Red","Taxi","Team Royal","Academy","Ghost Gray"],
 		:tongue => ["Academy","White","Black","Metallic Gold","Metallic Silver","Red","Taxi","Team Royal"],
 		:midsole => ["White","Black","Metallic Silver","Team Royal"],
-		:outsole => ["White","Black","Ice Blue - Translucent", "Team Royal"],
+		:outsole => ["White","Black","Ghost Gray", "Team Royal"],
 		:logo => ["White","Black","Ice Blue - Translucent","Team Royal"],
 		:side => ["White","Black","Metallic Silver","Metallic Gold","Red","Taxi","Team Royal","Academy"],
 		:bottom => ["White","Black","Metallic Silver","Metallic Gold","Red","Taxi","Team Royal","Academy"],
@@ -415,9 +415,9 @@ class IconBasePage < BasePage
 	def self.parse_icon_recipeset(recipe_id)
 		@rset = Hash.new{ |hsh,key| hsh[key] = [] }
 		case ENV['ENVIRONMENT'].to_sym
-			when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
-			when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
-			when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :test then @response = JSON.parse(RestClient.get("test.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :staging then @response = JSON.parse(RestClient.get("staging.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
+		when :prod then @response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/recipesets/readable/#{recipe_id}"){|response, request, result| response })
 		end
 		@response['contents']['recipes'].each do |recipes|
 			recipes['recipe']['recipeData'].each do |recipeData|
@@ -558,49 +558,58 @@ class IconBasePage < BasePage
 		when :prod
 			@response = JSON.parse(RestClient.get("api.spectrumcustomizer.com/api/productsets/#{scene}"){|response, request, result| response })
 		end
-		@response['contents']['productGroups'][0]['products'].each do |p|
+		@response['contents']['productGroups'].each do |cpg|
+			cpg['products'].each do |p|
 
-			#binding.pry
-			if p['rootFeature']['childFeatures'].nil? == false
-				p['rootFeature']['childFeatures'].each do |cf|
+				#binding.pry
+				if p['rootFeature']['childFeatures'].nil? == false
+					p['rootFeature']['childFeatures'].each do |cf|
 
-					if cf['handle'].include?("size") || cf['handle'].include?("metalness") || cf['handle'].include?("artwork") || cf['handle'].nil?
-					else
+						if cf['handle'].include?("size") || cf['handle'].include?("metalness") || cf['handle'].include?("artwork") || cf['handle'].nil?
+						else
+							if cf['childFeatures'].nil? == false
+								cf['childFeatures'].each do |child|
+									handle = child['handle']
+									child['selectionGroup']['selections'].each do |sgs|
+										@pset[handle] << sgs['textMessageHandle']
+									end
+								end
+							end
+							handle = cf['handle']
 
-						handle = cf['handle']
+							if cf['selectionGroup']['selections'].nil? == false
+								cf['selectionGroup']['selections'].each do |s|
 
-						if cf['selectionGroup']['selections'].nil? == false
-							cf['selectionGroup']['selections'].each do |s|
+									@pset[handle] << s['textMessageHandle']
 
-								@pset[handle] << s['textMessageHandle']
+									if s['features'].nil? == false
+										s['features'].each do |f|
 
-								if s['features'].nil? == false
-									s['features'].each do |f|
+											if f['handle'].include?("size") || f['handle'].include?("metalness") || f['handle'].include?("artwork") || f['handle'].nil?
+											else
 
-										if f['handle'].include?("size") || f['handle'].include?("metalness") || f['handle'].include?("artwork") || f['handle'].nil?
-										else
+												if f['childFeatures'].nil? == false
+													f['childFeatures'].each do |ccf|
 
-											if f['childFeatures'].nil? == false
-												f['childFeatures'].each do |ccf|
+														handle = ccf['handle']
 
-													handle = ccf['handle']
+														ccf['selectionGroup']['selections'].each do |ssg|
 
-													ccf['selectionGroup']['selections'].each do |ssg|
+															@pset[handle] << ssg['textMessageHandle']
 
-														@pset[handle] << ssg['textMessageHandle']
-
+														end
 													end
 												end
-											end
 
-											if f['handle'].nil? == false && f['selectionGroup']['selections'].nil? == false
-												
-												handle = f['handle']
+												if f['handle'].nil? == false && f['selectionGroup']['selections'].nil? == false
+													
+													handle = f['handle']
 
-												f['selectionGroup']['selections'].each do |ss|
+													f['selectionGroup']['selections'].each do |ss|
 
-													@pset[handle] << ss['textMessageHandle']
+														@pset[handle] << ss['textMessageHandle']
 
+													end
 												end
 											end
 										end
