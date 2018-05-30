@@ -571,7 +571,9 @@ class IconBasePage < BasePage
 								cf['childFeatures'].each do |child|
 									handle = child['handle']
 									child['selectionGroup']['selections'].each do |sgs|
-										@pset[handle] << sgs['textMessageHandle']
+										if @pset[handle].include?(sgs['textMessageHandle']) == false
+											@pset[handle] << sgs['textMessageHandle']
+										end
 									end
 								end
 							end
@@ -579,8 +581,9 @@ class IconBasePage < BasePage
 
 							if cf['selectionGroup']['selections'].nil? == false
 								cf['selectionGroup']['selections'].each do |s|
-
-									@pset[handle] << s['textMessageHandle']
+									if @pset[handle].include?(s['textMessageHandle']) == false
+										@pset[handle] << s['textMessageHandle']
+									end
 
 									if s['features'].nil? == false
 										s['features'].each do |f|
@@ -594,21 +597,21 @@ class IconBasePage < BasePage
 														handle = ccf['handle']
 
 														ccf['selectionGroup']['selections'].each do |ssg|
-
-															@pset[handle] << ssg['textMessageHandle']
-
+															if @pset[handle].include?(ssg['textMessageHandle']) == false
+																@pset[handle] << ssg['textMessageHandle']
+															end
 														end
 													end
 												end
 
 												if f['handle'].nil? == false && f['selectionGroup']['selections'].nil? == false
-													
+
 													handle = f['handle']
 
 													f['selectionGroup']['selections'].each do |ss|
-
-														@pset[handle] << ss['textMessageHandle']
-
+														if @pset[handle].include?(ss['textMessageHandle'])
+															@pset[handle] << ss['textMessageHandle']
+														end
 													end
 												end
 											end
@@ -619,8 +622,9 @@ class IconBasePage < BasePage
 						end
 					end
 				end
+				@pset.values.uniq
 			end
 		end
-		return @pset										
+		return @pset									
 	end
 end
