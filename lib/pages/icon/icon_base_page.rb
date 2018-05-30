@@ -609,7 +609,7 @@ class IconBasePage < BasePage
 													handle = f['handle']
 
 													f['selectionGroup']['selections'].each do |ss|
-														if @pset[handle].include?(ss['textMessageHandle'])
+														if @pset[handle].include?(ss['textMessageHandle']) == false
 															@pset[handle] << ss['textMessageHandle']
 														end
 													end
