@@ -25,7 +25,7 @@ class BMKBasePage < BasePage
 
 
 	$recipes = []
-	$knives = ["bmk-pro-crookedriver-full","bmk-pro-grip-full","bmk-pro-barrage-full","bmk-pro-grip-mini","bmk-pro-barrage-mini"]
+	$knives = ["bmk-pro-crookedriver-full","bmk-pro-crookedriver-mini","bmk-pro-grip-full","bmk-pro-barrage-full","bmk-pro-grip-mini","bmk-pro-barrage-mini"]
 
 
 
@@ -51,8 +51,8 @@ class BMKBasePage < BasePage
 		when :test then $driver.goto("http://madetoordertest.blob.core.windows.net/benchmade/frontend/index.html#/product/#{asset}")
 		when :staging
 			case asset
-			when "bmk-pro-crookedriver-full" then
-				$driver.goto("https://staging.benchmade.com/crooked-river-family.html?customize=1#/product/bmk-pro-crookedriver-full")
+			when "bmk-pro-crookedriver-full" || "bmk-pro-crookedriver-mini" then
+				$driver.goto("https://staging.benchmade.com/crooked-river-family.html?customize=1#/product/#{asset}")
 			when "bmk-pro-grip-full" || "bmk-pro-grip-mini" then
 				$driver.goto("https://staging.benchmade.com/griptilian-family.html?customize=1#/product/#{asset}")
 			when "bmk-pro-barrage-full" || "bmk-pro-barrage-mini" then
@@ -60,7 +60,7 @@ class BMKBasePage < BasePage
 			end
 		when :prod then 
 			case asset
-			when "bmk-pro-crookedriver-full" then
+			when "bmk-pro-crookedriver-full" || "bmk-pro-crookedriver-mini" then
 				$driver.goto("https://www.benchmade.com/crooked-river-family.html?customize=1#/product/bmk-pro-crookedriver-full")
 			when "bmk-pro-grip-full" || "bmk-pro-grip-mini" then
 				$driver.goto("https://www.benchmade.com/griptilian-family.html?customize=1#/product/#{asset}")
