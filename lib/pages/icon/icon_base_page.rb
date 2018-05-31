@@ -133,7 +133,7 @@ class IconBasePage < BasePage
 		:outsole => ["White","Black","Ice Blue - Translucent","Gum","Powderkeg Blue"],
 		:midsole => ["White","Black","Stone"],
 		:left_text => ["Downtown Green", "Desert Sky", "Tokyo Lemon", "Tin", "Merit Purple", "Vermillion", "Jupiter Blue", "Baja", "White", "Black", "Elemental", "Aluminum", "Steel", "Graphite", "Charcoal", "Stealth Gray", "Maroon", "Cardinal", "Red", "Tropic Pink", "True Pink", "Dark Orange", "Team Orange", "Steeltown Gold", "Taxi", "Quirky Lime", "Team Kelly Green", "Forest Green", "Artillery Green", "Fresco Green", "Marlin Blue", "Neptune", "Blue Infinity", "Carolina Blue", "Blue Shift", "St. Tropez", "Powderkeg Blue", "Team Royal", "Midnight Navy", "Purple", "Indulge", "Cleveland Brown", "Texas Orange", "Beige Canvas", "Vegas Gold", "Dune", "Stone", "Ivory"],
-		:right_text => ["Downtown Green", "Desert Sky", "Tokyo Lemon", "Tin", "Merit Purple", "Vermillion", "Jupiter Blue", "Baja", "White", "Black", "Elemental", "Aluminum", "Steel", "Graphite", "Charcoal", "Stealth Gray", "Maroon", "Cardinal", "Red", "Tropic Pink", "True Pink", "Dark Orange", "Team Orange", "Steeltown Gold", "Taxi", "Quirky Lime", "Team Kelly Green", "Forest Green", "Artillery Green", "Fresco Green", "Marlin Blue", "Neptune", "Blue Infinity", "Carolina Blue", "Blue Shift", "St. Tropez", "Powderkeg Blue", "Team Royal", "Midnight Navy", "Purple", "Indulge", "Cleveland Brown", "Texas Orange", "Beige Canvas", "Vegas Gold", "Dune", "Stone", "Ivory"],
+		:right_text => ["Downtown Green", "Desert Sky", "Tokyo Lemon", "Tin", "Merit Purple", "Vermillion", "Jupiter Blue", "Baja", "White", "Black", "Elemental", "Aluminum", "Steel", "Graphite", "Charcoal", "Stealth Gray", "Maroon", "Cardinal", "Red", "Tropic Pink", "True Pink", "Dark Orange", "Team Orange", "Steeltown Gold", "Taxi", "Quirky Lime", "Team Kelly Green", "Forest Green", "Artillery Green", "Fresco Green", "Marlin Blue", "Neptune", "Blue Infinity", "Carolina Blue", "Blue Shift", "St. Tropez", "Powderkeg Blue", "Team Royal", "Midnight Navy", "Purple", "Indulge", "Cleveland Brown", "Texas Orange", "Beige Canvas", "Vegas Gold", "Dune", "Stone", "Ivory"]
 	}
 
 	$curry_low = {
@@ -180,7 +180,7 @@ class IconBasePage < BasePage
 		:strap => ["White","Black","Aluminum","Tropic Pink","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
 		:strap_logo => ["White","Black","Aluminum","Metallic Silver","Tropic Pink","Metallic Gold","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
 		:lining => ["White","Black","Aluminum","Tropic Pink","Desert Sky","Carolina Blue","Jupiter Blue","Purple"],
-		:outsole => ["White","Black"]
+		:outsole => ["White","Black"],
 		:left_text => ["Black", "Elemental", "Aluminum", "Steel", "Tin", "Graphite", "Maroon", "Cardinal", "Red", "Tropic Pink", "Vermillion", "Team Orange", "Texas Orange", "Dark Orange", "Steeltown Gold", "Taxi", "Tokyo Lemon", "Team Kelly Green", "Downtown Green", "Forest Green", "Desert Sky", "Carolina Blue", "St. Tropez", "Jupiter Blue", "Team Royal", "Midnight Navy", "Purple", "Merit Purple", "Cleveland Brown", "Baja", "Techno Teal", "Venetian Blue", "Pixel Purple", "Flushed Pink", "Brick Red", "Ghost Gray", "Mink Gray", "Charcoal", "Academy"],
  		:right_text => ["Black", "Elemental", "Aluminum", "Steel", "Tin", "Graphite", "Maroon", "Cardinal", "Red", "Tropic Pink", "Vermillion", "Team Orange", "Texas Orange", "Dark Orange", "Steeltown Gold", "Taxi", "Tokyo Lemon", "Team Kelly Green", "Downtown Green", "Forest Green", "Desert Sky", "Carolina Blue", "St. Tropez", "Jupiter Blue", "Team Royal", "Midnight Navy", "Purple", "Merit Purple", "Cleveland Brown", "Baja", "Techno Teal", "Venetian Blue", "Pixel Purple", "Flushed Pink", "Brick Red", "Ghost Gray", "Mink Gray", "Charcoal", "Academy"]
 	}
@@ -196,9 +196,9 @@ class IconBasePage < BasePage
 		:midsole => ["White","Black"],
 		:heel => ["White","Black","Elemental","Midnight Navy","Gold","Cardinal","Forest Green"], 
 		:outsole => ["White","Black","Gum Rubber"],
-		:sockliner => ["White","Black"]
+		:sockliner => ["White","Black"],
 		:left_text => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Midnight Navy", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Downtown Green", "Desert Sky", "Tokyo Lemon", "Merit Purple", "Vermillion", "Jupiter Blue", "Tin", "Baja", "Elemental"],
-		:right_text => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Midnight Navy", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Downtown Green", "Desert Sky", "Tokyo Lemon", "Merit Purple", "Vermillion", "Jupiter Blue", "Tin", "Baja", "Elemental"],
+		:right_text => ["White", "Black", "Aluminum", "Steel", "Graphite", "Taxi", "Steeltown Gold", "Team Orange", "Red", "Cardinal", "Maroon", "Tropic Pink", "Purple", "Carolina Blue", "St. Tropez", "Team Royal", "Midnight Navy", "Team Kelly Green", "Forest Green", "Texas Orange", "Cleveland Brown", "Dark Orange", "Downtown Green", "Desert Sky", "Tokyo Lemon", "Merit Purple", "Vermillion", "Jupiter Blue", "Tin", "Baja", "Elemental"]
 	}
 
 	$spotlight = {
