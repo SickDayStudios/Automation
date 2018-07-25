@@ -20,10 +20,10 @@ end
 
 # => Accessibility
 
-RSpec::Core::RakeTask.new(:accessibility, [:browser,:url,:standard]) do |t, args|
+RSpec::Core::RakeTask.new(:accessibility, [:browser,:standard]) do |t, args|
 	ENV['BROWSER'] = args[:browser]
 	ENV['URL'] = args[:url]
-	ENV['STANDARD'] = args[:standard].to_sym
+	ENV['STANDARD'] = args[:standard]
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-	t.pattern = Dir.glob('spec/tests/accessibility/accessibility_spec.rb')
+	t.pattern = Dir.glob('spec/tests/accessibility_spec.rb')
 end

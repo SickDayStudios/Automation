@@ -26,7 +26,7 @@ class BasePage
 
 
 	def self.image_diff(recipe_id)
-		self.adjust_fe_images(recipe_id)
+		self.adjust_images(recipe_id)
 		n = 0
 		Dir["#{$screenshotfolder}/#{recipe_id}/FE/*.png"].zip(Dir["#{$screenshotfolder}/#{recipe_id}/BER/*.png"]).each do |fe, ber|
 			n += 1
@@ -61,7 +61,7 @@ class BasePage
 		end
 	end
 
-	def self.adjust_fe_images(recipe_id)
+	def self.adjust_images(recipe_id)
 		Dir["#{$screenshotfolder}/#{recipe_id}/FE/*.png"].each do |img|
 			new_image = Magick::Image.read(img)[0]
 			new_image.resize_to_fit!(512,512)
@@ -96,8 +96,12 @@ class BasePage
 		end
 	end
 
-	def json_parse(url)
-		return JSON.parse(RestClient.get(url){|response, request, result| response })
+	def self.xml_parse(url)
+		Nokogiri::XML.parse(RestClient.get(url){|response, request, result| response })
+	end
+
+	def self.json_parse(url)
+		JSON.parse(RestClient.get(url){|response, request, result| response })
 	end
 
 	def self.set_device_to(device)
@@ -139,7 +143,7 @@ class BasePage
 
 	def wait_or_rescue(arg)
 		begin
-			self.wait_until { arg }
+			self.wait_until { "#{arg}" }
 		rescue Watir::Wait::TimeoutError, Watir::Exception::UnknownObjectException, Timeout::Error
 			BasePage.print_js_errors
 		end
@@ -172,13 +176,6 @@ class BasePage
 		end
 	end
 
-	def self.on_fail(example)
-		if example.exception
-			$driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
-		end
-		self.print_js_errors
-	end
-
 	def self.collect_links_src
 		$driver.links.collect
 	end
@@ -199,12 +196,6 @@ class BasePage
 		$driver.quit
 	end
 
-	def self.setup
-		BasePage.set_user
-		BasePage.set_base_url
-		BasePage.navigate_to_starting_page
-	end
-
 	def self.create_jira_csv
 		CSV.open("#{$screenshotfolder}/#{$csv_file}", "wb") do |csv|
 			csv << ["Summary","Issue Type","Assignee","Status","Priority","Reporter","Creator","Due Date","Description","Custom field (Epic Link)","Outward Issue Link"]
@@ -214,15 +205,6 @@ class BasePage
 	def self.update_jira_csv(summary, description)
 		CSV.open("#{$screenshotfolder}/#{$csv_file}", "a+") do |csv| 
 			csv << ["#{summary}","Task","cwilliams","To Do","Normal","cwilliams","cwilliams","","#{description}","",""]
-		end
-	end
-
-
-	def self.set_base_url
-		case ENV['ENVIRONMENT']
-		when :test then $base_url = ''
-		when :staging then $base_url = ''
-		when :prod then $base_url = ''
 		end
 	end
 end

@@ -46,8 +46,9 @@ RSpec.configure do |config|
 	config.after(:each) do |example|
 
 		if example.exception
-			$driver.screenshot.save "#{$screenshotfolder}/fail-#{Time.new.strftime("%d%b%Y-%H%M%S")}.png"
+			$driver.screenshot.save "#{@screenshotfolder}/fail-#{DateTime.now.strftime('%d%b%Y-%H%M%S')}.png"
 		end
+		self.print_js_errors
 
 	end
 
