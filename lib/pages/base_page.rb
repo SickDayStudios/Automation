@@ -5,6 +5,36 @@ class BasePage
 		super($driver)
 	end
 
+	def self.reverse_string(string)
+		new_string = ""
+		array = string.each_char.to_a
+		array.length.times { new_string << array.pop }
+		puts new_string
+	end
+
+	def self.reverse_array(array)
+		new_arr = Array.new
+		array.length.times {
+			new_arr << array.pop
+		}
+		puts "#{new_arr}"
+	end
+
+
+	def self.fib(n)
+		n <= 1 ? n : (fib(n - 1) + fib(n - 2))
+	end
+
+	def self.fibi(n)
+		a = 0
+		puts a
+		b = 1
+		while b <= n 
+			puts b
+			a,b = b,a+b
+		end
+	end
+
 	def self.get_images(url)
 		@images = Array.new
 		@response = Nokogiri::XML.parse(RestClient.get("#{url}"){|response, request, result| response })
@@ -25,7 +55,7 @@ class BasePage
 	end
 
 
-	def self.image_diff(recipe_id)
+	def self.image_diff(arg)
 		self.adjust_images(recipe_id)
 		n = 0
 		Dir["#{$screenshotfolder}/#{recipe_id}/FE/*.png"].zip(Dir["#{$screenshotfolder}/#{recipe_id}/BER/*.png"]).each do |fe, ber|
@@ -61,7 +91,7 @@ class BasePage
 		end
 	end
 
-	def self.adjust_images(recipe_id)
+	def self.adjust_images(arg)
 		Dir["#{$screenshotfolder}/#{recipe_id}/FE/*.png"].each do |img|
 			new_image = Magick::Image.read(img)[0]
 			new_image.resize_to_fit!(512,512)
@@ -70,7 +100,7 @@ class BasePage
 		end
 	end
 
-	def self.validate_svg(zip_dir, schema)
+	def self.validate_svg_from_zip(zip_dir, schema)
 		schema = Nokogiri::XML::Schema(File.read(schema))
 		# doc = Nokogiri::XML(File.open("#{zip_dir, schema}"))
 		Zip::File.open(zip_dir, schema) do |zip_file|
@@ -86,7 +116,7 @@ class BasePage
 		end
 	end
 
-	def self.validate_svg_url(url, schema)
+	def self.validate_svg_from_url(url, schema)
 		File.write 'image.svg', open("#{url}").read
 		schema = Nokogiri::XML::Schema(File.read(schema))
 		doc = Nokogiri::XML(File.open("#{Dir.pwd}/image.svg"))
@@ -198,7 +228,7 @@ class BasePage
 
 	def self.create_jira_csv
 		CSV.open("#{$screenshotfolder}/#{$csv_file}", "wb") do |csv|
-			csv << ["Summary","Issue Type","Assignee","Status","Priority","Reporter","Creator","Due Date","Description","Custom field (Epic Link)","Outward Issue Link"]
+			csv << ["Summary","Issue Type","Assignee","Status","Priority","Reporter","Creator","Due Date","Description","Outward Issue Link"]
 		end
 	end
 

@@ -27,3 +27,7 @@ RSpec::Core::RakeTask.new(:accessibility, [:browser,:standard]) do |t, args|
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
 	t.pattern = Dir.glob('spec/tests/accessibility_spec.rb')
 end
+
+RSpec::Core::RakeTask.new(:fib) do |t|
+	t.pattern = Dir.glob('spec/tests/fib_spec.rb')
+end

@@ -39,6 +39,7 @@ group :development, :test do
   gem 'axe-matchers'
   gem 'schmooze'
   gem 'launchy'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
+  gem 'webdriver-user-agent'
 end
 
