@@ -41,5 +41,6 @@ group :development, :test do
   gem 'launchy'
   gem 'webdrivers'
   gem 'webdriver-user-agent'
+  gem 'rspec-core'
 end
 
