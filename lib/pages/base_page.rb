@@ -9,7 +9,7 @@ class BasePage
 		array.each do |i|
 			array.remove(i)
 		end
-
+	end
 
 	def self.reverse_string(string)
 		new_string = ""
