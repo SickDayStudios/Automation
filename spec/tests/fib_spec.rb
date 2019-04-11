@@ -13,7 +13,7 @@ describe "Fibonacci Test" do
 		it "Test Fibi Method" do
 			BasePage.fibi(1000)
 		end
-		
+
 	end
 
 	context "Reverse Methods" do

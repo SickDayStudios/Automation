@@ -5,6 +5,12 @@ class BasePage
 		super($driver)
 	end
 
+	def self.unique_array(array)
+		array.each do |i|
+			array.remove(i)
+		end
+
+
 	def self.reverse_string(string)
 		new_string = ""
 		array = string.each_char.to_a

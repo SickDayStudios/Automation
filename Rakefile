@@ -14,7 +14,7 @@ ENV['CI_REPORTS'] = "./reports"
 RSpec::Core::RakeTask.new(:schema, [:browser]) do |t, args|
 	ENV['BROWSER'] = args[:browser]
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-	t.pattern = Dir.glob('spec/tests/svg_validator_spec.rb')
+	t.pattern = Dir.glob('./spec/tests/svg_validator_spec.rb')
 end
 
 
@@ -25,9 +25,9 @@ RSpec::Core::RakeTask.new(:accessibility, [:browser,:standard]) do |t, args|
 	ENV['URL'] = args[:url]
 	ENV['STANDARD'] = args[:standard]
 	ENV['TEST_ENV_NUMBER'] = "#{DateTime.now.strftime('%d%b-%H%M%S%p')}"
-	t.pattern = Dir.glob('spec/tests/accessibility_spec.rb')
+	t.pattern = Dir.glob('./spec/tests/accessibility_spec.rb')
 end
 
 RSpec::Core::RakeTask.new(:fib) do |t|
-	t.pattern = Dir.glob('spec/tests/fib_spec.rb')
+	t.pattern = Dir.glob('./spec/tests/fib_spec.rb')
 end
